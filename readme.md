@@ -26,3 +26,8 @@ git clone --depth=1 https://github.com/frazrepo/nvim-config.git
 * Syntax highlighting with [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
 * LSP and Completion with [coc.nvim](https://github.com/neoclide/coc.nvim)
 
+# Additional plugins
+* Easy mappings access with which-key 
+* Zen environment with TrueZen
+* Quickfix filtering with nvim-bqf
+* Terminal management with vim-floatterm
