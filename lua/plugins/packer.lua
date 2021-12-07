@@ -138,7 +138,7 @@ use {
 }
 
 -----------------------------------------------------------
--- Code Helpers
+-- Code Helpers - Code Generation
 -----------------------------------------------------------
 
 -- treesitter interface : syntax highlighter
@@ -167,6 +167,12 @@ use {
         require('nvim-autopairs').setup{}
     end
 }
+
+-- autotags
+use {
+    'windwp/nvim-ts-autotag',
+}
+
 -----------------------------------------------------------
 -- Search Replace
 -----------------------------------------------------------
