@@ -216,6 +216,16 @@ exec([[
     augroup END
  ]], false)
 
+-- AutoCommands for powershell bindings
+exec([[
+        augroup psbindings
+            autocmd! psbindings
+            autocmd Filetype ps1 nnoremap <buffer> <F8> :CocCommand powershell.evaluateLine<CR>
+            autocmd Filetype ps1 vnoremap <buffer> <F8> :CocCommand powershell.evaluateSelection<CR>
+            autocmd Filetype ps1 nnoremap <buffer> <F5> :CocCommand powershell.execute<CR>
+        augroup end
+ ]], false)
+
 
 -- TODO : to test , default shell (bug here)
 -- local function default_shell() 
