@@ -217,24 +217,16 @@ exec([[
  ]], false)
 
 
--- TODO load ginit.lua
--- exec(
---     [[
---         au UIAttach * lua require('ginit')
---     ]]
--- ,false)
-
-
 -- TODO : to test , default shell (bug here)
 -- local function default_shell() 
 -- 	if vim.fn.has('win32') == 1  then
 -- 	    opt.shell = "powershell.exe"
 --     end
 -- -- end
-exec(
-    [[
-        if has('win32')
-            set shell=powershell.exe
-        endif
-    ]]
-,false)
+-- exec(
+--     [[
+--         if has('win32')
+--             set shell=powershell.exe
+--         endif
+--     ]]
+-- ,false)
