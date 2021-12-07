@@ -56,13 +56,6 @@ use 'lewis6991/impatient.nvim'
 -- tim pope plugins
 use 'tpope/vim-unimpaired'
 use 'tpope/vim-surround'
--- Surround in lua (working but doesn't support . repeat)
--- use {
---     "blackCauldron7/surround.nvim",
---     config = function()
---         require"surround".setup {mappings_style = "surround"}
---     end
--- }
 
 --  repeat surround action
 use 'tpope/vim-repeat'
@@ -75,7 +68,6 @@ use {
     end
 }
 use 'JoosepAlviste/nvim-ts-context-commentstring'
-
 
 -- vim-exchange exchange lines
 use {
@@ -171,6 +163,10 @@ use {
 -- autotags (see treesitter for activation)
 use {
     'windwp/nvim-ts-autotag',
+    ft = {
+        "html",
+        "xml",
+    },
 }
 
 -----------------------------------------------------------
@@ -212,7 +208,6 @@ use({
 })
 
 -- quickfix vim-bqf
--- https://github.com/navinkarkera/dotfiles/blob/24cdccbcdf6f3f5ac51369d17b537122061b2f4a/nvim-minimal/.config/nvim/lua/plugins.lua
 use { 
     "kevinhwang91/nvim-bqf",
     config =  function()
@@ -286,13 +281,6 @@ use {
         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
         vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
 
-        -- place this in one of your configuration file(s)
-        vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-        vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
-        vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
-        vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true })<cr>", {})
-        vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>", {})
-        vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>", {})
     end
 }
 
