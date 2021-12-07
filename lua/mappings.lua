@@ -259,7 +259,7 @@ vim.cmd([[
 
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:
------------------------------------------------------------
+-----------------------------------------------------------kG
 
 -- bufferline
 vim.api.nvim_set_keymap("n", "<Tab>",":BufferLineCycleNext<CR>", {noremap = true, silent = true})
@@ -272,3 +272,12 @@ map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
 
 -- toggleterm
 vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
+
+
+-- toggleterm
+vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
+
+
+
+-- Coc yank
+vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
