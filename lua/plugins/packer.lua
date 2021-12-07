@@ -168,7 +168,7 @@ use {
     end
 }
 
--- autotags
+-- autotags (see treesitter for activation)
 use {
     'windwp/nvim-ts-autotag',
 }

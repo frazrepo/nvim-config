@@ -1,1 +1,2 @@
-    GuiFont! Fira\ Code:h13
+" For nvim-qt
+GuiFont! Fira\ Code:h13
