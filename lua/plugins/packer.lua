@@ -20,6 +20,7 @@ if not is_installed then
     end
 end
 
+
 -- Packer commands
 vim.cmd [[command! PackerInstall packadd packer.nvim | lua require('plugins').install()]]
 vim.cmd [[command! PackerUpdate packadd packer.nvim | lua require('plugins').update()]]
@@ -38,6 +39,9 @@ if packer == nil then
 end
 
 local use = packer.use
+
+local fzconfig = require("fzconfig")
+
 -- Add packages
 -- return require('packer').startup(function(use)
 -----------------------------------------------------------
@@ -220,27 +224,30 @@ use {
 -- Completion , LSP
 -----------------------------------------------------------
 
---coc nvim
-use {'neoclide/coc.nvim', branch = 'release'}
+if fzconfig.lspconfig == "coc" then
+    -- coc nvim
+    use {'neoclide/coc.nvim', branch = 'release'}
+else
+    -- LSP
+    use 'neovim/nvim-lspconfig'
 
--- autocomplete and snippets (not compatible with coc ?)
--- use {
---   "rafamadriz/friendly-snippets",
---   event = "InsertEnter",
--- }
-
--- use {
---     'hrsh7th/nvim-cmp',
---     after ="friendly_snippets",
---     requires = {
---         'L3MON4D3/LuaSnip',
---         'hrsh7th/cmp-nvim-lsp',
---         'hrsh7th/cmp-path',
---         'hrsh7th/cmp-buffer',
---         'saadparwaiz1/cmp_luasnip',
---     },
--- }
-
+    -- autocomplete
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            'L3MON4D3/LuaSnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-buffer',
+            'saadparwaiz1/cmp_luasnip',
+        },
+    }
+    --   "rafamadriz/friendly-snippets",
+    use  {
+      "rafamadriz/friendly-snippets",
+      event = "InsertEnter",
+    }
+end
 
 -- Miscellaneous
 
