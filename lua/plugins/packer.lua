@@ -145,6 +145,11 @@ use {
     end
 }
 
+use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = "nvim-treesitter"
+}
+
 -- emmet html/css snippets
 use {
     "mattn/emmet-vim",
@@ -243,7 +248,7 @@ use({
     end,
     requires = {
         { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-        { 'williamboman/nvim-lsp-installer' },
+        { 'williamboman/nvim-lsp-installer' , opt = true, event = "VimEnter" },
     },
 })
 
@@ -301,6 +306,7 @@ use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
     event = "BufRead",
+    cmd = {"HopChar2", "HopWord"},
     config = function()
         -- you can configure Hop the way you like here; see :h hop-config
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
