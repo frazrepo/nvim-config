@@ -138,7 +138,12 @@ use {
 -----------------------------------------------------------
 
 -- treesitter interface : syntax highlighter
-use 'nvim-treesitter/nvim-treesitter'
+use {
+    'nvim-treesitter/nvim-treesitter',
+    config= function()
+        require('plugins.treesitter')
+    end
+}
 
 -- emmet html/css snippets
 use {
@@ -203,12 +208,18 @@ use {"mhinz/vim-grepper",
 -- telescope fuzzy finder
 use {
     'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} , { 'BurntSushi/ripgrep' }} 
+    requires = { {'nvim-lua/plenary.nvim'} , { 'BurntSushi/ripgrep' }},
+    config = function()
+        require("plugins.telescope")
+    end
 }
 
 -- file explorer
 use({
     'kyazdani42/nvim-tree.lua',
+    config = function()
+        require("plugins.nvim-tree")
+    end
 })
 
 -- quickfix vim-bqf
@@ -226,10 +237,25 @@ use {
 
 if fzconfig.lspconfig == "coc" then
     -- coc nvim
-    use {'neoclide/coc.nvim', branch = 'release'}
+    use {
+        'neoclide/coc.nvim', 
+        branch = 'release',
+        config= function()
+            require('plugins.coc')
+        end
+    }
 else
     -- LSP
-    use 'neovim/nvim-lspconfig'
+    use({
+        'neovim/nvim-lspconfig',
+        config = function()
+            require('plugins.lsp')
+        end,
+        requires = {
+            { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
+            { 'williamboman/nvim-lsp-installer' },
+        },
+    })
 
    -- Completion
     use {
@@ -268,6 +294,7 @@ use {
             -- or leave it empty to use the default settings
             -- refer to the configuration section below
         }
+        require('plugins.whichkey')
     end
 }
 
@@ -305,7 +332,10 @@ use 'folke/tokyonight.nvim'
 -- lualine
 use {
     'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    config = function()
+        require('lualine').setup()
+    end
 }
 
 -- gitsign
