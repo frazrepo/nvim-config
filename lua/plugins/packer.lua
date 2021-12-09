@@ -231,21 +231,25 @@ else
     -- LSP
     use 'neovim/nvim-lspconfig'
 
-    -- autocomplete
+   -- Completion
     use {
         'hrsh7th/nvim-cmp',
+        event = "UIEnter",
+        opt = true,
         requires = {
-            'L3MON4D3/LuaSnip',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path',
-            'hrsh7th/cmp-buffer',
-            'saadparwaiz1/cmp_luasnip',
+            {'hrsh7th/cmp-nvim-lsp', module = "cmp_nvim_lsp", opt = true},
+            {'hrsh7th/cmp-buffer', opt = true},
+            {'hrsh7th/cmp-path', opt = true},
+            {'hrsh7th/cmp-nvim-lua', opt = true},
+            {'saadparwaiz1/cmp_luasnip', opt = true}
         },
+        config = function() require'plugins.completion'.setup() end
     }
-    --   "rafamadriz/friendly-snippets",
-    use  {
-      "rafamadriz/friendly-snippets",
-      event = "InsertEnter",
+    use {
+        'L3MON4D3/LuaSnip',
+        after = "nvim-cmp",
+        requires = {{"rafamadriz/friendly-snippets"}},
+        config = function() require'plugins.completion'.luasnip() end
     }
 end
 
