@@ -234,51 +234,14 @@ use {
 -----------------------------------------------------------
 -- Completion , LSP
 -----------------------------------------------------------
-
-if fzconfig.lspconfig == "coc" then
-    -- coc nvim
-    use {
-        'neoclide/coc.nvim', 
-        branch = 'release',
-        config= function()
-            require('plugins.coc')
-        end
-    }
-else
-    -- LSP
-    use({
-        'neovim/nvim-lspconfig',
-        config = function()
-            require('plugins.lsp')
-        end,
-        requires = {
-            { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-            { 'williamboman/nvim-lsp-installer' },
-        },
-    })
-
-   -- Completion
-    use {
-        'hrsh7th/nvim-cmp',
-        event = "UIEnter",
-        opt = true,
-        requires = {
-            {'hrsh7th/cmp-nvim-lsp', module = "cmp_nvim_lsp", opt = true},
-            {'hrsh7th/cmp-buffer', opt = true},
-            {'hrsh7th/cmp-path', opt = true},
-            {'hrsh7th/cmp-nvim-lua', opt = true},
-            {'saadparwaiz1/cmp_luasnip', opt = true}
-        },
-        config = function() require'plugins.completion'.setup() end
-    }
-    use {
-        'L3MON4D3/LuaSnip',
-        after = "nvim-cmp",
-        requires = {{"rafamadriz/friendly-snippets"}},
-        config = function() require'plugins.completion'.luasnip() end
-    }
-end
-
+-- coc nvim
+use {
+    'neoclide/coc.nvim', 
+    branch = 'release',
+    config= function()
+        require('plugins.coc')
+    end
+}
 -- Miscellaneous
 
 -----------------------------------------------------------
