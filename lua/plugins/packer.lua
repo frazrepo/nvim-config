@@ -376,6 +376,11 @@ use {
     end
 }
 
+-- vim-illuminates highlight other uses of the current word under the cursor
+use {
+    "RRethy/vim-illuminate",
+}
+
 -----------------------------------------------------------
 -- Terminal enhacements
 -----------------------------------------------------------
