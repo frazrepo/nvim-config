@@ -261,24 +261,6 @@ vim.cmd([[
 -- Applications & Plugins shortcuts:
 -----------------------------------------------------------kG
 
--- bufferline
-vim.api.nvim_set_keymap("n", "<Tab>",":BufferLineCycleNext<CR>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<S-Tab>",":BufferLineCyclePrev<CR>", {noremap = true, silent = true})
-
--- nvim-tree
-map('n', '<C-n>', ':NvimTreeToggle<CR>', default_opts)       -- open/close
--- map('n', '<leader>r', ':NvimTreeRefresh<CR>', default_opts)  -- refresh
-map('n', '<leader>n', ':NvimTreeFindFile<CR>', default_opts) -- search file
-
--- toggleterm
-vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
-
-
--- toggleterm
-vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
-
-
-
--- Coc yank
-vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
-vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
+-- -- Coc yank
+-- vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
+-- vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
