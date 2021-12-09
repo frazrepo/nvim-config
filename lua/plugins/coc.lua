@@ -1,8 +1,22 @@
 -----------------------------------------------------------
--- Floaterm configuration file
+-- Coc configuration file
 -- Plugin: coc nvim
 -- https://github.com/neoclide/coc.nvim 
 -----------------------------------------------------------
+-- Useful Extensions
+-- * Coc html
+-- * Coc snippet + honza snippets
+-- * Coc tsserver
+-- * Coc powershell
+-- * Coc yank
+-- * Coc json
+-- * Coc yaml
+-- * Coc markdown lint
+-- * Coc tab nine AI coding experience
+-- * Coc sql
+-- * Coc omnisharp
+-- * Coc snippets + honza snippets
+-- * Coc lua
 
 vim.api.nvim_set_keymap("n", "<leader>.", "<Plug>(coc-codeaction)", {})
 vim.api.nvim_set_keymap("n", "<leader>l", ":CocCommand eslint.executeAutofix<CR>", {})
