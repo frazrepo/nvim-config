@@ -1,5 +1,5 @@
 
-# Neovim lua configuration
+# Neovim lua configuration (CoC branch)
 This is my neovim configuration in lua.
 
 # Goals
