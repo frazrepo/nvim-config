@@ -2,7 +2,8 @@
 -- Autocomplete configuration file
 -- Plugin: nvim-cmp
 -- Taken from : 
--- https://github.com/mxdevmanuel/dotfiles/blob/master/neovim/.config/nvim/lua/completion.lua- https://github.com/hrsh7th/nvim-cmpa
+-- https://github.com/mxdevmanuel/dotfiles/blob/master/neovim/.config/nvim/lua/completion.lua
+-- https://github.com/hrsh7th/nvim-cmpa
 -----------------------------------------------------------
 
 local M = {}
