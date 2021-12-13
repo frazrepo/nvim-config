@@ -50,9 +50,6 @@ local fzconfig = require("fzconfig")
 -- packer can manage itself
 use 'wbthomason/packer.nvim'
 
--- impatient : seems to enhance startup time by 50ms
-use 'lewis6991/impatient.nvim'
-
 -----------------------------------------------------------
 -- Buffer Helpers
 -----------------------------------------------------------
@@ -375,7 +372,6 @@ use {
 -- indent blankline
 use { "lukas-reineke/indent-blankline.nvim" }
 
-
 -- truezen
 use { 
     "Pocco81/TrueZen.nvim" ,
@@ -383,11 +379,6 @@ use {
         local default_opts = { noremap = true, silent = true  }
         vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
     end
-}
-
--- vim-illuminates highlight other uses of the current word under the cursor
-use {
-    "RRethy/vim-illuminate",
 }
 
 -----------------------------------------------------------

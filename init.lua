@@ -12,7 +12,6 @@ Debug : nvim --startuptime vim.log
 -- Import Lua modules
 -----------------------------------------------------------
 
-require('impatient')
 require('settings')
 require('mappings')
 require('colors')
