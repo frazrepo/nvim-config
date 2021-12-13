@@ -390,6 +390,7 @@ use {
         require "plugins.floaterm".setup()
     end,
     -- cmd = "FloatermNew",
+    cmd = { "FloatermToggle", "FloatermNew"},
 }
 
 -- Automatically set up your configuration after cloning packer.nvim
