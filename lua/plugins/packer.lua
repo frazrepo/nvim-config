@@ -273,17 +273,8 @@ use {
 -- Miscellaneous
 
 -----------------------------------------------------------
--- Helpers, Dashboard, Session Management
+-- Helpers 
 -----------------------------------------------------------
-
--- dashboard
-use {
-    'glepnir/dashboard-nvim',
-    require = {'nvim-telescope/telescope.nvim'},
-    config = function() 
-        require("plugins.dashboard-nvim")
-    end
-}
 
 -- which-key
 use {

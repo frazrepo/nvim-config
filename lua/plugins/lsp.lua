@@ -84,7 +84,7 @@ https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.m
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'angularls', 'html', 'tsserver', 'powershell_es' }
+local servers = { 'angularls', 'html', 'tsserver'}
 
 -- Set settings for language servers below
 --
@@ -104,3 +104,11 @@ for _, lsp in ipairs(servers) do
         }
     }
 end
+
+-- powershell_es
+require'lspconfig'.powershell_es.setup{
+    bundle_path = '~/AppData/Local/nvim-data/lsp_servers/powershell_es',
+    shell = 'powershell.exe',
+    on_attach = on_attach,
+    capabilities = capabilities,
+}
