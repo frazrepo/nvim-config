@@ -50,9 +50,6 @@ local fzconfig = require("fzconfig")
 -- packer can manage itself
 use 'wbthomason/packer.nvim'
 
--- impatient : seems to enhance startup time by 50ms
-use 'lewis6991/impatient.nvim'
-
 -----------------------------------------------------------
 -- Buffer Helpers
 -----------------------------------------------------------
