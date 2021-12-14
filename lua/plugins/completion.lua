@@ -61,7 +61,8 @@ function M.setup()
             {
                 name = 'nvim_lsp'
             }, {
-                name = 'buffer'
+                name = 'buffer',
+                keyword_length = 5
             }, {
                 name = 'luasnip'
             }, {
