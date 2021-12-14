@@ -278,6 +278,7 @@ use {
     'phaazon/hop.nvim',
     branch = 'v1', -- optional but strongly recommended
     event = "BufRead",
+    cmd = {"HopChar2", "HopWord"},
     config = function()
         -- you can configure Hop the way you like here; see :h hop-config
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
@@ -364,7 +365,7 @@ use {
     setup = function()
         require "plugins.floaterm".setup()
     end,
-    -- cmd = "FloatermNew",
+    cmd = {"FloatermToggle","FloatermNew"},
 }
 
 -- Automatically set up your configuration after cloning packer.nvim
