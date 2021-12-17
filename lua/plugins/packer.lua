@@ -130,6 +130,9 @@ use {
     event = { "BufReadPost" },
 }
 
+-- move lines with <A-j> <A-k>
+use {'matze/vim-move'}
+
 -----------------------------------------------------------
 -- Code Helpers - Code Generation
 -----------------------------------------------------------
