@@ -28,11 +28,19 @@ local wk = require("which-key")
 
 wk.register({
   ["<leader>"] = {
-    name = "File",
-    -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    -- , = { "Find buffer" },
-    -- ! = { "Close buffer" },
-    -- ',' = { "Find buffer" },
+    name = "Leader",
+    ["/"] = { "Global Search" },
+    ["G"] = { "Global Search in buffers" },
+    ["r"] = { "Replace Search Register" },
+    ["x"] = { "Edit txt buffer" },
+    ["d"] = { "Edit markdown buffer" },
+    ["s"] = { "Edit sql buffer" },
+    ["e"] = { "Edit in current buffer path" },
+    ["!"] = { "Delete buffer" },
+    ["w"] = { "Save buffer" },
+    ["m"] = { "Remove special char M" },
+    [","] = { "Find buffer" },
+    [";"] = { "Find lines in buffer" },
     u = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
   },
 })

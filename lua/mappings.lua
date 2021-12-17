@@ -61,10 +61,6 @@ map('n', '<leader>!',':bd!<cr>', {noremap =false, silent = true})
 map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true})
 map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true})
  
--- Buffers navigation
-map('n', '<leader>l',':bnext<cr>'    , {noremap =false, silent = true})
-map('n', '<leader>h',':bprevious<cr>', {noremap =false, silent = true})
-
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
@@ -110,10 +106,6 @@ map('n', '<A-Up>','<Cmd>cprevious<Cr>', default_opts)
 -- H and L Begin/End on homerow
 map('n', 'H', '^'  , {noremap =false, silent = true})
 map('n', 'L', 'g_'  , {noremap =false, silent = true})
-
--- Paste from yank register 
-map('x', '<leader>p','"0p', default_opts)
-map('n', '<leader>p','"0p', default_opts)
 
 -- Paste quickly in insert mode
 map('i', '<C-r><C-r>','<C-r>*', default_opts)
