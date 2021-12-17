@@ -254,6 +254,14 @@ use({
     },
 })
 
+-- null-ls with prettier
+use { 
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+        require('plugins.null-ls')
+    end,
+}
+
 -- Completion
 use {
     'hrsh7th/nvim-cmp',
