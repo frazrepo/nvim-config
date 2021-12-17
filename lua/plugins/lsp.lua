@@ -84,7 +84,9 @@ https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.m
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'angularls', 'html', 'tsserver'}
+-- Needs to install each LSP Server with :LSPInstall <language> or manually
+-- local servers = { 'angularls', 'html', 'tsserver'}
+local servers = {}
 
 -- Set settings for language servers below
 --
