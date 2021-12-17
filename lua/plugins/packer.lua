@@ -79,7 +79,8 @@ use {
     },
 }
 
--- TODO : transpose (not working yet)
+-- transpose
+-- On *unix : Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
 use {
     "vim-scripts/Transpose",
     cmd = {
