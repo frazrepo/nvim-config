@@ -89,7 +89,7 @@ use {
 }
 
 -- Align based on character (mapping gl) 
-use 'tommcdo/vim-lion'                             
+use 'tommcdo/vim-lion'
 
 -- Aligning (mapping ga , replace gl when config is stable)
 use {
@@ -184,8 +184,8 @@ use {
 -----------------------------------------------------------
 
 -- vim-grepper
-
-use {"mhinz/vim-grepper",
+use {
+    "mhinz/vim-grepper",
     cmd = { 'Grepper', 'GrepperRg', 'GrepperAg', 'GrepperGrep' },
     config = function()
         require("plugins.vim-grepper")
@@ -216,15 +216,15 @@ use {
 }
 
 -- file explorer
-use({
+use {
     'kyazdani42/nvim-tree.lua',
     config = function()
         require("plugins.nvim-tree")
     end
-})
+}
 
 -- quickfix vim-bqf
-use { 
+use {
     "kevinhwang91/nvim-bqf",
     config =  function()
         require("plugins.bqf")
@@ -237,7 +237,7 @@ use {
 -----------------------------------------------------------
 -- coc nvim
 use {
-    'neoclide/coc.nvim', 
+    'neoclide/coc.nvim',
     branch = 'release',
     config= function()
         require('plugins.coc')
@@ -286,10 +286,7 @@ use {
     config = function()
         -- you can configure Hop the way you like here; see :h hop-config
         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-        -- vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('hop').hint_words()<cr>", {})
         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-        vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-
     end
 }
 
@@ -322,7 +319,7 @@ use {
 
 -- bufferline
 use {
-    'akinsho/bufferline.nvim', 
+    'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     setup = function()
         vim.api.nvim_set_keymap("n", "<Tab>",":BufferLineCycleNext<CR>", {noremap = true, silent = true})
@@ -357,7 +354,7 @@ use {
 -----------------------------------------------------------
 
 -- toggleterm and floatterm
-use { 
+use {
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
@@ -377,4 +374,3 @@ use {
 if packer_bootstrap then
     require('packer').sync()
 end
-
