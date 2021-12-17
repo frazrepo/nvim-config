@@ -147,17 +147,6 @@ map('n', '-','<C-x>', default_opts)
 map('x', '+','<C-a>', default_opts)
 map('x', '-','<C-x>', default_opts)
 
--- Move lines up/down (Replaced by vim-move)
--- map('n', '<A-j>', "<Esc>:m .+1<CR>==gi", default_opts)
--- map('n', '<A-k>', "<Esc>:m .-2<CR>==gi", default_opts)
-
--- Move selected lines up/down in visual mode
--- not working this mapping
--- map('x', '<A-j>', ":move '<-2<CR>gv=gv", default_opts)
--- map('x', '<A-k>', ":move '>+1<CR>gv=gv", default_opts)
-
--- map('x', '<up>', ":move '<-2<CR>gv=gv", default_opts)
--- map('x', '<down>', ":move '>+1<CR>gv=gv", default_opts)
 
 -- " Expand %% to current path in command line mode ( not working with <leader>fr
 map('c', '%%', [[<C-R>=fnameescape(expand("%:p:h")) . '/'<CR>]]  , {noremap =false, silent = true})
