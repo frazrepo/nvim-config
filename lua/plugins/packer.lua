@@ -127,6 +127,8 @@ use {
 }
 
 -- Text objects
+use {'coderifous/textobj-word-column.vim'}
+use {'michaeljsmith/vim-indent-object'}
 use {
     "wellle/targets.vim",
     event = { "BufReadPost" },
