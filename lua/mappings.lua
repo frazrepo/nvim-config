@@ -21,7 +21,6 @@ map('', '<space><space>', ':nohl<CR>', {silent = true})
 
 -- Fast saving
 map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
-map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
 map('n', '<C-S>', ':update<CR>', {noremap =false, silent = true})
 map('v', '<C-S>', '<C-C>:update<CR>', {noremap =false, silent = true})
 map('i', '<C-S>', '<C-O>:update<CR>', {noremap =false, silent = true})
@@ -139,17 +138,14 @@ map('n', '-','<C-x>', default_opts)
 map('x', '+','<C-a>', default_opts)
 map('x', '-','<C-x>', default_opts)
 
--- Move lines up/down (Replaced with move.nvim)
--- map('n', '<A-j>', "<Esc>:m .+1<CR>==gi", default_opts)
--- map('n', '<A-k>', "<Esc>:m .-2<CR>==gi", default_opts)
---
--- -- Move selected lines up/down in visual mode
--- -- not working this mapping
--- map('x', '<A-j>', ":move '<-2<CR>gv=gv", default_opts)
--- map('x', '<A-k>', ":move '>+1<CR>gv=gv", default_opts)
---
--- map('x', '<up>', ":move '<-2<CR>gv=gv", default_opts)
--- map('x', '<down>', ":move '>+1<CR>gv=gv", default_opts)
+
+-- For unimpaired
+map('n', ')',']', {noremap =false, silent = true})
+map('n', '(','[', {noremap =false, silent = true})
+map('o', '(','[', {noremap =false, silent = true})
+map('o', ')',']', {noremap =false, silent = true})
+map('x', '(','[', {noremap =false, silent = true})
+map('x', ')',']', {noremap =false, silent = true})
 
 -- " Expand %% to current path in command line mode ( not working with <leader>fr
 map('c', '%%', [[<C-R>=fnameescape(expand("%:p:h")) . '/'<CR>]]  , {noremap =false, silent = true})
