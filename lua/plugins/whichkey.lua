@@ -5,34 +5,45 @@
 -----------------------------------------------------------
 
 local wk = require("which-key")
--- As an example, we will the create following mappings:
---  * <leader>ff find files
---  * <leader>fr show recent files
---  * <leader>fb Foobar
--- we'll document:
---  * <leader>fn new file
---  * <leader>fe edit file
--- and hide <leader>1
-
--- wk.register({
---   f = {
---     name = "file", -- optional group name
---     f = { "<cmd>Telescope find_files<cr>", "Find File" }, -- create a binding with label
---     r = { "<cmd>Telescope oldfiles<cr>", "Open Recent File", noremap=false, buffer = 123 }, -- additional options for creating the keymap
---     n = { "New File" }, -- just a label. don't create any mapping
---     e = "Edit File", -- same as above
---     ["1"] = "which_key_ignore",  -- special label to hide it in the popup
---     b = { function() print("bar") end, "Foobar" } -- you can also pass functions!
---   },
--- }, { prefix = "<leader>" })
 
 wk.register({
   ["<leader>"] = {
-    name = "File",
-    -- f = { "<cmd>Telescope find_files<cr>", "Find File" },
-    -- , = { "Find buffer" },
-    -- ! = { "Close buffer" },
-    -- ',' = { "Find buffer" },
-    u = { "<cmd>Telescope oldfiles<cr>", "Open Recent File" },
+    name = "Leader",
+    ["/"] = { "Global Search" },
+    ["G"] = { "Global Search in buffers" },
+    ["r"] = { "Replace Search Register" },
+    ["x"] = { "Edit txt buffer" },
+    ["d"] = { "Edit markdown buffer" },
+    ["s"] = { "Edit sql buffer" },
+    ["e"] = { "Edit in current buffer path" },
+    ["!"] = { "Delete buffer" },
+    ["w"] = { "Save buffer" },
+    ["m"] = { "Remove special char M" },
+    [","] = { "Find buffer" },
+    [";"] = { "Find lines in buffer" },
+    ["u"] = { 'Open Recent File' },
+    c = {
+        ["d"] = { "Change to current buffer directory" },
+    },
+    f = {
+        ["r"] = { "Find Replace Visually" },
+    },
+    t = {
+        ["e"] = { "Tab Edit in current buffer path" },
+    },
+  },
+  g = {
+    name = 'Buffer',
+    ["="] = { 'Format buffer' },
+    ["a"] = { 'Easy Align Operator' },
+    ["b"] = { 'Block Comment' },
+    ["c"] = { 'Comment' },
+    ["l"] = { 'Go align right' },
+    ["L"] = { 'Go align left' },
+    ["q"] = { 'Format' },
+    ["Q"] = { 'Format buffer' },
+    ["s"] = { 'Sort operator' },
+    ["v"] = { 'Reselect last visual selection' },
+    ["V"] = { 'Reselect last pasted text' },
   },
 })

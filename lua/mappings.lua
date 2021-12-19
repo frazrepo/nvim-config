@@ -21,7 +21,6 @@ map('', '<space><space>', ':nohl<CR>', {silent = true})
 
 -- Fast saving
 map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
-map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
 map('n', '<C-S>', ':update<CR>', {noremap =false, silent = true})
 map('v', '<C-S>', '<C-C>:update<CR>', {noremap =false, silent = true})
 map('i', '<C-S>', '<C-O>:update<CR>', {noremap =false, silent = true})
@@ -61,10 +60,6 @@ map('n', '<leader>!',':bd!<cr>', {noremap =false, silent = true})
 map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true})
 map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true})
  
--- Buffers navigation
-map('n', '<leader>l',':bnext<cr>'    , {noremap =false, silent = true})
-map('n', '<leader>h',':bprevious<cr>', {noremap =false, silent = true})
-
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
@@ -111,10 +106,6 @@ map('n', '<A-Up>','<Cmd>cprevious<Cr>', default_opts)
 map('n', 'H', '^'  , {noremap =false, silent = true})
 map('n', 'L', 'g_'  , {noremap =false, silent = true})
 
--- Paste from yank register 
-map('x', '<leader>p','"0p', default_opts)
-map('n', '<leader>p','"0p', default_opts)
-
 -- Paste quickly in insert mode
 map('i', '<C-r><C-r>','<C-r>*', default_opts)
 
@@ -147,6 +138,14 @@ map('n', '-','<C-x>', default_opts)
 map('x', '+','<C-a>', default_opts)
 map('x', '-','<C-x>', default_opts)
 
+
+-- For unimpaired
+map('n', ')',']', {noremap =false, silent = true})
+map('n', '(','[', {noremap =false, silent = true})
+map('o', '(','[', {noremap =false, silent = true})
+map('o', ')',']', {noremap =false, silent = true})
+map('x', '(','[', {noremap =false, silent = true})
+map('x', ')',']', {noremap =false, silent = true})
 
 -- " Expand %% to current path in command line mode ( not working with <leader>fr
 map('c', '%%', [[<C-R>=fnameescape(expand("%:p:h")) . '/'<CR>]]  , {noremap =false, silent = true})

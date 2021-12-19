@@ -80,11 +80,12 @@ use {
 }
 
 -- transpose
--- On *unix : Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
+-- If not working on *unix
+-- Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
 use {
     "vim-scripts/Transpose",
     cmd = {
-        "Transpose","TransposeWords","TransposeCSV","TransposeTab","TransposeInteractive"
+       "Transpose","TransposeWords","TransposeCSV","TransposeTab","TransposeInteractive"
     },
 }
 
@@ -126,6 +127,8 @@ use {
 }
 
 -- Text objects
+use {'coderifous/textobj-word-column.vim'}
+use {'michaeljsmith/vim-indent-object'}
 use {
     "wellle/targets.vim",
     event = { "BufReadPost" },
@@ -144,6 +147,11 @@ use {
     config= function()
         require('plugins.treesitter')
     end
+}
+
+use {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    after = "nvim-treesitter"
 }
 
 -- emmet html/css snippets
@@ -252,7 +260,7 @@ use {
 -- Miscellaneous
 
 -----------------------------------------------------------
--- Helpers
+-- Helpers 
 -----------------------------------------------------------
 
 -- which-key
@@ -297,6 +305,9 @@ use {
 -- colors
 use 'folke/tokyonight.nvim'
 
+-- cursorline
+use  {'yamatsum/nvim-cursorline'}
+
 -- lualine
 use {
     'nvim-lualine/lualine.nvim',
@@ -339,7 +350,6 @@ use {
 -- indent blankline
 use { "lukas-reineke/indent-blankline.nvim" }
 
-
 -- truezen
 use { 
     "Pocco81/TrueZen.nvim" ,
@@ -354,7 +364,7 @@ use {
 -----------------------------------------------------------
 
 -- toggleterm and floatterm
-use {
+use { 
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
@@ -366,7 +376,8 @@ use {
     setup = function()
         require "plugins.floaterm".setup()
     end,
-    cmd = {"FloatermToggle","FloatermNew"},
+    -- cmd = "FloatermNew",
+    cmd = { "FloatermToggle", "FloatermNew"},
 }
 
 -- Automatically set up your configuration after cloning packer.nvim
