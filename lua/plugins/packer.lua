@@ -43,10 +43,10 @@ local use = packer.use
 local fzconfig = require("fzconfig")
 
 -- Add packages
--- return require('packer').startup(function(use)
 -----------------------------------------------------------
 -- Packer itself
 -----------------------------------------------------------
+
 -- packer can manage itself
 use 'wbthomason/packer.nvim'
 
@@ -402,7 +402,12 @@ use {
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
-    end
+    end,
+    cmd = {"ToggleTerm"},
+    keys = {
+        { "n", "<leader>tt" },
+    },
+
 }
 
 use {
