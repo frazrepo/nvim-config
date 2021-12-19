@@ -90,7 +90,13 @@ use {
 }
 
 -- Align based on character (mapping gl) 
-use 'tommcdo/vim-lion'                             
+use {
+    'tommcdo/vim-lion',
+    keys = {
+        { "n", "gl" },
+        { "x", "gl" },
+    },
+}
 
 -- Aligning (mapping ga , replace gl when config is stable)
 use {
