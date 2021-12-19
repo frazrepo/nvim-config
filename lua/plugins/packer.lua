@@ -43,10 +43,10 @@ local use = packer.use
 local fzconfig = require("fzconfig")
 
 -- Add packages
--- return require('packer').startup(function(use)
 -----------------------------------------------------------
 -- Packer itself
 -----------------------------------------------------------
+
 -- packer can manage itself
 use 'wbthomason/packer.nvim'
 
@@ -90,7 +90,13 @@ use {
 }
 
 -- Align based on character (mapping gl) 
-use 'tommcdo/vim-lion'
+use {
+    'tommcdo/vim-lion',
+    keys = {
+        { "n", "gl" },
+        { "x", "gl" },
+    },
+}
 
 -- Aligning (mapping ga , replace gl when config is stable)
 use {
@@ -136,6 +142,9 @@ use {
 
 -- move lines with <A-j> <A-k>
 use {'matze/vim-move'}
+
+-- multi-cursor
+use {'mg979/vim-visual-multi'}
 
 -----------------------------------------------------------
 -- Code Helpers - Code Generation
@@ -214,13 +223,18 @@ use {
 -- Explorer : file, buffers, quickfix
 -----------------------------------------------------------
 
--- telescope fuzzy finder
+-- telescope fuzzy finder + fzf-native sorter
 use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} , { 'BurntSushi/ripgrep' }},
     config = function()
         require("plugins.telescope")
     end
+}
+
+use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make' 
 }
 
 -- file explorer
@@ -368,7 +382,12 @@ use {
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
-    end
+    end,
+    cmd = {"ToggleTerm"},
+    keys = {
+        { "n", "<leader>tt" },
+    },
+
 }
 
 use {

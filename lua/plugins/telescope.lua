@@ -10,6 +10,7 @@ local actions = require("telescope.actions")
 telescope.setup{
   defaults = {
       file_ignore_patterns = {"node_modules"},
+      preview = false,
       mappings = {
           i = {
               ["<esc>"] = actions.close,
@@ -18,11 +19,22 @@ telescope.setup{
   },
   pickers = {
     find_files = {
-      theme = "ivy",
+      theme = "dropdown",
+    },
+    oldfiles = {
+      theme = "dropdown",
+    },
+    buffers = {
+      theme = "dropdown",
+    },
+    live_grep = {
+      theme = "dropdown",
     }
   },
 }
 
+-- Load fzf-native
+require('telescope').load_extension('fzf')
 
 -- telescope.load_extension("git_worktree")
 
