@@ -223,13 +223,18 @@ use {"mhinz/vim-grepper",
 -- Explorer : file, buffers, quickfix
 -----------------------------------------------------------
 
--- telescope fuzzy finder
+-- telescope fuzzy finder + fzf-native sorter
 use {
     'nvim-telescope/telescope.nvim',
     requires = { {'nvim-lua/plenary.nvim'} , { 'BurntSushi/ripgrep' }},
     config = function()
         require("plugins.telescope")
     end
+}
+
+use {
+    'nvim-telescope/telescope-fzf-native.nvim',
+    run = 'make' 
 }
 
 -- file explorer

@@ -33,6 +33,8 @@ telescope.setup{
   },
 }
 
+-- Load fzf-native
+require('telescope').load_extension('fzf')
 
 -- telescope.load_extension("git_worktree")
 
