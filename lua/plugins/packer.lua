@@ -336,6 +336,9 @@ use {
 -- colors
 use 'folke/tokyonight.nvim'
 
+-- cursorline
+use  {'yamatsum/nvim-cursorline'}
+
 -- lualine
 use {
     'nvim-lualine/lualine.nvim',
