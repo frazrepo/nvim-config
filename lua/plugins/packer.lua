@@ -229,10 +229,12 @@ use {
     end
 }
 
-use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make' 
-}
+if vim.g.is_win ~= true then
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make' 
+    }
+end
 
 -- file explorer
 use({
