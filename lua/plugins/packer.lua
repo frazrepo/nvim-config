@@ -143,9 +143,6 @@ use {
 -- move lines with <A-j> <A-k>
 use {'matze/vim-move'}
 
--- multi-cursor
-use {'mg979/vim-visual-multi'}
-
 -----------------------------------------------------------
 -- Code Helpers - Code Generation
 -----------------------------------------------------------
