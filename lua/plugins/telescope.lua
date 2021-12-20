@@ -33,9 +33,6 @@ telescope.setup{
   },
 }
 
--- Load fzf-native
-require('telescope').load_extension('fzf')
-
 -- telescope.load_extension("git_worktree")
 
 vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })

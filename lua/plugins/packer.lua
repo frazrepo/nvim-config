@@ -143,9 +143,6 @@ use {
 -- move lines with <A-j> <A-k>
 use {'matze/vim-move'}
 
--- multi-cursor
-use {'mg979/vim-visual-multi'}
-
 -----------------------------------------------------------
 -- Code Helpers - Code Generation
 -----------------------------------------------------------
@@ -230,11 +227,6 @@ use {
     config = function()
         require("plugins.telescope")
     end
-}
-
-use {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    run = 'make' 
 }
 
 -- file explorer
