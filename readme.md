@@ -16,7 +16,7 @@ git clone --depth=1 https://github.com/frazrepo/nvim-config.git
 
 
 **On Windows**
-* Copy the directory content to `$HOME/AppData/Local/nvim/init.vim`
+* Copy the directory content to `$HOME/AppData/Local/nvim/`
 
 # Features
 * Beautiful theme with [tokyonight](https://github.com/folke/tokyonight.nvim)
