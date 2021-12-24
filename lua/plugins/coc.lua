@@ -21,6 +21,7 @@
 local exec = vim.api.nvim_exec 	        -- execute Vimscript
 
 vim.api.nvim_set_keymap("n", "<leader>.", "<Plug>(coc-codeaction)", {})
+vim.api.nvim_set_keymap("n", "<leader>ca"<Plug>(coc-codeaction)", {})
 vim.api.nvim_set_keymap("n", "<leader>l", ":CocCommand eslint.executeAutofix<CR>", {})
 vim.api.nvim_set_keymap("n", "gd", "<Plug>(coc-definition)", {silent = true})
 vim.api.nvim_set_keymap("n", "K", ":call CocActionAsync('doHover')<CR>", {silent = true, noremap = true})
@@ -36,7 +37,7 @@ vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {
 vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
 
 --Snippets
--- https://github.com/noclide/coc-snippetse
+-- https://github.com/noclide/coc-snippets
 exec([[
     " Use <C-l> for trigger snippet expand.
     imap <C-l> <Plug>(coc-snippets-expand)
