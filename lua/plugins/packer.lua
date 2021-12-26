@@ -260,15 +260,21 @@ use {
 -- LSP
 use({
     'neovim/nvim-lspconfig',
-    config = function()
-        require('plugins.lsp')
-    end,
+    -- config = function()
+    --     require('plugins.lsp')
+    -- end,
     requires = {
         { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-        { 'williamboman/nvim-lsp-installer' , opt = true, event = "VimEnter" },
+        -- { 'williamboman/nvim-lsp-installer' , opt = true, event = "VimEnter" },
     },
 })
 
+use({
+    'williamboman/nvim-lsp-installer',
+    config = function()
+        require('plugins.lsp')
+    end,
+})
 -- null-ls with prettier
 use { 
     "jose-elias-alvarez/null-ls.nvim",
