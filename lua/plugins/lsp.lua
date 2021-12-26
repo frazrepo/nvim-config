@@ -1,9 +1,12 @@
 -----------------------------------------------------------
 -- Neovim LSP configuration file
--- Plugin: nvim-lspconfig
+-- Plugin: nvim-lspconfig and nvim-lsp-installer
 -- https://github.com/neovim/nvim-lspconfig
+-- https://github.com/williamboman/nvim-lsp-installer/
 -----------------------------------------------------------
-local nvim_lsp = require 'lspconfig'
+-- local nvim_lsp = require 'lspconfig'
+local lsp_installer = require "nvim-lsp-installer"
+
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -56,61 +59,31 @@ local on_attach = function(client, bufnr)
 
 end
 
---[[
-
-Language servers:
-
-Add your language server to `servers`
-
-For language servers list see:
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-
-Bash --> bashls
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#bashls
-
-Python --> pyright
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#pyright
-
-C-C++ -->  clangd
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clangd
-
-HTML/CSS/JSON --> vscode-html-languageserver
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#html
-
-JavaScript/TypeScript --> tsserver
-https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#tsserver
-
---]]
-
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
--- Needs to install each LSP Server with :LSPInstall <language> or manually
--- local servers = { 'angularls', 'html', 'tsserver'}
-local servers = {}
-
--- Set settings for language servers below
+-- Include the servers you want to have installed by default below
+-- local servers = {
+--   "yamlls",
+--   "powershell_es",
+-- }
 --
--- tsserver settings
-local ts_settings = function(client)
-    client.resolved_capabilities.document_formatting = false
-    ts_settings(client)
-end
+-- for _, name in pairs(servers) do
+--   local server_is_found, server = lsp_installer.get_server(name)
+--   if server_is_found then
+--     if not server:is_installed() then
+--       print("Installing " .. name)
+--       server:install()
+--     end
+--   end
+-- end
+--
 
-for _, lsp in ipairs(servers) do
-    nvim_lsp[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-        ts_settings = ts_settings,
-        flags = {
-            debounce_text_changes = 150,
-        }
-    }
-end
-
--- powershell_es
-require'lspconfig'.powershell_es.setup{
-    bundle_path = '~/AppData/Local/nvim-data/lsp_servers/powershell_es',
-    shell = 'powershell.exe',
+lsp_installer.on_server_ready(function(server)
+  -- Specify the default options which we'll use to setup all servers
+  local default_opts = {
     on_attach = on_attach,
     capabilities = capabilities,
-}
+  }
+
+  server:setup(default_opts)
+
+end)
+
