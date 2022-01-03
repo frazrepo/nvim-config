@@ -44,11 +44,10 @@ opt.shiftwidth              = 4                             -- 1 tab == 4 spaces
 opt.shortmess:append 'c'                                    -- don't give |ins-completion-menu| messages.
 opt.shortmess               = 'atI'                         -- Disable startup message
 
-opt.showbreak               = '↪ ' 
+opt.showbreak               = '↪ '
 opt.showmatch               = true                          -- Show matching brackets when text indicator is over them
 
 opt.smartcase               = true                          --Smart case for searching
-opt.smartindent             = true                          --Smart ickndent
 
 opt.splitbelow              = true                          -- Split mode
 opt.splitright              = true
@@ -58,7 +57,7 @@ opt.synmaxcol               = 200                           -- And optimize perf
 opt.tabstop                 = 4
 
 opt.timeout                 = true
-opt.timeoutlen              = 500 
+opt.timeoutlen              = 500
 opt.ttimeoutlen             = 50
 opt.textwidth               = 500
 
