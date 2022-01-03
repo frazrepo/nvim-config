@@ -275,8 +275,9 @@ use({
         require('plugins.lsp')
     end,
 })
+
 -- null-ls with prettier
-use { 
+use {
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
         require('plugins.null-ls')
@@ -286,6 +287,13 @@ use {
 -- lspkind
 use {'onsails/lspkind-nvim'}
 
+-- lsp signature
+use {
+  "ray-x/lsp_signature.nvim",
+  config = function()
+        require "lsp_signature".setup()
+  end
+}
 
 -- Completion
 use {
