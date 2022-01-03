@@ -48,7 +48,6 @@ opt.showbreak               = '↪ '
 opt.showmatch               = true                          -- Show matching brackets when text indicator is over them
 
 opt.smartcase               = true                          --Smart case for searching
-opt.smartindent             = true                          --Smart ickndent
 
 opt.splitbelow              = true                          -- Split mode
 opt.splitright              = true
