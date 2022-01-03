@@ -147,6 +147,12 @@ map('o', ')',']', {noremap =false, silent = true})
 map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
 
+-- Undo breakpoints
+map('i', ',', ',<c-g>u', default_opts)
+map('i', '.', '.<c-g>u', default_opts)
+map('i', '!', '!<c-g>u', default_opts)
+map('i', '?', '?<c-g>u', default_opts)
+
 -- " Expand %% to current path in command line mode ( not working with <leader>fr
 map('c', '%%', [[<C-R>=fnameescape(expand("%:p:h")) . '/'<CR>]]  , {noremap =false, silent = true})
 map('c', '::', [[<C-R>=fnameescape(expand("%"))<CR>]]  , {noremap =false, silent = true})
