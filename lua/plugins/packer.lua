@@ -89,7 +89,7 @@ use {
     },
 }
 
--- Align based on character (mapping gl) 
+-- Align based on character (mapping gl)
 use {
     'tommcdo/vim-lion',
     keys = {
@@ -232,7 +232,7 @@ use {
 if vim.g.is_win ~= true then
     use {
         'nvim-telescope/telescope-fzf-native.nvim',
-        run = 'make' 
+        run = 'make'
     }
 end
 
@@ -245,7 +245,7 @@ use({
 })
 
 -- quickfix vim-bqf
-use { 
+use {
     "kevinhwang91/nvim-bqf",
     config =  function()
         require("plugins.bqf")
@@ -316,10 +316,20 @@ use {
     config = function() require'plugins.completion'.luasnip() end
 }
 
+-- Trouble Diagnostics List
+use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+    }
+  end
+}
+
 -- Miscellaneous
 
 -----------------------------------------------------------
--- Helpers 
+-- Helpers
 -----------------------------------------------------------
 
 -- Project Management
@@ -404,7 +414,7 @@ use {
 
 -- bufferline
 use {
-    'akinsho/bufferline.nvim', 
+    'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
     setup = function()
         vim.api.nvim_set_keymap("n", "<Tab>",":BufferLineCycleNext<CR>", {noremap = true, silent = true})
@@ -425,7 +435,7 @@ use {
 use { "lukas-reineke/indent-blankline.nvim" }
 
 -- truezen
-use { 
+use {
     "Pocco81/TrueZen.nvim" ,
     config = function()
         local default_opts = { noremap = true, silent = true  }
@@ -438,7 +448,7 @@ use {
 -----------------------------------------------------------
 
 -- toggleterm and floatterm
-use { 
+use {
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})
