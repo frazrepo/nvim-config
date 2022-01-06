@@ -66,14 +66,6 @@ map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 -- " Edit quickly with the current buffer path
 map('n', '<leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true})
 
--- " Useful mappings for managing tabs
-map('n', '<leader>tn', ':tabnew<cr>'  , {noremap =false, silent = true})
-map('n', '<leader>to', ':tabonly<cr>' , {noremap =false, silent = true})
-map('n', '<leader>tc', ':tabclose<cr>', {noremap =false, silent = true})
-
--- " Opens a new tab with the current buffer's path
-map('n', '<leader>te', ':tabedit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true})
-
 -- " Change word under cursor and dot repeat, really useful to edit quickly
 map('n', 'c*' , '*Ncgn' , default_opts)
 map('n', 'c#' , '#NcgN' , default_opts)
@@ -128,9 +120,6 @@ map('n', '²', '.'  , {noremap =false, silent = true})
 map('n', 'mù','m`', default_opts)
 map('n', 'ùù','``', default_opts)
 map('n', '\'','`', default_opts)
-
---TODO :  Toggle to next pair item (will be removed to replace with bufferline)
--- map('n', '<Tab>','%', default_opts)
 
 -- -- Increment / Decrement
 map('n', '+','<C-a>', default_opts)
