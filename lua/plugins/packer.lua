@@ -132,6 +132,11 @@ use {
     },
 }
 
+-- Replace with Register
+use {
+    'vim-scripts/ReplaceWithRegister'
+}
+
 -- Text objects
 use {'coderifous/textobj-word-column.vim'}
 use {'michaeljsmith/vim-indent-object'}
