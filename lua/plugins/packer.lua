@@ -308,19 +308,35 @@ use {
     end
 }
 
--- hop (better and simpler than lightspeed) Need more experimentation
+-- -- hop (better and simpler than lightspeed) Need more experimentation
+-- use {
+--     'phaazon/hop.nvim',
+--     branch = 'v1', -- optional but strongly recommended
+--     event = "BufRead",
+--     cmd = {"HopChar2", "HopWord"},
+--     config = function()
+--         -- you can configure Hop the way you like here; see :h hop-config
+--         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+--         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+--     end
+-- }
+
+-- lightspeed (Advantage : the label is on the third char)
 use {
-    'phaazon/hop.nvim',
-    branch = 'v1', -- optional but strongly recommended
-    event = "BufRead",
-    cmd = {"HopChar2", "HopWord"},
+    'ggandor/lightspeed.nvim',
     config = function()
-        -- you can configure Hop the way you like here; see :h hop-config
-        require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-        vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+        require'lightspeed'.setup {
+        labels = {"s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
+        }
+
+        --disabling f F t T
+        vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
+        vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
+        vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
+        vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
+
     end
 }
-
 -----------------------------------------------------------
 -- UI enhacements
 -----------------------------------------------------------
