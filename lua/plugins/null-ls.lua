@@ -26,7 +26,8 @@ local sources = {
   null_ls.builtins.formatting.stylua.with({
     args = { "--indent-width", "2", "--indent-type", "Spaces", "-" },
   }),
-  null_ls.builtins.formatting.sqlformat
+  null_ls.builtins.formatting.sqlformat,
+  null_ls.builtins.formatting.xmllint
 }
 require("null-ls").setup({
   sources = sources,
