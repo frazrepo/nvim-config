@@ -32,7 +32,7 @@ local sources = {
 require("null-ls").setup({
   sources = sources,
   on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
+    if client.server_capabilities.document_formatting then
             -- Todo when installing stylelua and prettier
        -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
