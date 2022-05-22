@@ -29,7 +29,6 @@ g.nvim_tree_icons = {
 
 require('nvim-tree').setup {
     open_on_setup = false,
-    -- auto_close = true,
     view = {
         width = 32,
         auto_resize = true
