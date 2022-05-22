@@ -28,6 +28,8 @@ local sources = {
   }),
   null_ls.builtins.formatting.sqlformat,
 }
+
+local map = vim.api.nvim_set_keymap
 require("null-ls").setup({
   sources = sources,
   on_attach = function(client)
