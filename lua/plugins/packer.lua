@@ -89,7 +89,7 @@ use {
     },
 }
 
--- Align based on character (mapping gl) 
+-- Align based on character (mapping gl)
 use {
     'tommcdo/vim-lion',
     keys = {
@@ -234,6 +234,13 @@ use {
     end
 }
 
+if vim.g.is_win ~= true then
+    use {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        run = 'make'
+    }
+end
+
 -- file explorer
 use {
     'kyazdani42/nvim-tree.lua',
@@ -268,10 +275,20 @@ use {
     'honza/vim-snippets'
 }
 
+-- Trouble Diagnostics List
+use {
+  "folke/trouble.nvim",
+  requires = "kyazdani42/nvim-web-devicons",
+  config = function()
+    require("trouble").setup {
+    }
+  end
+}
+
 -- Miscellaneous
 
 -----------------------------------------------------------
--- Helpers 
+-- Helpers
 -----------------------------------------------------------
 
 -- Project Management
@@ -308,7 +325,7 @@ use {
     end
 }
 
--- -- hop (better and simpler than lightspeed) Need more experimentation
+-- hop (better and simpler than lightspeed) Need more experimentation
 -- use {
 --     'phaazon/hop.nvim',
 --     branch = 'v1', -- optional but strongly recommended
@@ -317,7 +334,10 @@ use {
 --     config = function()
 --         -- you can configure Hop the way you like here; see :h hop-config
 --         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+--         -- vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('hop').hint_words()<cr>", {})
 --         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+--         vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+--
 --     end
 -- }
 
@@ -390,7 +410,7 @@ use {
 use { "lukas-reineke/indent-blankline.nvim" }
 
 -- truezen
-use { 
+use {
     "Pocco81/TrueZen.nvim" ,
     config = function()
         local default_opts = { noremap = true, silent = true  }
@@ -403,7 +423,7 @@ use {
 -----------------------------------------------------------
 
 -- toggleterm and floatterm
-use { 
+use {
     "akinsho/toggleterm.nvim" ,
     config = function()
         vim.api.nvim_set_keymap("n", "<leader>tt",":ToggleTerm<CR>", {noremap = true, silent = true})

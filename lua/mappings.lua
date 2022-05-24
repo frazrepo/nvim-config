@@ -48,7 +48,6 @@ map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
 map('n', '<C-j>','}', {noremap =false, silent = true})
 map('n', '<C-k>','{', {noremap =false, silent = true})
 
-
 -- Switch CWD to the directory of the open buffer
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
 
@@ -127,7 +126,6 @@ map('n', '-','<C-x>', default_opts)
 map('x', '+','<C-a>', default_opts)
 map('x', '-','<C-x>', default_opts)
 
-
 -- For unimpaired
 map('n', ')',']', {noremap =false, silent = true})
 map('n', '(','[', {noremap =false, silent = true})
@@ -135,7 +133,6 @@ map('o', '(','[', {noremap =false, silent = true})
 map('o', ')',']', {noremap =false, silent = true})
 map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
-
 
 -- Undo breakpoints
 map('i', ',', ',<c-g>u', default_opts)

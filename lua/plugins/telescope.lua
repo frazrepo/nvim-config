@@ -34,6 +34,10 @@ telescope.setup{
 }
 
 -- telescope.load_extension("git_worktree")
+-- Load fzf-native
+-- if vim.g.is_win ~= true then
+--     require('telescope').load_extension('fzf')
+-- end
 
 -- telescope.load_extension("git_worktree")
 require('telescope').load_extension('projects')
