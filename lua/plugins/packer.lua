@@ -275,6 +275,17 @@ use {
     'honza/vim-snippets'
 }
 
+-- null-ls
+use {
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = {
+        'nvim-lua/plenary.nvim'
+    },
+    config = function()
+        require('plugins.null-ls')
+    end,
+}
+
 -- Trouble Diagnostics List
 use {
   "folke/trouble.nvim",
