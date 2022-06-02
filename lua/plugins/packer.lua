@@ -198,6 +198,11 @@ use {
     },
 }
 
+-- neoformat
+use {
+    'sbdchd/neoformat',
+}
+
 -----------------------------------------------------------
 -- Search Replace
 -----------------------------------------------------------
@@ -464,6 +469,11 @@ use {
         vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
     end
 }
+
+use({
+	"catppuccin/nvim",
+	as = "catppuccin"
+})
 
 -----------------------------------------------------------
 -- Terminal enhacements
