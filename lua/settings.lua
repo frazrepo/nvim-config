@@ -60,6 +60,7 @@ opt.timeout                 = true
 opt.timeoutlen              = 500
 opt.ttimeoutlen             = 50
 opt.textwidth               = 500
+opt.termguicolors           = true
 
 opt.updatetime              = 300                           -- Smaller updatetime for CursorHold & CursorHoldI
 opt.virtualedit             = 'block'                       -- VirtualEdit block allow selection everywhere in visual block mode
