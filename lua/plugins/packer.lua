@@ -271,12 +271,8 @@ use {
 -- LSP
 use({
     'neovim/nvim-lspconfig',
-    -- config = function()
-    --     require('plugins.lsp')
-    -- end,
     requires = {
         { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
-        -- { 'williamboman/nvim-lsp-installer' , opt = true, event = "VimEnter" },
     },
 })
 
