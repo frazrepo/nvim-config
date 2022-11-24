@@ -155,6 +155,7 @@ use {'matze/vim-move'}
 -- treesitter interface : syntax highlighter
 use {
     'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
     config= function()
         require('plugins.treesitter')
     end
@@ -196,6 +197,11 @@ use {
         "html",
         "xml",
     },
+}
+
+-- neoformat
+use {
+    'sbdchd/neoformat',
 }
 
 -----------------------------------------------------------
@@ -428,6 +434,11 @@ use {
         vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
     end
 }
+
+use({
+	"catppuccin/nvim",
+	as = "catppuccin"
+})
 
 -----------------------------------------------------------
 -- Terminal enhacements
