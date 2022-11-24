@@ -155,6 +155,7 @@ use {'matze/vim-move'}
 -- treesitter interface : syntax highlighter
 use {
     'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
     config= function()
         require('plugins.treesitter')
     end
