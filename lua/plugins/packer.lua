@@ -269,21 +269,26 @@ use {
 -----------------------------------------------------------
 
 -- LSP
-use({
+
+-- lspconfig 
+use {
     'neovim/nvim-lspconfig',
     requires = {
         { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
     },
-})
+}
 
-use ({ 
+-- mason : replace deprecated nvim-lsp-installer by the same author
+use {
     "williamboman/mason.nvim",
     config = function()
         require('plugins.lsp')
     end,
-})
+}
 
-use ({ "williamboman/mason-lspconfig.nvim",
+-- mason-lspconfig : complete nvim-lsp-config
+use {
+    "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup {
                 ensure_installed = {
@@ -293,9 +298,10 @@ use ({ "williamboman/mason-lspconfig.nvim",
                 },
             }
         end,
-})
+}
 
-use ({
+-- mason-tool-installe to install tools used by mason
+use {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     config = function()
         require('mason-tool-installer').setup {
@@ -305,7 +311,7 @@ use ({
             },
         }
     end,
-})
+}
 
 -- null-ls with prettier
 use {
