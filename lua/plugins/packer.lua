@@ -276,10 +276,34 @@ use({
     },
 })
 
-use({
-    'williamboman/nvim-lsp-installer',
+use ({ 
+    "williamboman/mason.nvim",
     config = function()
         require('plugins.lsp')
+    end,
+})
+
+use ({ "williamboman/mason-lspconfig.nvim",
+        config = function()
+            require("mason-lspconfig").setup {
+                ensure_installed = {
+                    "sumneko_lua",
+                    "powershell-editor-services",
+                    "yaml-language-server"
+                },
+            }
+        end,
+})
+
+use ({
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    config = function()
+        require('mason-tool-installer').setup {
+            -- a list of all tools you want to ensure are installed upon
+            -- start; they should be the names Mason uses for each tool
+            ensure_installed = {
+            },
+        }
     end,
 })
 
