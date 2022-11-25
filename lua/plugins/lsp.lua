@@ -1,12 +1,12 @@
 -----------------------------------------------------------
 -- Neovim LSP configuration file
--- Plugin: nvim-lspconfig and nvim-lsp-installer
+-- Plugin: nvim-lspconfig and mason
 -- https://github.com/neovim/nvim-lspconfig
--- https://github.com/williamboman/nvim-lsp-installer/
+-- https://github.com/williamboman/mason/
 -----------------------------------------------------------
--- local nvim_lsp = require 'lspconfig'
-local lsp_installer = require "nvim-lsp-installer"
 
+require('mason').setup{}
+local lspconfig = require("lspconfig")
 
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -60,31 +60,20 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Include the servers you want to have installed by default below
--- local servers = {
---   "yamlls",
---   "powershell_es",
--- }
---
--- for _, name in pairs(servers) do
---   local server_is_found, server = lsp_installer.get_server(name)
---   if server_is_found then
---     if not server:is_installed() then
---       print("Installing " .. name)
---       server:install()
---     end
---   end
--- end
---
+-- Attach options for each buffer
+local server_opts = {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
 
-lsp_installer.on_server_ready(function(server)
-  -- Specify the default options which we'll use to setup all servers
-  local default_opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
-
-  server:setup(default_opts)
-
-end)
-
+-- Attach for each LSP server
+require("mason-lspconfig").setup_handlers({
+  function(server_name)
+    -- local extended_opts = vim.tbl_deep_extend("force", server_opts, servers[server_name] or {})
+    lspconfig[server_name].setup(server_opts)
+  end,
+  -- You can set up other server specific config
+})
