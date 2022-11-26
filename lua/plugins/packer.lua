@@ -291,16 +291,16 @@ use {
     "williamboman/mason-lspconfig.nvim",
         config = function()
             require("mason-lspconfig").setup {
+            -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
                 ensure_installed = {
                     "sumneko_lua",
-                    "powershell-editor-services",
-                    "yaml-language-server"
+                    "powershell_es",
                 },
             }
         end,
 }
 
--- mason-tool-installe to install tools used by mason
+-- mason-tool-installer to install tools used by mason
 use {
     'WhoIsSethDaniel/mason-tool-installer.nvim',
     config = function()
