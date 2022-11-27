@@ -321,10 +321,10 @@ use {
     end,
 }
 
--- lspkind
+-- lspkind : pictograms or icons like vscode LSP
 use {'onsails/lspkind-nvim'}
 
--- lsp signature
+-- lsp signature : display function signature
 use {
   "ray-x/lsp_signature.nvim",
   config = function()
@@ -353,7 +353,7 @@ use {
     config = function() require'plugins.completion'.luasnip() end
 }
 
--- Trouble Diagnostics List
+-- Trouble : Display diagnostics List in quickfix windows
 use {
   "folke/trouble.nvim",
   requires = "kyazdani42/nvim-web-devicons",
