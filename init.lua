@@ -14,5 +14,6 @@ Debug : nvim --startuptime vim.log
 
 require('settings')
 require('mappings')
-require('colors')
-require('plugins/packer')
+-- require('colors')
+-- require('plugins/packer')
+require('plugins/lazy')
