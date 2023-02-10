@@ -15,7 +15,10 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
+
 vim.opt.rtp:prepend(lazypath)
+
+local fzconfig = require("fzconfig")
 
 require("lazy").setup({
 
