@@ -155,6 +155,7 @@ use {'matze/vim-move'}
 -- treesitter interface : syntax highlighter
 use {
     'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
     config= function()
         require('plugins.treesitter')
     end
@@ -198,15 +199,10 @@ use {
     },
 }
 
+-- neoformat
 use {
     'sbdchd/neoformat',
 }
-
-
--- Conflict Ctrl-n with neovim-tree
--- use { 
---     'mg979/vim-visual-multi'
--- }
 
 -----------------------------------------------------------
 -- Search Replace
