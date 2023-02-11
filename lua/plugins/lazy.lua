@@ -434,7 +434,9 @@ require("lazy").setup({
     -- bufferline
     {
         'akinsho/bufferline.nvim',
-        dependencies = {'kyazdani42/nvim-web-devicons'},
+        dependencies = {
+            {'kyazdani42/nvim-web-devicons'}
+        },
         init = function()
             vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
             vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
