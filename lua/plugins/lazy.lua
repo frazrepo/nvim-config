@@ -451,7 +451,7 @@ require("lazy").setup({
     {
         'akinsho/bufferline.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
-        setup = function()
+        init = function()
             vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
             vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
         end,
@@ -497,7 +497,7 @@ require("lazy").setup({
 
     {
         "voldikss/vim-floaterm",
-        setup = function()
+        init = function()
             require "plugins.floaterm".setup()
         end,
         -- cmd = "FloatermNew",
