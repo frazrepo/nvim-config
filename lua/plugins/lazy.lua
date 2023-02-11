@@ -256,34 +256,49 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- LSP
-
-    -- lspconfig
     {
-        'neovim/nvim-lspconfig',
-        requires = {
-            { 'jose-elias-alvarez/nvim-lsp-ts-utils' },
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
+        dependencies = {
+            -- LSP Support
+            {'neovim/nvim-lspconfig'},             -- Required
+            {'williamboman/mason.nvim'},           -- Optional
+            {'williamboman/mason-lspconfig.nvim'}, -- Optional
+
+            -- Autocompletion
+            {'hrsh7th/nvim-cmp'},         -- Required
+            {'hrsh7th/cmp-nvim-lsp'},     -- Required
+            {'hrsh7th/cmp-buffer'},       -- Optional
+            {'hrsh7th/cmp-path'},         -- Optional
+            {'saadparwaiz1/cmp_luasnip'}, -- Optional
+            {'hrsh7th/cmp-nvim-lua'},     -- Optional
+
+            -- Snippets
+            {'L3MON4D3/LuaSnip'},             -- Required
+            {'rafamadriz/friendly-snippets'}, -- Optional
         },
-    },
-
-    -- mason : replace deprecated nvim-lsp-installer by the same author
-    {
-        "williamboman/mason.nvim",
         config = function()
-            require('plugins.lsp')
-        end,
-    },
+            local lsp = require('lsp-zero').preset({
+                name = 'minimal',
+                set_lsp_keymaps = true,
+                manage_nvim_cmp = true,
+                suggest_lsp_servers = false,
+            })
 
-    -- mason-lspconfig : complete nvim-lsp-config
-    {
-        "williamboman/mason-lspconfig.nvim",
-        config = function()
-            require("mason-lspconfig").setup {
-                -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-                ensure_installed = {
-                    "sumneko_lua",
-                    "powershell_es",
-                },
-            }
+            -- make sure this servers are installed
+            -- see :help lsp-zero.ensure_installed()
+            lsp.ensure_installed({
+                'rust_analyzer',
+                'tsserver',
+                'eslint',
+                'sumneko_lua',
+                'powershell_es'
+            })
+
+            -- (Optional) Configure lua language server for neovim
+            lsp.nvim_workspace()
+
+            lsp.setup()
         end,
     },
 
@@ -307,6 +322,7 @@ require("lazy").setup({
             require('plugins.null-ls')
         end,
     },
+
     -- make mason and null-ls work seamlessly
     {
         "jay-babu/mason-null-ls.nvim"
@@ -322,28 +338,6 @@ require("lazy").setup({
             require "lsp_signature".setup()
         end
     },
-
-    -- Completion
-    {
-        'hrsh7th/nvim-cmp',
-        event = "UIEnter",
-        opt = true,
-        requires = {
-            { 'hrsh7th/cmp-nvim-lsp', module = "cmp_nvim_lsp", opt = true },
-            { 'hrsh7th/cmp-buffer', opt = true },
-            { 'hrsh7th/cmp-path', opt = true },
-            { 'hrsh7th/cmp-nvim-lua', opt = true },
-            { 'saadparwaiz1/cmp_luasnip', opt = true }
-        },
-        config = function() require 'plugins.completion'.setup() end
-    },
-    {
-        'L3MON4D3/LuaSnip',
-        after = "nvim-cmp",
-        requires = { { "rafamadriz/friendly-snippets" } },
-        config = function() require 'plugins.completion'.luasnip() end
-    },
-
     -- Trouble : Display diagnostics List in quickfix windows
     {
         "folke/trouble.nvim",
