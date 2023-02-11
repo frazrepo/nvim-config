@@ -341,7 +341,9 @@ require("lazy").setup({
     -- Trouble : Display diagnostics List in quickfix windows
     {
         "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
+        dependencies = {
+            {"kyazdani42/nvim-web-devicons"}
+        },
         config = function()
             require("trouble").setup {
             }
@@ -430,7 +432,9 @@ require("lazy").setup({
     -- lualine
     {
         'nvim-lualine/lualine.nvim',
-        requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+        dependencies = {
+            {"kyazdani42/nvim-web-devicons"}
+        },
         config = function()
             require('lualine').setup()
         end
@@ -439,8 +443,8 @@ require("lazy").setup({
     -- gitsign
     {
         'lewis6991/gitsigns.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
+        dependencies = {
+            {'nvim-lua/plenary.nvim'}
         },
         config = function()
             require('gitsigns').setup()
@@ -450,7 +454,7 @@ require("lazy").setup({
     -- bufferline
     {
         'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
+        dependencies = {'kyazdani42/nvim-web-devicons'},
         init = function()
             vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
             vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
