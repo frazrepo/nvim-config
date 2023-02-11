@@ -307,6 +307,10 @@ require("lazy").setup({
             require('plugins.null-ls')
         end,
     },
+    -- make mason and null-ls work seamlessly
+    {
+        "jay-babu/mason-null-ls.nvim"
+    },
 
     -- lspkind : pictograms or icons like vscode LSP
     { 'onsails/lspkind-nvim' },
