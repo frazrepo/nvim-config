@@ -278,27 +278,7 @@ require("lazy").setup({
             {'rafamadriz/friendly-snippets'}, -- Optional
         },
         config = function()
-            local lsp = require('lsp-zero').preset({
-                name = 'minimal',
-                set_lsp_keymaps = true,
-                manage_nvim_cmp = true,
-                suggest_lsp_servers = false,
-            })
-
-            -- make sure this servers are installed
-            -- see :help lsp-zero.ensure_installed()
-            lsp.ensure_installed({
-                'rust_analyzer',
-                'tsserver',
-                'eslint',
-                'sumneko_lua',
-                'powershell_es'
-            })
-
-            -- (Optional) Configure lua language server for neovim
-            lsp.nvim_workspace()
-
-            lsp.setup()
+            require('plugins.lsp-zero')
         end,
     },
 
