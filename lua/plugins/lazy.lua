@@ -67,8 +67,8 @@ require("lazy").setup({
     {
         "tommcdo/vim-exchange",
         keys = {
-            { "n", "cx" },
-            { "x", "X" },
+            { "cx" },
+            { "X", mode = "x" },
         },
     },
 
@@ -86,8 +86,8 @@ require("lazy").setup({
     {
         'tommcdo/vim-lion',
         keys = {
-            { "n", "gl" },
-            { "x", "gl" },
+            { "gl" },
+            { "gl", mode = "x" },
         },
     },
 
@@ -109,8 +109,8 @@ require("lazy").setup({
                 ]]
         end,
         keys = {
-            { "n", "ga" },
-            { "x", "ga" },
+            { "ga" },
+            { "ga", mode = "x" },
         },
         cmd = { "EasyAlign" },
     },
@@ -119,9 +119,9 @@ require("lazy").setup({
     {
         "christoomey/vim-sort-motion",
         keys = {
-            { "n", "gss" },
-            { "n", "gs" },
-            { "x", "gs" },
+            { "gss" },
+            { "gs" },
+            { "gs", mode = "x" },
         },
     },
 
@@ -209,14 +209,14 @@ require("lazy").setup({
             require("plugins.vim-grepper")
         end,
         keys = {
-            { "n", "gx" },
-            { "x", "gx" },
-            { "n", "<leader>g" },
-            { "x", "<leader>g" },
-            { "n", "<leader>/" },
-            { "x", "<leader>/" },
-            { "n", "<leader>G" },
-            { "x", "<leader>G" },
+            { "gx" },
+            { "gx" , mode = "x" },
+            { "<leader>g" },
+            { "<leader>g" , mode = "x" },
+            { "<leader>/" },
+            { "<leader>/" , mode = "x" },
+            { "<leader>G" },
+            { "<leader>G" , mode = "x" },
         },
     },
 
@@ -426,12 +426,6 @@ require("lazy").setup({
     -----------------------------------------------------------
     -- UI enhacements
     -----------------------------------------------------------
-
-    -- colors
-    {
-        'folke/tokyonight.nvim'
-    },
-
     -- cursorline
     { 'yamatsum/nvim-cursorline' },
 
@@ -486,11 +480,6 @@ require("lazy").setup({
         end
     },
 
-    {
-        "catppuccin/nvim",
-        as = "catppuccin"
-    },
-
     -----------------------------------------------------------
     -- Terminal enhacements
     -----------------------------------------------------------
@@ -503,7 +492,7 @@ require("lazy").setup({
         end,
         cmd = { "ToggleTerm" },
         keys = {
-            { "n", "<leader>tt" },
+            { "<leader>tt" },
         },
 
     },

@@ -14,5 +14,4 @@ Debug : nvim --startuptime vim.log
 
 require('settings')
 require('mappings')
--- require('plugins/packer')
 require('plugins/lazy')
