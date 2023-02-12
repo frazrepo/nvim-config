@@ -44,6 +44,13 @@ map('n', 'gV','`[v`]', default_opts)
 map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
 map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
 
+
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { noremap =false, silent = true })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", {noremap =false, silent = true })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = true })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
+
 -- Move faster vertically (paragraph motion)
 map('n', '<C-j>','}', {noremap =false, silent = true})
 map('n', '<C-k>','{', {noremap =false, silent = true})
@@ -58,7 +65,7 @@ map('n', '<leader>!',':bd!<cr>', {noremap =false, silent = true})
 -- Useful mapping for managing  buffers
 map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true})
 map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true})
- 
+
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
@@ -103,7 +110,7 @@ map('i', '<C-r><C-r>','<C-r>*', default_opts)
 -- " Enhance paste in visual mode to replace many times with the yank register
 map('x', 'p',[[p:if v:register == '+'<Bar>let @+=@0<Bar>endif<CR>]], default_opts)
 
--- Do not track every j and k motion in jumplist  
+-- Do not track every j and k motion in jumplist
 map('n', 'k', [[(v:count > 1 ? "m'" . v:count : '') . 'gk']]  , {noremap =true, silent = true, expr = true})
 map('n', 'j', [[(v:count > 1 ? "m'" . v:count : '') . 'gj']]  , {noremap =true, silent = true, expr = true})
 
@@ -115,7 +122,7 @@ map('n', 'gk','k', default_opts)
 map('n', 'µ', '#'  , {noremap =false, silent = true})
 map('n', '²', '.'  , {noremap =false, silent = true})
 
--- Marks keepjumps 
+-- Marks keepjumps
 map('n', 'mù','m`', default_opts)
 map('n', 'ùù','``', default_opts)
 map('n', '\'','`', default_opts)
@@ -187,7 +194,7 @@ map('o', 'ie',':<C-u>normal vie<CR>', default_opts)
 map('x', 'ae','GoggV', default_opts)
 map('o', 'ae',':<C-u>normal vae<CR>', default_opts)
 
--- Right Angle and Angle Bracket text-object 
+-- Right Angle and Angle Bracket text-object
 ---------------------------------------------
 -- ir ar
 map('x', 'ir','i[', default_opts)
@@ -233,8 +240,8 @@ map("n", "<leader>s",":e ~/buffer.sql<CR>", default_opts)
 -- Map for navigating search (/?) result
 vim.cmd([[
         set wildcharm=<C-z>
-        cnoremap <expr> <Tab> getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>" 
-        cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>" 
+        cnoremap <expr> <Tab> getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
+        cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
     ]]
 )
 
