@@ -37,12 +37,17 @@ lsp.ensure_installed({
     'powershell_es'
 })
 
+-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/main/lua/lsp-zero/nvim-cmp-setup.lua
 -- cmp options
+-- vim.opt.completeopt  = { 'menu', 'menuone', 'noselect'}
 local cmp = require('cmp')
 
 lsp.setup_nvim_cmp({
   mapping = cmp.mapping.preset.insert({
     ['<Tab>'] = cmp.mapping.confirm({ select = false}),
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
   })
 })
 
