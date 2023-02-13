@@ -37,6 +37,15 @@ lsp.ensure_installed({
     'powershell_es'
 })
 
+-- cmp options
+local cmp = require('cmp')
+
+lsp.setup_nvim_cmp({
+  mapping = cmp.mapping.preset.insert({
+    ['<Tab>'] = cmp.mapping.confirm({ select = false}),
+  })
+})
+
 -- (Optional) Configure lua language server for neovim
 lsp.nvim_workspace()
 
