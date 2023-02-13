@@ -175,6 +175,11 @@ require("lazy").setup({
         end,
     },
 
+    -- autorename tags
+    {
+        'AndrewRadev/tagalong.vim',
+    },
+
     -- autopairs
     {
         'windwp/nvim-autopairs',
