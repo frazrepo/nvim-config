@@ -39,16 +39,56 @@ lsp.ensure_installed({
 
 -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/main/lua/lsp-zero/nvim-cmp-setup.lua
 -- cmp options
--- vim.opt.completeopt  = { 'menu', 'menuone', 'noselect'}
+
+vim.opt.completeopt  = { 'menu', 'menuone', 'noselect'}
+
 local cmp = require('cmp')
+local luasnip = require ('luasnip')
 
 lsp.setup_nvim_cmp({
+  snippet = {
+    expand = function(args)
+      luasnip.lsp_expand(args.body)
+    end,
+  },
   mapping = cmp.mapping.preset.insert({
-    ['<Tab>'] = cmp.mapping.confirm({ select = false}),
+    -- ['<Tab>'] = cmp.mapping.confirm({ select = false}),
+    ['<CR>'] = cmp.mapping.confirm {
+      behavior = cmp.ConfirmBehavior.Replace,
+      select = true,
+    },
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      local col = vim.fn.col('.') - 1
+      if cmp.visible() then
+        cmp.select_next_item(select_opts)
+      elseif luasnip.jumpable(1) then
+        luasnip.jump(1)
+      elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+        fallback()
+      else
+        -- cmp.mapping.confirm({ select = false})
+        cmp.complete()
+      end
+    end, {'i', 's'}),
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { 'i', 's' }),
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-  })
+    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+  }),
+  sources = {
+    {name = 'path'},
+    {name = 'nvim_lsp', keyword_length = 3},
+    {name = 'buffer', keyword_length = 3},
+    {name = 'luasnip', keyword_length = 2},
+  },
 })
 
 -- (Optional) Configure lua language server for neovim
