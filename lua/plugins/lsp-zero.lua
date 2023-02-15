@@ -16,6 +16,24 @@ lsp.on_attach(function(client, bufnr)
   local opts = {buffer = bufnr}
   local bind = vim.keymap.set
 
+  -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v1.x/lua/lsp-zero/server.lua
+  -- default key bindings
+  -- map('n', 'K', lsp 'buf.hover()')
+  -- map('n', 'gd', lsp 'buf.definition()')
+  -- map('n', 'gD', lsp 'buf.declaration()')
+  -- map('n', 'gi', lsp 'buf.implementation()')
+  -- map('n', 'go', lsp 'buf.type_definition()')
+  -- map('n', 'gr', lsp 'buf.references()')
+  -- map('n', '<F2>', lsp 'buf.rename()')
+  -- map('n', '<F4>', lsp 'buf.code_action()')
+  -- map('x', '<F4>', lsp 'buf.range_code_action()')
+
+  -- map('n', '<C-k>', lsp 'buf.signature_help()')
+
+  -- map('n', 'gl', diagnostic 'open_float()')
+  -- map('n', '[d', diagnostic 'goto_prev()')
+  -- map('n', ']d', diagnostic 'goto_next()')
+
   -- more keybindings...
   bind('n', '(d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   bind('n', ')d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
