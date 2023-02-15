@@ -40,9 +40,6 @@ lsp.on_attach(function(client, bufnr)
 
   -- Second leader : Comma f
   bind('n', ',f', '<cmd>lua vim.lsp.buf.format { async = true } <CR>', opts)
-
-  vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format { async = true } ']]
-
 end)
 
 -- make sure this servers are installed
