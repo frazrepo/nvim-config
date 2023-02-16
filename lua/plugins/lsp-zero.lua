@@ -44,11 +44,12 @@ end)
 
 -- make sure this servers are installed
 -- see :help lsp-zero.ensure_installed()
+-- https://github.com/williamboman/mason-lspconfig.nvim#default-configuration
 lsp.ensure_installed({
     'rust_analyzer',
     'tsserver',
     'eslint',
-    'sumneko_lua',
+    'lua_ls',
     'powershell_es'
 })
 
