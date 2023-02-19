@@ -240,11 +240,39 @@ require("lazy").setup({
     },
 
     -- file explorer
+    -- {
+    --     'kyazdani42/nvim-tree.lua',
+    --     config = function()
+    --         require("plugins.nvim-tree")
+    --     end
+    -- },
+    -- file explorer  neo-tree
     {
-        'kyazdani42/nvim-tree.lua',
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v2.x",
+        dependencies = {
+            {"nvim-lua/plenary.nvim"},
+            {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
+            {"MunifTanjim/nui.nvim"},
+        },
         config = function()
-            require("plugins.nvim-tree")
-        end
+            -- Unless you are still migrating, remove the deprecated commands from v1.x
+            vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+            require("neo-tree").setup({
+                filesystem = {
+                    follow_current_file = true,
+                }
+
+            })
+
+            -- nvim-tree mappings
+            local map = vim.api.nvim_set_keymap
+            local default_opts = { noremap = true, silent = true  }
+            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)       -- open/close
+            -- map('n', '<leader>n', ':NeoTreeFloatToggle<CR>', default_opts) -- open/close in floating windows
+
+        end,
     },
 
     -- quickfix vim-bqf
@@ -272,6 +300,7 @@ require("lazy").setup({
 
             -- Autocompletion
             {'hrsh7th/nvim-cmp'},         -- Required
+
             {'hrsh7th/cmp-nvim-lsp'},     -- Required
             {'hrsh7th/cmp-buffer'},       -- Optional
             {'hrsh7th/cmp-path'},         -- Optional
