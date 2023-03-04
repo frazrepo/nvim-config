@@ -14,5 +14,6 @@ Debug : nvim --startuptime vim.log
 
 require('settings')
 require('mappings')
+require('textobjects')
 require('plugins/lazy')
 require('ginit')
