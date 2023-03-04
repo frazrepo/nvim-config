@@ -38,4 +38,6 @@ end
 
 
 -- Experimental mapping ygG to select entire buffer
+-- meme résultat que yie, on ne garder pas la position du curseur
+
 keymap({ "o", "x" }, "gG", function()  setLinewiseSelection(1, fn.line("$")) end, { desc = "entireBuffer" .. " textobj" })
