@@ -44,12 +44,21 @@ require("lazy").setup({
 -----------------------------------------------------------
 
     -- tim pope plugins
-    'tpope/vim-unimpaired' ,
+    {
+        'tpope/vim-unimpaired',
+        pin = true
+    } ,
 
-    'tpope/vim-surround' ,
+    {
+        'tpope/vim-surround',
+        pin = true
+    } ,
 
     --  repeat surround action
-    'tpope/vim-repeat',
+    {
+        'tpope/vim-repeat',
+        pin = true
+    },
 
     -- Enhanced comment plugin + TreeSitter context commentstring
     {
@@ -70,6 +79,7 @@ require("lazy").setup({
             { "cx" },
             { "X", mode = "x" },
         },
+        pin = true
     },
 
     -- transpose
@@ -80,6 +90,7 @@ require("lazy").setup({
         cmd = {
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
+        pin = true
     },
 
     -- Align based on character (mapping gl)
@@ -89,6 +100,7 @@ require("lazy").setup({
             { "gl" },
             { "gl", mode = "x" },
         },
+        pin = true
     },
 
     -- Aligning (mapping ga , replace gl when config is stable)
@@ -123,11 +135,13 @@ require("lazy").setup({
             { "gs" },
             { "gs", mode = "x" },
         },
+        pin = true
     },
 
     -- Replace with Register
     {
-        'vim-scripts/ReplaceWithRegister'
+        'vim-scripts/ReplaceWithRegister',
+        pin = true
     },
 
     -- Text objects
