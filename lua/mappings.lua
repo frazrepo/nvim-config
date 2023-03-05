@@ -201,6 +201,7 @@ map('o', 'ie',':<C-u>normal mzvie<CR>`z', default_opts)
 map('x', 'ae','GoggV', default_opts)
 map('o', 'ae',':<C-u>normal mzvae<CR>`z', default_opts)
 
+
 -- Right Angle and Angle Bracket text-object
 ---------------------------------------------
 -- ir ar
