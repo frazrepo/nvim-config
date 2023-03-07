@@ -25,6 +25,8 @@ function M.setup()
         tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
         nnoremap <silent> <Space>tt :FloatermToggle<CR>
         tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
+        nnoremap   <silent>   <F12>   :FloatermToggle<CR>
+        tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
     ]]
 
     -- local commands = {
