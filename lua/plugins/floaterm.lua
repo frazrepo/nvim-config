@@ -23,6 +23,21 @@ function M.setup()
     vim.cmd[[
         nnoremap <silent> <Space>tg :FloatermNew lazygit<CR>
         tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
+
+        nnoremap <silent> <Space>tt :FloatermToggle<CR>
+        tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
+
+        nnoremap <silent> <Space>tw :FloatermKill<CR>
+        tnoremap <silent> <Space>tw <C-\><C-n>:FloatermKill<CR>
+
+        nnoremap <silent> <Space>tn :FloatermNew<CR>
+        tnoremap <silent> <Space>tn <C-\><C-n>:FloatermNex<CR>
+
+        nnoremap <silent> <Space>to :FloatermNext<CR>
+        tnoremap <silent> <Space>to <C-\><C-n>:FloatermNext<CR>
+
+        nnoremap <silent> <Space>tp :FloatermPrev<CR>
+        tnoremap <silent> <Space>tp <C-\><C-n>:FloatermPrev<CR>
     ]]
 
     -- local commands = {
