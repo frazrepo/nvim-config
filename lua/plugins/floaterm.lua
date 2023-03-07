@@ -23,27 +23,23 @@ function M.setup()
     vim.cmd[[
         nnoremap <silent> <Space>tg :FloatermNew lazygit<CR>
         tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
+
         nnoremap <silent> <Space>tt :FloatermToggle<CR>
         tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
-        nnoremap   <silent>   <F12>   :FloatermToggle<CR>
-        tnoremap   <silent>   <F12>   <C-\><C-n>:FloatermToggle<CR>
-    ]]
 
-    -- local commands = {
-    --     t = {
-    --         name = "Terminal",
-    --         t = {":FloatermToggle<CR>", "Toggle terminal"},
-    --         o = {":FloatermNext<CR>", "Next terminal"},
-    --         p = {":FloatermPrev<CR>", "Prev terminal"},
-    --         n = {":FloatermNew<CR>", "New terminal"},
-    --         w = {":FloatermKill<CR>", "Kill terminal"},
-    --         r = {":FloatermNew ranger<CR>", "Ranger"},
-    --         g = {":FloatermNew lazygit<CR>", "Lazygit"},
-    --     }
-    -- }
-    -- local opts = require "plugins.config.which-key" . opts('n')
-    --
-    -- require("which-key") . register(commands, opts)
+        nnoremap <silent> <Space>tw :FloatermKill<CR>
+        tnoremap <silent> <Space>tw <C-\><C-n>:FloatermKill<CR>
+
+        nnoremap <silent> <Space>tn :FloatermNew<CR>
+        tnoremap <silent> <Space>tn <C-\><C-n>:FloatermNex<CR>
+
+        nnoremap <silent> <Space>to :FloatermNext<CR>
+        tnoremap <silent> <Space>to <C-\><C-n>:FloatermNext<CR>
+
+        nnoremap <silent> <Space>tp :FloatermPrev<CR>
+        tnoremap <silent> <Space>tp <C-\><C-n>:FloatermPrev<CR>
+
+    ]]
 end
 
 return M
