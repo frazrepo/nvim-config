@@ -23,6 +23,8 @@ function M.setup()
     vim.cmd[[
         nnoremap <silent> <Space>tg :FloatermNew lazygit<CR>
         tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
+        nnoremap <silent> <Space>tt :FloatermToggle<CR>
+        tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
     ]]
 
     -- local commands = {

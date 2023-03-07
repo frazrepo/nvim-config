@@ -507,12 +507,12 @@ require("lazy").setup({
     {
         "akinsho/toggleterm.nvim",
         config = function()
-            vim.api.nvim_set_keymap("n", "<leader>tt", ":ToggleTerm<CR>", { noremap = true, silent = true })
+            -- vim.api.nvim_set_keymap("n", "<leader>tt", ":ToggleTerm<CR>", { noremap = true, silent = true })
         end,
-        cmd = { "ToggleTerm" },
-        keys = {
-            { "<leader>tt" },
-        },
+        -- cmd = { "ToggleTerm" },
+        -- keys = {
+        --     { "<leader>tt" },
+        -- },
 
     },
 
