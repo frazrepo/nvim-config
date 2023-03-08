@@ -18,7 +18,7 @@ opt.cpoptions:append '>'                                    -- Put a line break 
 opt.encoding                = 'utf-8'                       -- Dealing with special chars
 opt.expandtab               = true                          -- Use spaces instead of tabs
 
-opt.foldlevelstart          = 99 
+opt.foldlevelstart          = 99
 opt.foldmethod              = 'indent'                      -- Default Foldmethod indent
 opt.formatoptions           = 'qnj1'                        -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 opt.gdefault                = true
@@ -67,10 +67,21 @@ opt.virtualedit             = 'block'                       -- VirtualEdit block
 opt.visualbell              = true                          -- t_vb =-- No sound on errors
 opt.whichwrap:append        '<,>,h,l'
 
-opt.cmdheight               = 2                             --Fix : Press Enter or Type Command to continue error in nvim 
+opt.cmdheight               = 2                             --Fix : Press Enter or Type Command to continue error in nvim
 -- opt.signcolumn              =true                        -- always show signcolumns
 
 opt.inccommand              = "nosplit"                     -- search/replace preview
+
+-- set default shell to powershell on Windows
+if vim.fn.has('win32') == 1  then
+    vim.cmd([[
+            let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+            let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+            let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+            let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+            set shellquote= shellxquote=
+    ]])
+end
 
 -- disable some builtin vim plugins
 local disabled_built_ins = {
@@ -117,7 +128,7 @@ exec([[
 
         function! CmdLine(str)
             call feedkeys(":" . a:str)
-        endfunction 
+        endfunction
 
         function! VisualSelection(direction, extra_filter) range
             let l:saved_reg = @"
@@ -130,7 +141,7 @@ exec([[
                 call CmdLine("Ack '" . l:pattern . "' " )
             elseif a:direction == 'replace'
                 call CmdLine("%s" . '/'. l:pattern . '/')
-            endif 
+            endif
 
             let @/ = l:pattern
             let @" = l:saved_reg
@@ -183,7 +194,7 @@ cmd(
 -- WipeReg : Clean all registers
 cmd(
     [[
-    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor 
+    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
     ]]
 )
 
@@ -199,7 +210,7 @@ exec([[
     augroup AutoCommandsGroup
         autocmd!
 
-        " Clean extra spaces on txt files 
+        " Clean extra spaces on txt files
         autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 
         " Help File speedups, <enter> to follow tag, delete (backspace) for back
@@ -225,18 +236,3 @@ exec([[
             autocmd Filetype ps1 nnoremap <buffer> <F5> :CocCommand powershell.execute<CR>
         augroup end
  ]], false)
-
-
--- TODO : to test , default shell (bug here)
--- local function default_shell() 
--- 	if vim.fn.has('win32') == 1  then
--- 	    opt.shell = "powershell.exe"
---     end
--- -- end
--- exec(
---     [[
---         if has('win32')
---             set shell=powershell.exe
---         endif
---     ]]
--- ,false)
