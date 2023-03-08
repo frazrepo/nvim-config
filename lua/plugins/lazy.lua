@@ -506,14 +506,8 @@ require("lazy").setup({
     -- toggleterm and floatterm
     {
         "akinsho/toggleterm.nvim",
-        config = function()
-            -- vim.api.nvim_set_keymap("n", "<leader>tt", ":ToggleTerm<CR>", { noremap = true, silent = true })
-        end,
-        -- cmd = { "ToggleTerm" },
-        -- keys = {
-        --     { "<leader>tt" },
-        -- },
-
+        version = "*",
+        config = true
     },
 
     {
