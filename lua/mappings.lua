@@ -42,6 +42,8 @@ map('n', 'gV','`[v`]', default_opts)
 -- Smart way to move between windows horizontally
 map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
 map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
+map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
+map('n', '<C-k>','<C-W>k', {noremap =false, silent = true})
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { noremap =false, silent = true })
@@ -49,9 +51,9 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", {noremap =false, silent = true })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = true })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
 
--- Move faster vertically (paragraph motion)
-map('n', '<C-j>','}', {noremap =false, silent = true})
-map('n', '<C-k>','{', {noremap =false, silent = true})
+-- Move faster vertically (paragraph motion) (Replaced with windows navigation)
+-- map('n', '<C-j>','}', {noremap =false, silent = true})
+-- map('n', '<C-k>','{', {noremap =false, silent = true})
 
 -- Switch CWD to the directory of the open buffer
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
@@ -161,7 +163,7 @@ map('c', '::', [[<C-R>=fnameescape(expand("%"))<CR>]]  , {noremap =false, silent
 -- Remove the Windows ^M - when the encodings gets messed up
 map('n', '<Leader>m', [[mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm]]  , {noremap =false, silent = true})
 
--- terminal mapping
+-- -- terminal mapping
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
