@@ -72,6 +72,17 @@ opt.cmdheight               = 2                             --Fix : Press Enter 
 
 opt.inccommand              = "nosplit"                     -- search/replace preview
 
+-- set default shell to powershell on Windows
+if vim.fn.has('win32') == 1  then
+    vim.cmd([[
+            let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
+            let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+            let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+            let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+            set shellquote= shellxquote=
+    ]])
+end
+
 -- disable some builtin vim plugins
 local disabled_built_ins = {
    "2html_plugin",
@@ -236,18 +247,3 @@ exec([[
 --       group = psBindingGrp
 --     }
 --  )
-
-
--- TODO : to test , default shell (bug here)
--- local function default_shell()
--- 	if vim.fn.has('win32') == 1  then
--- 	    opt.shell = "powershell.exe"
---     end
--- -- end
--- exec(
---     [[
---         if has('win32')
---             set shell=powershell.exe
---         endif
---     ]]
--- ,false)
