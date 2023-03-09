@@ -521,7 +521,14 @@ require("lazy").setup({
     {
         "akinsho/toggleterm.nvim",
         version = "*",
-        config = true
+        config = function()
+            require("toggleterm").setup(
+                {
+                    open_mapping = [[<c-t>]],
+                    close_on_exit = true
+                }
+            )
+        end,
     },
 
     {
