@@ -499,6 +499,16 @@ require("lazy").setup({
         end
     },
 
+    -- nvim ufo
+    {
+        'kevinhwang91/nvim-ufo',
+        config = function() 
+            require('ufo').setup()
+            -- default mapping zR openAllFolds, zM closeAllFolds
+        end,
+        dependencies = 'kevinhwang91/promise-async'
+    },
+
     -----------------------------------------------------------
     -- Terminal enhacements
     -----------------------------------------------------------
