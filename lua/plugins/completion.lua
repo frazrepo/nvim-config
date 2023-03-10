@@ -66,16 +66,20 @@ function M.setup()
         },
         sources = {
             {
-                name = 'nvim_lsp'
-            }, {
+                name = 'nvim_lsp',
+                priority = 1000
+            }, 
+            {
+                name = 'luasnip',
+                priority = 750
+            }, 
+            {
                 name = 'buffer',
-                keyword_length = 5
-            }, {
-                name = 'luasnip'
-            }, {
-                name = 'nvim_lua'
-            }, {
-                name = 'path'
+                priority = 500
+            }, 
+            {
+                name = 'path',
+                priority = 250
             }
         }
     })
