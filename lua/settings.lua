@@ -18,8 +18,10 @@ opt.cpoptions:append '>'                                    -- Put a line break 
 opt.encoding                = 'utf-8'                       -- Dealing with special chars
 opt.expandtab               = true                          -- Use spaces instead of tabs
 
+opt.foldlevel               = 99
 opt.foldlevelstart          = 99
-opt.foldmethod              = 'indent'                      -- Default Foldmethod indent
+opt.foldcolumn              = '1'                     
+opt.foldenable              = true
 opt.formatoptions           = 'qnj1'                        -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 opt.gdefault                = true
 opt.hidden                  = true                          -- Set hidden to allow switching to other buffer if it is modifie
