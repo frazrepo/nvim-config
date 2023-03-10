@@ -38,8 +38,7 @@ function M.setup()
             ["<C-y>"] = cmp.config.disable,
             ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
             ['<CR>'] = cmp.mapping.confirm({
-                select = true
-                cmp.select_prev_item
+                select = false
             }),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 local luasnip = require 'luasnip'
