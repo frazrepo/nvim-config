@@ -26,13 +26,19 @@ function M.setup()
             end
         },
         mapping = {
-            ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-Space>'] = cmp.mapping.complete(),
-            ['<C-o>'] = cmp.mapping.complete(),
-            ['<C-e>'] = cmp.mapping.close(),
+            ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+            ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+            ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+            ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+            ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+            ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+            ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+            ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+            ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+            ["<C-y>"] = cmp.config.disable,
+            ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
             ['<CR>'] = cmp.mapping.confirm({
-                select = true
+                select = false
             }),
             ["<Tab>"] = cmp.mapping(function(fallback)
                 local luasnip = require 'luasnip'
