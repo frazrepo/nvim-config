@@ -203,6 +203,7 @@ require("lazy").setup({
     },
 
     -- autotags (see treesitter for activation)
+    -- Need to install parser for html /xml :TSInstall html
     {
         'windwp/nvim-ts-autotag',
         ft = {
