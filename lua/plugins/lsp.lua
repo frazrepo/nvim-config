@@ -25,6 +25,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
         'additionalTextEdits',
     },
 }
+capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+}
 
 -- See exemple : https://github.com/junnplus/lsp-setup.nvim
 -- Use an on_attach function to only map the following keys
