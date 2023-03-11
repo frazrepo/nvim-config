@@ -509,6 +509,7 @@ require("lazy").setup({
     },
 
     -- nvim ufo
+    -- see settings.lua for fold* options
     -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
     {
         'kevinhwang91/nvim-ufo',
