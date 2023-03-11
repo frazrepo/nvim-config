@@ -223,20 +223,9 @@ require("lazy").setup({
     -- vim-grepper
 
     { "mhinz/vim-grepper",
-        cmd = { 'Grepper', 'GrepperRg', 'GrepperAg', 'GrepperGrep' },
         config = function()
             require("plugins.vim-grepper")
         end,
-        keys = {
-            { "gx" },
-            { "gx" , mode = "x" },
-            { "<leader>g" },
-            { "<leader>g" , mode = "x" },
-            { "<leader>/" },
-            { "<leader>/" , mode = "x" },
-            { "<leader>G" },
-            { "<leader>G" , mode = "x" },
-        },
     },
 
     -----------------------------------------------------------
