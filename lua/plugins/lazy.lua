@@ -488,7 +488,16 @@ require("lazy").setup({
     },
 
     -- indent blankline
-    { "lukas-reineke/indent-blankline.nvim" },
+    { 
+        "lukas-reineke/indent-blankline.nvim",
+        config = function()
+            require("indent_blankline").setup {
+                -- for example, context is off by default, use this to turn it on
+                -- show_current_context = true,
+                -- show_current_context_start = true,
+            }
+        end,
+    },
 
     -- truezen
     {
@@ -500,13 +509,21 @@ require("lazy").setup({
     },
 
     -- nvim ufo
+    -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
     {
         'kevinhwang91/nvim-ufo',
         config = function() 
-            require('ufo').setup()
             -- default mapping zR openAllFolds, zM closeAllFolds
+            require('ufo').setup(
+              {
+                provider_selector = function(bufnr, filetype, buftype)
+                  return {"treesitter", "indent"}
+                end
+              }
+            )
         end,
         dependencies = 'kevinhwang91/promise-async'
+
     },
 
     -----------------------------------------------------------
