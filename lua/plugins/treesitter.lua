@@ -9,6 +9,7 @@ require('nvim-treesitter.configs').setup {
   -- Additional
   -- :TSInstall html
   -- :TSInstall c_sharp
+  -- Check with :TSInstallInfo
   ensure_installed = {
       "lua",
   },
