@@ -189,6 +189,7 @@ require("lazy").setup({
     },
 
     -- autotags (see treesitter for activation)
+    -- Need to install parser for html /xml :TSInstall html
     {
         'windwp/nvim-ts-autotag',
         ft = {
@@ -207,22 +208,10 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- vim-grepper
-
     { "mhinz/vim-grepper",
-        cmd = { 'Grepper', 'GrepperRg', 'GrepperAg', 'GrepperGrep' },
         config = function()
             require("plugins.vim-grepper")
         end,
-        keys = {
-            { "gx" },
-            { "gx" , mode = "x" },
-            { "<leader>g" },
-            { "<leader>g" , mode = "x" },
-            { "<leader>/" },
-            { "<leader>/" , mode = "x" },
-            { "<leader>G" },
-            { "<leader>G" , mode = "x" },
-        },
     },
 
     -----------------------------------------------------------
@@ -403,7 +392,23 @@ require("lazy").setup({
     },
 
     -- cursorline
-    { 'yamatsum/nvim-cursorline' },
+    {
+        'yamatsum/nvim-cursorline',
+        config = function ()
+            require('nvim-cursorline').setup {
+                cursorline = {
+                    enable = true,
+                    timeout = 1000,
+                    number = false,
+                },
+                cursorword = {
+                    enable = true,
+                    min_length = 3,
+                    hl = { underline = true },
+                }
+            }
+        end
+    },
 
     -- lualine
     {

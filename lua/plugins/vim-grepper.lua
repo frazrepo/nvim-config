@@ -15,7 +15,7 @@ vim.g.grepper = {
 
 wk.register(
   {
-    -- g = { '<Cmd>Grepper<Cr>', 'Grepper' },
+    g = { '<Cmd>Grepper<Cr>', 'Grepper' },
     ["/"] = { '<Cmd>Grepper<Cr>', 'Grepper' },
     G = { '<Cmd>Grepper -buffers<Cr>', 'Grepper Buffers' },
     ['*'] = { '<Cmd>Grepper -cword -noprompt<Cr>', 'Grepper Word Under Cursor' },
