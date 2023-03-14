@@ -6,6 +6,10 @@
 
 require('nvim-treesitter.configs').setup {
   -- ensure_installed = "maintained",
+  -- Additional
+  -- :TSInstall html
+  -- :TSInstall c_sharp
+  -- Check with :TSInstallInfo
   ensure_installed = {
       "lua",
   },
@@ -35,4 +39,3 @@ require('nvim-treesitter.configs').setup {
         }
   }
 }
-
