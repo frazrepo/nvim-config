@@ -101,6 +101,8 @@ map('n', '<S-CR>', ':set paste<CR>O<Esc>:set nopaste<CR>', default_opts)
 -- Navigating quickfix (Experimental)
 map('n', '<A-Down>','<Cmd>cnext<Cr>', default_opts)
 map('n', '<A-Up>','<Cmd>cprevious<Cr>', default_opts)
+map('n', '<M-Down>','<Cmd>cnext<Cr>', default_opts)
+map('n', '<M-Up>','<Cmd>cprevious<Cr>', default_opts)
 
 -- H and L Begin/End on homerow
 map('n', 'H', '^'  , {noremap =false, silent = true})
