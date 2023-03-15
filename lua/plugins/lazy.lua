@@ -283,6 +283,12 @@ require("lazy").setup({
         ft = { 'qf' }
     },
 
+    -- fzf , needs to install fzf exe
+    {'junegunn/fzf', run = function()
+        vim.fn['fzf#install']()
+    end
+    },
+
 -----------------------------------------------------------
 -- Completion , LSP
 -----------------------------------------------------------
