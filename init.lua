@@ -11,8 +11,12 @@ Debug : nvim --startuptime vim.log
 -----------------------------------------------------------
 -- Import Lua modules
 -----------------------------------------------------------
-
-require('settings')
-require('mappings')
-require('plugins/lazy')
-require('ginit')
+if vim.g.vscode then
+    require('vscodesettings')
+else
+    -- ordinary Neovim
+    require('settings')
+    require('mappings')
+    require('plugins/lazy')
+    require('ginit')
+end
