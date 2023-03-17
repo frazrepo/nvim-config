@@ -115,6 +115,13 @@ map('o', 'aa',':<C-u>normal va><CR>', default_opts)
 -- Todo : refactor to lua
 --################################################
 vim.cmd ([[
+
+        " Highlight yank
+        augroup highlight_yank
+            autocmd!
+            autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
+        augroup END
+
         " Functions
         function! s:split(...) abort
             let direction = a:1
