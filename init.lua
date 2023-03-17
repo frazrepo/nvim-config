@@ -12,7 +12,8 @@ Debug : nvim --startuptime vim.log
 -- Import Lua modules
 -----------------------------------------------------------
 if vim.g.vscode then
-    require('vscodesettings')
+    require('vscode.settings')
+    require('vscode.plugins')
 else
     -- ordinary Neovim
     require('settings')
