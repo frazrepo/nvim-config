@@ -109,107 +109,33 @@ map('o', 'ia',':<C-u>normal vi><CR>', default_opts)
 map('x', 'aa','a>', default_opts)
 map('o', 'aa',':<C-u>normal va><CR>', default_opts)
 
+ map('n','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
+ map('x','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
+
+ map('n','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
+ map('x','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
+
+ map('n','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
+ map('x','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
+ 
+ map('n','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
+ map('x','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
+
+-- Commentary
+map('n', 'gc', '<Plug>VSCodeCommentary'  , {noremap =false, silent = true})
+map('x', 'gc', '<Plug>VSCodeCommentary'  , {noremap =false, silent = true})
+map('o', 'gc', '<Plug>VSCodeCommentary'  , {noremap =false, silent = true})
+map('n', 'gcc', '<Plug>VSCodeCommentaryLine'  , {noremap =false, silent = true})
 
 --################################################
--- Todo : refactor to lua
+-- Autocommand
 --################################################
 vim.cmd ([[
-
         " Highlight yank
         augroup highlight_yank
             autocmd!
             autocmd TextYankPost * silent! lua vim.highlight.on_yank { higroup="IncSearch", timeout=300 }
         augroup END
-
-        " Functions
-        function! s:split(...) abort
-            let direction = a:1
-            let file = a:2
-            call VSCodeCall(direction == 'h' ? 'workbench.action.splitEditorDown' : 'workbench.action.splitEditorRight')
-            if file != ''
-                call VSCodeExtensionNotify('open-file', expand(file), 'all')
-            endif
-        endfunction
-
-        function! s:splitNew(...)
-            let file = a:2
-            call s:split(a:1, file == '' ? '__vscode_new__' : file)
-        endfunction
-
-        function! s:closeOtherEditors()
-            call VSCodeNotify('workbench.action.closeEditorsInOtherGroups')
-            call VSCodeNotify('workbench.action.closeOtherEditors')
-        endfunction
-
-        function! s:manageEditorSize(...)
-            let count = a:1
-            let to = a:2
-            for i in range(1, count ? count : 1)
-                call VSCodeNotify(to == 'increase' ? 'workbench.action.increaseViewSize' : 'workbench.action.decreaseViewSize')
-            endfor
-        endfunction
-
-        function! s:openVSCodeCommandsInVisualMode()
-            normal! gv
-            let visualmode = visualmode()
-            if visualmode == "V"
-                let startLine = line("v")
-                let endLine = line(".")
-                call VSCodeNotifyRange("workbench.action.showCommands", startLine, endLine, 1)
-            else
-                let startPos = getpos("v")
-                let endPos = getpos(".")
-                call VSCodeNotifyRangePos("workbench.action.showCommands", startPos[1], endPos[1], startPos[2], endPos[2], 1)
-            endif
-        endfunction
-
-        function! s:openWhichKeyInVisualMode()
-            normal! gv
-            let visualmode = visualmode()
-            if visualmode == "V"
-                let startLine = line("v")
-                let endLine = line(".")
-                call VSCodeNotifyRange("whichkey.show", startLine, endLine, 1)
-            else
-                let startPos = getpos("v")
-                let endPos = getpos(".")
-                call VSCodeNotifyRangePos("whichkey.show", startPos[1], endPos[1], startPos[2], endPos[2], 1)
-            endif
-        endfunction
-
-        " Other mappings
-
-        command! -complete=file -nargs=? Split call <SID>split('h', <q-args>)
-        command! -complete=file -nargs=? Vsplit call <SID>split('v', <q-args>)
-        command! -complete=file -nargs=? New call <SID>split('h', '__vscode_new__')
-        command! -complete=file -nargs=? Vnew call <SID>split('v', '__vscode_new__')
-        command! -bang Only if <q-bang> == '!' | call <SID>closeOtherEditors() | else | call VSCodeNotify('workbench.action.joinAllGroups') | endif
-
-        " Buffers
-        nnoremap <leader>bn :Vnew<cr>
-
-
-        " Better Navigation
-        nnoremap <silent> <C-j> :call VSCodeNotify('workbench.action.navigateDown')<CR>
-        xnoremap <silent> <C-j> :call VSCodeNotify('workbench.action.navigateDown')<CR>
-        nnoremap <silent> <C-k> :call VSCodeNotify('workbench.action.navigateUp')<CR>
-        xnoremap <silent> <C-k> :call VSCodeNotify('workbench.action.navigateUp')<CR>
-        nnoremap <silent> <C-h> :call VSCodeNotify('workbench.action.navigateLeft')<CR>
-        xnoremap <silent> <C-h> :call VSCodeNotify('workbench.action.navigateLeft')<CR>
-        nnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
-        xnoremap <silent> <C-l> :call VSCodeNotify('workbench.action.navigateRight')<CR>
-
-        " whichkey , need whichkey extension in vscode
-        nnoremap <silent> , :call VSCodeNotify('whichkey.show')<CR>
-        xnoremap <silent> , :<C-u>call <SID>openWhichKeyInVisualMode()<CR>
-
-        nnoremap <silent> <C-w>_ :<C-u>call VSCodeNotify('workbench.action.toggleEditorWidths')<CR>
-
-        "Commentary
-        xmap gc  <Plug>VSCodeCommentary
-        nmap gc  <Plug>VSCodeCommentary
-        omap gc  <Plug>VSCodeCommentary
-        nmap gcc <Plug>VSCodeCommentaryLine
     ]])
 
 --################################################
