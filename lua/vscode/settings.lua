@@ -10,9 +10,18 @@ local opt = vim.opt
 opt.clipboard               = 'unnamed,unnamedplus'         -- Default to system clipboard
 
 --################################################
---#region keymap
+--#action 
+-- source : https://github.com/sokhuong-uon/vscode-nvim/blob/main/init.lua
 --################################################
-vim.g.mapleader = " "
+
+local file = {
+  save = function()
+    vim.fn.VSCodeNotify("workbench.action.files.save")
+  end,
+  format = function()
+    vim.fn.VSCodeNotify("editor.action.formatDocument")
+  end,
+}
 
 -- https://vi.stackexchange.com/a/31887
 local nv_keymap = function(lhs, rhs)
@@ -25,11 +34,20 @@ local nx_keymap = function(lhs, rhs)
   vim.api.nvim_set_keymap('v', lhs, rhs, { silent = true })
 end
 
+--################################################
+--#region keymap
+--################################################
+vim.g.mapleader = " "
+
+-- Find in files for word under cursor (experimental)
+map('n', '?', [[<Cmd>call VSCodeNotify('workbench.action.findInFiles', { 'query': expand('<cword>')})<CR>]], default_opts)
+
 -- Clear search highlighting
 map('', '<space><space>', ':nohl<CR>', {silent = true})
 
--- Fast saving
-map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
+-- File operations
+vim.keymap.set({ 'n', 'v' }, "<space>w", file.save)
+vim.keymap.set({ 'n', 'v' }, "<space>f", file.format)
 
 -- H and L Begin/End on homerow
 map('n', 'H', '^'  , {noremap =false, silent = true})
@@ -79,6 +97,19 @@ map('n', 'cg*', 'g*Ncgn', default_opts)
 map('n', 'cg#', 'g#Ncgn', default_opts)
 
 
+-- " Move through windows
+map('n','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
+map('x','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
+
+map('n','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
+map('x','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
+
+map('n','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
+map('x','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
+ 
+map('n','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
+map('x','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
+
 -- Buffer(entire) text-object
 -----------------------------
 -- Line text-object
@@ -89,6 +120,8 @@ map('o', 'il',':<C-u>normal vil<CR>', default_opts)
 map('x', 'al','$o0', default_opts)
 map('o', 'al',':<C-u>normal val<CR>', default_opts)
 
+-- Buffer(entire)
+-------------------
 -- ie ae
 map('x', 'ie','GoggV', default_opts)
 map('o', 'ie',':<C-u>normal mzvie<CR>`z', default_opts)
@@ -108,18 +141,6 @@ map('x', 'ia','i>', default_opts)
 map('o', 'ia',':<C-u>normal vi><CR>', default_opts)
 map('x', 'aa','a>', default_opts)
 map('o', 'aa',':<C-u>normal va><CR>', default_opts)
-
- map('n','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
- map('x','<C-j>',[[:call VSCodeNotify('workbench.action.navigateDown')<CR>]], default_opts)
-
- map('n','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
- map('x','<C-k>',[[:call VSCodeNotify('workbench.action.navigateUp')<CR>]], default_opts)
-
- map('n','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
- map('x','<C-h>',[[:call VSCodeNotify('workbench.action.navigateLeft')<CR>]], default_opts)
- 
- map('n','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
- map('x','<C-l>',[[:call VSCodeNotify('workbench.action.navigateRight')<CR>]], default_opts)
 
 -- Commentary
 map('n', 'gc', '<Plug>VSCodeCommentary'  , {noremap =false, silent = true})
@@ -154,8 +175,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 
 vim.opt.rtp:prepend(lazypath)
-
-local fzconfig = require("fzconfig")
 
 require("lazy").setup({
     -----------------------------------------------------------
