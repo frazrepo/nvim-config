@@ -218,14 +218,15 @@ require("lazy").setup({
     },
 
     -- splitjoin
-    {
-        'Wansmer/treesj',
-        keys = { '<space>m', '<space>j', '<space>s' },
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        config = function()
-            require('treesj').setup({--[[ your config ]]})
-        end,
-    },
+    -- mapping conflict with <leader>s , sql buffer
+    -- {
+    --     'Wansmer/treesj',
+    --     keys = { '<space>m', '<space>j', '<space>s' },
+    --     dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    --     config = function()
+    --         require('treesj').setup({--[[ your config ]]})
+    --     end,
+    -- },
     -----------------------------------------------------------
     -- Search Replace
     -----------------------------------------------------------
@@ -461,7 +462,7 @@ require("lazy").setup({
     -- UI enhacements
     -----------------------------------------------------------
     -- cursorline
-    { 
+    {
         'yamatsum/nvim-cursorline',
         config = function ()
             require('nvim-cursorline').setup {
@@ -539,7 +540,7 @@ require("lazy").setup({
     -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
     {
         'kevinhwang91/nvim-ufo',
-        config = function() 
+        config = function()
             -- default mapping zR openAllFolds, zM closeAllFolds
             require('ufo').setup(
               {
