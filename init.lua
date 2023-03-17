@@ -13,7 +13,6 @@ Debug : nvim --startuptime vim.log
 -----------------------------------------------------------
 if vim.g.vscode then
     require('vscode.settings')
-    require('vscode.plugins')
 else
     -- ordinary Neovim
     require('settings')
