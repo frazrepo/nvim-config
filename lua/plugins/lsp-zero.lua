@@ -47,8 +47,6 @@ end)
 -- https://github.com/williamboman/mason-lspconfig.nvim#default-configuration
 lsp.ensure_installed({
     'rust_analyzer',
-    'tsserver',
-    'eslint',
     'lua_ls',
     'powershell_es'
 })
