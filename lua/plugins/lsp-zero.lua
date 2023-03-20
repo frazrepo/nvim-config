@@ -104,10 +104,11 @@ lsp.setup_nvim_cmp({
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
   }),
   sources = {
+    -- Same behavior as vscode without keyword_length
     {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    {name = 'nvim_lsp'},
+    {name = 'buffer'},
+    {name = 'luasnip'},
   },
 })
 
