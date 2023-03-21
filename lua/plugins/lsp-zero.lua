@@ -47,8 +47,6 @@ end)
 -- https://github.com/williamboman/mason-lspconfig.nvim#default-configuration
 lsp.ensure_installed({
     'rust_analyzer',
-    'tsserver',
-    'eslint',
     'lua_ls',
     'powershell_es'
 })
@@ -71,45 +69,54 @@ lsp.setup_nvim_cmp({
   completion  = {
     completeopt = 'menu,menuone,noinsert,noselect'
   },
-  mapping = cmp.mapping.preset.insert({
-    ['<CR>'] = cmp.mapping.confirm {
+  confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
-    },
-    -- supertab config : if not visible, expand
-    ["<Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-      -- they way you will only jump inside the snippet region
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      elseif has_words_before() then
-        cmp.complete()
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { "i", "s" }),
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-  }),
-  sources = {
-    -- Same behavior as vscode without keyword_length
-    {name = 'path'},
-    {name = 'nvim_lsp'},
-    {name = 'buffer'},
-    {name = 'luasnip'},
+      select = false,
   },
+  mapping = cmp.mapping.preset.insert({
+        ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
+        ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
+        ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-k>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-j>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-y>"] = cmp.config.disable,
+        ["<C-e>"] = cmp.mapping { i = cmp.mapping.abort(), c = cmp.mapping.close() },
+        ['<CR>'] = cmp.mapping.confirm {
+            select = false,
+        },
+        -- supertab config : if not visible, expand
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+                -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
+                -- they way you will only jump inside the snippet region
+            elseif luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            elseif has_words_before() then
+                cmp.complete()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            elseif luasnip.jumpable(-1) then
+                luasnip.jump(-1)
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+    }),
+    sources = {
+        -- Same behavior as vscode without keyword_length
+        {name = 'nvim_lsp', priority = 1000},
+        {name = 'luasnip', priority = 750},
+        {name = 'buffer', priority = 500},
+        {name = 'path', priority = 250},
+    },
 })
 
 -- (Optional) Configure lua language server for neovim
