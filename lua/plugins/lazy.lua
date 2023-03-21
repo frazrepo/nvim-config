@@ -18,8 +18,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local fzconfig = require("fzconfig")
-
 require("lazy").setup({
 
     {
