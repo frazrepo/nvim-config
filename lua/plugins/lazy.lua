@@ -247,13 +247,7 @@ require("lazy").setup({
         end
     },
 
-    -- file explorer neo-tree instead of nvim-tree
-    -- {
-    --     'kyazdani42/nvim-tree.lua',
-    --     config = function()
-    --         require("plugins.nvim-tree")
-    --     end
-    -- },
+    -- file explorer  neo-tree
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -262,23 +256,22 @@ require("lazy").setup({
             {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
             {"MunifTanjim/nui.nvim"},
         },
-        config = function()
+        init = function()
             -- Unless you are still migrating, remove the deprecated commands from v1.x
-            vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
+            vim.g.neo_tree_remove_legacy_commands  = true
+        end,
+        config = function()
             require("neo-tree").setup({
                 filesystem = {
                     follow_current_file = true,
+                    use_libuv_file_watcher = true,
                 }
-
             })
 
             -- nvim-tree mappings
             local map = vim.api.nvim_set_keymap
             local default_opts = { noremap = true, silent = true  }
             map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)       -- open/close
-            -- map('n', '<leader>n', ':NeoTreeFloatToggle<CR>', default_opts) -- open/close in floating windows
-
         end,
     },
 
