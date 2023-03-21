@@ -105,21 +105,15 @@ require("lazy").setup({
         "junegunn/vim-easy-align",
         config = function()
             -- require "rmagatti.easyalign"
-            vim.cmd [[
-                " Start interactive EasyAlign in visual mode (e.g. vipga)
-                xmap ga <Plug>(EasyAlign)
-                " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-                nmap ga <Plug>(EasyAlign)
-                " Align GitHub-flavored Markdown tables
-                augroup aligning
-                au!
-                au FileType markdown vmap <leader><Bslash> :EasyAlign*<bar><CR>
-                augroup end
-                ]]
+            -- nvim-tree mappings
+            local map = vim.api.nvim_set_keymap
+            local default_opts = { noremap = false, silent = true  }
+            map('x', 'ga', '<Plug>(EasyAlign)', default_opts)
+            map('n', 'ga', '<Plug>(EasyAlign)', default_opts)
         end,
         keys = {
             { "ga" },
-            { "ga" , mode = "x" },
+            { "ga", mode = "x" },
         },
         cmd = { "EasyAlign" },
     },
