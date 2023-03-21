@@ -422,22 +422,30 @@ require("lazy").setup({
     --     end
     -- }
 
-    -- lightspeed (Advantage : the label is on the third char)
+    -- leap like next version of lightspeed
     {
-        'ggandor/lightspeed.nvim',
+        'ggandor/leap.nvim',
         config = function()
-            require 'lightspeed'.setup {
-                labels = { "s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
-            }
-
-            --disabling f F t T
-            vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
-            vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
-            vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
-            vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
-
-        end
+            require('leap').add_default_mappings()
+        end,
     },
+
+    -- -- lightspeed (Advantage : the label is on the third char)
+    -- {
+    --     'ggandor/lightspeed.nvim',
+    --     config = function()
+    --         require 'lightspeed'.setup {
+    --             labels = { "s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
+    --         }
+    --
+    --         --disabling f F t T
+    --         vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
+    --         vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
+    --         vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
+    --         vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
+    --
+    --     end
+    -- },
     
     -- dashboard
     {
