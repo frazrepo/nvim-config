@@ -447,16 +447,26 @@ require("lazy").setup({
         end,
     },
 
-    -- labs
     -- session management
+    -- depends on vim.o.sessionoptions (see settings.lua)
+    -- :SaveSession " saves or creates a session in the currently set `auto_session_root_dir`.
+    -- :SaveSession ~/my/custom/path " saves or creates a session in the specified directory path.
+    -- :RestoreSession " restores a previously saved session based on the `cwd`.
+    -- :RestoreSession ~/my/custom/path " restores a previously saved session based on the provided path.
+    -- :RestoreSessionFromFile ~/session/path " restores any currently saved session
+    -- :DeleteSession " deletes a session in the currently set `auto_session_root_dir`.
+    -- :DeleteSession ~/my/custom/path " deleetes a session based on the provided path.
+    -- :Autosession search
+    -- :Autosession delete
+
     {
         'rmagatti/auto-session',
         config = function()
           require("auto-session").setup {
             log_level = "error",
             auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
-            -- auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
           }
+
         end
     },
     {
@@ -465,6 +475,8 @@ require("lazy").setup({
       config = function()
         require('session-lens').setup({--[[your custom config--]]})
         vim.api.nvim_set_keymap("n", "<leader>s", "<Cmd>Telescope session-lens search_session<CR>", {noremap = true, silent = true})
+        -- Allow to specify name for a session
+        vim.api.nvim_set_keymap("n",'<leader>k', ":lua require('auto-session').SaveSession(require('auto-session').get_root_dir() .. vim.fn.input('SessionName > ')) <CR>", {noremap = true, silent = true})
       end
     },
 
