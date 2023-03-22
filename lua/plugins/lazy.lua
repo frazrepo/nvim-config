@@ -447,54 +447,24 @@ require("lazy").setup({
         end,
     },
 
-    -- lightspeed (Advantage : the label is on the third char)
-    -- {
-    --     'ggandor/lightspeed.nvim',
-    --     config = function()
-    --         require 'lightspeed'.setup {
-    --             labels = { "s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
-    --         }
-    --
-    --         --disabling f F t T
-    --         vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
-    --
-    --     end
-    -- },
-    -- dashboard
+    -- labs
+    -- session management
     {
-          'glepnir/dashboard-nvim',
-          event = 'VimEnter',
-          config = function()
-            local banner = {
-                "fz nvim dashboard",
-                ""
-            }
-            require('dashboard').setup {
-              -- config
-               config = {
-                  theme = "hyper",
-                  header = banner,
-                --   week_header = {
-                --    enable = false,
-                --   },
-                  shortcut = {
-                    { desc = ' Lazy Update', group = '@property', action = 'Lazy update', key = 'u' },
-                    {
-                      icon = ' ',
-                      icon_hl = '@variable',
-                      desc = 'Files',
-                      group = 'Label',
-                      action = 'Telescope find_files',
-                      key = 'f',
-                    },
-                  },
-                }
-            }
-          end,
-      dependencies = { {'kyazdani42/nvim-web-devicons'}}
+        'rmagatti/auto-session',
+        config = function()
+          require("auto-session").setup {
+            log_level = "error",
+            -- auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/"},
+          }
+        end
+    },
+    {
+      'rmagatti/session-lens',
+      dependencies = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
+      config = function()
+        require('session-lens').setup({--[[your custom config--]]})
+        vim.api.nvim_set_keymap("n", "<leader>s", "<Cmd>Telescope session-lens search_session<CR>", {noremap = true, silent = true})
+      end
     },
 
     -----------------------------------------------------------
