@@ -458,6 +458,9 @@ require("lazy").setup({
     -- :DeleteSession ~/my/custom/path " deleetes a session based on the provided path.
     -- :Autosession search
     -- :Autosession delete
+    -- Bug : tab not working after command@
+    -- weird things when switching between sessions
+    -- deleting session seems to not working
 
     {
         'rmagatti/auto-session',
