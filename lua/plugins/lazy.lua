@@ -490,12 +490,12 @@ require("lazy").setup({
       dependencies = {'rmagatti/auto-session', 'nvim-telescope/telescope.nvim'},
       config = function()
         require('session-lens').setup({--[[your custom config--]]})
-        vim.api.nvim_set_keymap("n", "<leader>s", "<Cmd>Telescope session-lens search_session<CR>", {noremap = true, silent = true})
+        vim.api.nvim_set_keymap("n", "<leader>as", "<Cmd>Telescope session-lens search_session<CR>", {noremap = true, silent = true})
         -- Allow to specify name for a session
-        vim.api.nvim_set_keymap("n",'<leader>k', ":lua require('auto-session').SaveSession(require('auto-session').get_root_dir() .. vim.fn.input('SessionName > ')) <CR>", {noremap = true, silent = true})
+        vim.api.nvim_set_keymap("n",'<leader>an', ":lua require('auto-session').SaveSession(require('auto-session').get_root_dir() .. vim.fn.input('SessionName > ')) <CR>", {noremap = true, silent = true})
       end
     },
-    
+
     -- Alternative neovim session manager
     -- bug avec des splits ? : works after restart
     -- Another bug: seems to not working correctly when switching between sessions
@@ -524,7 +524,7 @@ require("lazy").setup({
                     -- tmp_name = 'tmp',
                     on_load = true,
                     on_quit = true,
-                },      
+                },
                 commands = {
                     save = "SSave",
                     load = "SLoad",
@@ -534,10 +534,10 @@ require("lazy").setup({
             })
             -- telescope integration
             require('telescope').load_extension('possession')
-            vim.api.nvim_set_keymap("n", "<leader>x", "<Cmd>Telescope possession list<CR>", {noremap = true, silent = true})
+            vim.api.nvim_set_keymap("n", "<leader>aa", "<Cmd>Telescope possession list<CR>", {noremap = true, silent = true})
         end,
    },
-    
+
     -----------------------------------------------------------
     -- UI enhacements
     -----------------------------------------------------------
