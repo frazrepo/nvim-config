@@ -495,6 +495,35 @@ require("lazy").setup({
     --     end,
     --     dependencies = {'stevearc/dressing.nvim'}
     -- },
+
+   -- Alternative : possession
+   -- Commands : Possession* or Alias S*
+   -- Telescope integration : :Telescope possession list
+   {
+        'jedrzejboczar/possession.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            -- setup
+            require('possession').setup({
+                autosave = {
+                    current = true,
+                    -- tmp = true,
+                    -- tmp_name = 'tmp',
+                    on_load = true,
+                    on_quit = true,
+                },      
+                commands = {
+                    save = "SSave",
+                    load = "SLoad",
+                    delete = "SDelete",
+                    list = "SList",
+                },
+            })
+            -- telescope integration
+            require('telescope').load_extension('possession')
+            vim.api.nvim_set_keymap("n", "<leader>x", "<Cmd>Telescope possession list<CR>", {noremap = true, silent = true})
+        end,
+   },
     
     -----------------------------------------------------------
     -- UI enhacements
