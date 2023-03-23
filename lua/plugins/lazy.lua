@@ -459,7 +459,7 @@ require("lazy").setup({
     -- :Autosession search
     -- :Autosession delete
     -- Bug : tab not working after command@
-    -- weird things when switching between sessions
+    -- weird things when switching between sessions (conflicts with lualine ?)
     -- deleting session seems to not working
 
     {
