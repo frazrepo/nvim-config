@@ -476,6 +476,7 @@ require("lazy").setup({
    -- Alternative : possession
    -- Commands : Possession* or Alias S*
    -- Telescope integration : :Telescope possession list
+   -- Bug : switching session keeps old buffers open
    {
         'jedrzejboczar/possession.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
