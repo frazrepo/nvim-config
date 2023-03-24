@@ -45,22 +45,28 @@ wk.register(
 )
 
 
-
--- TODO
 -- " Project wide find and replace. It's similar to <leader>r but applies to all matches
 -- " across all files.
-vim.cmd( [[ nnoremap <Leader>R
-  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+
+  -- \ :let @s='\<'.expand('<cword>').'\>'<CR>
+vim.cmd(
+  [[
+  nnoremap <Leader>R
+  \ :let @s=expand('<cword>')<CR>
   \ :Grepper -cword -noprompt<CR>
   \ :cfdo %s/<C-r>s//g \| update
   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-  ]])
+]]
+)
 
 
 -- " Visual Selection Variant
-vim.cmd([[xmap <Leader>R
+vim.cmd(
+  [[
+    xmap <Leader>R
    \ "sy
    \ :Grepper -cword -noprompt<CR>
     \ :cfdo %s/<C-r>s//g \| update
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-]])
+ ]]
+)
