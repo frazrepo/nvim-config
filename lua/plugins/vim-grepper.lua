@@ -70,3 +70,9 @@ vim.cmd(
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
  ]]
 )
+
+-- Custom commands
+-- https://github.com/mhinz/vim-grepper/wiki/example-configurations-and-mappings
+vim.cmd([[
+  command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
+]])
