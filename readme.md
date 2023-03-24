@@ -1,4 +1,3 @@
-
 # Neovim lua configuration
 This is my neovim configuration in lua.
 
