@@ -53,7 +53,7 @@ require("lazy").setup({
     --     'tpope/vim-surround',
     --     pin = true
     -- } ,
-    --
+
     --  repeat surround action
     {
         'tpope/vim-repeat',
@@ -238,7 +238,6 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- vim-grepper
-
     { "mhinz/vim-grepper",
         config = function()
             require("plugins.vim-grepper")
@@ -445,19 +444,6 @@ require("lazy").setup({
         config = function()
             require('leap').add_default_mappings()
         end,
-    },
-    -- easily jump to any location and enhanced f/t motions for Leap
-    {
-    "ggandor/flit.nvim",
-    keys = function()
-      ---@type LazyKeys[]
-      local ret = {}
-      for _, key in ipairs({ "f", "F", "t", "T" }) do
-        ret[#ret + 1] = { key, mode = { "n", "x", "o" }, desc = key }
-      end
-      return ret
-    end,
-    opts = { labeled_modes = "nx" },
     },
 
     -----------------------------------------------------------
