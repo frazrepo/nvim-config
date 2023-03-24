@@ -147,15 +147,21 @@ require("lazy").setup({
     },
 
     -- Text objects
-    { 'coderifous/textobj-word-column.vim' },
-    { 'michaeljsmith/vim-indent-object' },
+    {
+        'coderifous/textobj-word-column.vim'
+    },
+    {
+        'michaeljsmith/vim-indent-object'
+    },
     {
         "wellle/targets.vim",
         event = { "BufReadPost" },
     },
 
     -- move lines with <A-j> <A-k>
-    { 'matze/vim-move' },
+    {
+        'matze/vim-move'
+    },
 
     -----------------------------------------------------------
     -- Code Helpers - Code Generation
@@ -224,7 +230,8 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- vim-grepper
-    { "mhinz/vim-grepper",
+    {
+        "mhinz/vim-grepper",
         config = function()
             require("plugins.vim-grepper")
         end,
@@ -290,9 +297,11 @@ require("lazy").setup({
     },
 
     -- fzf , needs to install fzf exe
-    {'junegunn/fzf', run = function()
-        vim.fn['fzf#install']()
-    end
+    {
+        'junegunn/fzf',
+        run = function()
+            vim.fn['fzf#install']()
+        end
     },
 
     -----------------------------------------------------------
@@ -412,7 +421,9 @@ require("lazy").setup({
     },
 
     -- indent blankline
-    { "lukas-reineke/indent-blankline.nvim" },
+    {
+        "lukas-reineke/indent-blankline.nvim"
+    },
 
     -- truezen
     {
@@ -453,6 +464,8 @@ require("lazy").setup({
     -----------------------------------------------------------
     -- Extras plugins or experimental plugins in lua/plugins/extras
     -----------------------------------------------------------
-    { import = 'plugins.extras' },
+    {
+        import = 'plugins.extras'
+    },
 
 })
