@@ -1,6 +1,5 @@
-
--- or to disable to file
--- if true then return {} end
+-- Discard if provider is native lsp
+if vim.g.lspprovider == 'native' then return {} end
 
 return {
     -----------------------------------------------------------
