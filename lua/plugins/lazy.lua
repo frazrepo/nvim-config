@@ -223,6 +223,16 @@ require("lazy").setup({
         'sbdchd/neoformat',
     },
 
+    -- splitjoin
+    -- mapping conflict with <leader>s , sql buffer
+    -- {
+    --     'Wansmer/treesj',
+    --     keys = { '<space>m', '<space>j', '<space>s' },
+    --     dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    --     config = function()
+    --         require('treesj').setup({--[[ your config ]]})
+    --     end,
+    -- },
     -----------------------------------------------------------
     -- Search Replace
     -----------------------------------------------------------
@@ -239,8 +249,8 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- telescope fuzzy finder + fzf-native sorter
-        'nvim-lua/plenary.nvim',
-        'BurntSushi/ripgrep',
+    'nvim-lua/plenary.nvim',
+    'BurntSushi/ripgrep',
     {
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -283,6 +293,12 @@ require("lazy").setup({
             require("plugins.bqf")
         end,
         ft = { 'qf' }
+    },
+
+    -- fzf , needs to install fzf exe
+    {'junegunn/fzf', run = function()
+        vim.fn['fzf#install']()
+    end
     },
 
     -----------------------------------------------------------
@@ -430,24 +446,6 @@ require("lazy").setup({
         end,
     },
 
-    -- -- lightspeed (Advantage : the label is on the third char)
-    -- {
-    --     'ggandor/lightspeed.nvim',
-    --     config = function()
-    --         require 'lightspeed'.setup {
-    --             labels = { "s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
-    --         }
-    --
-    --         --disabling f F t T
-    --         vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
-    --
-    --     end
-    -- },
-
-
     -----------------------------------------------------------
     -- UI enhacements
     -----------------------------------------------------------
@@ -525,40 +523,6 @@ require("lazy").setup({
         end
     },
 
-    -- nvim ufo
-    -- see settings.lua for fold* options
-    -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
-    {
-        'kevinhwang91/nvim-ufo',
-        config = function()
-            -- default mapping zR openAllFolds, zM closeAllFolds
-            require('ufo').setup(
-              {
-                provider_selector = function(bufnr, filetype, buftype)
-                  -- return {"treesitter", "indent"}
-                    local function handleFallbackException(bufnr, err, providerName)
-                      if type(err) == "string" and err:match "UfoFallbackException" then
-                        return require("ufo").getFolds(bufnr, providerName)
-                      else
-                        return require("promise").reject(err)
-                      end
-                    end
-
-                    return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-                      or function(bufnr)
-                        return require("ufo")
-                          .getFolds(bufnr, "lsp")
-                          :catch(function(err) return handleFallbackException(bufnr, err, "treesitter") end)
-                          :catch(function(err) return handleFallbackException(bufnr, err, "indent") end)
-                      end
-                end
-              }
-            )
-        end,
-        dependencies = 'kevinhwang91/promise-async'
-
-    },
-
     -----------------------------------------------------------
     -- Terminal enhacements
     -----------------------------------------------------------
@@ -584,6 +548,11 @@ require("lazy").setup({
         end,
         -- cmd = "FloatermNew",
         cmd = { "FloatermToggle", "FloatermNew" },
-    }
+    },
+
+    -----------------------------------------------------------
+    -- Extras plugins or experimental plugins in lua/plugins/extras
+    -----------------------------------------------------------
+    { import = 'plugins.extras' },
 
 })

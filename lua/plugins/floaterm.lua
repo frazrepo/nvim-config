@@ -38,23 +38,8 @@ function M.setup()
 
         nnoremap <silent> <Space>tp :FloatermPrev<CR>
         tnoremap <silent> <Space>tp <C-\><C-n>:FloatermPrev<CR>
-    ]]
 
-    -- local commands = {
-    --     t = {
-    --         name = "Terminal",
-    --         t = {":FloatermToggle<CR>", "Toggle terminal"},
-    --         o = {":FloatermNext<CR>", "Next terminal"},
-    --         p = {":FloatermPrev<CR>", "Prev terminal"},
-    --         n = {":FloatermNew<CR>", "New terminal"},
-    --         w = {":FloatermKill<CR>", "Kill terminal"},
-    --         r = {":FloatermNew ranger<CR>", "Ranger"},
-    --         g = {":FloatermNew lazygit<CR>", "Lazygit"},
-    --     }
-    -- }
-    -- local opts = require "plugins.config.which-key" . opts('n')
-    --
-    -- require("which-key") . register(commands, opts)
+    ]]
 end
 
 return M

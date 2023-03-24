@@ -47,15 +47,6 @@ wk.register(
 
 
 -- TODO
--- let g:grepper={}
--- let g:grepper.tools=["rg", "git"]
---
--- nmap     <leader>/ :GrepperRg<Space>
--- vmap     <leader>/ "sy:GrepperRg -F '<C-r>s'<Space>
--- vmap     <leader>gr <plug>(GrepperOperator)
---
--- nnoremap <Leader>* :Grepper -cword -noprompt<CR>
-
 -- " Project wide find and replace. It's similar to <leader>r but applies to all matches
 -- " across all files.
 -- nnoremap <Leader>R
@@ -65,9 +56,9 @@ wk.register(
 --   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 --
 -- " Visual Selection Variant
--- xmap <Leader>R
---     \ "sy
---     \ gv<Leader>gr
---     \ :cfdo %s/<C-r>s//g \| update
---      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
---
+vim.cmd([[xmap <Leader>R
+   \ "sy
+   \ :Grepper -cword -noprompt<CR>
+    \ :cfdo %s/<C-r>s//g \| update
+     \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+]])
