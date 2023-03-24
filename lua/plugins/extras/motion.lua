@@ -2,8 +2,17 @@ return {
   -----------------------------------------------------------
   -- Motions
   -----------------------------------------------------------
-    -- Flit : easily jump to any location and enhanced f/t motions for Leap
-    -- Can jump on the next occurence with <CR>
+
+  -- leap like next version of lightspeed
+  {
+      'ggandor/leap.nvim',
+      config = function()
+          require('leap').add_default_mappings()
+      end,
+  },
+
+  -- Flit : easily jump to any location and enhanced f/t motions for Leap
+  -- Can jump on the next occurence with <CR>
   {
       "ggandor/flit.nvim",
       dependencies ={ "ggandor/leap.nvim"},
