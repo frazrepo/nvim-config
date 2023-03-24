@@ -294,7 +294,9 @@ require("lazy").setup({
     -----------------------------------------------------------
     -- Completion , LSP or coc
     -----------------------------------------------------------
+    -- auto switch using vim.g.lspprovider variable
     require("plugins.lsp"),
+    require("plugins.coc"),
 
     -----------------------------------------------------------
     -- Miscellaneous ,Helpers
