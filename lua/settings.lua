@@ -44,6 +44,7 @@ opt.writebackup             = false
 opt.number                  = true                          -- Number - No Default relative number (cause slowness)
 opt.scrolloff               = 1                             -- opt.1 lines to the cursor - when moving vertically using j/k
 opt.shiftwidth              = 4                             -- 1 tab == 4 spaces
+opt.sessionoptions          = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.shortmess:append 'c'                                    -- don't give |ins-completion-menu| messages.
 opt.shortmess               = 'atI'                         -- Disable startup message
@@ -75,7 +76,6 @@ opt.cmdheight               = 2                             --Fix : Press Enter 
 -- opt.signcolumn              =true                        -- always show signcolumns
 
 opt.inccommand              = "nosplit"                     -- search/replace preview
-
 
 -- set default shell to powershell on Windows
 if vim.fn.has('win32') == 1  then
