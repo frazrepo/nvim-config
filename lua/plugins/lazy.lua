@@ -52,6 +52,7 @@ require("lazy").setup({
 
     --  repeat surround action
     {
+        'tpope/vim-repeat',
         pin = true
     },
 
