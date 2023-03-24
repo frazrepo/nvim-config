@@ -28,4 +28,21 @@ return {
     --     end,
     -- },
 
+
+    -- hop (better and simpler than lightspeed) Need more experimentation
+    -- {
+    --     'phaazon/hop.nvim',
+    --     branch = 'v1', -- optional but strongly recommended
+    --     event = "BufRead",
+    --     cmd = {"HopChar2", "HopWord"},
+    --     config = function()
+    --         -- you can configure Hop the way you like here; see :h hop-config
+    --         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+    --         -- vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('hop').hint_words()<cr>", {})
+    --         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
+    --         vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
+    --
+    --     end
+    -- }
+
 }
