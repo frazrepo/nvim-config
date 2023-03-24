@@ -1,3 +1,6 @@
+-- Discard if provider is coc
+if vim.g.lspprovider == 'coc' then return {} end
+
 return {
     -----------------------------------------------------------
     -- Completion , LSP
