@@ -16,3 +16,6 @@ require('mappings')
 require('plugins.lazy')
 require('configs.extras')
 require('ginit')
+
+
+-- test
