@@ -294,21 +294,8 @@ require("lazy").setup({
     -----------------------------------------------------------
     -- Completion , LSP
     -----------------------------------------------------------
-    -- coc nvim
-    {
-        'neoclide/coc.nvim',
-        -- branch = 'release',
-        tag = 'v0.0.81',
-        config= function()
-            require('plugins.coc')
-        end
-    },
 
-    {
-
-        'honza/vim-snippets'
-    },
-
+    require('plugins.coc'),
 
     -----------------------------------------------------------
     -- Miscellaneous ,Helpers

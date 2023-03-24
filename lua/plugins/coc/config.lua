@@ -1,7 +1,7 @@
 -----------------------------------------------------------
 -- Coc configuration file
 -- Plugin: coc nvim
--- https://github.com/neoclide/coc.nvim 
+-- https://github.com/neoclide/coc.nvim
 -----------------------------------------------------------
 -- Useful Extensions
 -- * Coc html
@@ -59,3 +59,11 @@ exec([[
     " Use <C-j> for both expand and jump (make expand higher priority.)
     imap <C-j> <Plug>(coc-snippets-expand-jump)]]
 ,false)
+
+-----------------------------------------------------------
+-- Applications & Plugins shortcuts:
+-----------------------------------------------------------kG
+
+-- -- Coc yank
+vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
