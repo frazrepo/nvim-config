@@ -19,29 +19,29 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
------------------------------------------------------------
--- ColorScheme
------------------------------------------------------------
-  {
-    "folke/tokyonight.nvim",
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-    -- load the colorscheme here
-    --   vim.cmd([[colorscheme tokyonight]])
-    end,
-  },
-  {
-    "catppuccin/nvim",
-    config = function()
-      -- load the colorscheme here
-      vim.cmd([[colorscheme catppuccin]])
-    end,
-  },
+    -----------------------------------------------------------
+    -- ColorScheme
+    -----------------------------------------------------------
+    {
+        "folke/tokyonight.nvim",
+        lazy = false, -- make sure we load this during startup if it is your main colorscheme
+        priority = 1000, -- make sure to load this before all the other start plugins
+        config = function()
+        -- load the colorscheme here
+        --   vim.cmd([[colorscheme tokyonight]])
+        end,
+    },
+    {
+        "catppuccin/nvim",
+        config = function()
+          -- load the colorscheme here
+          vim.cmd([[colorscheme catppuccin]])
+        end,
+    },
 
------------------------------------------------------------
--- Buffer Helpers
------------------------------------------------------------
+    -----------------------------------------------------------
+    -- Buffer Helpers
+    -----------------------------------------------------------
 
     -- tim pope plugins
     {
@@ -49,10 +49,6 @@ require("lazy").setup({
         pin = true
     } ,
 
-    -- {
-    --     'tpope/vim-surround',
-    --     pin = true
-    -- } ,
 
     --  repeat surround action
     {
@@ -238,9 +234,17 @@ require("lazy").setup({
     -- Explorer : file, buffers, quickfix
     -----------------------------------------------------------
 
+    -- plenary : common lua libraries
+    {
+        'nvim-lua/plenary.nvim'
+    },
+
+    -- ripgrep integration
+    {
+        'BurntSushi/ripgrep'
+    },
+
     -- telescope fuzzy finder + fzf-native sorter
-    'nvim-lua/plenary.nvim',
-    'BurntSushi/ripgrep',
     {
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -294,8 +298,13 @@ require("lazy").setup({
     -----------------------------------------------------------
     -- Completion , LSP or coc
     -----------------------------------------------------------
+
     -- auto switch using vim.g.lspprovider variable
+
+    -- native LSP
     require("plugins.lsp"),
+
+    -- coc.nvim
     require("plugins.coc"),
 
     -----------------------------------------------------------
@@ -336,18 +345,10 @@ require("lazy").setup({
         end
     },
 
-
-    -- leap like next version of lightspeed
-    {
-        'ggandor/leap.nvim',
-        config = function()
-            require('leap').add_default_mappings()
-        end,
-    },
-
     -----------------------------------------------------------
     -- UI enhacements
     -----------------------------------------------------------
+
     -- cursorline
     {
         'yamatsum/nvim-cursorline',
