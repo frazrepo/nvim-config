@@ -67,3 +67,26 @@ exec([[
 -- -- Coc yank
 vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
+
+
+
+-- AutoCommands for powershell bindings
+exec([[
+        augroup psbindings
+            autocmd! psbindings
+            autocmd Filetype ps1 nnoremap <buffer> <F8> :CocCommand powershell.evaluateLine<CR>
+            autocmd Filetype ps1 vnoremap <buffer> <F8> :CocCommand powershell.evaluateSelection<CR>
+            autocmd Filetype ps1 nnoremap <buffer> <F5> :CocCommand powershell.execute<CR>
+        augroup end
+ ]], false)
+
+-- TODO : convert to lua autogroup/autocommand
+-- https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42
+--  local psBindingGrp = vim.api.nvim_create_augroup("psbinding", { clear = true })
+--  vim.api.nvim_create_autocmd(
+--     "FileType",
+--     { pattern = {"ps1"},
+--       command =  [[ nnoremap <buffer> <F8> :CocCommand powershell.evaluateLine<CR> ]],
+--       group = psBindingGrp
+--     }
+--  )
