@@ -53,7 +53,7 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", {noremap =false, silent = true })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = true })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
 
--- Move faster vertically (paragraph motion)
+-- Move faster vertically (paragraph motion) (Replaced with windows navigation)
 -- map('n', '<C-j>','}', {noremap =false, silent = true})
 -- map('n', '<C-k>','{', {noremap =false, silent = true})
 
@@ -71,14 +71,23 @@ map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true})
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
--- " Edit quickly with the current buffer path
+-- Edit quickly with the current buffer path
 map('n', '<leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true})
 
--- " Change word under cursor and dot repeat, really useful to edit quickly
+-- Change word under cursor and dot repeat, really useful to edit quickly
 map('n', 'c*' , '*Ncgn' , default_opts)
 map('n', 'c#' , '#NcgN' , default_opts)
 map('n', 'cg*', 'g*Ncgn', default_opts)
 map('n', 'cg#', 'g#Ncgn', default_opts)
+
+-- Experimental cn - New mappings
+-- like c* but selection word in visual mode first
+map('n', 'cn' , '*``cgn' , default_opts)
+vim.cmd([[
+        let g:mc = "y/\\V\<C-r>=escape(@\", '/')\<CR>\<CR>"
+        vnoremap <expr> cn g:mc . "``cgn"
+    ]]
+)
 
 -- " Quick yanking to the end of the line
 map('n', 'Y', 'y$', default_opts)

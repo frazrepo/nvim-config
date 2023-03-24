@@ -20,7 +20,7 @@ opt.expandtab               = true                          -- Use spaces instea
 
 opt.foldlevel               = 99
 opt.foldlevelstart          = 99
--- opt.foldcolumn              = '1'
+-- opt.foldcolumn              = '1'                     
 opt.foldcolumn              = '5'                           -- Workaround for ufo fold to hide foldlevele number on the left
 opt.foldenable              = true
 opt.fillchars               = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
@@ -44,6 +44,7 @@ opt.writebackup             = false
 opt.number                  = true                          -- Number - No Default relative number (cause slowness)
 opt.scrolloff               = 1                             -- opt.1 lines to the cursor - when moving vertically using j/k
 opt.shiftwidth              = 4                             -- 1 tab == 4 spaces
+opt.sessionoptions          = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
 opt.shortmess:append 'c'                                    -- don't give |ins-completion-menu| messages.
 opt.shortmess               = 'atI'                         -- Disable startup message
@@ -240,3 +241,14 @@ exec([[
             autocmd Filetype ps1 nnoremap <buffer> <F5> :CocCommand powershell.execute<CR>
         augroup end
  ]], false)
+
+-- TODO : convert to lua autogroup/autocommand
+-- https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42
+--  local psBindingGrp = vim.api.nvim_create_augroup("psbinding", { clear = true })
+--  vim.api.nvim_create_autocmd(
+--     "FileType",
+--     { pattern = {"ps1"},
+--       command =  [[ nnoremap <buffer> <F8> :CocCommand powershell.evaluateLine<CR> ]],
+--       group = psBindingGrp
+--     }
+--  )

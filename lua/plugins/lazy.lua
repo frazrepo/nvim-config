@@ -15,21 +15,22 @@ if not vim.loop.fs_stat(lazypath) then
         lazypath,
     })
 end
-
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
-    {
+-----------------------------------------------------------
+-- ColorScheme
+-----------------------------------------------------------
+  {
     "folke/tokyonight.nvim",
     lazy = false, -- make sure we load this during startup if it is your main colorscheme
     priority = 1000, -- make sure to load this before all the other start plugins
     config = function()
-      -- load the colorscheme here
+    -- load the colorscheme here
     --   vim.cmd([[colorscheme tokyonight]])
     end,
   },
-
   {
     "catppuccin/nvim",
     config =  function()
@@ -41,13 +42,23 @@ require("lazy").setup({
 -----------------------------------------------------------
 -- Buffer Helpers
 -----------------------------------------------------------
-    -- tim pope plugins
-    'tpope/vim-unimpaired' ,
 
-    -- 'tpope/vim-surround' ,
+    -- tim pope plugins
+    {
+        'tpope/vim-unimpaired',
+        pin = true
+    } ,
+
+    -- {
+    --     'tpope/vim-surround',
+    --     pin = true
+    -- } ,
 
     --  repeat surround action
-    'tpope/vim-repeat',
+    {
+        'tpope/vim-repeat',
+        pin = true
+    },
 
     -- surround
     {
@@ -60,6 +71,7 @@ require("lazy").setup({
             })
         end
     },
+
     -- Enhanced comment plugin + TreeSitter context commentstring
     {
         'numToStr/Comment.nvim',
@@ -77,8 +89,9 @@ require("lazy").setup({
         "tommcdo/vim-exchange",
         keys = {
             { "cx" },
-            { "X" , mode = "x" },
+            { "X", mode = "x" },
         },
+        pin = true
     },
 
     -- transpose
@@ -89,6 +102,7 @@ require("lazy").setup({
         cmd = {
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
+        pin = true
     },
 
     -- Align based on character (mapping gl)
@@ -96,8 +110,9 @@ require("lazy").setup({
         'tommcdo/vim-lion',
         keys = {
             { "gl" },
-            { "gl" , mode = "x" },
+            { "gl", mode = "x" },
         },
+        pin = true
     },
 
     -- Aligning (mapping ga , replace gl when config is stable)
@@ -124,13 +139,15 @@ require("lazy").setup({
         keys = {
             { "gss" },
             { "gs" },
-            { "gs" , mode = "x" },
+            { "gs", mode = "x" },
         },
+        pin = true
     },
 
     -- Replace with Register
     {
-        'vim-scripts/ReplaceWithRegister'
+        'vim-scripts/ReplaceWithRegister',
+        pin = true
     },
 
     -- Text objects
@@ -206,16 +223,6 @@ require("lazy").setup({
         'sbdchd/neoformat',
     },
 
-    -- splitjoin
-    -- {
-    --     'Wansmer/treesj',
-    --     keys = { '<space>m', '<space>j', '<space>s' },
-    --     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    --     config = function()
-    --         require('treesj').setup({--[[ your config ]]})
-    --     end,
-    -- },
-
     -----------------------------------------------------------
     -- Search Replace
     -----------------------------------------------------------
@@ -232,8 +239,8 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- telescope fuzzy finder + fzf-native sorter
-        'nvim-lua/plenary.nvim',
-        'BurntSushi/ripgrep',
+    'nvim-lua/plenary.nvim',
+    'BurntSushi/ripgrep',
     {
         'nvim-telescope/telescope.nvim',
         config = function()
@@ -265,10 +272,9 @@ require("lazy").setup({
             -- nvim-tree mappings
             local map = vim.api.nvim_set_keymap
             local default_opts = { noremap = true, silent = true  }
-            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)       -- open/close
+            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
         end,
     },
-
 
     -- quickfix vim-bqf
     {
@@ -285,47 +291,28 @@ require("lazy").setup({
     end
     },
 
------------------------------------------------------------
--- Completion , LSP
------------------------------------------------------------
--- coc nvim
-{
-    'neoclide/coc.nvim',
-    -- branch = 'release',
-    tag = 'v0.0.81',
-    config= function()
-        require('plugins.coc')
-    end
-},
-
-{
-
-    'honza/vim-snippets'
-},
-
--- null-ls
-{
-    "jose-elias-alvarez/null-ls.nvim",
-    dependencies = {
-       { 'nvim-lua/plenary.nvim'}
+    -----------------------------------------------------------
+    -- Completion , LSP
+    -----------------------------------------------------------
+    -- coc nvim
+    {
+        'neoclide/coc.nvim',
+        -- branch = 'release',
+        tag = 'v0.0.81',
+        config= function()
+            require('plugins.coc')
+        end
     },
-    config = function()
-        require('plugins.null-ls')
-    end,
-},
 
--- Trouble Diagnostics List
-{
-  "folke/trouble.nvim",
-  dependencies = {{ 'kyazdani42/nvim-web-devicons'}},
-  config = function()
-    require("trouble").setup {
-    }
-  end
-},
------------------------------------------------------------
--- Helpers
------------------------------------------------------------
+    {
+
+        'honza/vim-snippets'
+    },
+
+
+    -----------------------------------------------------------
+    -- Miscellaneous ,Helpers
+    -----------------------------------------------------------
 
     -- Project Management
     {
@@ -361,21 +348,6 @@ require("lazy").setup({
         end
     },
 
-    -- hop (better and simpler than lightspeed) Need more experimentation
-    -- {
-    --     'phaazon/hop.nvim',
-    --     branch = 'v1', -- optional but strongly recommended
-    --     event = "BufRead",
-    --     cmd = {"HopChar2", "HopWord"},
-    --     config = function()
-    --         -- you can configure Hop the way you like here; see :h hop-config
-    --         require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    --         -- vim.api.nvim_set_keymap('n', 's', "<cmd>lua require('hop').hint_words()<cr>", {})
-    --         vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
-    --
-    --     end
-    -- }
 
     -- leap like next version of lightspeed
     {
@@ -385,32 +357,9 @@ require("lazy").setup({
         end,
     },
 
-    -- -- lightspeed (Advantage : the label is on the third char)
-    -- {
-    --     'ggandor/lightspeed.nvim',
-    --     config = function()
-    --         require 'lightspeed'.setup {
-    --             labels = { "s", "f", "n", "j", "k", "l", "o", "i", "w", "e", "h", "g", "u", "t", "m", "v", "c", "a", "z" }
-    --         }
-    --
-    --         --disabling f F t T
-    --         vim.api.nvim_set_keymap("n", "f", "f", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "F", "F", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "t", "t", { silent = true })
-    --         vim.api.nvim_set_keymap("n", "T", "T", { silent = true })
-    --
-    --     end
-    -- },
-
     -----------------------------------------------------------
     -- UI enhacements
     -----------------------------------------------------------
-
-    -- colors
-    {
-        'folke/tokyonight.nvim'
-    },
-
     -- cursorline
     {
         'yamatsum/nvim-cursorline',
@@ -433,7 +382,9 @@ require("lazy").setup({
     -- lualine
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = {{ 'kyazdani42/nvim-web-devicons'}},
+        dependencies = {
+            {"kyazdani42/nvim-web-devicons"}
+        },
         config = function()
             require('lualine').setup()
         end
@@ -453,7 +404,9 @@ require("lazy").setup({
     -- bufferline
     {
         'akinsho/bufferline.nvim',
-        dependencies = {{'kyazdani42/nvim-web-devicons'}},
+        dependencies = {
+            {'kyazdani42/nvim-web-devicons'}
+        },
         init = function()
             vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
             vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
@@ -481,40 +434,6 @@ require("lazy").setup({
         end
     },
 
-    -- nvim ufo
-    -- see settings.lua for fold* options
-    -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
-    {
-        'kevinhwang91/nvim-ufo',
-        config = function()
-            -- default mapping zR openAllFolds, zM closeAllFolds
-            require('ufo').setup(
-              {
-                provider_selector = function(bufnr, filetype, buftype)
-                  -- return {"treesitter", "indent"}
-                    local function handleFallbackException(bufnr, err, providerName)
-                      if type(err) == "string" and err:match "UfoFallbackException" then
-                        return require("ufo").getFolds(bufnr, providerName)
-                      else
-                        return require("promise").reject(err)
-                      end
-                    end
-
-                    return (filetype == "" or buftype == "nofile") and "indent" -- only use indent until a file is opened
-                      or function(bufnr)
-                        return require("ufo")
-                          .getFolds(bufnr, "lsp")
-                          :catch(function(err) return handleFallbackException(bufnr, err, "treesitter") end)
-                          :catch(function(err) return handleFallbackException(bufnr, err, "indent") end)
-                      end
-                end
-              }
-            )
-        end,
-        dependencies = 'kevinhwang91/promise-async'
-
-    },
-
     -----------------------------------------------------------
     -- Terminal enhacements
     -----------------------------------------------------------
@@ -522,6 +441,7 @@ require("lazy").setup({
     -- toggleterm and floatterm
     {
         "akinsho/toggleterm.nvim",
+        version = "*",
         config = function()
             require("toggleterm").setup(
                 {
@@ -539,5 +459,11 @@ require("lazy").setup({
         end,
         -- cmd = "FloatermNew",
         cmd = { "FloatermToggle", "FloatermNew" },
-    }
- })
+    },
+
+    -----------------------------------------------------------
+    -- Extras plugins or experimental plugins in lua/plugins/extras
+    -----------------------------------------------------------
+    { import = 'plugins.extras' },
+
+})

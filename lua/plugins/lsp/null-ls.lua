@@ -31,15 +31,22 @@ local sources = {
 
 local map = vim.api.nvim_set_keymap
 require("null-ls").setup({
-  -- debug = true,
   sources = sources,
   on_attach = function(client)
-    map('n', ',f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap =true, silent = true})
-    vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()']]
+    map('n', ',f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', {noremap =true, silent = true})
+    
+    -- Create a command `:Format` local to the LSP buffer
+    vim.api.nvim_create_user_command(
+      'Format', 
+      function()
+        vim.lsp.buf.format { async = true }
+      end,
+      { desc = 'Format current buffer with LSP' }
+    )
+
     if client.server_capabilities.document_formatting then
             -- Todo when installing stylelua, sqlformat and prettier
        -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
     end
   end,
 })
-
