@@ -15,7 +15,7 @@ vim.g.grepper = {
 
 wk.register(
   {
-    g = { '<Cmd>Grepper<Cr>', 'Grepper' },
+    g = { '<Cmd>Grepper -buffer<Cr>', 'Grepper' },
     ["/"] = { '<Cmd>Grepper<Cr>', 'Grepper' },
     G = { '<Cmd>Grepper -buffers<Cr>', 'Grepper Buffers' },
     ['*'] = { '<Cmd>Grepper -cword -noprompt<Cr>', 'Grepper Word Under Cursor' },
@@ -45,20 +45,28 @@ wk.register(
 )
 
 
-
--- TODO
 -- " Project wide find and replace. It's similar to <leader>r but applies to all matches
 -- " across all files.
--- nnoremap <Leader>R
---   \ :let @s='\<'.expand('<cword>').'\>'<CR>
---   \ :Grepper -cword -noprompt<CR>
---   \ :cfdo %s/<C-r>s//g \| update
---   \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
---
+
+  -- \ :let @s='\<'.expand('<cword>').'\>'<CR>
+vim.cmd(
+  [[
+  nnoremap <Leader>R
+  \ :let @s=expand('<cword>')<CR>
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+]]
+)
+
+
 -- " Visual Selection Variant
-vim.cmd([[xmap <Leader>R
+vim.cmd(
+  [[
+    xmap <Leader>R
    \ "sy
    \ :Grepper -cword -noprompt<CR>
     \ :cfdo %s/<C-r>s//g \| update
      \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-]])
+ ]]
+)
