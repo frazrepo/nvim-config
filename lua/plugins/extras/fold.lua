@@ -3,6 +3,7 @@ return {
     -- nvim ufo
     -- see settings.lua for fold* options
     -- todo : use https://github.com/luukvbaal/statuscol.nvim but needs nvim > 0.9
+    -- Fold text : https://github.com/kevinhwang91/nvim-ufo#customize-fold-text
     {
         'kevinhwang91/nvim-ufo',
         config = function()
