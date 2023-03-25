@@ -7,7 +7,7 @@ return {
         config = function()
             require('session_manager').setup({
                 autoload_mode = require('session_manager.config').AutoloadMode.Disabled,             })
-            vim.api.nvim_set_keymap("n", "<leader>as", "<Cmd>SessionManager load_session<CR>", {noremap = true, silent = true})
+                vim.keymap.set("n", "<leader>as","<Cmd>SessionManager load_session<CR>", { silent = true, desc = "SessionManager LoadSession" })
         end,
         dependencies = {'stevearc/dressing.nvim'}
     },
@@ -38,8 +38,8 @@ return {
             })
             -- telescope integration
             require('telescope').load_extension('possession')
-            vim.api.nvim_set_keymap("n", "<leader>aa", "<Cmd>Telescope possession list<CR>", {noremap = true, silent = true})
-            vim.api.nvim_set_keymap("n", "<leader>an", ":<C-u>SSave ", {noremap = true, silent = false})
+            vim.keymap.set("n", "<leader>aa", "<Cmd>Telescope possession list<CR>", { desc = "Telescope Possession List", silent = true })
+            vim.keymap.set("n", "<leader>an", ":<C-u>SSave ", { desc = "Possession Save Session", silent = false })
         end,
    },
 
