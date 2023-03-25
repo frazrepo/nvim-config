@@ -4,6 +4,7 @@ return {
   -----------------------------------------------------------
 
   -- leap like next version of lightspeed
+  -- s{char1}{char2} then jump to next /previous with Enter/Tab
   {
       'ggandor/leap.nvim',
       config = function()
@@ -12,7 +13,7 @@ return {
   },
 
   -- Flit : easily jump to any location and enhanced f/t motions for Leap
-  -- Can jump on the next occurence with <CR>
+  -- Can jump/previous on the next occurence with <CR>/<Tab>
   {
       "ggandor/flit.nvim",
       dependencies ={ "ggandor/leap.nvim"},
