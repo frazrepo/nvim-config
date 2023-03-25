@@ -8,7 +8,7 @@ return {
   -- operator mode (till) :  x/X{char1}{char2} : eg dxca (before ca)
   -- operator mode (to) : replace s/S with z/Z : dzca (include)
   -- x/X -->  z/Z : t/T --> f/F
-  -- visual mode : vx/X{char1}{char2}
+  -- visual mode : vx/X{char1}{char2} , vs/S (vS not working)
   {
       'ggandor/leap.nvim',
       config = function()
