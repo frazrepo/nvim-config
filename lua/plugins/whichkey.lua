@@ -10,7 +10,6 @@ wk.register({
   ["<leader>"] = {
     name = "Leader",
     ["/"] = { "Global Search" },
-    ["G"] = { "Global Search in buffers" },
     ["r"] = { "Replace Search Register" },
     ["x"] = { "Edit txt buffer" },
     ["d"] = { "Edit markdown buffer" },
