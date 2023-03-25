@@ -5,6 +5,8 @@ return {
 
   -- leap like next version of lightspeed
   -- s{char1}{char2} then jump to next /previous with Enter/Tab
+  -- operator mode :  x/X{char1}{char2} : eg dxca
+  -- visual mode : vx{char1}{char2}
   {
       'ggandor/leap.nvim',
       config = function()
