@@ -5,6 +5,10 @@
 -- https://github.com/williamboman/mason/
 -----------------------------------------------------------
 
+
+-- Do not remove
+-- Keep this file as reference for old lsp configuration
+
 require('mason').setup{}
 local lspconfig = require("lspconfig")
 
