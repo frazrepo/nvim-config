@@ -5,6 +5,10 @@
 -- https://github.com/williamboman/mason/
 -----------------------------------------------------------
 
+
+-- Do not remove
+-- Keep this file as reference for old lsp configuration
+
 require('mason').setup{}
 local lspconfig = require("lspconfig")
 
@@ -78,7 +82,7 @@ local server_opts = {
         debounce_text_changes = 150,
     },
 }
--- Configuration of LSP servers 
+-- Configuration of LSP servers
 local servers = {
     -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     -- pylsp = {}
