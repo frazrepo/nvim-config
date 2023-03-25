@@ -30,6 +30,11 @@ wk.register({
     t = {
         ["e"] = { "Tab Edit in current buffer path" },
     },
+    k = {
+        ["k"] = { "SplitJoin Toggle" },
+        ["j"] = { "SplitJoin Join" },
+        ["s"] = { "SplitJoin Split" },
+    },
   },
   g = {
     name = 'Buffer',
