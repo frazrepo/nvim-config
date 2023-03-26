@@ -230,7 +230,7 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- vim-grepper
-    {
+    { 
         "mhinz/vim-grepper",
         config = function()
             require("plugins.vim-grepper")
