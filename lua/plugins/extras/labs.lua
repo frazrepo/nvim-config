@@ -2,11 +2,13 @@
 -- if true then return {} end
 
 return {
+    -- Added : 24/03/2023
     -- vim gtfo - open files in terminal/explorer
     {
         'justinmk/vim-gtfo'
     },
 
+    -- Added : 25/03/2023
     -- splitjoin
     -- mapping conflict with <leader>s , sql buffer
     -- kk : toggle, kj : join, ks : split
