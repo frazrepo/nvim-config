@@ -43,22 +43,20 @@ vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap
 
 --Snippets
 -- https://github.com/noclide/coc-snippets
-exec([[
-    " Use <C-l> for trigger snippet expand.
-    imap <C-l> <Plug>(coc-snippets-expand)
 
-    " Use <C-j> for select text for visual placeholder of snippet.
-    vmap <C-j> <Plug>(coc-snippets-select)
+-- Use <C-l> for trigger snippet expand.
+vim.keymap.set("i", "<C-l>", "<Plug>(coc-snippets-expand)", {remap = true})
+-- Use <C-j> for select text for visual placeholder of snippet.
+vim.keymap.set("x", "<C-j>", "<Plug>(coc-snippets-select)", {remap = true})
 
-    " Use <C-j> for jump to next placeholder, it's default of coc.nvim
-    let g:coc_snippet_next = '<c-j>'
+-- Use <C-j> for jump to next placeholder, it's default of coc.nvim
+vim.g.coc_snippet_next = '<C-j>'
 
-    " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
-    let g:coc_snippet_prev = '<c-k>'
+-- Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+vim.g.coc_snippet_prev = '<C-k>'
 
-    " Use <C-j> for both expand and jump (make expand higher priority.)
-    imap <C-j> <Plug>(coc-snippets-expand-jump)]]
-,false)
+-- Use <C-j> for both expand and jump (make expand higher priority.)
+vim.keymap.set("i", "<C-j>", "<Plug>(coc-snippets-expand-jump)", {remap = true})
 
 -----------------------------------------------------------
 -- Applications & Plugins shortcuts:
@@ -67,8 +65,6 @@ exec([[
 -- -- Coc yank
 vim.api.nvim_set_keymap("n", "<leader>y",":<C-u>CocList -A --normal yank<cr>", {noremap = true, silent = true})
 vim.api.nvim_set_keymap("n", "<leader>yc",":CocCommand yank.clean<cr>", {noremap = true, silent = true})
-
-
 
 -- AutoCommands for powershell bindings
 exec([[
