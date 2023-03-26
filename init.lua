@@ -11,9 +11,8 @@ Debug : nvim --startuptime vim.log
 -----------------------------------------------------------
 -- LSP Provider LSP or coc
 -----------------------------------------------------------
--- define lsp provider
+-- define lsp provider : native | coc
 vim.g.lspprovider = 'native'
--- vim.g.lspprovider = 'coc'
 
 -----------------------------------------------------------
 -- Import Lua modules
