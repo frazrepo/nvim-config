@@ -4,6 +4,7 @@
 return {
     -- Added : 24/03/2023
     -- vim gtfo - open files in terminal/explorer
+    -- Windows : gof (ok), got (ko)
     {
         'justinmk/vim-gtfo'
     },
@@ -18,7 +19,7 @@ return {
         dependencies = { 'nvim-treesitter/nvim-treesitter' },
         config = function()
             require('treesj').setup({
-                use_default_keymaps = false,    
+                use_default_keymaps = false,
             })
             -- For use default preset and it work with dot
             vim.keymap.set('n', '<leader>kk', require('treesj').toggle, {silent = false, desc = "SplitJoin Toggle"})
