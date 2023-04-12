@@ -101,7 +101,6 @@ require("lazy").setup({
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
         pin = true,
-        event = "VeryLazy",
     },
 
     -- Align based on character (mapping gl)
