@@ -46,14 +46,16 @@ require("lazy").setup({
     -- tim pope plugins
     {
         'tpope/vim-unimpaired',
-        pin = true
+        pin = true,
+        event = "VeryLazy",
     } ,
 
 
     --  repeat surround action
     {
         'tpope/vim-repeat',
-        pin = true
+        pin = true,
+        event = "VeryLazy",
     },
 
     -- surround
@@ -98,7 +100,8 @@ require("lazy").setup({
         cmd = {
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
-        pin = true
+        pin = true,
+        event = "VeryLazy",
     },
 
     -- Align based on character (mapping gl)
@@ -143,7 +146,11 @@ require("lazy").setup({
     -- Replace with Register
     {
         'vim-scripts/ReplaceWithRegister',
-        pin = true
+        pin = true,
+        keys = {
+            { "gr" },
+            { "gr", mode = "x" },
+        },
     },
 
     -- Text objects
@@ -223,6 +230,7 @@ require("lazy").setup({
     -- neoformat
     {
         'sbdchd/neoformat',
+        cmd = { "Neoformat"  },
     },
 
     -----------------------------------------------------------
@@ -411,7 +419,8 @@ require("lazy").setup({
         },
         config = function()
             require('gitsigns').setup()
-        end
+        end,
+        event = "VeryLazy"
     },
 
     -- bufferline
