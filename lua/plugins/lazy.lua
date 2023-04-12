@@ -352,7 +352,8 @@ require("lazy").setup({
                 -- or leave it empty to the default settings
                 -- refer to the configuration section below
             }
-        end
+        end,
+        event = "VeryLazy"
     },
 
     -- which-key
@@ -455,7 +456,10 @@ require("lazy").setup({
         config = function()
             local default_opts = { noremap = true, silent = true }
             vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
-        end
+        end,
+        keys = {
+            { "<F12>"}
+        }
     },
 
     -----------------------------------------------------------
