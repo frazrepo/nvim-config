@@ -41,6 +41,11 @@ return {
             vim.keymap.set("n", "<leader>aa", "<Cmd>Telescope possession list<CR>", { desc = "Telescope Possession List", silent = true })
             vim.keymap.set("n", "<leader>an", ":<C-u>SSave ", { desc = "Possession Save Session", silent = false })
         end,
+        -- doesn't show on which-key when not loaded
+        keys = {
+            { "<leader>aa"},
+            { "<leader>an"},
+        },
    },
 
 }

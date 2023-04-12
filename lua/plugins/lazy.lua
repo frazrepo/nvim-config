@@ -230,11 +230,21 @@ require("lazy").setup({
     -----------------------------------------------------------
 
     -- vim-grepper
-    { 
+    {
         "mhinz/vim-grepper",
         config = function()
             require("plugins.vim-grepper")
         end,
+        keys = {
+            { "gx" },
+            { "gx", mode = "x" },
+            { "<leader>g" },
+            { "<leader>G" },
+            { "<leader>R" },
+            { "<leader>/" },
+            { "<leader>*" },
+        },
+        cmd = { "Grepper"  },
     },
 
     -----------------------------------------------------------
@@ -285,6 +295,11 @@ require("lazy").setup({
             local default_opts = { noremap = true, silent = true  }
             map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
         end,
+        keys = {
+            { '<C-n>'}
+        }
+        ,
+        cmd = { "Neotree"}
     },
 
     -- quickfix vim-bqf
