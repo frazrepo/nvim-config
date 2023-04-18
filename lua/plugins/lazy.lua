@@ -75,7 +75,8 @@ require("lazy").setup({
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
-        end
+        end,
+        event= "VeryLazy"
     },
 
     {
@@ -101,7 +102,6 @@ require("lazy").setup({
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
         pin = true,
-        event = "VeryLazy",
     },
 
     -- Align based on character (mapping gl)

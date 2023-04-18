@@ -48,8 +48,8 @@ return {
         end,
         -- doesn't show on which-key when not loaded
         keys = {
-            { "<leader>aa"},
-            { "<leader>an"},
+            { "<leader>aa", "<Cmd>Telescope possession list<CR>", desc = "Telescope Possession List"},
+            { "<leader>an", ":<C-u>SSave ", desc = "Possession Save Session"},
         },
    },
 

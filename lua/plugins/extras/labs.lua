@@ -28,4 +28,14 @@ return {
         end,
     },
 
+    -- Added on 14/04/2023
+    -- neoscroll for smooth scrolling with C-d /C-u ...
+    {
+        'karb94/neoscroll.nvim',
+        config = function ()
+            require('neoscroll').setup()
+        end,
+        event = "VeryLazy"
+    }
+
 }
