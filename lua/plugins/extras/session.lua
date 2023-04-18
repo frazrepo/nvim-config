@@ -1,3 +1,8 @@
+-- or to disable to file
+
+if true then return {}
+end
+
 return {
     -- Alternative neovim session manager
     -- bug avec des splits ? : works after restart
