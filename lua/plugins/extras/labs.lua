@@ -2,6 +2,18 @@
 -- if true then return {} end
 
 return {
+
+    -- Added : 19/04/2023
+    -- Configure with :Copilot auth
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     cmd = "Copilot",
+    --     event = "InsertEnter",
+    --     config = function()
+    --         require("copilot").setup({})
+    --     end,
+    -- },
+
     -- Added : 24/03/2023
     -- vim gtfo - open files in terminal/explorer
     -- Windows : gof (ok), got (ko)

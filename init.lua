@@ -23,7 +23,8 @@ end
 -- LSP Provider LSP or coc
 -----------------------------------------------------------
 -- define lsp provider : native | coc
-vim.g.lspprovider = 'native'
+-- vim.g.lspprovider = 'native'
+vim.g.lspprovider = 'coc'
 
 -----------------------------------------------------------
 -- Import Lua modules
