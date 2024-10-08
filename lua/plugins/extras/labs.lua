@@ -48,6 +48,13 @@ return {
             require('neoscroll').setup()
         end,
         event = "VeryLazy"
-    }
+    },
+
+    -- -- Added on 19/12/2023
+    -- {
+    --     'github/copilot.vim',
+    -- }
+
+
 
 }

@@ -280,7 +280,7 @@ require("lazy").setup({
     -- file explorer  neo-tree
     {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         dependencies = {
             {"nvim-lua/plenary.nvim"},
             {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
@@ -393,7 +393,7 @@ require("lazy").setup({
                     number = false,
                 },
                 cursorword = {
-                    enable = true,
+                    enable = false,
                     min_length = 3,
                     hl = { underline = true },
                 }
