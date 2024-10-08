@@ -13,38 +13,27 @@ vim.g.grepper = {
   },
 }
 
-wk.register(
+wk.add(
   {
-    g = { '<Cmd>Grepper -buffer<Cr>', 'Grepper in current buffer' },
-    ["/"] = { '<Cmd>Grepper<Cr>', 'Grepper' },
-    G = { '<Cmd>Grepper -buffers<Cr>', 'Grepper in all Buffers' },
-    ['*'] = { '<Cmd>Grepper -cword -noprompt<Cr>', 'Grepper Word Under Cursor' },
-  },
-  {
-    prefix = '<Leader>',
+    { "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Grepper Word Under Cursor" },
+    { "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Grepper" },
+    { "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all Buffers" },
+    { "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Grepper in current buffer" },
   }
 )
 
 
-wk.register(
-  {
-    gx = { '<Plug>(GrepperOperator)', 'Grepper Operator' },
-  },
-  {
-    mode = 'n',
-  }
+wk.add({
+    { "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator" },
+}
 )
 
-wk.register(
+wk.add(
   {
-    gx = { '<Plug>(GrepperOperator)', 'Grepper Operator' },
-  },
-  {
-    mode = 'x',
+    { "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator", mode = "x" },
   }
+
 )
-
-
 -- " Project wide find and replace. It's similar to <leader>r but applies to all matches
 -- " across all files.
 

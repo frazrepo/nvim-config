@@ -6,7 +6,8 @@
 
 local wk = require("which-key")
 
-wk.register({
+wk.add(
+  {
     { "<leader>", group = "Leader" },
     { "<leader>!", desc = "Delete buffer" },
     { "<leader>,", desc = "Find buffer" },
@@ -39,4 +40,5 @@ wk.register({
     { "gq", desc = "Format" },
     { "gs", desc = "Sort operator" },
     { "gv", desc = "Reselect last visual selection" },
-})
+  }
+)
