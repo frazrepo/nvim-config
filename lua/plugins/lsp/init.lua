@@ -79,6 +79,7 @@ return {
         config = function()
             require("trouble").setup {
             }
-        end
+        end,
+        event = "VeryLazy"
     },
 }

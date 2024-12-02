@@ -46,14 +46,16 @@ require("lazy").setup({
     -- tim pope plugins
     {
         'tpope/vim-unimpaired',
-        pin = true
+        pin = true,
+        event = "VeryLazy",
     } ,
 
 
     --  repeat surround action
     {
         'tpope/vim-repeat',
-        pin = true
+        pin = true,
+        event = "VeryLazy",
     },
 
     -- surround
@@ -73,7 +75,8 @@ require("lazy").setup({
         'numToStr/Comment.nvim',
         config = function()
             require('Comment').setup()
-        end
+        end,
+        event= "VeryLazy"
     },
 
     {
@@ -98,7 +101,7 @@ require("lazy").setup({
         cmd = {
             "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
         },
-        pin = true
+        pin = true,
     },
 
     -- Align based on character (mapping gl)
@@ -143,7 +146,11 @@ require("lazy").setup({
     -- Replace with Register
     {
         'vim-scripts/ReplaceWithRegister',
-        pin = true
+        pin = true,
+        keys = {
+            { "gr" },
+            { "gr", mode = "x" },
+        },
     },
 
     -- Text objects
@@ -223,6 +230,7 @@ require("lazy").setup({
     -- neoformat
     {
         'sbdchd/neoformat',
+        cmd = { "Neoformat"  },
     },
 
     -----------------------------------------------------------
@@ -235,6 +243,16 @@ require("lazy").setup({
         config = function()
             require("plugins.vim-grepper")
         end,
+        keys = {
+            { "gx" },
+            { "gx", mode = "x" },
+            { "<leader>g" },
+            { "<leader>G" },
+            { "<leader>R" },
+            { "<leader>/" },
+            { "<leader>*" },
+        },
+        cmd = { "Grepper"  },
     },
 
     -----------------------------------------------------------
@@ -287,6 +305,11 @@ require("lazy").setup({
             local default_opts = { noremap = true, silent = true  }
             map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
         end,
+        keys = {
+            { '<C-n>'}
+        }
+        ,
+        cmd = { "Neotree"}
     },
 
     -- quickfix vim-bqf
@@ -331,7 +354,8 @@ require("lazy").setup({
                 -- or leave it empty to the default settings
                 -- refer to the configuration section below
             }
-        end
+        end,
+        event = "VeryLazy"
     },
 
     -- which-key
@@ -371,7 +395,7 @@ require("lazy").setup({
                     number = false,
                 },
                 cursorword = {
-                    enable = true,
+                    enable = false,
                     min_length = 3,
                     hl = { underline = true },
                 }
@@ -398,7 +422,8 @@ require("lazy").setup({
         },
         config = function()
             require('gitsigns').setup()
-        end
+        end,
+        event = "VeryLazy"
     },
 
     -- bufferline
@@ -433,7 +458,10 @@ require("lazy").setup({
         config = function()
             local default_opts = { noremap = true, silent = true }
             vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
-        end
+        end,
+        keys = {
+            { "<F12>"}
+        }
     },
 
     -----------------------------------------------------------
