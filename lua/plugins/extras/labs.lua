@@ -1,12 +1,8 @@
 -- or to disable to file
 -- if true then return {} end
+-- Moves config to extras.lua when validated
 
 return {
-    -- vim gtfo - open files in terminal/explorer
-    {
-        'justinmk/vim-gtfo'
-    },
-
     -- splitjoin
     -- mapping conflict with <leader>s , sql buffer
     -- kk : toggle, kj : join, ks : split
