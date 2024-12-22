@@ -1,6 +1,5 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
-  "LuaSnip": { "branch": "master", "commit": "33b06d72d220aa56a7ce80a0dd6f06c70cd82b9d" },
   "ReplaceWithRegister": { "branch": "master", "commit": "832efc23111d19591d495dc72286de2fb0b09345" },
   "Transpose": { "branch": "master", "commit": "ec5347e120d101198635bbb29a09d17f139da9fe" },
   "TrueZen.nvim": { "branch": "main", "commit": "2b9e210e0d1a735e1fa85ec22190115dffd963aa" },
@@ -14,7 +13,6 @@
   "indent-blankline.nvim": { "branch": "master", "commit": "259357fa4097e232730341fa60988087d189193a" },
   "lazy.nvim": { "branch": "main", "commit": "7e6c863bc7563efbdd757a310d17ebc95166cef3" },
   "leap.nvim": { "branch": "main", "commit": "c6bfb191f1161fbabace1f36f578a20ac6c7642c" },
-  "lsp-zero.nvim": { "branch": "v1.x", "commit": "aa36afcf7a59fbd98008c9a434593c423d3d649a" },
   "lsp_signature.nvim": { "branch": "master", "commit": "fc38521ea4d9ec8dbd4c2819ba8126cea743943b" },
   "lspkind-nvim": { "branch": "master", "commit": "d79a1c3299ad0ef94e255d045bed9fa26025dab6" },
   "lualine.nvim": { "branch": "master", "commit": "2a5bae925481f999263d6f5ed8361baef8df4f83" },
