@@ -5,7 +5,6 @@
 -- https://github.com/williamboman/mason/
 -----------------------------------------------------------
 
--- require('mason').setup{}
 require("mason").setup()
 local lspconfig = require("lspconfig")
 
@@ -75,7 +74,6 @@ local servers = {
 }
 
 -- 5 - Attach for each LSP server
-
 -- Attach options for each buffer
 local server_opts = {
     on_attach = on_attach,

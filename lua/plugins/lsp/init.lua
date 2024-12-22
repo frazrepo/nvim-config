@@ -79,9 +79,6 @@ return {
         "jay-babu/mason-null-ls.nvim"
     },
 
-    -- lspkind : pictograms or icons like vscode LSP
-    { 'onsails/lspkind-nvim' },
-
     -- lsp signature : display function signature
     {
         "ray-x/lsp_signature.nvim",
