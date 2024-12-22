@@ -5,35 +5,16 @@
 -- https://github.com/williamboman/mason/
 -----------------------------------------------------------
 
-
--- Do not remove
--- Keep this file as reference for old lsp configuration
-
 require('mason').setup{}
 local lspconfig = require("lspconfig")
 
--- Add additional capabilities supported by nvim-cmp
+-- 1 - Add capabilities
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.documentationFormat = { 'markdown', 'plaintext' }
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
-capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-    properties = {
-        'documentation',
-        'detail',
-        'additionalTextEdits',
-    },
-}
-capabilities.textDocument.foldingRange = {
-    dynamicRegistration = false,
-    lineFoldingOnly = true
-}
+-- Add blink capabilities   
+capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
 
+
+-- 2 - Set Keybindings
 -- See exemple : https://github.com/junnplus/lsp-setup.nvim
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -74,15 +55,7 @@ local on_attach = function(client, bufnr)
 
 end
 
--- Attach options for each buffer
-local server_opts = {
-    on_attach = on_attach,
-    capabilities = capabilities,
-    flags = {
-        debounce_text_changes = 150,
-    },
-}
--- Configuration of LSP servers
+-- 4 - Add optional configuration of LSP servers
 local servers = {
     -- LSP server configuration please see: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
     -- pylsp = {}
@@ -100,7 +73,18 @@ local servers = {
     -- },
 }
 
--- Attach for each LSP server
+-- 5 - Attach for each LSP server
+
+-- Attach options for each buffer
+local server_opts = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+        debounce_text_changes = 150,
+    },
+}
+
+-- Use mason to setup each server
 require("mason-lspconfig").setup_handlers({
     function(server_name)
         local extended_opts = vim.tbl_deep_extend("force", server_opts, servers[server_name] or {})

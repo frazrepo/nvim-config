@@ -5,33 +5,41 @@ return {
     -----------------------------------------------------------
     -- Completion , LSP
     -----------------------------------------------------------
-    -- LSP
     {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        'neovim/nvim-lspconfig',
         dependencies = {
-            -- LSP Support
-            {'neovim/nvim-lspconfig'},             -- Required
-            {'williamboman/mason.nvim'},           -- Optional
-            {'williamboman/mason-lspconfig.nvim'}, -- Optional
-
-            -- Autocompletion
-            {'hrsh7th/nvim-cmp'},         -- Required
-
-            {'hrsh7th/cmp-nvim-lsp'},     -- Required
-            {'hrsh7th/cmp-buffer'},       -- Optional
-            {'hrsh7th/cmp-path'},         -- Optional
-            {'saadparwaiz1/cmp_luasnip'}, -- Optional
-            {'hrsh7th/cmp-nvim-lua'},     -- Optional
-
-            -- Snippets
-            {'L3MON4D3/LuaSnip'},             -- Required
-            -- {'rafamadriz/friendly-snippets'}, -- Optional
-            {'frazrepo/friendly-snippets'}, -- Optional
+            {'saghen/blink.cmp'},
+            {'williamboman/mason.nvim'},
+            {'williamboman/mason-lspconfig.nvim'},
         },
         config = function()
-            require('plugins.lsp.lsp-zero')
+            require('plugins.lsp')
         end,
+    },
+
+    -- blink cmp - ultrafast completor
+    { -- Optional
+        'saghen/blink.cmp',
+        -- optional: provides snippets for the snippet source
+        dependencies = 'rafamadriz/friendly-snippets',
+        version = '*',
+        opts = {
+            -- 'default' for mappings similar to built-in completion
+            -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+            -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+            -- See the full "keymap" documentation for information on defining your own keymap.
+            -- keymap = { preset = 'default' },
+            keymap = { preset = 'super-tab' },
+
+            appearance = {
+                use_nvim_cmp_as_default = true,
+                nerd_font_variant = 'mono'
+            },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+        },
+        opts_extend = { "sources.default" }
     },
 
     -- mason-tool-installer to install tools used by mason
