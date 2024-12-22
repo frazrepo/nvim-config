@@ -17,6 +17,17 @@ return {
         end,
     },
 
+    -- mason - Manage external editor toolings
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim"
+    },
+
     -- blink cmp - ultrafast completor
     { -- Optional
         'saghen/blink.cmp',
@@ -78,6 +89,7 @@ return {
             require "lsp_signature".setup()
         end
     },
+
     -- Trouble : Display diagnostics List in quickfix windows
     {
         "folke/trouble.nvim",
