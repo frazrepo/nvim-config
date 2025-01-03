@@ -4,6 +4,11 @@
 -- https://github.com/jose-elias-alvarez/null-ls.nvim
 -----------------------------------------------------------
 
+-- Ensure some tools are installed
+require("mason-null-ls").setup({
+    ensure_installed = { "prettier","stylua", "jq" }
+})
+
 -- Formatting config
 -- Needs to install each binary associated with each formatter : prettier, sqlformat, sqllua, ...
 local null_ls = require("null-ls")
@@ -34,10 +39,10 @@ require("null-ls").setup({
   sources = sources,
   on_attach = function(client)
     map('n', ',f', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', {noremap =true, silent = true})
-    
+
     -- Create a command `:Format` local to the LSP buffer
     vim.api.nvim_create_user_command(
-      'Format', 
+      'Format',
       function()
         vim.lsp.buf.format { async = true }
       end,

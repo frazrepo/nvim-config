@@ -199,17 +199,17 @@ return {
         opts_extend = { "sources.default" }
     },
 
-    -- null-ls with prettier
+    -- none-ls
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        "jay-babu/mason-null-ls.nvim",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
         config = function()
             require('plugins.lsp.null-ls')
         end,
-    },
-
-    -- make mason and null-ls work seamlessly
-    {
-        "jay-babu/mason-null-ls.nvim"
     },
 
     -- lsp signature : display function signature
