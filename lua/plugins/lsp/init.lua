@@ -208,7 +208,7 @@ return {
             "nvimtools/none-ls.nvim",
         },
         config = function()
-            require('plugins.lsp.null-ls')
+            require('plugins.lsp.none-ls')
         end,
     },
 
