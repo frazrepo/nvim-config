@@ -11,6 +11,7 @@ local cmd = vim.cmd
 
 -- Leader space
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -----------------------------------------------------------
 -- Mappings
