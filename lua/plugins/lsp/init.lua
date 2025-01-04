@@ -1,15 +1,17 @@
 -- Discard if provider is coc
-if vim.g.lspprovider == 'coc' then return {} end
+if vim.g.lspprovider == "coc" then
+	return {}
+end
 
 return {
-    -----------------------------------------------------------
-    -- Completion , LSP
-    -----------------------------------------------------------
-    { -- LSP Configuration & Plugins
+	-----------------------------------------------------------
+	-- Completion , LSP
+	-----------------------------------------------------------
+	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
-            'saghen/blink.cmp',
+			"saghen/blink.cmp",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -105,7 +107,7 @@ return {
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
 			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-            capabilities = require('blink.cmp').get_lsp_capabilities(capabilities)
+			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -174,61 +176,62 @@ return {
 		end,
 	},
 
-    -- blink cmp - ultrafast completor
-    { -- Optional
-        'saghen/blink.cmp',
-        -- optional: provides snippets for the snippet source
-        dependencies = 'rafamadriz/friendly-snippets',
-        version = '*',
-        opts = {
-            -- 'default' for mappings similar to built-in completion
-            -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-            -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-            -- See the full "keymap" documentation for information on defining your own keymap.
-            -- keymap = { preset = 'default' },
-            keymap = { preset = 'super-tab' },
+	-- blink cmp - ultrafast completor
+	{ -- Optional
+		"saghen/blink.cmp",
+		-- optional: provides snippets for the snippet source
+		dependencies = "rafamadriz/friendly-snippets",
+		version = "*",
+		opts = {
+			-- 'default' for mappings similar to built-in completion
+			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+			-- See the full "keymap" documentation for information on defining your own keymap.
+			-- keymap = { preset = 'default' },
+			keymap = { preset = "super-tab" },
 
-            appearance = {
-                use_nvim_cmp_as_default = true,
-                nerd_font_variant = 'mono'
-            },
-            sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
-            },
-        },
-        opts_extend = { "sources.default" }
-    },
+			appearance = {
+				use_nvim_cmp_as_default = true,
+				nerd_font_variant = "mono",
+			},
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer" },
+				-- Disable cmdline completion
+				cmdline = {},
+			},
+		},
+		opts_extend = { "sources.default" },
+	},
 
-    -- none-ls
-    {
-        "jay-babu/mason-null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = {
-            "williamboman/mason.nvim",
-            "nvimtools/none-ls.nvim",
-        },
-        config = function()
-            require('plugins.lsp.none-ls')
-        end,
-    },
+	-- none-ls
+	{
+		"jay-babu/mason-null-ls.nvim",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"williamboman/mason.nvim",
+			"nvimtools/none-ls.nvim",
+		},
+		config = function()
+			require("plugins.lsp.none-ls")
+		end,
+	},
 
-    -- lsp signature : display function signature
-    {
-        "ray-x/lsp_signature.nvim",
-        config = function()
-            require "lsp_signature".setup()
-        end
-    },
+	-- lsp signature : display function signature
+	{
+		"ray-x/lsp_signature.nvim",
+		config = function()
+			require("lsp_signature").setup()
+		end,
+	},
 
-    -- Trouble : Display diagnostics List in quickfix windows
-    {
-        "folke/trouble.nvim",
-        dependencies = {
-            {"kyazdani42/nvim-web-devicons"}
-        },
-        config = function()
-            require("trouble").setup {
-            }
-        end
-    },
+	-- Trouble : Display diagnostics List in quickfix windows
+	{
+		"folke/trouble.nvim",
+		dependencies = {
+			{ "kyazdani42/nvim-web-devicons" },
+		},
+		config = function()
+			require("trouble").setup({})
+		end,
+	},
 }
