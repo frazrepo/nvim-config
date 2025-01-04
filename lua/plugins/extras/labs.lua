@@ -89,7 +89,6 @@ return {
 					html = { "prettier" },
 					javascript = { "prettier" },
 					typescript = { "prettier" },
-					json = { "prettier" },
 					lua = { "stylua" },
 					markdown = { "prettier" },
 					nix = { "nixfmt" },
