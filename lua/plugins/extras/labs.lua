@@ -3,6 +3,17 @@
 -- Moves config to extras.lua when validated
 
 return {
+	-- Added on 20250104
+	-- wezterm and nvim compatibility
+    {
+        "letieu/wezterm-move.nvim",
+        keys = { -- Lazy loading, don't need call setup() function
+            { "<C-h>", function() require("wezterm-move").move "h" end },
+            { "<C-j>", function() require("wezterm-move").move "j" end },
+            { "<C-k>", function() require("wezterm-move").move "k" end },
+            { "<C-l>", function() require("wezterm-move").move "l" end },
+        },
+    },
 	-- Added on 20250103
 	-- Scratch buffer
 	{
@@ -91,17 +102,18 @@ return {
 					json = { "prettier" },
 				},
 
-				format_after_save = function()
-					if not vim.g.autoformat then
-						return
-					else
-						if vim.bo.filetype == "ps1" then
-							vim.lsp.buf.format()
-							return
-						end
-						return { lsp_format = "fallback" }
-					end
-				end,
+				-- Do not format on save
+				-- format_after_save = function()
+				-- 	if not vim.g.autoformat then
+				-- 		return
+				-- 	else
+				-- 		if vim.bo.filetype == "ps1" then
+				-- 			vim.lsp.buf.format()
+				-- 			return
+				-- 		end
+				-- 		return { lsp_format = "fallback" }
+				-- 	end
+				-- end,
 
 				formatters = {
 					goimports_reviser = {
