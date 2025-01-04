@@ -25,6 +25,44 @@ return {
 		},
 	},
 
+	-- Added on 20250104
+	-- Linter
+	{
+		"mfussenegger/nvim-lint",
+		event = { "BufReadPre", "BufNewFile" },
+		config = function()
+			local lint = require("lint")
+
+			lint.linters_by_ft = {
+				javascript = { "eslint_d" },
+				typescript = { "eslint_d" },
+				javascriptreact = { "eslint_d" },
+				typescriptreact = { "eslint_d" },
+				svelte = { "eslint_d" },
+				python = { "pylint" },
+			}
+
+			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+
+			vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+				group = lint_augroup,
+				callback = function()
+					lint.try_lint()
+				end,
+			})
+
+			-- TODO: Find a nice mapping for linting
+			-- vim.keymap.set("n", "<leader>l", function()
+			-- 	lint.try_lint()
+			-- end, { desc = "Trigger linting for current file" })
+
+			-- Create a command `:Lint`
+			vim.api.nvim_create_user_command("Lint", function()
+				lint.try_lint()
+			end, { desc = "Lint current buffer" })
+		end,
+	},
+
 	-- Added on 20250103
 	-- Formatter
 	{
@@ -50,6 +88,7 @@ return {
 					templ = { "templ" },
 					toml = { "taplo" },
 					yaml = { "prettier" },
+					json = { "prettier" },
 				},
 
 				format_after_save = function()
@@ -81,6 +120,24 @@ return {
 			require("conform").formatters.prettier = {
 				prepend_args = { "--tab-width", "4" },
 			}
+
+			-- TODO : Find a non conflicting mapping
+			-- vim.keymap.set({ "n", "v" }, ")f", function()
+			-- 	conform.format({
+			-- 		lsp_fallback = true,
+			-- 		async = false,
+			-- 		timeout_ms = 1000,
+			-- 	})
+			-- end, { desc = "Format file or range (in visual mode)" })
+
+			-- Create a command `:ConFormat`
+			vim.api.nvim_create_user_command("ConFormat", function()
+				require("conform").format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				})
+			end, { desc = "Format current buffer with conform" })
 		end,
 	},
 
