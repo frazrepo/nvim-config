@@ -21,8 +21,46 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+-----------------------------------------------------------
+-- LSP Provider LSP or coc
+-----------------------------------------------------------
+-- define lsp provider : native | coc
+vim.g.lspprovider = 'native'
 
+-----------------------------------------------------------
+-- Options, keymaps and Autocmds
+-----------------------------------------------------------
+require('config.options')
+require('config.keymaps')
+require('config.autocmds')
+
+-----------------------------------------------------------
+-- Setup Lazy and it's plugins
+-----------------------------------------------------------
+require("lazy").setup({
+    -----------------------------------------------------------
+    -- Lazy options
+    -----------------------------------------------------------
+    install = { colorscheme = { "tokyonight", "habamax" } },
+    performance = {
+        rtp = {
+            -- disable some rtp plugins
+            disabled_plugins = {
+                "gzip",
+                -- "matchit",
+                -- "matchparen",
+                -- "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
+    -- spec = {
+    --     -- import plugins
+    --     { import = "plugins" },
+    -- },
     -----------------------------------------------------------
     -- ColorScheme
     -----------------------------------------------------------
@@ -475,3 +513,8 @@ require("lazy").setup({
     },
 
 })
+
+-----------------------------------------------------------
+-- GUI Options
+-----------------------------------------------------------
+require('config.ginit')
