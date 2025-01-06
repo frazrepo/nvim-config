@@ -147,15 +147,6 @@ return  {
     -- Code Helpers - Code Generation
     -----------------------------------------------------------
 
-    -- -- treesitter interface : syntax highlighter
-    -- {
-    --     'nvim-treesitter/nvim-treesitter',
-    --     run = ':TSUpdate',
-    --     config = function()
-    --         require('plugins.treesitter')
-    --     end
-    -- },
-
     {
         'nvim-treesitter/nvim-treesitter-textobjects',
         after = "nvim-treesitter"
@@ -240,18 +231,6 @@ return  {
             vim.fn['fzf#install']()
         end
     },
-
-    -----------------------------------------------------------
-    -- Completion , LSP or coc
-    -----------------------------------------------------------
-
-    -- auto switch using vim.g.lspprovider variable
-
-    -- native LSP
-    require("plugins.lsp"),
-
-    -- coc.nvim
-    require("plugins.coc"),
 
     -----------------------------------------------------------
     -- Miscellaneous ,Helpers
