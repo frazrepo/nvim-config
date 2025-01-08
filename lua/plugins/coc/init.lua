@@ -83,17 +83,6 @@ return {
             autocmd Filetype ps1 nnoremap <buffer> <F5> :CocCommand powershell.execute<CR>
         augroup end
  ]], false)
-
-            -- TODO : convert to lua autogroup/autocommand
-            -- https://alpha2phi.medium.com/neovim-for-beginners-lua-autocmd-and-keymap-functions-3bdfe0bebe42
-            --  local psBindingGrp = vim.api.nvim_create_augroup("psbinding", { clear = true })
-            --  vim.api.nvim_create_autocmd(
-            --     "FileType",
-            --     { pattern = {"ps1"},
-            --       command =  [[ nnoremap <buffer> <F8> :CocCommand powershell.evaluateLine<CR> ]],
-            --       group = psBindingGrp
-            --     }
-            --  )
         end
     },
 
