@@ -78,48 +78,26 @@ opt.cmdheight               = 2                             --Fix : Press Enter 
 opt.inccommand              = "nosplit"                     -- search/replace preview
 
 -- set default shell to powershell on Windows
-if vim.fn.has('win32') == 1  then
-    vim.cmd([[
-            let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-            let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-            let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-            let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-            set shellquote= shellxquote=
-    ]])
-end
-
--- disable some builtin vim plugins
-local disabled_built_ins = {
-   "2html_plugin",
-   "getscript",
-   "getscriptPlugin",
-   "gzip",
-   "logipat",
-   "netrw",
-   "netrwPlugin",
-   "netrwSettings",
-   "netrwFileHandlers",
-   "matchit",
-   "tar",
-   "tarPlugin",
-   "rrhelper",
-   "spellfile_plugin",
-   "vimball",
-   "vimballPlugin",
-   "zip",
-   "zipPlugin",
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-   g["loaded_" .. plugin] = 1
+if vim.fn.has('win32') == 1 then
+    if vim.fn.executable('pwsh') == 1 then
+        vim.opt.shell = 'pwsh'
+    else
+        vim.opt.shell = 'powershell'
+    end
+    vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+    vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    vim.opt.shellquote = ''
+    vim.opt.shellxquote = ''
 end
 
 -- autocommand
-cmd(
-   [[
-         au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
-]])
-
+vim.api.nvim_create_autocmd("TextYankPost", {
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank { higroup = "IncSearch", timeout = 150 }
+    end,
+})
 
 -- Functions
 exec([[
