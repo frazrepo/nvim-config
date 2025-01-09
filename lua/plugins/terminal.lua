@@ -12,26 +12,23 @@ return {
             vim.g.floaterm_wintitle=0
             vim.g.floaterm_autoclose=1
 
-            vim.cmd[[
-            nnoremap <silent> <Space>tg :FloatermNew lazygit<CR>
-            tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
+            vim.keymap.set('n', '<Space>tg', ':FloatermNew lazygit<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>tg', '<C-\\><C-n>:FloatermNew lazygit<CR>', { silent = true })
 
-            nnoremap <silent> <Space>tt :FloatermToggle<CR>
-            tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
+            vim.keymap.set('n', '<Space>tt', ':FloatermToggle<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>tt', '<C-\\><C-n>:FloatermToggle<CR>', { silent = true })
 
-            nnoremap <silent> <Space>tw :FloatermKill<CR>
-            tnoremap <silent> <Space>tw <C-\><C-n>:FloatermKill<CR>
+            vim.keymap.set('n', '<Space>tw', ':FloatermKill<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>tw', '<C-\\><C-n>:FloatermKill<CR>', { silent = true })
 
-            nnoremap <silent> <Space>tn :FloatermNew<CR>
-            tnoremap <silent> <Space>tn <C-\><C-n>:FloatermNex<CR>
+            vim.keymap.set('n', '<Space>tn', ':FloatermNew<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>tn', '<C-\\><C-n>:FloatermNew<CR>', { silent = true })
 
-            nnoremap <silent> <Space>to :FloatermNext<CR>
-            tnoremap <silent> <Space>to <C-\><C-n>:FloatermNext<CR>
+            vim.keymap.set('n', '<Space>to', ':FloatermNext<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>to', '<C-\\><C-n>:FloatermNext<CR>', { silent = true })
 
-            nnoremap <silent> <Space>tp :FloatermPrev<CR>
-            tnoremap <silent> <Space>tp <C-\><C-n>:FloatermPrev<CR>
-
-            ]]
+            vim.keymap.set('n', '<Space>tp', ':FloatermPrev<CR>', { silent = true })
+            vim.keymap.set('t', '<Space>tp', '<C-\\><C-n>:FloatermPrev<CR>', { silent = true })
         end,
         cmd = { "FloatermToggle", "FloatermNew" },
     },
