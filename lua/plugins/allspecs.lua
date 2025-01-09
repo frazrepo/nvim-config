@@ -1,28 +1,7 @@
 return  {
     -----------------------------------------------------------
-    -- ColorScheme
-    -----------------------------------------------------------
-    {
-        "folke/tokyonight.nvim",
-        lazy = false, -- make sure we load this during startup if it is your main colorscheme
-        priority = 1000, -- make sure to load this before all the other start plugins
-        config = function()
-            -- load the colorscheme here
-            -- vim.cmd.colorscheme("tokyonight")
-        end,
-    },
-    {
-        "catppuccin/nvim",
-        config = function()
-            -- load the colorscheme here
-            vim.cmd.colorscheme("catppuccin")
-        end,
-    },
-
-    -----------------------------------------------------------
     -- Buffer Helpers
     -----------------------------------------------------------
-
     -- tim pope plugins
     {
         'tpope/vim-unimpaired',
@@ -46,18 +25,6 @@ return  {
                 -- Configuration here, or leave empty to use defaults
             })
         end
-    },
-
-    -- Enhanced comment plugin + TreeSitter context commentstring
-    {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end
-    },
-
-    {
-        'JoosepAlviste/nvim-ts-context-commentstring'
     },
 
     -- vim-exchange exchange lines
@@ -126,62 +93,13 @@ return  {
         pin = true
     },
 
-    -- Text objects
-    {
-        'coderifous/textobj-word-column.vim'
-    },
-    {
-        'michaeljsmith/vim-indent-object'
-    },
-    {
-        "wellle/targets.vim",
-        event = { "BufReadPost" },
-    },
-
-    -- move lines with <A-j> <A-k>
+    -- Move lines with <A-j> <A-k>
     {
         'matze/vim-move'
     },
 
     -----------------------------------------------------------
-    -- Code Helpers - Code Generation
-    -----------------------------------------------------------
-
-    {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-        after = "nvim-treesitter"
-    },
-
-    -- autorename tags
-    {
-        'AndrewRadev/tagalong.vim',
-    },
-
-    -- autopairs
-    {
-        'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup {}
-        end
-    },
-
-    -- autotags (see treesitter for activation)
-    -- Need to install parser for html /xml :TSInstall html
-    {
-        'windwp/nvim-ts-autotag',
-        ft = {
-            "html",
-            "xml",
-        },
-    },
-
-    -- neoformat
-    {
-        'sbdchd/neoformat',
-    },
-
-    -----------------------------------------------------------
-    -- Explorer : file, buffers, quickfix
+    -- Utils
     -----------------------------------------------------------
 
     -- plenary : common lua libraries
@@ -192,44 +110,6 @@ return  {
     -- ripgrep integration
     {
         'BurntSushi/ripgrep'
-    },
-
-    -- file explorer  neo-tree
-    {
-        "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
-        dependencies = {
-            {"nvim-lua/plenary.nvim"},
-            {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
-            {"MunifTanjim/nui.nvim"},
-        },
-        init = function()
-            -- Unless you are still migrating, remove the deprecated commands from v1.x
-            vim.g.neo_tree_remove_legacy_commands  = true
-        end,
-        config = function()
-            require("neo-tree").setup({
-                filesystem = {
-                    follow_current_file = {
-                        enabled = true,
-                    } ,
-                    use_libuv_file_watcher = true,
-                }
-            })
-
-            -- nvim-tree mappings
-            local map = vim.api.nvim_set_keymap
-            local default_opts = { noremap = true, silent = true  }
-            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
-        end,
-    },
-
-    -- fzf , needs to install fzf exe
-    {
-        'junegunn/fzf',
-        run = function()
-            vim.fn['fzf#install']()
-        end
     },
 
     -----------------------------------------------------------
@@ -246,112 +126,5 @@ return  {
                 -- refer to the configuration section below
             }
         end
-    },
-
-    -- Keep last place on start
-    {
-        "ethanholz/nvim-lastplace",
-        config = function()
-            require("nvim-lastplace").setup {
-            }
-        end
-    },
-
-    -----------------------------------------------------------
-    -- UI enhacements
-    -----------------------------------------------------------
-
-    -- cursorline
-    {
-        'yamatsum/nvim-cursorline',
-        config = function ()
-            require('nvim-cursorline').setup {
-                cursorline = {
-                    enable = true,
-                    timeout = 1000,
-                    number = false,
-                },
-                cursorword = {
-                    enable = true,
-                    min_length = 3,
-                    hl = { underline = true },
-                }
-            }
-        end
-    },
-
-    -- lualine
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = {
-            {"kyazdani42/nvim-web-devicons"}
-        },
-        config = function()
-            require('lualine').setup()
-        end
-    },
-
-    -- gitsign
-    {
-        'lewis6991/gitsigns.nvim',
-        dependencies = {
-            {'nvim-lua/plenary.nvim'}
-        },
-        config = function()
-            require('gitsigns').setup()
-        end
-    },
-
-    -- bufferline
-    {
-        'akinsho/bufferline.nvim',
-        dependencies = {
-            {'kyazdani42/nvim-web-devicons'}
-        },
-        init = function()
-            vim.api.nvim_set_keymap("n", "<Tab>", ":BufferLineCycleNext<CR>", { noremap = true, silent = true })
-            vim.api.nvim_set_keymap("n", "<S-Tab>", ":BufferLineCyclePrev<CR>", { noremap = true, silent = true })
-        end,
-        config = function()
-            require('bufferline').setup({
-                options = {
-                    offsets = {
-                        { filetype = 'NvimTree', text = 'File Explorer' },
-                    },
-                }
-            })
-        end
-    },
-
-    -- indent blankline
-    {
-        "lukas-reineke/indent-blankline.nvim"
-    },
-
-    -- truezen
-    {
-        "Pocco81/TrueZen.nvim",
-        config = function()
-            local default_opts = { noremap = true, silent = true }
-            vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
-        end
-    },
-
-    -----------------------------------------------------------
-    -- Terminal enhacements
-    -----------------------------------------------------------
-
-    -- toggleterm and floatterm
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        config = function()
-            require("toggleterm").setup(
-                {
-                    open_mapping = [[<c-t>]],
-                    close_on_exit = true
-                }
-            )
-        end,
     },
 }
