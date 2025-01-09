@@ -106,8 +106,7 @@ return {
 			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			-- capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-			capabilities = require("blink.cmp").get_lsp_capabilities(capabilities)
+			capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -157,11 +156,23 @@ return {
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
+				"stylua", -- lua formatter
+				"prettier", -- prettier formatter
+				"eslint_d", -- js linter
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"html",
+					"cssls",
+					"tailwindcss",
+					"svelte",
+					"lua_ls",
+					"emmet_ls",
+					"prismals",
+					"pyright",
+				},
 				handlers = {
 					function(server_name)
 						local server = servers[server_name] or {}
@@ -199,6 +210,12 @@ return {
 				-- Disable cmdline completion
 				cmdline = {},
 			},
+			completion = {
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+				  },
+			}
 		},
 		opts_extend = { "sources.default" },
 	},
@@ -212,7 +229,54 @@ return {
 			"nvimtools/none-ls.nvim",
 		},
 		config = function()
-			require("plugins.lsp.none-ls")
+            -- Ensure some tools are installed
+            require("mason-null-ls").setup({
+                ensure_installed = { "prettier", "stylua", "jq", "sqlformat" },
+                -- For the remaining, just install with :NoneLsInstall tools
+            })
+
+            -- Formatting config
+            -- Needs to install each binary associated with each formatter : prettier, sqlformat, sqllua, ...
+            local null_ls = require("null-ls")
+            local sources = {
+                null_ls.builtins.formatting.prettier.with({
+                    filetypes = {
+                        "javascript",
+                        "typescript",
+                        "css",
+                        "scss",
+                        "html",
+                        "json",
+                        "yaml",
+                        "markdown",
+                        "graphql",
+                        "md",
+                        "txt",
+                    },
+                }),
+                null_ls.builtins.formatting.stylua.with({
+                    args = { "--indent-width", "2", "--indent-type", "Spaces", "-" },
+                }),
+                null_ls.builtins.formatting.sql_formatter,
+            }
+
+            local map = vim.api.nvim_set_keymap
+            require("null-ls").setup({
+                sources = sources,
+                on_attach = function(client)
+                    map("n", ",f", "<cmd>lua vim.lsp.buf.format { async = true }<CR>", { noremap = true, silent = true })
+
+                    -- Create a command `:Format` local to the LSP buffer
+                    vim.api.nvim_create_user_command("Format", function()
+                        vim.lsp.buf.format({ async = true })
+                    end, { desc = "Format current buffer with LSP" })
+
+                    if client.server_capabilities.document_formatting then
+                        -- Todo when installing stylelua, sqlformat and prettier
+                        -- vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+                    end
+                end,
+            })
 		end,
 	},
 

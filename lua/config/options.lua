@@ -5,9 +5,6 @@
 --Neovim aliases
 --
 local opt = vim.opt
-local g   = vim.g
-local cmd = vim.cmd     				-- execute Vim commands
-local exec = vim.api.nvim_exec 	        -- execute Vimscript
 
 --Settings
 
@@ -78,156 +75,15 @@ opt.cmdheight               = 2                             --Fix : Press Enter 
 opt.inccommand              = "nosplit"                     -- search/replace preview
 
 -- set default shell to powershell on Windows
-if vim.fn.has('win32') == 1  then
-    vim.cmd([[
-            let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
-            let &shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-            let &shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-            let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-            set shellquote= shellxquote=
-    ]])
+if vim.fn.has('win32') == 1 then
+    if vim.fn.executable('pwsh') == 1 then
+        vim.opt.shell = 'pwsh'
+    else
+        vim.opt.shell = 'powershell'
+    end
+    vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+    vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    vim.opt.shellquote = ''
+    vim.opt.shellxquote = ''
 end
-
--- disable some builtin vim plugins
-local disabled_built_ins = {
-   "2html_plugin",
-   "getscript",
-   "getscriptPlugin",
-   "gzip",
-   "logipat",
-   "netrw",
-   "netrwPlugin",
-   "netrwSettings",
-   "netrwFileHandlers",
-   "matchit",
-   "tar",
-   "tarPlugin",
-   "rrhelper",
-   "spellfile_plugin",
-   "vimball",
-   "vimballPlugin",
-   "zip",
-   "zipPlugin",
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-   g["loaded_" .. plugin] = 1
-end
-
--- autocommand
-cmd(
-   [[
-         au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=150}
-]])
-
-
--- Functions
-exec([[
-        function! CleanExtraSpaces()
-            let save_cursor = getpos(".")
-            let old_query = getreg('/')
-            silent! %s/\s\+$//e
-            call setpos('.', save_cursor)
-            call setreg('/', old_query)
-        endfun
-
-        function! CmdLine(str)
-            call feedkeys(":" . a:str)
-        endfunction
-
-        function! VisualSelection(direction, extra_filter) range
-            let l:saved_reg = @"
-            execute "normal! vgvy"
-
-            let l:pattern = escape(@", "\\/.*'$^~[]")
-            let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-            if a:direction == 'gv'
-                call CmdLine("Ack '" . l:pattern . "' " )
-            elseif a:direction == 'replace'
-                call CmdLine("%s" . '/'. l:pattern . '/')
-            endif
-
-            let @/ = l:pattern
-            let @" = l:saved_reg
-        endfunction
-
-        function! QuickFixToggle()
-            if empty(filter(getwininfo(), 'v:val.quickfix'))
-                copen
-            else
-                cclose
-            endif
-        endfunction
-
-        function! ExecuteMacroOverVisualRange()
-          echo "@".getcmdline()
-          execute ":'<,'>normal @".nr2char(getchar())
-        endfunction
-
-        function! SortLinesByWidth() range
-            silent! execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
-            silent! execute a:firstline . "," . a:lastline . 'sort n'
-            silent! execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
-        endfunction
-
-    ]], false)
-
--- Commands
-
---  VisualBlock :  Workaround to start visual block mode on terminal if C-v or C-q is not working
-cmd(
-    [[
-    command! VisualBlock execute "normal! \<C-v>"
-    ]]
-)
-
---  W : sudo saves the file (useful for handling the permission-denied error on Linux)
-cmd(
-    [[
-    command! W w !sudo tee % > /dev/null
-    ]]
-)
-
--- SortByWidth : Sort lines by width
-cmd(
-    [[
-    command! -range=%  SortByWidth <line1>,<line2>call SortLinesByWidth()
-    ]]
-)
-
--- WipeReg : Clean all registers
-cmd(
-    [[
-    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-    ]]
-)
-
--- RemoveTrailingSpaces : Remove all training spaces
-cmd(
-    [[
-    command! RemoveTrailingSpaces call CleanExtraSpaces()
-    ]]
-)
-
--- AutoCommands
-exec([[
-    augroup AutoCommandsGroup
-        autocmd!
-
-        " Clean extra spaces on txt files
-        autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-
-        " Help File speedups, <enter> to follow tag, delete (backspace) for back
-        autocmd filetype help nnoremap <buffer><cr> <c-]>
-        autocmd filetype help nnoremap <buffer><bs> <c-T>
-        autocmd filetype help nnoremap <buffer>q :q<CR>
-        autocmd filetype help set nonumber
-        autocmd filetype help wincmd _ " Maximize the help on open
-
-        " AutoSave Scratch buffer
-        autocmd InsertLeave,TextChanged buffer.* nested silent! update
-        autocmd FocusGained,BufEnter,CursorHold buffer.* silent! checktime
-
-    augroup END
- ]], false)
