@@ -210,6 +210,12 @@ return {
 				-- Disable cmdline completion
 				cmdline = {},
 			},
+			completion = {
+				documentation = {
+					auto_show = true,
+					auto_show_delay_ms = 200,
+				  },
+			}
 		},
 		opts_extend = { "sources.default" },
 	},
