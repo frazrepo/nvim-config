@@ -1,5 +1,4 @@
 return {
-	-- Added on 20250103
 	-- Formatter
 	{
 		"stevearc/conform.nvim",

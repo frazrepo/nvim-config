@@ -1,6 +1,5 @@
 
 return {
-	-- Added on 20250104
 	-- Linter
 	{
 		"mfussenegger/nvim-lint",

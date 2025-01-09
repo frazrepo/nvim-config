@@ -53,8 +53,8 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = t
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
 
 -- Move faster vertically (paragraph motion) (Replaced with windows navigation)
-map('n', '<C-j>','}', {noremap =false, silent = true})
-map('n', '<C-k>','{', {noremap =false, silent = true})
+-- map('n', '<C-j>','}', {noremap =false, silent = true})
+-- map('n', '<C-k>','{', {noremap =false, silent = true})
 
 -- Switch CWD to the directory of the open buffer
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
