@@ -206,12 +206,6 @@ return {
                 },
             }
 
-            -- Load fzf-native
-            -- if vim.g.is_win ~= true then
-            --     require('telescope').load_extension('fzf')
-            -- end
-
-            -- telescope.load_extension("git_worktree")
             require('telescope').load_extension('projects')
 
             vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
@@ -219,10 +213,8 @@ return {
             vim.api.nvim_set_keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true })
             vim.api.nvim_set_keymap('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true })
             vim.api.nvim_set_keymap('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true })
-            -- vim.api.nvim_set_keymap('n', '<C-n>', "<cmd>lua require('telescope.builtin').file_browser()<CR>", { noremap = true })
             vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true})
 
-            -- vim.api.nvim_set_keymap('n', '<C-T>', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { noremap = true })
         end
     },
     -----------------------------------------------------------

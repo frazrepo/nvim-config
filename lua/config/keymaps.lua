@@ -40,7 +40,7 @@ map('v', '<', '<gv', default_opts)
 -- " Reselect last insertext
 map('n', 'gV','`[v`]', default_opts)
 
--- Smart way to move between windows horizontally
+-- Smart way to move between windows horizontally - See wezterm plugin
 -- map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
 -- map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
 -- map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
@@ -53,8 +53,8 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = t
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
 
 -- Move faster vertically (paragraph motion) (Replaced with windows navigation)
--- map('n', '<C-j>','}', {noremap =false, silent = true})
--- map('n', '<C-k>','{', {noremap =false, silent = true})
+map('n', '<C-j>','}', {noremap =false, silent = true})
+map('n', '<C-k>','{', {noremap =false, silent = true})
 
 -- Switch CWD to the directory of the open buffer
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
