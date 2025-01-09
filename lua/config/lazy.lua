@@ -58,7 +58,7 @@ require("lazy").setup({
         },
     },
     spec = {
-        -- import main plugins and extra plugins:want
+        -- import main plugins and extra plugins
         { import = "plugins" },
         { import = 'plugins.extras'},
     },
