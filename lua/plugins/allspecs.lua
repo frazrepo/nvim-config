@@ -354,12 +354,4 @@ return  {
             )
         end,
     },
-
-    -----------------------------------------------------------
-    -- Extras plugins or experimental plugins in lua/plugins/extras
-    -----------------------------------------------------------
-    {
-        import = 'plugins.extras'
-    },
-
 }
