@@ -58,6 +58,7 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = t
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
 
 -- Useful mapping for managing  buffers
+map('n', '<leader>!',':bd!<cr>', {noremap =false, silent = true, desc = "Delete buffer"})
 map('n', '<leader>bd',':bd<cr>', {noremap =false, silent = true, desc = "Delete buffer"})
 map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true, desc = "New buffer"})
 map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true, desc = "Delete all buffers"})
