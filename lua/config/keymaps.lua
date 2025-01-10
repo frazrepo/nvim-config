@@ -20,11 +20,12 @@ vim.g.maplocalleader = ","
 -- Clear search highlighting
 map('', '<space><space>', ':nohl<CR>', {silent = true})
 
--- Fast saving
-map('n', '<leader>w', ':w!<CR>', {noremap =false, silent = true})
-map('n', '<C-S>', ':update<CR>', {noremap =false, silent = true})
-map('v', '<C-S>', '<C-C>:update<CR>', {noremap =false, silent = true})
-map('i', '<C-S>', '<C-O>:update<CR>', {noremap =false, silent = true})
+-- Save file
+map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+map('x', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+map('i', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+map('s', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+
 
 -- Map jk to ESC in insert mode
 map('i', 'jk', '<Esc>', {noremap = true})
@@ -52,20 +53,15 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", {noremap =false, silent = true })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { noremap =false, silent = true })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", {noremap =false, silent = true })
 
--- Move faster vertically (paragraph motion) (Replaced with windows navigation)
--- map('n', '<C-j>','}', {noremap =false, silent = true})
--- map('n', '<C-k>','{', {noremap =false, silent = true})
 
 -- Switch CWD to the directory of the open buffer
 map('n', '<leader>cd',':cd %:p:h<cr>:pwd<cr>', {noremap =false, silent = true})
 
--- Close the current buffer
-map('n', '<leader>bd',':bd<cr>', {noremap =false, silent = true})
-map('n', '<leader>!',':bd!<cr>', {noremap =false, silent = true})
-
 -- Useful mapping for managing  buffers
-map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true})
-map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true})
+map('n', '<leader>bd',':bd<cr>', {noremap =false, silent = true, desc = "Delete buffer"})
+map('n', '<leader>bn','<Cmd>enew<cr>', {noremap =false, silent = true, desc = "New buffer"})
+map('n', '<leader>ba',':bufdo bd<cr>', {noremap =false, silent = true, desc = "Delete all buffers"})
+map('n', '<leader>bo',':silent! execute "%bd|e#|bd#"<cr>', {noremap =false, silent = true, desc = "Keep only current buffer"})
 
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
@@ -241,7 +237,8 @@ map("x", "<leader>r",[[:call VisualSelection('replace','')<CR>]], default_opts)
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<F8>",":call QuickFixToggle()<cr>", default_opts)
+map("n", "<F8>",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<leader>q",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
 map("n", "<leader>x",":e ~/buffer.txt<CR>", default_opts)
