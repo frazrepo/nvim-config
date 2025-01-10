@@ -5,5 +5,6 @@ return {
     -- neoformat
     {
         'sbdchd/neoformat',
+        cmd = "NeoFormat",
     },
 }

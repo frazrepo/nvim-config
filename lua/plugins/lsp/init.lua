@@ -9,6 +9,7 @@ return {
 	-----------------------------------------------------------
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			"saghen/blink.cmp",
@@ -190,6 +191,7 @@ return {
 	-- blink cmp - ultrafast completor
 	{ -- Optional
 		"saghen/blink.cmp",
+		event = { "InsertEnter" },
 		-- optional: provides snippets for the snippet source
 		dependencies = "rafamadriz/friendly-snippets",
 		version = "*",
