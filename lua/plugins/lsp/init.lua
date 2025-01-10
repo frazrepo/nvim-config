@@ -283,9 +283,7 @@ return {
 	-- lsp signature : display function signature
 	{
 		"ray-x/lsp_signature.nvim",
-		config = function()
-			require("lsp_signature").setup()
-		end,
+        opts = {}
 	},
 
 	-- Trouble : Display diagnostics List in quickfix windows
@@ -294,8 +292,6 @@ return {
 		dependencies = {
 			{ "kyazdani42/nvim-web-devicons" },
 		},
-		config = function()
-			require("trouble").setup({})
-		end,
+        opts =  {}
 	},
 }
