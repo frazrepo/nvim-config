@@ -53,7 +53,9 @@ return {
 	},
     -- ripgrep integration
     {
-        'BurntSushi/ripgrep'
+		
+		'BurntSushi/ripgrep',
+		lazy = true
     },
 
 
