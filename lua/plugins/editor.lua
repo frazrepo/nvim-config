@@ -24,19 +24,18 @@ return {
     },
 
     -----------------------------------------------------------
-    -- Truezen
+    -- Folke ZenMode
     -----------------------------------------------------------
     {
-        "Pocco81/TrueZen.nvim",
-        keys = {
-            {"<F12>", desc = "Switch to zen mode"}
+        "folke/zen-mode.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
         },
-        config = function()
-            local default_opts = { noremap = true, silent = true }
-            vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
-        end
+        keys = {
+            {"<leader>z", "<Cmd>ZenMode<CR>", desc= "Toggle zen mode"}
+        }
     },
-
     -----------------------------------------------------------
     -- File explorer  neo-tree
     -----------------------------------------------------------
