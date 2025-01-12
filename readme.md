@@ -27,6 +27,6 @@ git clone --depth=1 https://github.com/frazrepo/nvim-config.git
 
 # Additional plugins
 * Easy mappings access with which-key
-* Zen environment with TrueZen
+* Zen mode environment with ZenMode
 * Quickfix filtering with nvim-bqf
 * Terminal management with vim-floatterm
