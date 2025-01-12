@@ -27,20 +27,18 @@ return {
         dependencies = {
             {"kyazdani42/nvim-web-devicons"}
         },
-        config = function()
-            require('lualine').setup()
-        end
+        event = "VeryLazy",
+        opts = {}
     },
 
     -- gitsign
     {
         'lewis6991/gitsigns.nvim',
+        event = "VeryLazy",
         dependencies = {
             {'nvim-lua/plenary.nvim'}
         },
-        config = function()
-            require('gitsigns').setup()
-        end
+        opts = {}
     },
 
     -- bufferline
