@@ -12,26 +12,12 @@ return {
             vim.g.floaterm_wintitle=0
             vim.g.floaterm_autoclose=1
 
-            vim.cmd[[
-            nnoremap <silent> <Space>tg :FloatermNew lazygit<CR>
-            tnoremap <silent> <Space>tg <C-\><C-n>:FloatermNew lazygit<CR>
-
-            nnoremap <silent> <Space>tt :FloatermToggle<CR>
-            tnoremap <silent> <Space>tt <C-\><C-n>:FloatermToggle<CR>
-
-            nnoremap <silent> <Space>tw :FloatermKill<CR>
-            tnoremap <silent> <Space>tw <C-\><C-n>:FloatermKill<CR>
-
-            nnoremap <silent> <Space>tn :FloatermNew<CR>
-            tnoremap <silent> <Space>tn <C-\><C-n>:FloatermNex<CR>
-
-            nnoremap <silent> <Space>to :FloatermNext<CR>
-            tnoremap <silent> <Space>to <C-\><C-n>:FloatermNext<CR>
-
-            nnoremap <silent> <Space>tp :FloatermPrev<CR>
-            tnoremap <silent> <Space>tp <C-\><C-n>:FloatermPrev<CR>
-
-            ]]
+            vim.keymap.set('n', '<Space>tg', ':FloatermNew lazygit<CR>', { silent = true })
+            vim.keymap.set('n', '<Space>tt', ':FloatermToggle<CR>', { silent = true })
+            vim.keymap.set('n', '<Space>tw', ':FloatermKill<CR>', { silent = true })
+            vim.keymap.set('n', '<Space>tn', ':FloatermNew<CR>', { silent = true })
+            vim.keymap.set('n', '<Space>to', ':FloatermNext<CR>', { silent = true })
+            vim.keymap.set('n', '<Space>tp', ':FloatermPrev<CR>', { silent = true })
         end,
         cmd = { "FloatermToggle", "FloatermNew" },
     },
@@ -39,12 +25,14 @@ return {
     {
         "akinsho/toggleterm.nvim",
         version = "*",
+        keys = [[<c-t>]],
+        cmd = "ToggleTerm",
         config = function()
             require("toggleterm").setup(
-                {
-                    open_mapping = [[<c-t>]],
-                    close_on_exit = true
-                }
+            {
+                open_mapping = [[<c-t>]],
+                close_on_exit = true
+            }
             )
         end,
     },

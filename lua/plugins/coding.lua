@@ -2,21 +2,28 @@
 -- Code Helpers - Code Generation
 -----------------------------------------------------------
 return
-{    
+{
     -----------------------------------------------------------
     -- Autorename, Autopair, Autotag
     -----------------------------------------------------------
     -- Autorename tags
     {
         'AndrewRadev/tagalong.vim',
+        ft = {
+            "html",
+            "xml",
+            "jsx",
+            "tsx",
+            "javascriptreact",
+            "typescriptreact",
+        },
     },
 
     -- Autopairs
     {
         'windwp/nvim-autopairs',
-        config = function()
-            require('nvim-autopairs').setup {}
-        end
+        event = { "InsertEnter" },
+        opts = {}
     },
 
     -- Autotags (see treesitter for activation)
@@ -33,10 +40,12 @@ return
     -- Text objects
     -----------------------------------------------------------
     {
-        'coderifous/textobj-word-column.vim'
+        'coderifous/textobj-word-column.vim',
+        event = { "BufReadPost" },
     },
     {
-        'michaeljsmith/vim-indent-object'
+        'michaeljsmith/vim-indent-object',
+        event = { "BufReadPost" },
     },
     {
         "wellle/targets.vim",

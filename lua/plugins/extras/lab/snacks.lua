@@ -1,6 +1,5 @@
 
 return {
-	-- Added on 20250103
 	-- Scratch buffer
 	{
 		"folke/snacks.nvim",

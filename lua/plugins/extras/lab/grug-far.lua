@@ -1,6 +1,5 @@
 
 return {
-	-- Added on 20250103
 	-- grug-far Search and Replace
 	{
 		"MagicDuck/grug-far.nvim",

@@ -6,7 +6,8 @@ return {
     -- plenary : common lua libraries
     -----------------------------------------------------------
     {
-        'nvim-lua/plenary.nvim'
+        'nvim-lua/plenary.nvim',
+        lazy  = true
     },    
 
     -----------------------------------------------------------
@@ -14,14 +15,22 @@ return {
     -----------------------------------------------------------
     {
         'tpope/vim-unimpaired',
+        keys = {
+            { "(", mode = { "n", "o", "x" } },
+            { ")", mode = { "n", "o", "x" } },
+            { "yo", mode = { "n" } },
+        },
         pin = true
-    } ,    
+    },
 
     -----------------------------------------------------------
     -- Truezen
     -----------------------------------------------------------
     {
         "Pocco81/TrueZen.nvim",
+        keys = {
+            {"<F12>", desc = "Switch to zen mode"}
+        },
         config = function()
             local default_opts = { noremap = true, silent = true }
             vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
@@ -43,6 +52,9 @@ return {
             -- Unless you are still migrating, remove the deprecated commands from v1.x
             vim.g.neo_tree_remove_legacy_commands  = true
         end,
+        keys = {
+            {"<C-n>", desc = "Toggle neotree"}
+        },
         config = function()
             require("neo-tree").setup({
                 filesystem = {
@@ -111,10 +123,7 @@ return {
     -----------------------------------------------------------
     {
         "ethanholz/nvim-lastplace",
-        config = function()
-            require("nvim-lastplace").setup {
-            }
-        end
+        opts = {}
     },    
 
     -----------------------------------------------------------
@@ -142,9 +151,6 @@ return {
                 { "<leader>d", desc = "Edit markdown buffer" },
                 { "<leader>e", desc = "Edit in current buffer path" },
                 { "<leader>fr", desc = "Find Replace Visually" },
-                { "<leader>kj", desc = "SplitJoin Join" },
-                { "<leader>kk", desc = "SplitJoin Toggle" },
-                { "<leader>ks", desc = "SplitJoin Split" },
                 { "<leader>m", desc = "Remove special char M" },
                 { "<leader>r", desc = "Replace Search Register" },
                 { "<leader>s", desc = "Edit sql buffer" },
@@ -206,12 +212,6 @@ return {
                 },
             }
 
-            -- Load fzf-native
-            -- if vim.g.is_win ~= true then
-            --     require('telescope').load_extension('fzf')
-            -- end
-
-            -- telescope.load_extension("git_worktree")
             require('telescope').load_extension('projects')
 
             vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
@@ -219,10 +219,8 @@ return {
             vim.api.nvim_set_keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true })
             vim.api.nvim_set_keymap('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true })
             vim.api.nvim_set_keymap('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true })
-            -- vim.api.nvim_set_keymap('n', '<C-n>', "<cmd>lua require('telescope.builtin').file_browser()<CR>", { noremap = true })
             vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true})
 
-            -- vim.api.nvim_set_keymap('n', '<C-T>', "<cmd>lua require('telescope').extensions.git_worktree.git_worktrees()<CR>", { noremap = true })
         end
     },
     -----------------------------------------------------------
@@ -310,11 +308,22 @@ return {
     -- Replace with Register
     {
         'vim-scripts/ReplaceWithRegister',
+        keys = {
+            { "gr" },
+            { "gr", mode = "x" },
+        },
         pin = true
     },
 
     -- Move lines with <A-j> <A-k>
     {
-        'matze/vim-move'
+        'matze/vim-move',
+        keys = {
+            { "<A-j>" },
+            { "<A-j>", mode = "v" },
+            { "<A-k>" },
+            { "<A-k>", mode = "v" },
+        },
+        pin = true
     },    
 }
