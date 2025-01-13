@@ -4,6 +4,7 @@
 
 return {
 	-- vim-grepper
+    -- Need to install ripgrep command
 	{
 		"mhinz/vim-grepper",
 		config = function()
@@ -51,12 +52,4 @@ return {
 			{ "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator", mode = "x" },
 		}
 	},
-    -- ripgrep integration
-    {
-		
-		'BurntSushi/ripgrep',
-		lazy = true
-    },
-
-
 }

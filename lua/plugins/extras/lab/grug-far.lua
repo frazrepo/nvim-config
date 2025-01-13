@@ -21,6 +21,7 @@ return {
                         },
                     })
                 end,
+
                 mode = { "n", "v" },
                 desc = "Search and Replace",
             },
@@ -28,7 +29,7 @@ return {
                 "<leader>sa",
                 "<cmd> lua require('grug-far').open({ engine = 'astgrep' })<cr>",
                 mode = { "n", "v" },
-                desc = "Search and Replace",
+                desc = "Search and Replace with astgrep",
             },
         },
 	},
