@@ -9,7 +9,7 @@ return {
         cmd = "GrugFar",
         keys = {
             {
-                --ripgrep not working yet on windows
+                -- Requires the latest version of ripgrep
                 "<leader>sr",
                 function()
                     local grug = require("grug-far")
