@@ -26,16 +26,6 @@ return
         opts = {}
     },
 
-    -- Autotags (see treesitter for activation)
-    -- Need to install parser for html /xml :TSInstall html
-    {
-        'windwp/nvim-ts-autotag',
-        ft = {
-            "html",
-            "xml",
-        },
-    },
-
     -----------------------------------------------------------
     -- Text objects
     -----------------------------------------------------------
