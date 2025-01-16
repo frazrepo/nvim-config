@@ -46,7 +46,7 @@ return {
 			{ "<Leader>R" , desc ="Search Replace Globally"},
 			{ "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Grepper Word Under Cursor" },
 			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Grepper" },
-			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all Buffers" },
+			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all open Buffers" },
 			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Grepper in current buffer" },
 			{ "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator" },
 			{ "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator", mode = "x" },
