@@ -99,9 +99,9 @@ map('x', '@',[[:<C-u>call ExecuteMacroOverVisualRange()<CR>]], default_opts)
 map('n', 'g=','mmgg=G`m', default_opts)
 map('n', 'gQ','mmgggqG`m', default_opts)
 
--- Insert new line in normal mode quickly and move cursor (but not in quickfix window or in command line history)
-map('n', '<CR>', [[&buftype ==# 'nofile' ? "\<CR>" : &buftype ==# 'quickfix' ? "\<CR>" : ":set paste<CR>o<Esc>:set nopaste<CR>"]]  , {noremap =false, silent = true, expr = true})
-map('n', '<S-CR>', ':set paste<CR>O<Esc>:set nopaste<CR>', default_opts)
+-- -- Insert new line in normal mode quickly and move cursor (but not in quickfix window or in command line history)
+-- map('n', '<CR>', [[&buftype ==# 'nofile' ? "\<CR>" : &buftype ==# 'quickfix' ? "\<CR>" : ":set paste<CR>o<Esc>:set nopaste<CR>"]]  , {noremap =false, silent = true, expr = true})
+-- map('n', '<S-CR>', ':set paste<CR>O<Esc>:set nopaste<CR>', default_opts)
 
 -- Navigating quickfix (Experimental)
 map('n', '<A-Down>','<Cmd>cnext<Cr>', default_opts)
