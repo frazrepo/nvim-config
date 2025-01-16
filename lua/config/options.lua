@@ -25,7 +25,8 @@ opt.formatoptions           = 'qnj1'                        -- q  - comment form
 opt.gdefault                = true
 opt.hidden                  = true                          -- Set hidden to allow switching to other buffer if it is modifie
 opt.ignorecase              = true                          -- Ignore case when searching
-opt.lazyredraw              = true                          -- Don't redraw while executing macros (good performance config)
+-- Disable for noice warning
+-- opt.lazyredraw              = true                          -- Don't redraw while executing macros (good performance config)
 opt.linebreak               = true                          -- Linebreak on 500 characters
 opt.linespace               = 4                             -- Linespace
 opt.magic                   = true                          -- For regular expressions turn magic on
