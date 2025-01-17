@@ -99,10 +99,6 @@ map('x', '@',[[:<C-u>call ExecuteMacroOverVisualRange()<CR>]], default_opts)
 map('n', 'g=','mmgg=G`m', default_opts)
 map('n', 'gQ','mmgggqG`m', default_opts)
 
--- -- Insert new line in normal mode quickly and move cursor (but not in quickfix window or in command line history)
--- map('n', '<CR>', [[&buftype ==# 'nofile' ? "\<CR>" : &buftype ==# 'quickfix' ? "\<CR>" : ":set paste<CR>o<Esc>:set nopaste<CR>"]]  , {noremap =false, silent = true, expr = true})
--- map('n', '<S-CR>', ':set paste<CR>O<Esc>:set nopaste<CR>', default_opts)
-
 -- Navigating quickfix (Experimental)
 map('n', '<A-Down>','<Cmd>cnext<Cr>', default_opts)
 map('n', '<A-Up>','<Cmd>cprevious<Cr>', default_opts)
@@ -224,6 +220,7 @@ map('o', 'aa',':<C-u>normal va><CR>', default_opts)
 map("n", "<leader>fr",":%s/", default_opts)
 map("x", "<leader>fr",[[:s/]], default_opts)
 
+-- replace the current text in search register
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false})
 
 -- Visual mode pressing * or # searches for the current selection
@@ -247,7 +244,7 @@ map("n", "<leader>d",":e ~/buffer.md<CR>", default_opts)
 map("n", "<leader>s",":e ~/buffer.sql<CR>", default_opts)
 
 
--- Map for navigating search (/?) result
+-- Map for navigating search (/?) result with tab
 vim.cmd([[
         set wildcharm=<C-z>
         cnoremap <expr> <Tab> getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"
