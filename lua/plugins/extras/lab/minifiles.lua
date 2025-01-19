@@ -1,4 +1,8 @@
 return
 {
-    { 'echasnovski/mini.files', version = '*' },
+    {
+        'echasnovski/mini.files',
+        version = '*',
+        opts = {}
+    },
 }
