@@ -37,8 +37,13 @@ return
         'michaeljsmith/vim-indent-object',
         event = { "BufReadPost" },
     },
+    -- {
+    --     "wellle/targets.vim",
+    --     event = { "BufReadPost" },
+    -- },
     {
-        "wellle/targets.vim",
+        'echasnovski/mini.ai',
+        version = '*',
         event = { "BufReadPost" },
     },
     -----------------------------------------------------------
