@@ -23,7 +23,7 @@ git clone --depth=1 https://github.com/frazrepo/nvim-config.git
 * File fuzzy finder with [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 * Tabs and buffers management with [bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
 * Syntax highlighting with [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
-* LSP and Completion with native LSP or coc
+* LSP and Completion with native LSP and blink or coc
 
 # Additional plugins
 * Easy mappings access with which-key
