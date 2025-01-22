@@ -1,5 +1,4 @@
 -----------------------------------------------------------
--- Floaterm configuration file
 -- Plugin: nvim-treesitter
 -- https://github.com/nvim-treesitter/nvim-treesitter
 -----------------------------------------------------------
@@ -19,6 +18,8 @@ return {
             -- Check with :TSInstallInfo
             ensure_installed = {
                 "lua",
+                "markdown",
+                "markdown_inline"
             },
             highlight = {
                 enable = true,
