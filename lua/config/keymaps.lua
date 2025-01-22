@@ -198,12 +198,12 @@ map('o', 'al',':<C-u>normal val<CR>', default_opts)
 
 -- Buffer(entire) text-object
 -----------------------------
--- ie ae
-map('x', 'ie','GoggV', default_opts)
-map('o', 'ie',':<C-u>normal mzvie<CR>`z', default_opts)
-map('x', 'ae','GoggV', default_opts)
-map('o', 'ae',':<C-u>normal mzvae<CR>`z', default_opts)
-
+-- ig ag
+map('x', 'ig','GoggV', default_opts)
+map('o', 'ig',':<C-u>normal mzvig<CR>`z', default_opts)
+map('x', 'ag','GoggV', default_opts)
+map('o', 'ag',':<C-u>normal mzvag<CR>`z', default_opts)
+           
 -- Right Angle and Angle Bracket text-object
 ---------------------------------------------
 -- ir ar
