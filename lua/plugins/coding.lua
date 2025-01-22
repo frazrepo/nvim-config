@@ -54,6 +54,8 @@ return
         event = { "BufReadPost" },
     },
     {
+        -- See here configuration
+        -- https://github.com/LazyVim/LazyVim/blob/1e83b4f843f88678189df81b1c88a400c53abdbc/lua/lazyvim/plugins/coding.lua#L45
         'echasnovski/mini.ai',
         version = '*',
         event = { "BufReadPost" },
