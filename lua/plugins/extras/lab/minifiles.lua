@@ -1,5 +1,9 @@
 return
 {
+    -- Usage : navigate using hjkl
+    -- Manipalute file/dir creation like a normal buffer
+    -- confirm operation with =
+    -- Close dialog with q
     {
         'echasnovski/mini.files',
         version = '*',
@@ -19,5 +23,6 @@ return
                 end,
                 desc = "Open mini.files (cwd)",
             },
-        },    },
-    }
+        },
+    },
+}

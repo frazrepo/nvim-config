@@ -35,10 +35,6 @@ map('x', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 map('i', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 map('s', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 
-
--- Map jk to ESC in insert mode
-map('i', 'jk', '<Esc>', {noremap = true})
-
 -- Repeat . command in visual mode
 map('v', '.', ':normal.<CR>', {noremap = true})
 
