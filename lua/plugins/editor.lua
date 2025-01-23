@@ -225,13 +225,6 @@ return {
     -----------------------------------------------------------
     -- Buffer Helpers
     -----------------------------------------------------------
-
-    --  repeat surround action
-    {
-        'tpope/vim-repeat',
-        pin = true
-    },
-
     -- surround
     {
         "kylechui/nvim-surround",
