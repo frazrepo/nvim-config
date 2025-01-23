@@ -122,6 +122,7 @@ return {
     -----------------------------------------------------------
     {
         "ethanholz/nvim-lastplace",
+        event = "BufReadPre",
         opts = {}
     },
 
@@ -162,12 +163,10 @@ return {
                 { "gL", desc = "Go align left" },
                 { "gQ", desc = "Format buffer" },
                 { "gV", desc = "Reselect last pasted text" },
-                { "ga", desc = "Easy Align Operator" },
                 { "gb", desc = "Block Comment" },
                 { "gc", desc = "Comment" },
                 { "gl", desc = "Go align right" },
                 { "gq", desc = "Format" },
-                { "gs", desc = "Sort operator" },
                 { "gv", desc = "Reselect last visual selection" },
             })
         end,
@@ -258,53 +257,27 @@ return {
         pin = true
     },
 
-    -- Align based on character (mapping gl)
-    {
-        'tommcdo/vim-lion',
-        keys = {
-            { "gl" },
-            { "gl", mode = "x" },
-        },
-        pin = true
-    },
 
-    -- Aligning (mapping ga , replace gl when config is stable)
+    -- mini.Align - ga simple and gA interactive
     {
-        "junegunn/vim-easy-align",
-        config = function()
-            -- require "rmagatti.easyalign"
-            -- nvim-tree mappings
-            local map = vim.api.nvim_set_keymap
-            local default_opts = { noremap = false, silent = true  }
-            map('x', 'ga', '<Plug>(EasyAlign)', default_opts)
-            map('n', 'ga', '<Plug>(EasyAlign)', default_opts)
-        end,
+        'echasnovski/mini.align',
+        opts = {},
         keys = {
-            { "ga" },
+            { "ga", desc = "Align" },
+            { "gA", desc = "Align interactive" },
             { "ga", mode = "x" },
         },
-        cmd = { "EasyAlign" },
     },
 
-    -- vim-sort-motion (mapping gs)
-    {
-        "christoomey/vim-sort-motion",
-        keys = {
-            { "gss" },
-            { "gs" },
-            { "gs", mode = "x" },
-        },
-        pin = true
-    },
-
-    -- Replace with Register
-    {
-        'vim-scripts/ReplaceWithRegister',
-        keys = {
-            { "gr" },
-            { "gr", mode = "x" },
-        },
-        pin = true
+    -- minioperators  : Sort motion (gs) and Replace with register (gr)
+    { 
+        'echasnovski/mini.operators',
+         version = '*' ,
+         opts = {},
+         keys = { 
+            { "gs" , "Sort" },
+            { "gr" , "Replace with register" },
+         }
     },
 
     -- Move lines with <A-j> <A-k>
