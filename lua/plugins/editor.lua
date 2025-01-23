@@ -295,17 +295,4 @@ return {
             -- { "g=" , "Evaluate text and replace" }, -- Already used to indent buffer
          }
     },
-
-    -- mini-move
-    { 
-        'echasnovski/mini.move',
-        version = '*', 
-        opts = {},
-        keys = {
-            { "<A-j>" },
-            { "<A-j>", mode = "v" },
-            { "<A-k>" },
-            { "<A-k>", mode = "v" },
-        },
-    },
 }

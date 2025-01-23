@@ -23,7 +23,7 @@
                 vim.keymap.set({'x', 'o'}, 'Z', '<Plug>(leap-backward-to)')
             end,
         },    
-        
+
         -- Flit : easily jump to any location and enhanced f/t motions for Leap
         -- Can jump/previous on the next occurence with <CR>/<Tab>
         {
@@ -41,5 +41,18 @@
                     opts = {}
                 }
             end,
-        }
+        },
+
+        -- mini-move
+        { 
+            'echasnovski/mini.move',
+            version = '*', 
+            opts = {},
+            keys = {
+                { "<A-j>" },
+                { "<A-j>", mode = "v" },
+                { "<A-k>" },
+                { "<A-k>", mode = "v" },
+            },
+        },        
 }
