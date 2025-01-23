@@ -43,10 +43,6 @@ return
         event = { "BufReadPost" },
     },
     {
-        'michaeljsmith/vim-indent-object',
-        event = { "BufReadPost" },
-    },
-    {
         'echasnovski/mini.ai',
         version = '*',
         event = "VeryLazy",
