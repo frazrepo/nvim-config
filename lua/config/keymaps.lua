@@ -205,9 +205,9 @@ map("n", "<F8>",":call QuickFixToggle()<cr>", { noremap = true, silent = true , 
 map("n", "<leader>q",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
-map("n", "<leader>x",":e ~/buffer.txt<CR>", default_opts)
-map("n", "<leader>d",":e ~/buffer.md<CR>", default_opts)
-map("n", "<leader>s",":e ~/buffer.sql<CR>", default_opts)
+map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", default_opts)
+map("n", "<leader>d",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>", default_opts)
+map("n", "<leader>s",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>", default_opts)
 
 
 -- Map for navigating search (/?) result with tab
