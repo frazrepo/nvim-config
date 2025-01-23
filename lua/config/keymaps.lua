@@ -1,6 +1,9 @@
 -----------------------------------------------------------
 -- Mappings configuration file
 -----------------------------------------------------------
+
+local utils = require('config.utils')
+
 -----------------------------------------------------------
 -- Vim aliases
 -----------------------------------------------------------
@@ -204,19 +207,19 @@ map("x", "<leader>fr",[[:s/]], default_opts)
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false})
 
 -- Visual mode pressing * or # searches for the current selection
-map("x", "*",[[:<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
-map("x", "#",[[:<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
+map("x", "*",[[:<C-u>lua require('config.utils').VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
+map("x", "#",[[:<C-u>lua require('config.utils').VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:call VisualSelection('replace','')<CR>]], default_opts)
+map("x", "<leader>r",[[:<C-u>lua require('config.utils').VisualSelection('replace','')<CR>]], default_opts)
 
 -----------------------------------------------------------
 -- Miscellaneous
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<F8>",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
-map("n", "<leader>q",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<F8>",":lua require('config.utils').QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<leader>q",":lua require('config.utils').QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
 map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", default_opts)
