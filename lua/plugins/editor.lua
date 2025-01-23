@@ -288,10 +288,10 @@ return {
          version = '*' ,
          opts = {},
          keys = { 
-            { "gs" , "Sort text region" },
-            { "gx" , "Exchange text region" },
-            { "gm" , "Multiply text region" },
-            { "gr" , "Replace with register" },
+            { "gs" , desc= "Sort text region" },
+            { "gx" , desc= "Exchange text region" },
+            { "gm" , desc= "Multiply text region" },
+            { "gr" , desc= "Replace with register" },
             -- { "g=" , "Evaluate text and replace" }, -- Already used to indent buffer
          }
     },
