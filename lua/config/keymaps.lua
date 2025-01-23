@@ -18,16 +18,29 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
--- map('', '<space><space>', ':nohl<CR>', {silent = true})
--- map('', '<esc>', ':nohl<CR>', {silent = true})
-vim.keymap.set('n','<esc>', function()
-    vim.cmd('noh')
-    if (vim.snippet) then
-        vim.snippet.stop()
-    end
-    return "<esc>"
-end, { noremap = false,
- silent = true})
+vim.keymap.set('n', '<esc>', function()
+  vim.cmd('noh')
+  if (vim.snippet) then
+    vim.snippet.stop()
+  end
+  return "<esc>"
+end, { noremap = false, silent = true, expr = true })
+
+vim.keymap.set('i', '<esc>', function()
+  vim.cmd('noh')
+  if (vim.snippet) then
+    vim.snippet.stop()
+  end
+  return "<esc>"
+end, { noremap = false, silent = true, expr = true })
+
+vim.keymap.set('v', '<esc>', function()
+  vim.cmd('noh')
+  if (vim.snippet) then
+    vim.snippet.stop()
+  end
+  return "<esc>"
+end, { noremap = false, silent = true, expr = true })
 
 
 -- Save file
