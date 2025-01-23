@@ -37,7 +37,7 @@ return {
         }
     },
     -----------------------------------------------------------
-    -- File explorer  neo-tree
+    -- File explorer
     -----------------------------------------------------------
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -70,6 +70,32 @@ return {
             map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
         end,
     },
+    -- mini.files
+    -- Usage : navigate using hjkl
+    -- Manipalute file/dir creation like a normal buffer
+    -- confirm operation with =
+    -- Close dialog with q
+    {
+        'echasnovski/mini.files',
+        version = '*',
+        opts = {},
+        keys = {
+            {
+                "-",
+                function()
+                    require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+                end,
+                desc = "Open mini.files (Directory of Current File)",
+            },
+            {
+                "<leader>fM",
+                function()
+                    require("mini.files").open(vim.uv.cwd(), true)
+                end,
+                desc = "Open mini.files (cwd)",
+            },
+        },
+    },    
     
     -----------------------------------------------------------
     -- Better Quickfix vim-bqf
