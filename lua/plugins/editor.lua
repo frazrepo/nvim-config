@@ -270,15 +270,16 @@ return {
          }
     },
 
-    -- Move lines with <A-j> <A-k>
-    {
-        'matze/vim-move',
+    -- mini-move
+    { 
+        'echasnovski/mini.move',
+        version = '*', 
+        opts = {},
         keys = {
             { "<A-j>" },
             { "<A-j>", mode = "v" },
             { "<A-k>" },
             { "<A-k>", mode = "v" },
         },
-        pin = true
-    },    
+    },
 }
