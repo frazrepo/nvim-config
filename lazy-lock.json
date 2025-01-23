@@ -56,7 +56,6 @@
   "tokyonight.nvim": { "branch": "main", "commit": "45d22cf0e1b93476d3b6d362d720412b3d34465c" },
   "treesj": { "branch": "main", "commit": "94f6df623f2d15630b1b617abff39962024cb501" },
   "trouble.nvim": { "branch": "main", "commit": "46cf952fc115f4c2b98d4e208ed1e2dce08c9bf6" },
-  "vim-exchange": { "branch": "master", "commit": "784d63083ad7d613aa96f00021cd0dfb126a781a" },
   "vim-floaterm": { "branch": "master", "commit": "4e28c8dd0271e10a5f55142fb6fe9b1599ee6160" },
   "vim-grepper": { "branch": "master", "commit": "485d349125d46f2788833ecb43df7a14c46706f6" },
   "vim-gtfo": { "branch": "master", "commit": "21a5e0292dabccba7363a6e508029d078a74504b" },
