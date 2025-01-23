@@ -159,14 +159,11 @@ return {
                 { "<leader>w", desc = "Save buffer" },
                 { "<leader>x", desc = "Edit txt buffer" },
                 { "g", group = "Buffer" },
-                { "g=", desc = "Format buffer" },
-                { "gL", desc = "Go align left" },
-                { "gQ", desc = "Format buffer" },
                 { "gV", desc = "Reselect last pasted text" },
                 { "gb", desc = "Block Comment" },
                 { "gc", desc = "Comment" },
-                { "gl", desc = "Go align right" },
-                { "gq", desc = "Format" },
+                { "g=", desc = "Indent buffer" },
+                { "gQ", desc = "Format buffer" },
                 { "gv", desc = "Reselect last visual selection" },
             })
         end,
@@ -236,16 +233,6 @@ return {
         end
     },
 
-    -- vim-exchange exchange lines
-    {
-        "tommcdo/vim-exchange",
-        keys = {
-            { "cx" },
-            { "X", mode = "x" },
-        },
-        pin = true
-    },
-
     -- transpose
     -- If not working on *unix
     -- Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
@@ -269,14 +256,17 @@ return {
         },
     },
 
-    -- minioperators  : Sort motion (gs) and Replace with register (gr)
+    -- minioperators  : Sort (gs), Replace with register (gr), Exchange text regions (gx/gxx), Multiply text (gm/gmm),
     { 
         'echasnovski/mini.operators',
          version = '*' ,
          opts = {},
          keys = { 
-            { "gs" , "Sort" },
+            { "gs" , "Sort text region" },
+            { "gx" , "Exchange text region" },
+            { "gm" , "Multiply text region" },
             { "gr" , "Replace with register" },
+            -- { "g=" , "Evaluate text and replace" }, -- Already used to indent buffer
          }
     },
 
