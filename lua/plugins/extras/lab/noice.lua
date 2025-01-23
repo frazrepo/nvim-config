@@ -1,6 +1,7 @@
 return {
 
-    -- The notification is annoying
+    -- Command interface replacement
+    -- but the notification is annoying
     {
         "folke/noice.nvim",
         event = "VeryLazy",
