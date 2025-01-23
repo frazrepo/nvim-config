@@ -48,8 +48,8 @@ return {
 			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Grepper" },
 			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all open Buffers" },
 			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Grepper in current buffer" },
-			{ "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator" },
-			{ "gx", "<Plug>(GrepperOperator)", desc = "Grepper Operator", mode = "x" },
+			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper Operator" },
+			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper Operator", mode = "x" },
 		}
 	},
 	-- grug-far Search and Replace
