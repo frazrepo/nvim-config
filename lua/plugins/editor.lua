@@ -8,7 +8,7 @@ return {
     {
         'nvim-lua/plenary.nvim',
         lazy  = true
-    },    
+    },
 
     -----------------------------------------------------------
     -- vim-unimpaired : various toggle, mappings
@@ -123,7 +123,7 @@ return {
     {
         "ethanholz/nvim-lastplace",
         opts = {}
-    },    
+    },
 
     -----------------------------------------------------------
     -- Plugin: whichkey

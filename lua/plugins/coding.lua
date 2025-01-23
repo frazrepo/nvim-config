@@ -18,13 +18,6 @@ return
             "typescriptreact",
         },
     },
-
-    -- Autopairs
-    -- {
-    --     'windwp/nvim-autopairs',
-    --     event = { "InsertEnter" },
-    --     opts = {}
-    -- },
     -- auto pairs
     {
         "echasnovski/mini.pairs",
@@ -54,13 +47,9 @@ return
         event = { "BufReadPost" },
     },
     {
-        -- See here configuration
-        -- https://github.com/LazyVim/LazyVim/blob/1e83b4f843f88678189df81b1c88a400c53abdbc/lua/lazyvim/plugins/coding.lua#L45
         'echasnovski/mini.ai',
         version = '*',
-        -- event = { "BufReadPost" },
         event = "VeryLazy",
-        -- opts = {}
         opts = function()
             local ai = require("mini.ai")
             return {
@@ -78,9 +67,42 @@ return
                         { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
                         "^().*()$",
                     },
-                    -- g = LazyVim.mini.ai_buffer, -- buffer
+                    g = function()
+                        local from = { line = 1, col = 1 }
+                        local to = {
+                            line = vim.fn.line('$'),
+                            col = math.max(vim.fn.getline('$'):len(), 1)
+                        }
+                        return { from = from, to = to, vis_mode = 'V' }
+                    end, -- buffer
                     u = ai.gen_spec.function_call(), -- u for "Usage"
                     U = ai.gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
+                    i = function()
+                        local cursor_line = vim.fn.line('.')  -- Current line number
+                        local cursor_indent = vim.fn.indent(cursor_line)  -- Current line's indentation level
+
+                        local buf_lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)  -- Get all buffer lines
+                        local total_lines = #buf_lines
+
+                        -- Find the start and end of the indent block
+                        local start_line, end_line = cursor_line, cursor_line
+
+                        -- Look upwards
+                        while start_line > 1 and vim.fn.indent(start_line - 1) >= cursor_indent do
+                            start_line = start_line - 1
+                        end
+
+                        -- Look downwards
+                        while end_line < total_lines and vim.fn.indent(end_line + 1) >= cursor_indent do
+                            end_line = end_line + 1
+                        end
+
+                        -- Return the range
+                        return {
+                            from = { line = start_line, col = 1 },
+                            to = { line = end_line, col = vim.fn.col({ end_line, '$' }) },
+                        }
+                    end, --indent
                 },
             }
         end,
