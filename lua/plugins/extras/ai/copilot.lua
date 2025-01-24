@@ -1,6 +1,7 @@
 return {
     -- copilot
     -- requirements node 18+
+    -- Mapping default A-L to accept ,
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
@@ -11,9 +12,10 @@ return {
                 enabled = true,
                 auto_trigger = true,
                 keymap = {
-                    accept = false, -- handled by nvim-cmp / blink.cmp
+                    accept = "<M-l>", 
                     next = "<M-)>",
                     prev = "<M-(>",
+                    dismiss = "<C-)>",
                 },
             },
             panel = { enabled = false },
