@@ -21,30 +21,9 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
-vim.keymap.set('n', '<esc>', function()
-  vim.cmd('noh')
-  if (vim.snippet) then
-    vim.snippet.stop()
-  end
-  return "<esc>"
-end, { noremap = false, silent = true, expr = true })
-
-vim.keymap.set('i', '<esc>', function()
-  vim.cmd('noh')
-  if (vim.snippet) then
-    vim.snippet.stop()
-  end
-  return "<esc>"
-end, { noremap = false, silent = true, expr = true })
-
-vim.keymap.set('v', '<esc>', function()
-  vim.cmd('noh')
-  if (vim.snippet) then
-    vim.snippet.stop()
-  end
-  return "<esc>"
-end, { noremap = false, silent = true, expr = true })
-
+vim.keymap.set('n', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('i', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('v', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
 map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
