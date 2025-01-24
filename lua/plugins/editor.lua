@@ -100,10 +100,17 @@ return {
     -- Better Quickfix vim-bqf
     -----------------------------------------------------------
     {
+        -- How to use
+        -- Fill quickfix with search or something
+        -- Press tab to mark some items
+        -- Press zn or zN to create a new quickfix from these marked items
+        --
+        -- Or fill quickfix
+        -- Press zf to filter
+        -- Enter to open the item
+        --
+        -- Installation : 
         -- 'zf' requires fzf
-        -- since changing fzf.vim for fzf-lua we don't need this anymore
-        -- use `:lua require('fzf-lua').quickfix()` instead
-        -- pcall(vim.cmd, [[PackerLoad fzf]])
         {
             "kevinhwang91/nvim-bqf",
             config = function()
