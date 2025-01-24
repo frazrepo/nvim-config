@@ -18,7 +18,7 @@ return {
                     dismiss = "<C-)>",
                 },
             },
-            panel = { enabled = false },
+            -- panel = { enabled = false },
             filetypes = {
                 markdown = true,
             },
