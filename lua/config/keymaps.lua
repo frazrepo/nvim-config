@@ -196,7 +196,6 @@ map("x", "<leader>r",[[:<C-u>lua require('config.utils').VisualSelection('replac
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<F8>",":lua require('config.utils').QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 map("n", "<leader>q",":lua require('config.utils').QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
