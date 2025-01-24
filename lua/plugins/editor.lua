@@ -95,8 +95,7 @@ return {
                 desc = "Open mini.files (cwd)",
             },
         },
-    },    
-    
+    },
     -----------------------------------------------------------
     -- Better Quickfix vim-bqf
     -----------------------------------------------------------
@@ -243,56 +242,5 @@ return {
             vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true})
 
         end
-    },
-    -----------------------------------------------------------
-    -- Buffer Helpers
-    -----------------------------------------------------------
-    -- surround
-    {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    },
-
-    -- transpose
-    -- If not working on *unix
-    -- Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
-    {
-        "vim-scripts/Transpose",
-        cmd = {
-            "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
-        },
-        pin = true
-    },
-
-
-    -- mini.Align - ga simple and gA interactive
-    {
-        'echasnovski/mini.align',
-        opts = {},
-        keys = {
-            { "ga", desc = "Align" },
-            { "gA", desc = "Align interactive" },
-            { "ga", mode = "x" },
-        },
-    },
-
-    -- minioperators  : Sort (gs), Replace with register (gr), Exchange text regions (gx/gxx), Multiply text (gm/gmm),
-    { 
-        'echasnovski/mini.operators',
-         version = '*' ,
-         opts = {},
-         keys = { 
-            { "gs" , desc= "Sort text region" },
-            { "gx" , desc= "Exchange text region" },
-            { "gm" , desc= "Multiply text region" },
-            { "gr" , desc= "Replace with register" },
-            -- { "g=" , "Evaluate text and replace" }, -- Already used to indent buffer
-         }
     },
 }
