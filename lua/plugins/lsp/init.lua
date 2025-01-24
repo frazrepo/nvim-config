@@ -285,6 +285,7 @@ return {
 	-- lsp signature : display function signature
 	{
 		"ray-x/lsp_signature.nvim",
+		event = { "BufReadPre", "BufNewFile" },
         opts = {}
 	},
 
