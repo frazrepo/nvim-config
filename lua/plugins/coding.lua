@@ -99,7 +99,7 @@ return
                             to = { line = end_line, col = vim.fn.col({ end_line, '$' }) },
                         }
                     end, --indent
-                    l = function()
+                    L = function()
                         local cursor_line = vim.fn.line('.') -- Get the current line number
                         local line_start = { line = cursor_line, col = 1 } -- Start of the line
                         local line_end = { line = cursor_line, col = vim.fn.col({ cursor_line, '$' }) - 1 } -- End of the line
