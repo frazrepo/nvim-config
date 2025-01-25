@@ -89,7 +89,7 @@ vim.cmd(
 -- SortByWidth : Sort lines by width
 vim.cmd(
     [[
-    command! -range=%  SortByWidth <line1>,<line2>call SprtLinesByWidth()
+    command! -range=%  SortByWidth <line1>,<line2>lua FzUtils.SortLinesByWidth(<line1>, <line2>)
     ]]
 )
 
@@ -133,11 +133,4 @@ vim.api.nvim_exec([[
             let @/ = l:pattern
             let @" = l:saved_reg
         endfunction
-
-        function! SortLinesByWidth() range
-            silent! execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
-            silent! execute a:firstline . "," . a:lastline . 'sort n'
-            silent! execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
-        endfunction
-
     ]], false)
