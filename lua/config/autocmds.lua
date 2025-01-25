@@ -100,9 +100,9 @@ vim.cmd(
     ]]
 )
 
--- AutoCommands
+-- autogroup EnhanceHelpView : Enhance the help view and mappings
 vim.api.nvim_exec([[
-    augroup AutoCommandsGroup
+    augroup EnhanceHelpView
         autocmd!
 
         " Help File speedups, <enter> to follow tag, delete (backspace) for back
@@ -112,9 +112,19 @@ vim.api.nvim_exec([[
         autocmd filetype help set nonumber
         autocmd filetype help wincmd _ " Maximize the help on open
 
-        " AutoSave Scratch buffer
-        autocmd InsertLeave,TextChanged buffer.* nested silent! update
-        autocmd FocusGained,BufEnter,CursorHold buffer.* silent! checktime
-
     augroup END
  ]], false)
+
+ -- autogroup AutoSaveScratch : Autosave scratch buffers
+local autosave_scratch = vim.api.nvim_create_augroup('AutoSaveScratch', { clear = true })
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'update',
+    nested = true,
+})
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'checktime',
+})
