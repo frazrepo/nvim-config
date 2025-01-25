@@ -72,37 +72,31 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
 -- Commands
 -----------------------------------------------------------
 
---  VisualBlock :  Workaround to start visual block mode on terminal if C-v or C-q is not working
-vim.cmd(
-    [[
-    command! VisualBlock execute "normal! \<C-v>"
-    ]]
-)
+-- VisualBlock: Workaround to start visual block mode on terminal if C-v or C-q is not working
+vim.api.nvim_create_user_command('VisualBlock', function()
+    vim.cmd('normal! \22') -- \22 is ctrl-v
+end, {})
 
---  W : sudo saves the file (useful for handling the permission-denied error on Linux)
-vim.cmd(
-    [[
-    command! W w !sudo tee % > /dev/null
-    ]]
-)
+-- W: sudo saves the file (useful for handling the permission-denied error on Linux)
+vim.api.nvim_create_user_command('W', function()
+    vim.fn.system('sudo tee ' .. vim.fn.expand('%') .. ' > /dev/null', vim.fn.getline(1, '$'))
+end, {})
 
--- SortByWidth : Sort lines by width
-vim.cmd(
-    [[
-    command! -range=%  SortByWidth <line1>,<line2>lua FzUtils.SortLinesByWidth(<line1>, <line2>)
-    ]]
-)
+-- SortByWidth: Sort lines by width
+vim.api.nvim_create_user_command('SortByWidth', function(opts)
+    local line1 = opts.line1
+    local line2 = opts.line2
+    FzUtils.SortLinesByWidth(line1, line2)
+end, { range = '%' })
 
--- WipeReg : Clean all registers
-vim.cmd(
-    [[
-    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-    ]]
-)
+-- WipeReg: Clean all registers
+vim.api.nvim_create_user_command('WipeReg', function()
+    for i = 34, 122 do
+        vim.fn.setreg(string.char(i), {})
+    end
+end, {})
 
--- RemoveTrailingSpaces : Remove all trailing spaces
-vim.cmd(
-    [[
-    command! RemoveTrailingSpaces lua FzUtils.CleanExtraSpaces()
-    ]]
-)
+-- RemoveTrailingSpaces: Remove all trailing spaces
+vim.api.nvim_create_user_command('RemoveTrailingSpaces', function()
+    FzUtils.CleanExtraSpaces()
+end, {})
