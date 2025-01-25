@@ -19,22 +19,22 @@ function M.QuickFixToggle()
 end
 
 -- Visual Selection helper function
+-- Not working correctly, using the vimscript version for now
 function M.VisualSelection(direction, extra_filter)
     local saved_reg = vim.fn.getreg('"')
+    local saved_regtype = vim.fn.getregtype('"')
     vim.cmd('normal! vgvy')
-    
+
     local pattern = vim.fn.escape(vim.fn.getreg('"'), '\\/.*$^~[]')
     pattern = string.gsub(pattern, "\n$", "")
-    
-    if direction == 'b' then
-        vim.cmd('normal! ?' .. pattern .. '^M')
-    elseif direction == 'replace' then
+
+    if direction == 'replace' then
         vim.cmd('%s/' .. pattern .. '/')
     elseif direction == '' then
         vim.cmd('/' .. pattern)
     end
-    
-    vim.fn.setreg('"', saved_reg)
+
+    vim.fn.setreg('"', saved_reg, saved_regtype)
 end
 
 -- Clear search highlights and stop snippet

@@ -185,11 +185,11 @@ map("x", "<leader>fr",[[:s/]], default_opts)
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false})
 
 -- Visual mode pressing * or # searches for the current selection
-map("x", "*",[[:<C-u>lua require('config.utils').VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
-map("x", "#",[[:<C-u>lua require('config.utils').VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
+map("x", "*",[[:<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
+map("x", "#",[[:<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:<C-u>lua require('config.utils').VisualSelection('replace','')<CR>]], default_opts)
+map("x", "<leader>r",[[:<C-u>call VisualSelection('replace','')<CR>]], default_opts)
 
 -----------------------------------------------------------
 -- Miscellaneous
