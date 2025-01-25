@@ -86,7 +86,7 @@ end, {})
 vim.api.nvim_create_user_command('SortByWidth', function(opts)
     local line1 = opts.line1
     local line2 = opts.line2
-    FzUtils.SortLinesByWidth(line1, line2)
+    FrazUtil.SortLinesByWidth(line1, line2)
 end, { range = '%' })
 
 -- WipeReg: Clean all registers
@@ -98,5 +98,5 @@ end, {})
 
 -- RemoveTrailingSpaces: Remove all trailing spaces
 vim.api.nvim_create_user_command('RemoveTrailingSpaces', function()
-    FzUtils.CleanExtraSpaces()
+    FrazUtil.CleanExtraSpaces()
 end, {})

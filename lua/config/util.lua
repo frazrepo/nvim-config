@@ -1,6 +1,6 @@
 -----------------------------------------------------------
 -- Global Utilities Helpers
--- FzUtils (_G.FzUtils = require('config.utils'))
+-- FzUtils (_G.FrazUtil = require('config.util'))
 -----------------------------------------------------------
 local M = {}
 

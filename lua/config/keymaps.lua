@@ -18,9 +18,9 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
-vim.keymap.set('n', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('i', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('v', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('n', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('i', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('v', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
 map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
@@ -91,7 +91,7 @@ map('n', 'Q', '@q', default_opts)
 map('x', 'Q', ':normal @q<CR>', default_opts)
 
 -- Execute a macro over a visual range
-map('x', '@',[[:<C-u>lua FzUtils.ExecuteMacroOverVisualRange()<CR>]], default_opts)
+map('x', '@',[[:<C-u>lua FrazUtil.ExecuteMacroOverVisualRange()<CR>]], default_opts)
 
 -- " Indent/Format All documents using = or gq
 map('n', 'g=','mmgg=G`m', default_opts)
@@ -183,18 +183,18 @@ map("x", "<leader>fr",[[:s/]], default_opts)
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false})
 
 -- Visual mode pressing * or # searches for the current selection
-map("x", "*",[[:<C-u>lua FzUtils.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
-map("x", "#",[[:<C-u>lua FzUtils.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
+map("x", "*",[[:<C-u>lua FrazUtil.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
+map("x", "#",[[:<C-u>lua FrazUtil.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:<C-u>lua FzUtils.VisualSelection('replace','')<CR>]], default_opts)
+map("x", "<leader>r",[[:<C-u>lua FrazUtil.VisualSelection('replace','')<CR>]], default_opts)
 
 -----------------------------------------------------------
 -- Miscellaneous
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<leader>q",":lua FzUtils.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<leader>q",":lua FrazUtil.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
 map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", default_opts)
