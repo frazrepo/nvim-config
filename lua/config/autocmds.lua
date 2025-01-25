@@ -106,26 +106,3 @@ vim.cmd(
     command! RemoveTrailingSpaces lua FzUtils.CleanExtraSpaces()
     ]]
 )
-
------------------------------------------------------------
--- Helper functions
--- TODO : convert to lua
------------------------------------------------------------
-
-vim.api.nvim_exec([[
-        function! VisualSelection(direction, extra_filter) range
-            let l:saved_reg = @"
-            execute "normal! vgvy"
-
-            let l:pattern = escape(@", "\\/.*'$^~[]")
-            let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-            if a:direction == 'replace'
-                "call CmdLine("%s" . '/'. l:pattern . '/')
-                call feedkeys(":" . "%s" . '/'. l:pattern . '/')
-            endif
-
-            let @/ = l:pattern
-            let @" = l:saved_reg
-        endfunction
-    ]], false)
