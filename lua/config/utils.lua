@@ -40,11 +40,6 @@ function M.CleanExtraSpaces()
     vim.fn.setreg('/', old_query)
 end
 
--- Command Line Functions
-function M.CmdLine(str)
-    vim.fn.feedkeys(":" .. str)
-end
-
 -- Put visual selection in search register
 function M.VisualSelection(direction, extra_filter)
     local saved_reg = vim.fn.getreg('"')
@@ -53,10 +48,8 @@ function M.VisualSelection(direction, extra_filter)
     local pattern = vim.fn.escape(vim.fn.getreg('"'), "\\/.*'$^~[]")
     pattern = vim.fn.substitute(pattern, "\n$", "", "")
 
-    if direction == 'gv' then
-        CmdLine("Ack '" .. pattern .. "' " )
-    elseif direction == 'replace' then
-        CmdLine("%s" .. '/'.. pattern .. '/')
+    if direction == 'replace' then
+        vim.fn.feedkeys(":" .. "%s" .. '/'.. pattern .. '/')
     end
 
     vim.fn.setreg('/', pattern)

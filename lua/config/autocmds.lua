@@ -113,10 +113,6 @@ vim.cmd(
 -----------------------------------------------------------
 
 vim.api.nvim_exec([[
-        function! CmdLine(str)
-            call feedkeys(":" . a:str)
-        endfunction
-
         function! VisualSelection(direction, extra_filter) range
             let l:saved_reg = @"
             execute "normal! vgvy"
@@ -124,10 +120,9 @@ vim.api.nvim_exec([[
             let l:pattern = escape(@", "\\/.*'$^~[]")
             let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-            if a:direction == 'gv'
-                call CmdLine("Ack '" . l:pattern . "' " )
-            elseif a:direction == 'replace'
-                call CmdLine("%s" . '/'. l:pattern . '/')
+            if a:direction == 'replace'
+                "call CmdLine("%s" . '/'. l:pattern . '/')
+                call feedkeys(":" . "%s" . '/'. l:pattern . '/')
             endif
 
             let @/ = l:pattern
