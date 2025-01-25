@@ -1,4 +1,6 @@
-
+-----------------------------------------------------------
+-- AutoCommands
+-----------------------------------------------------------
 -- autogroup TextYankPost : highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
@@ -6,7 +8,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank { higroup = "IncSearch", timeout = 150 }
     end,
 })
-
 
 -- autogroup MkdirRun
 -- Adapted from mkdir nvim plugin : https://github.com/jghauser/mkdir.nvim
@@ -32,38 +33,44 @@ vim.api.nvim_create_autocmd({ 'BufWritePre'}, {
   command = 'lua run_mkdir()',
 })
 
--- Helper Functions
-vim.api.nvim_exec([[
-        function! CmdLine(str)
-            call feedkeys(":" . a:str)
-        endfunction
 
-        function! VisualSelection(direction, extra_filter) range
-            let l:saved_reg = @"
-            execute "normal! vgvy"
+-- autogroup EnhanceHelpView : Enhance the help view and mappings
+local enhance_help = vim.api.nvim_create_augroup('EnhanceHelpView', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'help',
+    group = enhance_help,
+    callback = function()
+        -- Help file mappings
+        vim.keymap.set('n', '<cr>', '<c-]>', { buffer = true })
+        vim.keymap.set('n', '<bs>', '<c-T>', { buffer = true })
+        vim.keymap.set('n', 'q', ':q<CR>', { buffer = true })
+        
+        -- Set options
+        vim.opt_local.number = false
+        
+        -- Maximize help window
+        vim.cmd('wincmd _')
+    end,
+})
+ 
+ -- autogroup AutoSaveScratch : Autosave scratch buffers
+local autosave_scratch = vim.api.nvim_create_augroup('AutoSaveScratch', { clear = true })
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'update',
+    nested = true,
+})
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'checktime',
+})
 
-            let l:pattern = escape(@", "\\/.*'$^~[]")
-            let l:pattern = substitute(l:pattern, "\n$", "", "")
 
-            if a:direction == 'gv'
-                call CmdLine("Ack '" . l:pattern . "' " )
-            elseif a:direction == 'replace'
-                call CmdLine("%s" . '/'. l:pattern . '/')
-            endif
-
-            let @/ = l:pattern
-            let @" = l:saved_reg
-        endfunction
-
-        function! SortLinesByWidth() range
-            silent! execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
-            silent! execute a:firstline . "," . a:lastline . 'sort n'
-            silent! execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
-        endfunction
-
-    ]], false)
-
+-----------------------------------------------------------
 -- Commands
+-----------------------------------------------------------
 
 --  VisualBlock :  Workaround to start visual block mode on terminal if C-v or C-q is not working
 vim.cmd(
@@ -100,31 +107,37 @@ vim.cmd(
     ]]
 )
 
--- autogroup EnhanceHelpView : Enhance the help view and mappings
+-----------------------------------------------------------
+-- Helper functions
+-- TODO : convert to lua
+-----------------------------------------------------------
+
 vim.api.nvim_exec([[
-    augroup EnhanceHelpView
-        autocmd!
+        function! CmdLine(str)
+            call feedkeys(":" . a:str)
+        endfunction
 
-        " Help File speedups, <enter> to follow tag, delete (backspace) for back
-        autocmd filetype help nnoremap <buffer><cr> <c-]>
-        autocmd filetype help nnoremap <buffer><bs> <c-T>
-        autocmd filetype help nnoremap <buffer>q :q<CR>
-        autocmd filetype help set nonumber
-        autocmd filetype help wincmd _ " Maximize the help on open
+        function! VisualSelection(direction, extra_filter) range
+            let l:saved_reg = @"
+            execute "normal! vgvy"
 
-    augroup END
- ]], false)
+            let l:pattern = escape(@", "\\/.*'$^~[]")
+            let l:pattern = substitute(l:pattern, "\n$", "", "")
 
- -- autogroup AutoSaveScratch : Autosave scratch buffers
-local autosave_scratch = vim.api.nvim_create_augroup('AutoSaveScratch', { clear = true })
-vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
-    pattern = 'buffer.*',
-    group = autosave_scratch,
-    command = 'update',
-    nested = true,
-})
-vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
-    pattern = 'buffer.*',
-    group = autosave_scratch,
-    command = 'checktime',
-})
+            if a:direction == 'gv'
+                call CmdLine("Ack '" . l:pattern . "' " )
+            elseif a:direction == 'replace'
+                call CmdLine("%s" . '/'. l:pattern . '/')
+            endif
+
+            let @/ = l:pattern
+            let @" = l:saved_reg
+        endfunction
+
+        function! SortLinesByWidth() range
+            silent! execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
+            silent! execute a:firstline . "," . a:lastline . 'sort n'
+            silent! execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
+        endfunction
+
+    ]], false)
