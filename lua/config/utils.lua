@@ -1,15 +1,20 @@
-
 local M = {}
 
 -- QuickFix window toggle function
-local quick_fix_open = false
 function M.QuickFixToggle()
-    if quick_fix_open then
+    local quickfix_exists = function()
+        for _, win in pairs(vim.fn.getwininfo()) do
+            if win.quickfix == 1 then
+                return true
+            end
+        end
+        return false
+    end
+
+    if quickfix_exists() then
         vim.cmd("cclose")
-        quick_fix_open = false
     else
         vim.cmd("copen")
-        quick_fix_open = true
     end
 end
 

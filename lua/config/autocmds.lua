@@ -65,14 +65,6 @@ vim.api.nvim_exec([[
             let @" = l:saved_reg
         endfunction
 
-        function! QuickFixToggle()
-            if empty(filter(getwininfo(), 'v:val.quickfix'))
-                copen
-            else
-                cclose
-            endif
-        endfunction
-
         function! ExecuteMacroOverVisualRange()
           echo "@".getcmdline()
           execute ":'<,'>normal @".nr2char(getchar())
