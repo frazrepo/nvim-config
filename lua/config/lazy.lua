@@ -21,11 +21,6 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
------------------------------------------------------------
--- LSP Provider LSP or coc
------------------------------------------------------------
--- define lsp provider : native | coc
-vim.g.lspprovider = 'native'
 
 -----------------------------------------------------------
 -- Options, keymaps and Autocmds
