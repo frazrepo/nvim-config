@@ -32,18 +32,8 @@ vim.api.nvim_create_autocmd({ 'BufWritePre'}, {
   command = 'lua run_mkdir()',
 })
 
-
-
 -- Helper Functions
 vim.api.nvim_exec([[
-        function! CleanExtraSpaces()
-            let save_cursor = getpos(".")
-            let old_query = getreg('/')
-            silent! %s/\s\+$//e
-            call setpos('.', save_cursor)
-            call setreg('/', old_query)
-        endfun
-
         function! CmdLine(str)
             call feedkeys(":" . a:str)
         endfunction
@@ -63,11 +53,6 @@ vim.api.nvim_exec([[
 
             let @/ = l:pattern
             let @" = l:saved_reg
-        endfunction
-
-        function! ExecuteMacroOverVisualRange()
-          echo "@".getcmdline()
-          execute ":'<,'>normal @".nr2char(getchar())
         endfunction
 
         function! SortLinesByWidth() range
@@ -97,7 +82,7 @@ vim.cmd(
 -- SortByWidth : Sort lines by width
 vim.cmd(
     [[
-    command! -range=%  SortByWidth <line1>,<line2>call SortLinesByWidth()
+    command! -range=%  SortByWidth <line1>,<line2>call SprtLinesByWidth()
     ]]
 )
 
@@ -108,10 +93,10 @@ vim.cmd(
     ]]
 )
 
--- RemoveTrailingSpaces : Remove all training spaces
+-- RemoveTrailingSpaces : Remove all trailing spaces
 vim.cmd(
     [[
-    command! RemoveTrailingSpaces call CleanExtraSpaces()
+    command! RemoveTrailingSpaces lua FzUtils.CleanExtraSpaces()
     ]]
 )
 
@@ -119,9 +104,6 @@ vim.cmd(
 vim.api.nvim_exec([[
     augroup AutoCommandsGroup
         autocmd!
-
-        " Clean extra spaces on txt files
-        autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 
         " Help File speedups, <enter> to follow tag, delete (backspace) for back
         autocmd filetype help nnoremap <buffer><cr> <c-]>

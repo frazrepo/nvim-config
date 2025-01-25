@@ -2,8 +2,6 @@
 -- Mappings configuration file
 -----------------------------------------------------------
 
-local utils = require('config.utils')
-
 -----------------------------------------------------------
 -- Vim aliases
 -----------------------------------------------------------
@@ -20,9 +18,9 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
-vim.keymap.set('n', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('i', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('v', '<esc>', utils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('n', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('i', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('v', '<esc>', FzUtils.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
 map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
@@ -93,7 +91,7 @@ map('n', 'Q', '@q', default_opts)
 map('x', 'Q', ':normal @q<CR>', default_opts)
 
 -- Execute a macro over a visual range
-map('x', '@',[[:<C-u>call ExecuteMacroOverVisualRange()<CR>]], default_opts)
+map('x', '@',[[:<C-u>lua FzUtils.ExecuteMacroOverVisualRange()<CR>]], default_opts)
 
 -- " Indent/Format All documents using = or gq
 map('n', 'g=','mmgg=G`m', default_opts)
@@ -196,7 +194,7 @@ map("x", "<leader>r",[[:<C-u>call VisualSelection('replace','')<CR>]], default_o
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<leader>q",":lua require('config.utils').QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<leader>q",":lua FzUtils.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
 map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", default_opts)
