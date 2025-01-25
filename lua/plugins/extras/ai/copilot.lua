@@ -1,7 +1,7 @@
 return {
     -- copilot
     -- requirements node 18+
-    -- Mapping default A-L to accept ,
+    -- Mapping default Alt-L to accept ,
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
