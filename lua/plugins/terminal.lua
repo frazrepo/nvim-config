@@ -2,20 +2,6 @@
 -- Terminal plugin
 -----------------------------------------------------------
 return {
-    -- lazygit from snack
-    {
-        "folke/snacks.nvim",
-        opts = {
-            lazygit = {
-                -- your lazygit configuration comes here
-                -- or leave it empty to use the default settings
-                -- refer to the configuration section below
-            },
-        },
-        keys = {
-            { "<leader>gg", "<cmd>lua require'snacks'.lazygit()<CR>", desc = "LazyGit" },
-        },
-    },
     -- floaterm
     {
         "voldikss/vim-floaterm",
