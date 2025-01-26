@@ -21,6 +21,7 @@ return {
         pin = true,
     },
     {
+        -- Useful for yo toggle and ) or ( commands
         'tpope/vim-unimpaired',
         lazy = false,
         pin = true,
