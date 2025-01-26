@@ -8,7 +8,7 @@ return {
     {
         'nvim-lua/plenary.nvim',
         lazy  = true
-    },    
+    },
 
     -----------------------------------------------------------
     -- vim-unimpaired : various toggle, mappings
@@ -24,21 +24,20 @@ return {
     },
 
     -----------------------------------------------------------
-    -- Truezen
+    -- Folke ZenMode
     -----------------------------------------------------------
     {
-        "Pocco81/TrueZen.nvim",
-        keys = {
-            {"<F12>", desc = "Switch to zen mode"}
+        "folke/zen-mode.nvim",
+        opts = {
+            -- your configuration comes here
+            -- or leave it empty to use the default settings
         },
-        config = function()
-            local default_opts = { noremap = true, silent = true }
-            vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], default_opts)
-        end
+        keys = {
+            {"<leader>z", "<Cmd>ZenMode<CR>", desc= "Toggle zen mode"}
+        }
     },
-
     -----------------------------------------------------------
-    -- File explorer  neo-tree
+    -- File explorer
     -----------------------------------------------------------
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -71,15 +70,47 @@ return {
             map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
         end,
     },
-    
+    -- mini.files
+    -- Usage : navigate using hjkl
+    -- Manipalute file/dir creation like a normal buffer
+    -- confirm operation with =
+    -- Close dialog with q
+    {
+        'echasnovski/mini.files',
+        version = '*',
+        opts = {},
+        keys = {
+            {
+                "-",
+                function()
+                    require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+                end,
+                desc = "Open mini.files (Directory of Current File)",
+            },
+            {
+                "<leader>fM",
+                function()
+                    require("mini.files").open(vim.uv.cwd(), true)
+                end,
+                desc = "Open mini.files (cwd)",
+            },
+        },
+    },
     -----------------------------------------------------------
     -- Better Quickfix vim-bqf
     -----------------------------------------------------------
     {
+        -- How to use
+        -- Fill quickfix with search or something
+        -- Press tab to mark some items
+        -- Press zn or zN to create a new quickfix from these marked items
+        --
+        -- Or fill quickfix
+        -- Press zf to filter
+        -- Enter to open the item
+        --
+        -- Installation : 
         -- 'zf' requires fzf
-        -- since changing fzf.vim for fzf-lua we don't need this anymore
-        -- use `:lua require('fzf-lua').quickfix()` instead
-        -- pcall(vim.cmd, [[PackerLoad fzf]])
         {
             "kevinhwang91/nvim-bqf",
             config = function()
@@ -123,8 +154,9 @@ return {
     -----------------------------------------------------------
     {
         "ethanholz/nvim-lastplace",
+        event = "BufReadPre",
         opts = {}
-    },    
+    },
 
     -----------------------------------------------------------
     -- Plugin: whichkey
@@ -159,16 +191,11 @@ return {
                 { "<leader>w", desc = "Save buffer" },
                 { "<leader>x", desc = "Edit txt buffer" },
                 { "g", group = "Buffer" },
-                { "g=", desc = "Format buffer" },
-                { "gL", desc = "Go align left" },
-                { "gQ", desc = "Format buffer" },
                 { "gV", desc = "Reselect last pasted text" },
-                { "ga", desc = "Easy Align Operator" },
                 { "gb", desc = "Block Comment" },
                 { "gc", desc = "Comment" },
-                { "gl", desc = "Go align right" },
-                { "gq", desc = "Format" },
-                { "gs", desc = "Sort operator" },
+                { "g=", desc = "Indent buffer" },
+                { "gQ", desc = "Format buffer" },
                 { "gv", desc = "Reselect last visual selection" },
             })
         end,
@@ -223,107 +250,4 @@ return {
 
         end
     },
-    -----------------------------------------------------------
-    -- Buffer Helpers
-    -----------------------------------------------------------
-
-    --  repeat surround action
-    {
-        'tpope/vim-repeat',
-        pin = true
-    },
-
-    -- surround
-    {
-        "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
-        event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end
-    },
-
-    -- vim-exchange exchange lines
-    {
-        "tommcdo/vim-exchange",
-        keys = {
-            { "cx" },
-            { "X", mode = "x" },
-        },
-        pin = true
-    },
-
-    -- transpose
-    -- If not working on *unix
-    -- Convert plugin/transpose.vim and autoload/transpose.vim with dos2unix
-    {
-        "vim-scripts/Transpose",
-        cmd = {
-            "Transpose", "TransposeWords", "TransposeCSV", "TransposeTab", "TransposeInteractive"
-        },
-        pin = true
-    },
-
-    -- Align based on character (mapping gl)
-    {
-        'tommcdo/vim-lion',
-        keys = {
-            { "gl" },
-            { "gl", mode = "x" },
-        },
-        pin = true
-    },
-
-    -- Aligning (mapping ga , replace gl when config is stable)
-    {
-        "junegunn/vim-easy-align",
-        config = function()
-            -- require "rmagatti.easyalign"
-            -- nvim-tree mappings
-            local map = vim.api.nvim_set_keymap
-            local default_opts = { noremap = false, silent = true  }
-            map('x', 'ga', '<Plug>(EasyAlign)', default_opts)
-            map('n', 'ga', '<Plug>(EasyAlign)', default_opts)
-        end,
-        keys = {
-            { "ga" },
-            { "ga", mode = "x" },
-        },
-        cmd = { "EasyAlign" },
-    },
-
-    -- vim-sort-motion (mapping gs)
-    {
-        "christoomey/vim-sort-motion",
-        keys = {
-            { "gss" },
-            { "gs" },
-            { "gs", mode = "x" },
-        },
-        pin = true
-    },
-
-    -- Replace with Register
-    {
-        'vim-scripts/ReplaceWithRegister',
-        keys = {
-            { "gr" },
-            { "gr", mode = "x" },
-        },
-        pin = true
-    },
-
-    -- Move lines with <A-j> <A-k>
-    {
-        'matze/vim-move',
-        keys = {
-            { "<A-j>" },
-            { "<A-j>", mode = "v" },
-            { "<A-k>" },
-            { "<A-k>", mode = "v" },
-        },
-        pin = true
-    },    
 }

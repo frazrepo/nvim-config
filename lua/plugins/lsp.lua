@@ -1,12 +1,4 @@
--- Discard if provider is coc
-if vim.g.lspprovider == "coc" then
-	return {}
-end
-
 return {
-	-----------------------------------------------------------
-	-- Completion , LSP
-	-----------------------------------------------------------
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
@@ -141,7 +133,7 @@ return {
 								callSnippet = "Replace",
 							},
 							-- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-							-- diagnostics = { disable = { "missing-fields" } },
+							diagnostics = { disable = { "missing-fields" } },
 						},
 					},
 				},
@@ -187,41 +179,6 @@ return {
 			})
 		end,
 	},
-
-	-- blink cmp - ultrafast completor
-	{ -- Optional
-		"saghen/blink.cmp",
-		event = { "InsertEnter" },
-		-- optional: provides snippets for the snippet source
-		dependencies = "rafamadriz/friendly-snippets",
-		version = "*",
-		opts = {
-			-- 'default' for mappings similar to built-in completion
-			-- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-			-- See the full "keymap" documentation for information on defining your own keymap.
-			-- keymap = { preset = 'default' },
-			keymap = { preset = "super-tab" },
-
-			appearance = {
-				use_nvim_cmp_as_default = true,
-				nerd_font_variant = "mono",
-			},
-			sources = {
-				default = { "lsp", "path", "snippets", "buffer" },
-				-- Disable cmdline completion
-				cmdline = {},
-			},
-			completion = {
-				documentation = {
-					auto_show = true,
-					auto_show_delay_ms = 200,
-				  },
-			}
-		},
-		opts_extend = { "sources.default" },
-	},
-
 	-- none-ls
 	{
 		"jay-babu/mason-null-ls.nvim",
@@ -285,12 +242,14 @@ return {
 	-- lsp signature : display function signature
 	{
 		"ray-x/lsp_signature.nvim",
+		event = { "BufReadPre", "BufNewFile" },
         opts = {}
 	},
 
 	-- Trouble : Display diagnostics List in quickfix windows
 	{
 		"folke/trouble.nvim",
+        cmd = {"Trouble"},
 		dependencies = {
 			{ "kyazdani42/nvim-web-devicons" },
 		},

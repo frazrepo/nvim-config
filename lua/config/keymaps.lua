@@ -1,13 +1,13 @@
 -----------------------------------------------------------
 -- Mappings configuration file
 -----------------------------------------------------------
+
 -----------------------------------------------------------
 -- Vim aliases
 -----------------------------------------------------------
 
 local map = vim.api.nvim_set_keymap
 local default_opts = { noremap = true, silent = true  }
-local cmd = vim.cmd
 
 -- Leader space
 vim.g.mapleader = " "
@@ -18,17 +18,15 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
-map('', '<space><space>', ':nohl<CR>', {silent = true})
+vim.keymap.set('n', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('i', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set('v', '<esc>', FrazUtil.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
 map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 map('x', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 map('i', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 map('s', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
-
-
--- Map jk to ESC in insert mode
-map('i', 'jk', '<Esc>', {noremap = true})
 
 -- Repeat . command in visual mode
 map('v', '.', ':normal.<CR>', {noremap = true})
@@ -42,10 +40,10 @@ map('v', '<', '<gv', default_opts)
 map('n', 'gV','`[v`]', default_opts)
 
 -- Smart way to move between windows horizontally - See wezterm plugin
--- map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
--- map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
--- map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
--- map('n', '<C-k>','<C-W>k', {noremap =false, silent = true})
+map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
+map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
+map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
+map('n', '<C-k>','<C-W>k', {noremap =false, silent = true})
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { noremap =false, silent = true })
@@ -93,15 +91,11 @@ map('n', 'Q', '@q', default_opts)
 map('x', 'Q', ':normal @q<CR>', default_opts)
 
 -- Execute a macro over a visual range
-map('x', '@',[[:<C-u>call ExecuteMacroOverVisualRange()<CR>]], default_opts)
+map('x', '@',[[:<C-u>lua FrazUtil.ExecuteMacroOverVisualRange()<CR>]], default_opts)
 
 -- " Indent/Format All documents using = or gq
 map('n', 'g=','mmgg=G`m', default_opts)
 map('n', 'gQ','mmgggqG`m', default_opts)
-
--- Insert new line in normal mode quickly and move cursor (but not in quickfix window or in command line history)
-map('n', '<CR>', [[&buftype ==# 'nofile' ? "\<CR>" : &buftype ==# 'quickfix' ? "\<CR>" : ":set paste<CR>o<Esc>:set nopaste<CR>"]]  , {noremap =false, silent = true, expr = true})
-map('n', '<S-CR>', ':set paste<CR>O<Esc>:set nopaste<CR>', default_opts)
 
 -- Navigating quickfix (Experimental)
 map('n', '<A-Down>','<Cmd>cnext<Cr>', default_opts)
@@ -179,75 +173,36 @@ end
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
 ------------------------------------------------------------
--- Text-Objects
-------------------------------------------------------------
-
--- All Object Ex : yA
--------------------
-map('o', 'A',':<c-u>normal! ggVG<cr>', default_opts)
-
--- Line text-object
--------------------
--- il al
-map('x', 'il','g_o0', default_opts)
-map('o', 'il',':<C-u>normal vil<CR>', default_opts)
-map('x', 'al','$o0', default_opts)
-map('o', 'al',':<C-u>normal val<CR>', default_opts)
-
-
--- Buffer(entire) text-object
------------------------------
--- ie ae
-map('x', 'ie','GoggV', default_opts)
-map('o', 'ie',':<C-u>normal mzvie<CR>`z', default_opts)
-map('x', 'ae','GoggV', default_opts)
-map('o', 'ae',':<C-u>normal mzvae<CR>`z', default_opts)
-
--- Right Angle and Angle Bracket text-object
----------------------------------------------
--- ir ar
-map('x', 'ir','i[', default_opts)
-map('o', 'ir',':<C-u>normal vi[<CR>', default_opts)
-map('x', 'ar','a[', default_opts)
-map('o', 'ar',':<C-u>normal va[<CR>', default_opts)
-
--- " ia aa
-map('x', 'ia','i>', default_opts)
-map('o', 'ia',':<C-u>normal vi><CR>', default_opts)
-map('x', 'aa','a>', default_opts)
-map('o', 'aa',':<C-u>normal va><CR>', default_opts)
-
-------------------------------------------------------------
 -- Search and Replace normal and visual mode
 ------------------------------------------------------------
 -- search replace
 map("n", "<leader>fr",":%s/", default_opts)
 map("x", "<leader>fr",[[:s/]], default_opts)
 
+-- replace the current text in search register
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false})
 
 -- Visual mode pressing * or # searches for the current selection
-map("x", "*",[[:<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
-map("x", "#",[[:<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
+map("x", "*",[[:<C-u>lua FrazUtil.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
+map("x", "#",[[:<C-u>lua FrazUtil.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:call VisualSelection('replace','')<CR>]], default_opts)
+map("x", "<leader>r",[[:<C-u>lua FrazUtil.VisualSelection('replace','')<CR>]], default_opts)
 
 -----------------------------------------------------------
 -- Miscellaneous
 -----------------------------------------------------------
 
 -- Toogle quickfix windows
-map("n", "<F8>",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
-map("n", "<leader>q",":call QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
+map("n", "<leader>q",":lua FrazUtil.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
-map("n", "<leader>x",":e ~/buffer.txt<CR>", default_opts)
-map("n", "<leader>d",":e ~/buffer.md<CR>", default_opts)
-map("n", "<leader>s",":e ~/buffer.sql<CR>", default_opts)
+map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", default_opts)
+map("n", "<leader>d",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>", default_opts)
+map("n", "<leader>s",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>", default_opts)
 
 
--- Map for navigating search (/?) result
+-- Map for navigating search (/?) result with tab
 vim.cmd([[
         set wildcharm=<C-z>
         cnoremap <expr> <Tab> getcmdtype() =~ '[\/?]' ? "<C-g>" : "<C-z>"

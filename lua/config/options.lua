@@ -25,7 +25,8 @@ opt.formatoptions           = 'qnj1'                        -- q  - comment form
 opt.gdefault                = true
 opt.hidden                  = true                          -- Set hidden to allow switching to other buffer if it is modifie
 opt.ignorecase              = true                          -- Ignore case when searching
-opt.lazyredraw              = true                          -- Don't redraw while executing macros (good performance config)
+-- Disable for noice warning
+-- opt.lazyredraw              = true                          -- Don't redraw while executing macros (good performance config)
 opt.linebreak               = true                          -- Linebreak on 500 characters
 opt.linespace               = 4                             -- Linespace
 opt.magic                   = true                          -- For regular expressions turn magic on
@@ -77,13 +78,22 @@ opt.inccommand              = "nosplit"                     -- search/replace pr
 -- set default shell to powershell on Windows
 if vim.fn.has('win32') == 1 then
     if vim.fn.executable('pwsh') == 1 then
-        vim.opt.shell = 'pwsh'
+        opt.shell = 'pwsh'
     else
-        vim.opt.shell = 'powershell'
+        opt.shell = 'powershell'
     end
-    vim.opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    vim.opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-    vim.opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    vim.opt.shellquote = ''
-    vim.opt.shellxquote = ''
+    opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
+    opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
+    opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
+    opt.shellquote = ''
+    opt.shellxquote = ''
 end
+
+-- GUI Options and neovide settings
+opt.guifont = "FiraCode Nerd Font Mono:h12"
+vim.g.neovide_cursor_animation_length = 0.02
+vim.g.neovide_cursor_trail_length = 0
+vim.g.neovide_remember_window_size = true
+
+-- not working yet
+-- set lines=600 columns=800

@@ -1,4 +1,6 @@
-
+-----------------------------------------------------------
+-- AutoCommands
+-----------------------------------------------------------
 -- autogroup TextYankPost : highlight yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
@@ -6,7 +8,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
         vim.highlight.on_yank { higroup = "IncSearch", timeout = 150 }
     end,
 })
-
 
 -- autogroup MkdirRun
 -- Adapted from mkdir nvim plugin : https://github.com/jghauser/mkdir.nvim
@@ -33,114 +34,69 @@ vim.api.nvim_create_autocmd({ 'BufWritePre'}, {
 })
 
 
+-- autogroup EnhanceHelpView : Enhance the help view and mappings
+local enhance_help = vim.api.nvim_create_augroup('EnhanceHelpView', { clear = true })
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = 'help',
+    group = enhance_help,
+    callback = function()
+        -- Help file mappings
+        vim.keymap.set('n', '<cr>', '<c-]>', { buffer = true })
+        vim.keymap.set('n', '<bs>', '<c-T>', { buffer = true })
+        vim.keymap.set('n', 'q', ':q<CR>', { buffer = true })
+        
+        -- Set options
+        vim.opt_local.number = false
+        
+        -- Maximize help window
+        vim.cmd('wincmd _')
+    end,
+})
+ 
+ -- autogroup AutoSaveScratch : Autosave scratch buffers
+local autosave_scratch = vim.api.nvim_create_augroup('AutoSaveScratch', { clear = true })
+vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'update',
+    nested = true,
+})
+vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold' }, {
+    pattern = 'buffer.*',
+    group = autosave_scratch,
+    command = 'checktime',
+})
 
--- Helper Functions
-vim.api.nvim_exec([[
-        function! CleanExtraSpaces()
-            let save_cursor = getpos(".")
-            let old_query = getreg('/')
-            silent! %s/\s\+$//e
-            call setpos('.', save_cursor)
-            call setreg('/', old_query)
-        endfun
 
-        function! CmdLine(str)
-            call feedkeys(":" . a:str)
-        endfunction
-
-        function! VisualSelection(direction, extra_filter) range
-            let l:saved_reg = @"
-            execute "normal! vgvy"
-
-            let l:pattern = escape(@", "\\/.*'$^~[]")
-            let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-            if a:direction == 'gv'
-                call CmdLine("Ack '" . l:pattern . "' " )
-            elseif a:direction == 'replace'
-                call CmdLine("%s" . '/'. l:pattern . '/')
-            endif
-
-            let @/ = l:pattern
-            let @" = l:saved_reg
-        endfunction
-
-        function! QuickFixToggle()
-            if empty(filter(getwininfo(), 'v:val.quickfix'))
-                copen
-            else
-                cclose
-            endif
-        endfunction
-
-        function! ExecuteMacroOverVisualRange()
-          echo "@".getcmdline()
-          execute ":'<,'>normal @".nr2char(getchar())
-        endfunction
-
-        function! SortLinesByWidth() range
-            silent! execute a:firstline . "," . a:lastline . 's/^\(.*\)$/\=strdisplaywidth( submatch(0) ) . " " . submatch(0)/'
-            silent! execute a:firstline . "," . a:lastline . 'sort n'
-            silent! execute a:firstline . "," . a:lastline . 's/^\d\+\s//'
-        endfunction
-
-    ]], false)
-
+-----------------------------------------------------------
 -- Commands
+-----------------------------------------------------------
 
---  VisualBlock :  Workaround to start visual block mode on terminal if C-v or C-q is not working
-vim.cmd(
-    [[
-    command! VisualBlock execute "normal! \<C-v>"
-    ]]
-)
+-- VisualBlock: Workaround to start visual block mode on terminal if C-v or C-q is not working
+vim.api.nvim_create_user_command('VisualBlock', function()
+    vim.cmd('normal! \22') -- \22 is ctrl-v
+end, {})
 
---  W : sudo saves the file (useful for handling the permission-denied error on Linux)
-vim.cmd(
-    [[
-    command! W w !sudo tee % > /dev/null
-    ]]
-)
+-- W: sudo saves the file (useful for handling the permission-denied error on Linux)
+vim.api.nvim_create_user_command('W', function()
+    vim.fn.system('sudo tee ' .. vim.fn.expand('%') .. ' > /dev/null', vim.fn.getline(1, '$'))
+end, {})
 
--- SortByWidth : Sort lines by width
-vim.cmd(
-    [[
-    command! -range=%  SortByWidth <line1>,<line2>call SortLinesByWidth()
-    ]]
-)
+-- SortByWidth: Sort lines by width
+vim.api.nvim_create_user_command('SortByWidth', function(opts)
+    local line1 = opts.line1
+    local line2 = opts.line2
+    FrazUtil.SortLinesByWidth(line1, line2)
+end, { range = '%' })
 
--- WipeReg : Clean all registers
-vim.cmd(
-    [[
-    command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
-    ]]
-)
+-- WipeReg: Clean all registers
+vim.api.nvim_create_user_command('WipeReg', function()
+    for i = 34, 122 do
+        vim.fn.setreg(string.char(i), {})
+    end
+end, {})
 
--- RemoveTrailingSpaces : Remove all training spaces
-vim.cmd(
-    [[
-    command! RemoveTrailingSpaces call CleanExtraSpaces()
-    ]]
-)
-
--- AutoCommands
-vim.api.nvim_exec([[
-    augroup AutoCommandsGroup
-        autocmd!
-
-        " Clean extra spaces on txt files
-        autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
-
-        " Help File speedups, <enter> to follow tag, delete (backspace) for back
-        autocmd filetype help nnoremap <buffer><cr> <c-]>
-        autocmd filetype help nnoremap <buffer><bs> <c-T>
-        autocmd filetype help nnoremap <buffer>q :q<CR>
-        autocmd filetype help set nonumber
-        autocmd filetype help wincmd _ " Maximize the help on open
-
-        " AutoSave Scratch buffer
-        autocmd InsertLeave,TextChanged buffer.* nested silent! update
-        autocmd FocusGained,BufEnter,CursorHold buffer.* silent! checktime
-
-    augroup END
- ]], false)
+-- RemoveTrailingSpaces: Remove all trailing spaces
+vim.api.nvim_create_user_command('RemoveTrailingSpaces', function()
+    FrazUtil.CleanExtraSpaces()
+end, {})

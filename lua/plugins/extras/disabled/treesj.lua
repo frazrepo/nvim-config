@@ -1,5 +1,5 @@
 return {
-	-- splitjoin with treesitter functions
+	-- splitjoin arguments with treesitter functions
 	-- mapping conflict with <leader>s , sql buffer
 	-- kk : toggle, kj : join, ks : split
 	{

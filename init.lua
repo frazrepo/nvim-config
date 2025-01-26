@@ -8,4 +8,8 @@ Debug : nvim --startuptime vim.log
 
 --]]
 
+-- Global variable
+_G.FrazUtil = require("config.util")
+
+-- Initialisation
 require('config.lazy')
