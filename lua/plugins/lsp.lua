@@ -239,13 +239,6 @@ return {
 		end,
 	},
 
-	-- lsp signature : display function signature
-	{
-		"ray-x/lsp_signature.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-        opts = {}
-	},
-
 	-- Trouble : Display diagnostics List in quickfix windows
 	{
 		"folke/trouble.nvim",
