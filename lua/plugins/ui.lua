@@ -62,11 +62,13 @@ return {
         end
     },
 
-    -- indent blankline
-    {
-        "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPre",
-        main = "ibl",
-        opts = {},        
-    },    
+    -- Indent line
+	{
+		"folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        opts = {
+            indent = { enable = true },
+        }
+	},
 }
