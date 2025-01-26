@@ -218,7 +218,8 @@ vim.cmd([[
 
 -- Labs from folke, try to map CapsLock to Control for this
 vim.keymap.set("n","<C-c>","ciw")
-vim.keymap.set("n","Up","<C-w>k")
-vim.keymap.set("n","Down","<C-w>j")
-vim.keymap.set("n","Left","<C-w>h")
-vim.keymap.set("n","Right","<C-w>l")
+vim.keymap.set("n", "<C-c>", "ciw")
+vim.keymap.set("n", "<Up>", "<c-w>k")
+vim.keymap.set("n", "<Down>", "<c-w>j")
+vim.keymap.set("n", "<Left>", "<c-w>h")
+vim.keymap.set("n", "<Right>", "<c-w>l")
