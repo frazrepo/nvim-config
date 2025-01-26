@@ -12,15 +12,13 @@ return {
 
     -----------------------------------------------------------
     -- vim-unimpaired : various toggle, mappings
+    -- Cannot lazy load as we need the remap of ] to ) at startup
     -----------------------------------------------------------
     {
         'tpope/vim-unimpaired',
-        keys = {
-            { "(", mode = { "n", "o", "x" } },
-            { ")", mode = { "n", "o", "x" } },
-            { "yo", mode = { "n" } },
-        },
-        pin = true
+        lazy = false,
+        pin = true,
+        -- See mappings in lua/config/keymaps.lua    
     },
 
     -----------------------------------------------------------
