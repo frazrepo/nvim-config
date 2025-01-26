@@ -144,6 +144,12 @@ map('o', ')',']', {noremap =false, silent = true})
 map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
 
+-- Alternative to unimpaired )or ( <Space> (from mini.bascis)
+-- map('n', 'gO', 'v:lua.MiniBasics.put_empty_line(v:true)',  { expr = true, desc = 'Put empty line above' })
+-- map('n', 'go', 'v:lua.MiniBasics.put_empty_line(v:false)', { expr = true, desc = 'Put empty line below' })
+vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
+vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
+
 -- Undo breakpoints
 map('i', ',', ',<c-g>u', default_opts)
 map('i', '.', '.<c-g>u', default_opts)
@@ -209,3 +215,10 @@ vim.cmd([[
         cnoremap <expr> <S-Tab> getcmdtype() =~ '[\/?]' ? "<C-t>" : "<S-Tab>"
     ]]
 )
+
+-- Labs from folke, try to map CapsLock to Control for this
+vim.keymap.set("n","<C-c>","ciw")
+vim.keymap.set("n","Up","<C-w>k")
+vim.keymap.set("n","Down","<C-w>j")
+vim.keymap.set("n","Left","<C-w>h")
+vim.keymap.set("n","Right","<C-w>l")

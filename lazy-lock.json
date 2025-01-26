@@ -1,5 +1,4 @@
 {
-  "Comment.nvim": { "branch": "master", "commit": "e30b7f2008e52442154b66f7c519bfd2f1e32acb" },
   "CopilotChat.nvim": { "branch": "main", "commit": "2ebe591cff06018e265263e71e1dbc4c5aa8281e" },
   "Transpose": { "branch": "master", "commit": "ec5347e120d101198635bbb29a09d17f139da9fe" },
   "blink-cmp-copilot": { "branch": "main", "commit": "5d4ed42c5d7d144012792bb6cc4ac7899a108169" },
@@ -61,6 +60,7 @@
   "vim-floaterm": { "branch": "master", "commit": "4e28c8dd0271e10a5f55142fb6fe9b1599ee6160" },
   "vim-grepper": { "branch": "master", "commit": "f1b441c23f0227b28c36be383b562ab47dbecec4" },
   "vim-gtfo": { "branch": "master", "commit": "21a5e0292dabccba7363a6e508029d078a74504b" },
+  "vim-repeat": { "branch": "master", "commit": "65846025c15494983dafe5e3b46c8f88ab2e9635" },
   "vim-unimpaired": { "branch": "master", "commit": "6d44a6dc2ec34607c41ec78acf81657248580bf1" },
   "wezterm-move.nvim": { "branch": "master", "commit": "e2954ee4ddc9fee427ffa4d17f781875b9461103" },
   "which-key.nvim": { "branch": "main", "commit": "1f8d414f61e0b05958c342df9b6a4c89ce268766" }
