@@ -24,19 +24,6 @@ return {
     },
 
     -----------------------------------------------------------
-    -- Folke ZenMode
-    -----------------------------------------------------------
-    {
-        "folke/zen-mode.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-        },
-        keys = {
-            {"<leader>z", "<Cmd>ZenMode<CR>", desc= "Toggle zen mode"}
-        }
-    },
-    -----------------------------------------------------------
     -- File explorer
     -----------------------------------------------------------
     {

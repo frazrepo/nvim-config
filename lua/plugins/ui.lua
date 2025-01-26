@@ -61,14 +61,4 @@ return {
             })
         end
     },
-
-    -- Indent line
-	{
-		"folke/snacks.nvim",
-        priority = 1000,
-        lazy = false,
-        opts = {
-            indent = { enable = true },
-        }
-	},
 }
