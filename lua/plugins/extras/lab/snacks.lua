@@ -10,7 +10,7 @@ return {
         lazy = false,		
 		opts = {
 			bigfile = { enable = true },
-			index = { enable = true },
+			indent = { enable = true },
 		},
 		keys = {
 			{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
