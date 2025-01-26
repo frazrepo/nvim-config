@@ -206,17 +206,19 @@ return
 				nerd_font_variant = "mono",
 			},
 			sources = {
-				default = { "lsp", "path", "snippets", "buffer", "copilot" },
+				-- default = { "lsp", "path", "snippets", "buffer", "copilot" },
+				default = { "lsp", "path", "snippets", "buffer"},
 				-- Disable cmdline completion
 				cmdline = {},
-				providers = {
-					copilot = {
-					  name = "copilot",
-					  module = "blink-cmp-copilot",
-					  score_offset = 100,
-					  async = true,
-					},
-				},			
+                -- For copilot
+				-- providers = {
+				-- 	copilot = {
+				-- 	  name = "copilot",
+				-- 	  module = "blink-cmp-copilot",
+				-- 	  score_offset = 100,
+				-- 	  async = true,
+				-- 	},
+				-- },			
 			},
 			completion = {
 				documentation = {
