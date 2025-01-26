@@ -15,7 +15,7 @@ return {
     -- Cannot lazy load as we need the remap of ] to ) at startup
     -----------------------------------------------------------
     {
-        -- Need by vim-unimpaired to dotrepeat operation like )<Space>
+        -- Need by vim-unimpaired to dot repeat operation like )<Space>
         'tpope/vim-repeat',
         lazy = false,
         pin = true,
