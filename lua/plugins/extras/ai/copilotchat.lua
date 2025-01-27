@@ -2,9 +2,10 @@ return {
     -- copilot chat
     {
         "CopilotC-Nvim/CopilotChat.nvim",
+        -- enable = false,
         dependencies = {
-            -- { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua    
-            { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua    
+            -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
             { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
         },
         -- build = "make tiktoken", -- Only on MacOS or Linux
