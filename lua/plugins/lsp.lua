@@ -160,11 +160,10 @@ return {
 					"html",
 					"cssls",
 					"tailwindcss",
-					"svelte",
 					"lua_ls",
 					"emmet_ls",
-					"prismals",
 					"pyright",
+					"emmet_language_server"
 				},
 				handlers = {
 					function(server_name)
