@@ -9,12 +9,12 @@ return {
         event = "InsertEnter",
         opts = {
             suggestion = {
-                enabled = false,
+                enabled = true,
                 auto_trigger = true,
                 keymap = {
                     accept = "<M-l>", 
-                    next = "<M-n>",
-                    prev = "<M-p>",
+                    next = "<M-)>",
+                    prev = "<M-(>",
                     dismiss = "<C-c>",
                 },
             },
@@ -23,9 +23,5 @@ return {
                 markdown = true,
             },
         },
-    },
-    {
-        "giuxtaposition/blink-cmp-copilot",
-    }
-      
+    },      
 }

@@ -8,7 +8,7 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			 "rafamadriz/friendly-snippets",
-			 "giuxtaposition/blink-cmp-copilot",
+			--  "giuxtaposition/blink-cmp-copilot",
 		},
 		version = "*",
 		opts = {
@@ -24,16 +24,17 @@ return {
 				nerd_font_variant = "mono",
 			},
 			sources = {
-				default = { "lsp", "snippets", "buffer", "copilot"},
+				default = { "lsp", "snippets", "buffer"},
 				-- For copilot
-				providers = {
-					copilot = {
-						name = "copilot",
-						module = "blink-cmp-copilot",
-						score_offset = 100,
-						async = true,
-					},
-				},
+				-- default = { "lsp", "snippets", "buffer", "copilot"},
+				-- providers = {
+				-- 	copilot = {
+				-- 		name = "copilot",
+				-- 		module = "blink-cmp-copilot",
+				-- 		score_offset = 100,
+				-- 		async = true,
+				-- 	},
+				-- },
 				-- Disable cmdline completion
 				cmdline = {},
 			},
