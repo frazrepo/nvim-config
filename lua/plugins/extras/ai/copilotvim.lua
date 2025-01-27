@@ -1,5 +1,8 @@
 return {
     {
+        -- When not working doing a :Copilot log may help
+        -- Error : SEFL_SIGNED_CERT_IN_CHAIN
+        -- Solution : Trust the certificate in nodejs store using the env variable NODE_EXTRA_CA_CERTS
         "github/copilot.vim",
     }
 }
