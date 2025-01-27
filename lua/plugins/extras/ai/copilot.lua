@@ -9,7 +9,7 @@ return {
         event = "InsertEnter",
         opts = {
             suggestion = {
-                enabled = true,
+                enabled = false,
                 auto_trigger = true,
                 keymap = {
                     accept = "<M-l>", 
@@ -18,10 +18,14 @@ return {
                     dismiss = "<C-)>",
                 },
             },
-            -- panel = { enabled = false },
+            panel = { enabled = false },
             filetypes = {
                 markdown = true,
             },
         },
     },
+    {
+        "giuxtaposition/blink-cmp-copilot",
+    }
+      
 }
