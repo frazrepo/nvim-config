@@ -1,7 +1,7 @@
 return {
     -- copilot
     -- requirements node 18+
-    -- Mapping default Alt-L to accept ,
+    -- Mapping default Alt-L to accept,
     {
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
@@ -13,9 +13,9 @@ return {
                 auto_trigger = true,
                 keymap = {
                     accept = "<M-l>", 
-                    next = "<M-)>",
-                    prev = "<M-(>",
-                    dismiss = "<C-)>",
+                    next = "<M-n>",
+                    prev = "<M-p>",
+                    dismiss = "<C-c>",
                 },
             },
             panel = { enabled = false },
