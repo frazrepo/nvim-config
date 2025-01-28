@@ -98,33 +98,12 @@ return {
         -- Press zf to filter
         -- Enter to open the item
         --
+        -- As a general rule check mapping with <leader>? from which-key if needed
         -- Installation : 
-        -- 'zf' requires fzf
+        -- 'zf' command requires fzf
         {
             "kevinhwang91/nvim-bqf",
-            config = function()
-                require('bqf').setup({
-                    auto_enable = true,
-                    auto_resize_height = true,
-                    preview = {
-                        auto_preview = false,
-                    },
-                    func_map = {
-                        ptoggleauto = '<F2>',
-                        ptogglemode = '<F3>',
-                        split       = '<C-s>',
-                        vsplit      = '<C-v>',
-                        pscrollup   = '<S-up>',
-                        pscrolldown = '<S-down>',
-                    },
-                    filter = {
-                        fzf = {
-                            action_for = {['ctrl-s'] = 'split'},
-                            extra_opts = {'--bind', 'ctrl-a:toggle-all', '--prompt', '> '}
-                        }
-                    }
-                })
-            end,
+            opts = {},
             ft = { 'qf' }
         },
 
