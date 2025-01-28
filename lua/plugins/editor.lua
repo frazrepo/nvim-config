@@ -208,7 +208,7 @@ return {
             telescope.setup{
                 defaults = {
                     file_ignore_patterns = {"node_modules"},
-                    preview = false,
+                    preview = true,
                     mappings = {
                         i = {
                             ["<esc>"] = actions.close,
