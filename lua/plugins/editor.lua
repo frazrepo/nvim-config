@@ -56,9 +56,7 @@ return {
             })
 
             -- nvim-tree mappings
-            local map = vim.api.nvim_set_keymap
-            local default_opts = { noremap = true, silent = true  }
-            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
+            vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
         end,
     },
     -- mini.files
