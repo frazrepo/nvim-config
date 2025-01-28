@@ -2,6 +2,7 @@
 return {
 	-- Added on 20250104
 	-- wezterm and nvim compatibility
+    -- Alternative : https://github.com/mrjones2014/smart-splits.nvim
     {
         "letieu/wezterm-move.nvim",
         keys = { -- Lazy loading, don't need call setup() function

@@ -160,11 +160,10 @@ return {
 					"html",
 					"cssls",
 					"tailwindcss",
-					"svelte",
 					"lua_ls",
 					"emmet_ls",
-					"prismals",
 					"pyright",
+					"emmet_language_server"
 				},
 				handlers = {
 					function(server_name)
@@ -237,13 +236,6 @@ return {
                 end,
             })
 		end,
-	},
-
-	-- lsp signature : display function signature
-	{
-		"ray-x/lsp_signature.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-        opts = {}
 	},
 
 	-- Trouble : Display diagnostics List in quickfix windows

@@ -44,9 +44,9 @@
         },
 
         -- mini-move
-        { 
+        {
             'echasnovski/mini.move',
-            version = '*', 
+            version = '*',
             opts = {},
             keys = {
                 { "<A-j>" },
@@ -54,5 +54,5 @@
                 { "<A-k>" },
                 { "<A-k>", mode = "v" },
             },
-        },        
+        },
 }

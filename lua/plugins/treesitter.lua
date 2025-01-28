@@ -48,13 +48,7 @@ return {
             require("ts_context_commentstring").setup({})
         end,
 	},
-    -- Enhanced comment plugin + TreeSitter context commentstring
-    {
-        'numToStr/Comment.nvim',
-        opts = {},
-        event = "VeryLazy",
-    },
-
+    -- TreeSitter context commentstring
     {
         'JoosepAlviste/nvim-ts-context-commentstring',
         event = "VeryLazy",

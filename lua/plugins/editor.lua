@@ -12,36 +12,27 @@ return {
 
     -----------------------------------------------------------
     -- vim-unimpaired : various toggle, mappings
+    -- Cannot lazy load as we need the remap of ] to ) at startup
     -----------------------------------------------------------
     {
+        -- Need by vim-unimpaired to dot repeat operation like )<Space>
+        'tpope/vim-repeat',
+        lazy = false,
+        pin = true,
+    },
+    {
+        -- Useful for yo toggle and ) or ( commands
         'tpope/vim-unimpaired',
-        keys = {
-            { "(", mode = { "n", "o", "x" } },
-            { ")", mode = { "n", "o", "x" } },
-            { "yo", mode = { "n" } },
-        },
-        pin = true
+        lazy = false,
+        pin = true,
+        -- See mappings in lua/config/keymaps.lua    
     },
 
-    -----------------------------------------------------------
-    -- Folke ZenMode
-    -----------------------------------------------------------
-    {
-        "folke/zen-mode.nvim",
-        opts = {
-            -- your configuration comes here
-            -- or leave it empty to use the default settings
-        },
-        keys = {
-            {"<leader>z", "<Cmd>ZenMode<CR>", desc= "Toggle zen mode"}
-        }
-    },
     -----------------------------------------------------------
     -- File explorer
     -----------------------------------------------------------
     {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v3.x",
         dependencies = {
             {"nvim-lua/plenary.nvim"},
             {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
@@ -65,9 +56,7 @@ return {
             })
 
             -- nvim-tree mappings
-            local map = vim.api.nvim_set_keymap
-            local default_opts = { noremap = true, silent = true  }
-            map('n', '<C-n>', ':Neotree action=focus toggle=true<CR>', default_opts)
+            vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
         end,
     },
     -- mini.files
@@ -164,41 +153,22 @@ return {
     -----------------------------------------------------------
     {
         "folke/which-key.nvim",
-        config = function()
-            require("which-key").setup({
-                -- your configuration comes here
-                -- or leave it empty to the default settings
-                -- refer to the configuration section below
-            })
-            local wk = require("which-key")
-
-            wk.add({
-                { "<leader>", group = "Leader" },
-                { "<leader>!", desc = "Delete buffer" },
-                { "<leader>,", desc = "Find buffer" },
-                { "<leader>/", desc = "Global Search" },
-                { "<leader>;", desc = "Find lines in buffer" },
-                { "<leader>G", desc = "Global Search in buffers" },
-                { "<leader>cd", desc = "Change to current buffer directory" },
-                { "<leader>d", desc = "Edit markdown buffer" },
-                { "<leader>e", desc = "Edit in current buffer path" },
-                { "<leader>fr", desc = "Find Replace Visually" },
-                { "<leader>m", desc = "Remove special char M" },
-                { "<leader>r", desc = "Replace Search Register" },
-                { "<leader>s", desc = "Edit sql buffer" },
-                { "<leader>te", desc = "Tab Edit in current buffer path" },
-                { "<leader>u", desc = "Open Recent File" },
-                { "<leader>w", desc = "Save buffer" },
-                { "<leader>x", desc = "Edit txt buffer" },
-                { "g", group = "Buffer" },
-                { "gV", desc = "Reselect last pasted text" },
-                { "gb", desc = "Block Comment" },
-                { "gc", desc = "Comment" },
-                { "g=", desc = "Indent buffer" },
-                { "gQ", desc = "Format buffer" },
-                { "gv", desc = "Reselect last visual selection" },
-            })
-        end,
+        event = "VeryLazy",
+        opts = {
+          -- your configuration comes here
+          -- or leave it empty to use the default settings
+          -- refer to the configuration section below
+          preset = "helix",
+        },
+        keys = {
+          {
+            "<leader>?",
+            function()
+              require("which-key").show({ global = false })
+            end,
+            desc = "Buffer Local Keymaps (which-key)",
+          },
+        },
     },
 
     -----------------------------------------------------------
@@ -241,12 +211,12 @@ return {
 
             require('telescope').load_extension('projects')
 
-            vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true})
+            vim.keymap.set('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true, desc = "Search files" })
+            vim.keymap.set('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open Recent Projects" })
+            vim.keymap.set('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep with telescope" })
+            vim.keymap.set('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true , desc = "Find buffer"})
+            vim.keymap.set('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer" })
+            vim.keymap.set("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true , desc = "Open Recent Files"})
 
         end
     },

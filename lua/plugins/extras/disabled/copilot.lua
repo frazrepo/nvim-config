@@ -1,9 +1,10 @@
 return {
     -- copilot
     -- requirements node 18+
-    -- Mapping default Alt-L to accept ,
+    -- Mapping default Alt-L to accept,
     {
         "zbirenbaum/copilot.lua",
+        enable = false,
         cmd = "Copilot",
         build = ":Copilot auth",
         event = "InsertEnter",
@@ -15,13 +16,13 @@ return {
                     accept = "<M-l>", 
                     next = "<M-)>",
                     prev = "<M-(>",
-                    dismiss = "<C-)>",
+                    dismiss = "<C-c>",
                 },
             },
-            -- panel = { enabled = false },
+            panel = { enabled = false },
             filetypes = {
                 markdown = true,
             },
         },
-    },
+    },      
 }
