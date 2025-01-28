@@ -60,9 +60,6 @@ return {
                     use_libuv_file_watcher = true,
                 }
             })
-
-            -- nvim-tree mappings
-            -- vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
         end,
     },
     -- mini.files
