@@ -4,6 +4,16 @@
 -----------------------------------------------------------
 local M = {}
 
+-- Define a local table here for all settings configuration
+M.extras = {
+    -- aiengine = "copilot", -- or codeium
+    aiengine = "codeium",
+}
+
+--Define a setup function Helpers
+M.setup = function()
+end
+
 -- QuickFix window toggle function
 function M.QuickFixToggle()
     local quickfix_exists = function()

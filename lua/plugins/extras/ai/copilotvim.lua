@@ -7,6 +7,7 @@ return {
         -- :Copilot log
         -- <Tab> to complete suggestion
         "github/copilot.vim",
-        -- enabled = false
+        enabled = false
+        -- enable = FrazUtil.extras.aiengine == "copilot",
     }
 }
