@@ -43,7 +43,13 @@ return {
             vim.g.neo_tree_remove_legacy_commands  = true
         end,
         keys = {
-            {"<C-n>", desc = "Toggle neotree"}
+            {
+                "<C-n>",
+                function()
+                  require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+                end,
+                desc = "Explorer NeoTree (cwd)",
+              },            
         },
         config = function()
             require("neo-tree").setup({
@@ -56,7 +62,7 @@ return {
             })
 
             -- nvim-tree mappings
-            vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
+            -- vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
         end,
     },
     -- mini.files
