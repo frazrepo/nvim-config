@@ -217,7 +217,12 @@ vim.cmd([[
 )
 
 -- Labs from folke, try to map CapsLock to Control for this
-vim.keymap.set("n","<C-c>","ciw")
+vim.keymap.set("n", "<C-c>", function()
+  if vim.bo.buftype ~= "terminal" then
+    return "ciw"
+  end
+  return "<C-c>"
+end, { expr = true })
 
 -- Move on char in insert mode (not working inside wezterm)
 map('i', '<C-h>', '<Left>', default_opts)
