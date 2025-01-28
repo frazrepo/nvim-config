@@ -162,34 +162,6 @@ return {
                 -- or leave it empty to the default settings
                 -- refer to the configuration section below
             })
-            local wk = require("which-key")
-
-            wk.add({
-                { "<leader>", group = "Leader" },
-                { "<leader>!", desc = "Delete buffer" },
-                { "<leader>,", desc = "Find buffer" },
-                { "<leader>/", desc = "Global Search" },
-                { "<leader>;", desc = "Find lines in buffer" },
-                { "<leader>G", desc = "Global Search in buffers" },
-                { "<leader>cd", desc = "Change to current buffer directory" },
-                { "<leader>d", desc = "Edit markdown buffer" },
-                { "<leader>e", desc = "Edit in current buffer path" },
-                { "<leader>fr", desc = "Find Replace Visually" },
-                { "<leader>m", desc = "Remove special char M" },
-                { "<leader>r", desc = "Replace Search Register" },
-                { "<leader>s", desc = "Edit sql buffer" },
-                { "<leader>te", desc = "Tab Edit in current buffer path" },
-                { "<leader>u", desc = "Open Recent File" },
-                { "<leader>w", desc = "Save buffer" },
-                { "<leader>x", desc = "Edit txt buffer" },
-                { "g", group = "Buffer" },
-                { "gV", desc = "Reselect last pasted text" },
-                { "gb", desc = "Block Comment" },
-                { "gc", desc = "Comment" },
-                { "g=", desc = "Indent buffer" },
-                { "gQ", desc = "Format buffer" },
-                { "gv", desc = "Reselect last visual selection" },
-            })
         end,
     },
 
@@ -233,12 +205,12 @@ return {
 
             require('telescope').load_extension('projects')
 
-            vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true })
-            vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true})
+            vim.api.nvim_set_keymap('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true, desc = "Search files" })
+            vim.api.nvim_set_keymap('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open Recent Projects" })
+            vim.api.nvim_set_keymap('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep with telescope" })
+            vim.api.nvim_set_keymap('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true , desc = "Find buffer"})
+            vim.api.nvim_set_keymap('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer" })
+            vim.api.nvim_set_keymap("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true , desc = "Open Recent Files"})
 
         end
     },
