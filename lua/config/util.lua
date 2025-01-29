@@ -6,8 +6,8 @@ local M = {}
 
 -- Define a local table here for all settings configuration
 M.extras = {
-    -- aiengine = "copilot", -- or codeium
-    aiengine = "codeium",
+    aiengine = "copilot", -- or codeium
+    -- aiengine = "codeium",
 }
 
 --Define a setup function Helpers

@@ -2,11 +2,12 @@ return {
     -- copilot chat
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        enabled = false,
-        -- enable = FrazUtil.extras.aiengine == "copilot",
+        -- enabled = false,
+        cond = FrazUtil.extras.aiengine == "copilot",
         dependencies = {
             -- { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua    
-            -- { "zbirenbaum/copilot.lua" }, -- or github/copilot.vim
+            { "github/copilot.vim" , cond = FrazUtil.extras.aiengine == "copilot" },
+            -- { "zbirenbaum/copilot.lua" , cond = FrazUtil.extras.aiengine == "copilot" }, -- or github/copilot.vim
             { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
         },
         -- build = "make tiktoken", -- Only on MacOS or Linux
