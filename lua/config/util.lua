@@ -10,9 +10,6 @@ M.extras = {
         -- engine = "codeium",
         engine = "copilot",
     },
-    lang = {
-        powershell = false,
-    }
 }
 
 --Define a setup function Helpers
