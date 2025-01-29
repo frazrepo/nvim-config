@@ -8,6 +8,6 @@ return {
         -- <Tab> to complete suggestion
         "github/copilot.vim",
         -- enabled = false
-        cond = FrazUtil.extras.aiengine == "copilot",
+        cond = FrazVim.extras.ai.engine == "copilot",
     }
 }

@@ -1,13 +1,15 @@
 -----------------------------------------------------------
 -- Global Utilities Helpers
--- FzUtils (_G.FrazUtil = require('config.util'))
+-- FzUtils (_G.FrazVim = require('config.util'))
 -----------------------------------------------------------
 local M = {}
 
--- Define a local table here for all settings configuration
+-- Define a table here for extras plugins activation
 M.extras = {
-    aiengine = "copilot", -- or codeium
-    -- aiengine = "codeium",
+    ai = {
+        -- engine = "codeium",
+        engine = "copilot",
+    }
 }
 
 --Define a setup function Helpers

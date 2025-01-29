@@ -4,7 +4,7 @@ return {
     -- Mapping default Alt-L to accept,
     {
         "zbirenbaum/copilot.lua",
-        enable = false,
+        enabled = false,
         cmd = "Copilot",
         build = ":Copilot auth",
         event = "InsertEnter",

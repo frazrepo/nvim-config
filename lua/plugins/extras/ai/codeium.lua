@@ -4,7 +4,7 @@ return {
     -- Tab for completion - virtual text
     {
       "Exafunction/codeium.nvim",
-      cond = FrazUtil.extras.aiengine == "codeium",
+      cond = FrazVim.extras.ai.engine == "codeium",
       cmd = "Codeium",
       event = "InsertEnter",
       build = ":Codeium Auth",
