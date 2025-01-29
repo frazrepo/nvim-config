@@ -2,12 +2,6 @@
 -- Editor features
 -----------------------------------------------------------
 return {
-    -- neoformat
-    {
-        'sbdchd/neoformat',
-        cmd = "NeoFormat",
-    },
-
 	-- Conform
 	{
 		"stevearc/conform.nvim",
@@ -53,6 +47,9 @@ return {
 						args = { "-output", "stdout", "$FILENAME" },
 					},
 				},
+				default_format_opts = {
+					lsp_format = "fallback",
+				},
 			})
 
 			-- Override bicep's default indent size
@@ -77,7 +74,7 @@ return {
 			-- Create a command `:ConFormat`
 			vim.api.nvim_create_user_command("ConFormat", function()
 				require("conform").format({
-					lsp_fallback = true,
+					--lsp_fallback = true,
 					async = false,
 					timeout_ms = 1000,
 				})
