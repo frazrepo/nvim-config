@@ -9,6 +9,9 @@ M.extras = {
     ai = {
         -- engine = "codeium",
         engine = "copilot",
+    },
+    lang = {
+        powershell = false,
     }
 }
 
