@@ -30,6 +30,26 @@ return {
             { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
             { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+            -- Additional search
+            -- search
+            { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
+            -- { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
+            { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+            { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
+            { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
+            { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
+            { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
+            { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
+            { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
+            { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+            { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
+            { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
+            { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+            { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
+            { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
+            -- { "<leader>su", function() Snacks.picker.undo() end, desc = "Undotree" },
+            -- ui
+            { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		},
 	},
 }
