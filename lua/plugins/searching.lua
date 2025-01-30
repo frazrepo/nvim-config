@@ -43,13 +43,12 @@ return {
 			]])
 		end,
 		keys = {
-			{ "<Leader>R" , desc ="Search Replace Globally"},
-			{ "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Grepper Word Under Cursor" },
-			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Grepper globally" },
-			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all open Buffers" },
-			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Grepper in current buffer" },
-			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper find operator" },
-			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper find operator", mode = "x" },
+			{ "<Leader>R" , desc ="Search Replace Globally (cdo)", mode = {"n","x"} },
+			{ "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Search word under cursor (grepper)" },
+			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Search globally (grepper)" },
+			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Search in all open Buffers (grepper)" },
+			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Search in current buffer (grepper)" },
+			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper Search operator", mode = {"n","x"} },
 		}
 	},
 	-- grug-far Search and Replace
