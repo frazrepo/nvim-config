@@ -188,6 +188,7 @@ return {
               { "<leader>t", group = "terminal" },
               { "<leader>b", group = "buffer" },
               { "<leader><leader>", group = "miscellaneous" },
+              { "g", group = "goto" },
             }
         }
         },
