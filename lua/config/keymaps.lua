@@ -182,18 +182,18 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- Search and Replace normal and visual mode
 ------------------------------------------------------------
 -- search replace
-map("n", "<leader>fr",":%s/", {noremap = true, silent = false, desc = "Search and replace" })
-map("x", "<leader>fr",[[:s/]], {noremap = true, silent = false, desc = "Search and replace" })
+map("n", "<leader>r",":%s/", {noremap = true, silent = false, desc = "Search and replace" })
+map("x", "<leader>r",[[:s/]], {noremap = true, silent = false, desc = "Search and replace" })
 
 -- replace the current text in search register
-map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false, desc = "Replace search register" })
+map('n', '<leader>R',[[:%s///g<Left><Left>]], {noremap = true, silent = false, desc = "Replace search register" })
 
 -- Visual mode pressing * or # searches for the current selection
 map("x", "*",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
 map("x", "#",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], default_opts)
+map("x", "<leader>R",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search register" })
 
 -----------------------------------------------------------
 -- Miscellaneous
