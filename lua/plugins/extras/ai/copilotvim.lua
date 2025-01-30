@@ -9,5 +9,7 @@ return {
         "github/copilot.vim",
         -- enabled = false
         cond = FrazVim.extras.ai.engine == "copilot",
+        cmd = "Copilot",
+        event = "InsertEnter",
     }
 }

@@ -3,6 +3,7 @@ return {
     {
         "CopilotC-Nvim/CopilotChat.nvim",
         -- enabled = false,
+        lazy = true,
         cond = FrazVim.extras.ai.engine == "copilot",
         dependencies = {
             -- { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua    

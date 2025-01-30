@@ -43,10 +43,10 @@ return {
 			]])
 		end,
 		keys = {
-			{ "<Leader>R" , desc ="Search Replace Globally (cdo)", mode = {"n","x"} },
+			{ "<Leader>R" , desc ="Search replace globally (cdo)", mode = {"n","x"} },
 			{ "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Search word under cursor (grepper)" },
 			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Search globally (grepper)" },
-			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Search in all open Buffers (grepper)" },
+			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Search in all open buffers (grepper)" },
 			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Search in current buffer (grepper)" },
 			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper Search operator", mode = {"n","x"} },
 		}
