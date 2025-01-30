@@ -163,6 +163,10 @@ map('c', '::', [[<C-R>=fnameescape(expand("%"))<CR>]]  , {noremap =false, silent
 -- Remove the Windows ^M - when the encodings gets messed up
 map('n', '<Leader>m', [[mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm]]  , {noremap =false, silent = true, desc = "Remove special char ^M"})
 
+-- Windows
+vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+vim.keymap.set("n", "<leader>_", "<C-W>v", { desc = "Split Window Right", remap = true })
+
 -- terminal mapping
 function _G.set_terminal_keymaps()
   local opts = {noremap = true}
