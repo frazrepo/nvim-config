@@ -182,8 +182,8 @@ vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 -- Search and Replace normal and visual mode
 ------------------------------------------------------------
 -- search replace
-map("n", "<leader>fr",":%s/", {noremap = true, silent = false, desc = "Search and replace" })
-map("x", "<leader>fr",[[:s/]], {noremap = true, silent = false, desc = "Search and replace" })
+map("n", "<leader>ss",":%s/", {noremap = true, silent = false, desc = "Search and replace (local)" })
+map("x", "<leader>ss",[[:s/]], {noremap = true, silent = false, desc = "Search and replace (local)" })
 
 -- replace the current text in search register
 map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false, desc = "Replace search register" })
@@ -203,9 +203,9 @@ map("x", "<leader>r",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {n
 map("n", "<leader>q",":lua FrazVim.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
 -- Quickly open a txt, markdown and sql buffer for scribble
-map("n", "<leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", { noremap = true, silent = true , desc = "Edit txt scratch buffer" })
-map("n", "<leader>d",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
-map("n", "<leader>s",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>",  { noremap = true, silent = true , desc = "Edit sql scratch buffer" })
+map("n", "<leader><leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", { noremap = true, silent = true , desc = "Edit txt scratch buffer" })
+map("n", "<leader><leader>d",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
+map("n", "<leader><leader>s",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>",  { noremap = true, silent = true , desc = "Edit sql scratch buffer" })
 
 
 -- Map for navigating search (/?) result with tab

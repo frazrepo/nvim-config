@@ -181,6 +181,15 @@ return {
           -- or leave it empty to use the default settings
           -- refer to the configuration section below
           preset = "helix",
+          spec = {
+            {
+              mode = { "n", "v" },
+              { "<leader>s", group = "search" },
+              { "<leader>t", group = "terminal" },
+              { "<leader>b", group = "buffer" },
+              { "<leader><leader>", group = "miscellaneous" },
+            }
+        }
         },
         keys = {
           {
