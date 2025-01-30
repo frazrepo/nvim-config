@@ -66,7 +66,7 @@ map('n', '<leader>bo',':silent! execute "%bd|e#|bd#"<cr>', {noremap =false, sile
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
 -- Edit quickly with the current buffer path
-map('n', '<leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true, desc = "Edit in current buffer path"})
+map('n', '<leader><leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true, desc = "Edit in current buffer path"})
 
 -- Change word under cursor and dot repeat, really useful to edit quickly
 map('n', 'c*' , '*Ncgn' , default_opts)
