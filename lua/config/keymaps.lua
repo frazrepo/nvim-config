@@ -68,6 +68,15 @@ map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 -- Edit quickly with the current buffer path
 map('n', '<leader><leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true, desc = "Edit in current buffer path"})
 
+-- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
+map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
+map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("o", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
+map("n", "N", "'nN'[v:searchforward].'zv'", { expr = true, desc = "Prev Search Result" })
+map("x", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+map("o", "N", "'nN'[v:searchforward]", { expr = true, desc = "Prev Search Result" })
+
+
 -- Change word under cursor and dot repeat, really useful to edit quickly
 map('n', 'c*' , '*Ncgn' , default_opts)
 map('n', 'c#' , '#NcgN' , default_opts)
