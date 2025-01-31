@@ -32,11 +32,6 @@ return {
                 \ :cfdo %s/<C-r>s//g \| update
                 \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
             ]])
-			-- Custom commands
-			-- https://github.com/mhinz/vim-grepper/wiki/example-configurations-and-mappings
-			vim.cmd([[
-				command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
-			]])
 		end,
 		keys = {
           { "<Leader>R" , desc ="Search replace globally (cdo)", mode = {"n","x"} },
