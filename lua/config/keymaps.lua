@@ -82,9 +82,7 @@ map("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Commen
 
 -- Change word under cursor and dot repeat, really useful to edit quickly
 map('n', 'c*' , '*Ncgn' , default_opts)
-map('n', 'c#' , '#NcgN' , default_opts)
 map('n', 'cg*', 'g*Ncgn', default_opts)
-map('n', 'cg#', 'g#Ncgn', default_opts)
 
 -- Experimental cn - New mappings
 -- like c* but selection word in visual mode first
