@@ -195,6 +195,10 @@ end
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
 
+-- Visual mode pressing * or # searches for the current selection
+map("x", "*",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
+map("x", "#",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
+
 ------------------------------------------------------------
 -- Search and Replace normal and visual mode
 ------------------------------------------------------------
@@ -204,11 +208,6 @@ map("x", "<leader>ss",[[:s/]], {noremap = true, silent = false, desc = "Search a
 
 -- replace the current text in search register
 map('n', '<leader>r', [[:%s/<C-r>//]], {noremap = true, silent = false, desc = "Replace Search register" })
-
--- Visual mode pressing * or # searches for the current selection
-map("x", "*",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
-map("x", "#",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
-
 -- Search and replace the selected text
 map("x", "<leader>r",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search selection (local)" })
 
@@ -246,29 +245,6 @@ map('i', '<C-h>', '<Left>', default_opts)
 map('i', '<C-l>', '<Right>', default_opts)
 map('i', '<C-j>', '<Down>', default_opts)
 map('i', '<C-k>', '<Up>', default_opts)
-
-
--- replace the current text in search register
-vim.keymap.set( "n", "<leader>sR", [[:%s///g<Left><Left>]], { noremap = true, silent = false, desc = "Replace Search register" })
-
--- Put visual selection in search register
-function VisualSelection(direction, extra_filter)
-  local saved_reg = vim.fn.getreg('"')
-  vim.cmd("normal! vgvy")
-
-  local pattern = vim.fn.escape(vim.fn.getreg('"'), "\\/.*'$^~[]")
-  pattern = vim.fn.substitute(pattern, "\n$", "", "")
-
-  if direction == "replace" then
-    vim.fn.feedkeys(":" .. "%s" .. "/" .. pattern .. "/")
-  end
-
-  vim.fn.setreg("/", pattern)
-  vim.fn.setreg('"', saved_reg)
-end
-
--- Search and replace the selected text
-vim.keymap.set("x", "<leader>sR", [[:<C-u>lua VisualSelection('replace','')<CR>]], { noremap = true, silent = false, desc = "Replace Search register" })
 
 
 -- Quickfix do (Experimental)
