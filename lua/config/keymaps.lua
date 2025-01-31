@@ -248,6 +248,16 @@ map('i', '<C-j>', '<Down>', default_opts)
 map('i', '<C-k>', '<Up>', default_opts)
 
 -- Quickfix do (Experimental)
--- Fix this command
-vim.keymap.set("n", "<leader><leader>x", ":cfdo %s///gc | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>" , { noremap = true, silent = true , desc = "Quickfix do" })
-
+-- Execute cfdo with confirmation
+vim.keymap.set("n", "<leader><leader>x", function()
+  local cmd = vim.fn.input("Enter command for quickfix (cfdo): ", "%s///g")
+  if cmd ~= "" then
+    local confirm = vim.fn.input("Execute '" .. cmd .. "' on all quickfix entries? (y/n): ")
+    if confirm:lower() == 'y' then
+      vim.cmd("cfdo " .. cmd .. " | update")
+      print("\nExecuted: " .. cmd)
+    else
+      print("\nOperation cancelled")
+    end
+  end
+end, { noremap = true, desc = "Execute cfdo command with confirmation" })
