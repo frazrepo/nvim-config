@@ -203,14 +203,14 @@ map("n", "<leader>ss",":%s/", {noremap = true, silent = false, desc = "Search an
 map("x", "<leader>ss",[[:s/]], {noremap = true, silent = false, desc = "Search and replace (local)" })
 
 -- replace the current text in search register
-map('n', '<leader>r',[[:%s///g<Left><Left>]], {noremap = true, silent = false, desc = "Replace search register" })
+map('n', '<leader>r',":%s/", {noremap = true, silent = false, desc = "Search and replace (local)" })
 
 -- Visual mode pressing * or # searches for the current selection
 map("x", "*",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
 map("x", "#",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>]], default_opts)
 
 -- Search and replace the selected text
-map("x", "<leader>r",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search register" })
+map("x", "<leader>r",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search selection (local)" })
 
 -----------------------------------------------------------
 -- Miscellaneous
@@ -249,7 +249,7 @@ map('i', '<C-k>', '<Up>', default_opts)
 
 
 -- replace the current text in search register
-vim.keymap.set( "n", "<leader>R", [[:%s///g<Left><Left>]], { noremap = true, silent = false, desc = "Replace Search register" })
+vim.keymap.set( "n", "<leader>sR", [[:%s///g<Left><Left>]], { noremap = true, silent = false, desc = "Replace Search register" })
 
 -- Put visual selection in search register
 function VisualSelection(direction, extra_filter)
@@ -268,7 +268,7 @@ function VisualSelection(direction, extra_filter)
 end
 
 -- Search and replace the selected text
-vim.keymap.set("x", "<leader>R", [[:<C-u>lua VisualSelection('replace','')<CR>]], { noremap = true, silent = false, desc = "Replace Search register" })
+vim.keymap.set("x", "<leader>sR", [[:<C-u>lua VisualSelection('replace','')<CR>]], { noremap = true, silent = false, desc = "Replace Search register" })
 
 
 -- Quickfix do (Experimental)

@@ -1,5 +1,10 @@
 -----------------------------------------------------------
 -- Search Replace
+-- Common workflow
+-- Search In local buffer : <leader>;
+-- Search Replace in local buffer : <leader>ss and <leader>sR  (if search register is not empty) or <leader>r to replace visual selection
+-- Search Globally : <leader>sg (livegrep), <leader>sw (for word or selection)
+-- Search Replace Globally : <leader>sr (grug-far)  or <leader><leader>x (cfdo)
 -----------------------------------------------------------
 
 return {
