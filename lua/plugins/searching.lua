@@ -26,6 +26,7 @@ return {
 				},
 			}
 		end,
+        cmd = {"Grepper"},
 		keys = {
           { "gf", "<Plug>(GrepperOperator)", desc = "Grepper Search operator", mode = {"n","x"} },
 		}
