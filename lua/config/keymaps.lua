@@ -247,3 +247,7 @@ map('i', '<C-l>', '<Right>', default_opts)
 map('i', '<C-j>', '<Down>', default_opts)
 map('i', '<C-k>', '<Up>', default_opts)
 
+-- Quickfix do (Experimental)
+-- Fix this command
+vim.keymap.set("n", "<leader><leader>x", ":cfdo %s///gc | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>" , { noremap = true, silent = true , desc = "Quickfix do" })
+

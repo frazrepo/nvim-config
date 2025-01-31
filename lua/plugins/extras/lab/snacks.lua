@@ -31,7 +31,7 @@ return {
 
             -- Search
             { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word (Root Dir)", mode = { "n", "x" } },
-            { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
+            { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (Root Dir) like <leader>/" },
             { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
             { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
             -- Additional search
