@@ -31,6 +31,7 @@ return {
 		}
 	},
 	-- grug-far Search and Replace
+    -- mapping ,o/,c to open/close
 	{
         "MagicDuck/grug-far.nvim",
         opts = {
