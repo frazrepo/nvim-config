@@ -59,7 +59,7 @@ return {
             },
             {
                 -- Requires the latest version of ripgrep
-                "<leader>su",
+                "<leader>sb",
                 function()
                     local grug = require("grug-far")
                     grug.open({
