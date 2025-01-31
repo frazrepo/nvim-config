@@ -18,6 +18,10 @@ return {
 			{ "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
 			{ "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
 
+            --File
+            { "<leader>fi", function() Snacks.picker.explorer() end, desc = "Find Files", mode = { "n", "x" } },
+            { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+
             -- Scratch
 			{ "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
 			{ "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
@@ -38,16 +42,10 @@ return {
             { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
             { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
             { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
-            { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-            { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
             { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
             { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
             { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
-            { "<leader>sM", function() Snacks.picker.man() end, desc = "Man Pages" },
             { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-            { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
-            { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix List" },
-            -- { "<leader>su", function() Snacks.picker.undo() end, desc = "Undotree" },
             -- ui
             { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 		},
