@@ -69,7 +69,7 @@ return {
 					async = false,
 					timeout_ms = 1000,
 				})
-			end, { desc = "Format file or range (in visual mode)" })
+			end, { desc = "Format file or range (conform)" })
 
 			-- Create a command `:ConFormat`
 			vim.api.nvim_create_user_command("ConFormat", function()
