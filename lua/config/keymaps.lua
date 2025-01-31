@@ -247,6 +247,30 @@ map('i', '<C-l>', '<Right>', default_opts)
 map('i', '<C-j>', '<Down>', default_opts)
 map('i', '<C-k>', '<Up>', default_opts)
 
+
+-- replace the current text in search register
+vim.keymap.set( "n", "<leader>R", [[:%s///g<Left><Left>]], { noremap = true, silent = false, desc = "Replace Search register" })
+
+-- Put visual selection in search register
+function VisualSelection(direction, extra_filter)
+  local saved_reg = vim.fn.getreg('"')
+  vim.cmd("normal! vgvy")
+
+  local pattern = vim.fn.escape(vim.fn.getreg('"'), "\\/.*'$^~[]")
+  pattern = vim.fn.substitute(pattern, "\n$", "", "")
+
+  if direction == "replace" then
+    vim.fn.feedkeys(":" .. "%s" .. "/" .. pattern .. "/")
+  end
+
+  vim.fn.setreg("/", pattern)
+  vim.fn.setreg('"', saved_reg)
+end
+
+-- Search and replace the selected text
+vim.keymap.set("x", "<leader>R", [[:<C-u>lua VisualSelection('replace','')<CR>]], { noremap = true, silent = false, desc = "Replace Search register" })
+
+
 -- Quickfix do (Experimental)
 -- Execute cfdo with confirmation
 vim.keymap.set("n", "<leader><leader>x", function()
