@@ -8,6 +8,7 @@ return
     -----------------------------------------------------------
     -- Autorename tags
     {
+        -- Work with , c (change operator), v (visual operator), or insert mode only
         'AndrewRadev/tagalong.vim',
         ft = {
             "html",
