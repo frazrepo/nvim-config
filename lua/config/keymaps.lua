@@ -18,15 +18,10 @@ vim.g.maplocalleader = ","
 -----------------------------------------------------------
 
 -- Clear search highlighting
-vim.keymap.set('n', '<esc>', FrazVim.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('i', '<esc>', FrazVim.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
-vim.keymap.set('v', '<esc>', FrazVim.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
+vim.keymap.set({'n','i','v'}, '<esc>', FrazVim.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
-map('n', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
-map('x', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
-map('i', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
-map('s', '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+map({'n','i','x','s'}, '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 
 -- Repeat . command in visual mode
 map('v', '.', ':normal.<CR>', {noremap = true})
@@ -155,8 +150,6 @@ map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
 
 -- Alternative to unimpaired )or ( <Space> (from mini.bascis)
--- map('n', 'gO', 'v:lua.MiniBasics.put_empty_line(v:true)',  { expr = true, desc = 'Put empty line above' })
--- map('n', 'go', 'v:lua.MiniBasics.put_empty_line(v:false)', { expr = true, desc = 'Put empty line below' })
 vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
 vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
 
