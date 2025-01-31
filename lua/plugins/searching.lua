@@ -57,6 +57,38 @@ return {
                 mode = { "n", "v" },
                 desc = "Search and Replace (ripgrep)",
             },
+            {
+                -- Requires the latest version of ripgrep
+                "<leader>su",
+                function()
+                    local grug = require("grug-far")
+                    grug.open({
+                        transient = true,
+                        prefills = {
+                             paths = vim.fn.expand("%")
+                        },
+                    })
+                end,
+
+                mode = { "n", "v" },
+                desc = "Search and Replace in buffer",
+            },
+            {
+                -- Requires the latest version of ripgrep
+                "<leader>sv",
+                function()
+                    local grug = require("grug-far")
+                    grug.with_visual_selection({
+                        transient = true,
+                        prefills = {
+                             paths = vim.fn.expand("%")
+                        },
+                    })
+                end,
+
+                mode = { "v" },
+                desc = "Search and Replace selection in buffer",
+            },
         },
-	},	
+	},
 }
