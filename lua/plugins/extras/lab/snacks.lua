@@ -28,6 +28,10 @@ return {
 
             -- Lazygit
             { "<leader>gg", "<cmd>lua require'snacks'.lazygit()<CR>", desc = "LazyGit" },
+            -- git
+            { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
+            { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
+            { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
 
             -- Search
             { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word (Root Dir)", mode = { "n", "x" } },
