@@ -21,7 +21,7 @@ vim.g.maplocalleader = ","
 vim.keymap.set({'n','i','v'}, '<esc>', FrazVim.ClearSearchHLAndStopSnippet, { noremap = false, silent = true, expr = true })
 
 -- Save file
-map({'n','i','x','s'}, '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
+vim.keymap.set({'n','i','x','s'}, '<C-s>', '<cmd>w<cr><esc>', {noremap =false, silent = true})
 
 -- Repeat . command in visual mode
 map('v', '.', ':normal.<CR>', {noremap = true})
