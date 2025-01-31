@@ -9,7 +9,7 @@
 --  <leader>sR  (if search register is not empty)
 --  <leader>r to replace visual selection
 -- GLOBAL
--- Search Globally : <leader>sg (livegrep), <leader>sw (for word or selection)
+-- Search Globally : <leader>sg (livegrep) or C-F, <leader>sw (for word or selection)
 -- Search Replace Globally : <leader>sr (grug-far)  or <leader><leader>x (cfdo)
 -----------------------------------------------------------
 
