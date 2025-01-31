@@ -1,8 +1,14 @@
 -----------------------------------------------------------
 -- Search Replace
 -- Common workflow
--- Search In local buffer : <leader>;
--- Search Replace in local buffer : <leader>ss and <leader>sR  (if search register is not empty) or <leader>r to replace visual selection
+-- LOCAL
+-- Search in local buffer : <leader>;
+-- Search visual selection in buffer : *
+-- Search and Replace in local buffer
+--  <leader>ss
+--  <leader>sR  (if search register is not empty)
+--  <leader>r to replace visual selection
+-- GLOBAL
 -- Search Globally : <leader>sg (livegrep), <leader>sw (for word or selection)
 -- Search Replace Globally : <leader>sr (grug-far)  or <leader><leader>x (cfdo)
 -----------------------------------------------------------
@@ -48,12 +54,6 @@ return {
 
                 mode = { "n", "v" },
                 desc = "Search and Replace (ripgrep)",
-            },
-            {
-                "<leader>sa",
-                "<cmd> lua require('grug-far').open({ engine = 'astgrep' })<cr>",
-                mode = { "n", "v" },
-                desc = "Search and Replace (astgrep)",
             },
         },
 	},	
