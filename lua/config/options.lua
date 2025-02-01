@@ -17,9 +17,9 @@ opt.expandtab               = true                          -- Use spaces instea
 
 opt.foldlevel               = 99
 opt.foldlevelstart          = 99
--- opt.foldcolumn              = '1'                     
-opt.foldcolumn              = '5'                           -- Workaround for ufo fold to hide foldlevele number on the left
+opt.foldcolumn              = '1'
 opt.foldenable              = true
+
 opt.fillchars               = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 opt.formatoptions           = 'qnj1'                        -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 opt.gdefault                = true
