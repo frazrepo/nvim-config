@@ -50,7 +50,15 @@ return {
                   require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
                 end,
                 desc = "Explorer NeoTree (cwd)",
-            },            
+            },
+            {
+                "<leader>e",
+                function()
+                  require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+                end,
+                desc = "Explorer NeoTree (cwd)",
+            },
+
         },
         opts = {
             sources = { "filesystem"},
@@ -188,6 +196,7 @@ return {
               { "<leader>t", group = "terminal" },
               { "<leader>b", group = "buffer" },
               { "<leader>f", group = "file/find" },
+              { "<leader>i", group = "info" },
               { "<leader><leader>", group = "miscellaneous" },
               { "g", group = "goto" },
             }
