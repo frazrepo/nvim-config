@@ -1,4 +1,7 @@
 return {
+    -- Usage : za to toggle
+    -- zr to reveal all
+    -- zm to hide all
 	"kevinhwang91/nvim-ufo",
 	dependencies = "kevinhwang91/promise-async",
 	event = "UIEnter", -- needed for folds to load in time and comments being closed
@@ -10,10 +13,6 @@ return {
 			function() require("ufo").openFoldsExceptKinds { "comment", "imports" } end,
 			desc = "󱃄 Open regular folds",
 		},
-		{ "z1", function() require("ufo").closeFoldsWith(1) end, desc = "󱃄 Close L1 folds" },
-		{ "z2", function() require("ufo").closeFoldsWith(2) end, desc = "󱃄 Close L2 folds" },
-		{ "z3", function() require("ufo").closeFoldsWith(3) end, desc = "󱃄 Close L3 folds" },
-		{ "z4", function() require("ufo").closeFoldsWith(4) end, desc = "󱃄 Close L4 folds" },
 	},
 	init = function()
 		-- INFO fold commands usually change the foldlevel, which fixes folds, e.g.
