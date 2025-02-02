@@ -88,9 +88,6 @@ vim.cmd([[
     ]]
 )
 
--- " Quick yanking to the end of the line
-map('n', 'Y', 'y$', default_opts)
-
 -- " Quick macro recording and replaying ,qq for recording, and Q for replaying
 map('n', 'Q', '@q', default_opts)
 map('x', 'Q', ':normal @q<CR>', default_opts)
