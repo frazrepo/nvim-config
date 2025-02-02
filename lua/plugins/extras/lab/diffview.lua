@@ -9,7 +9,9 @@ return {
             vim.keymap.set( 'n', ',hf', '<cmd>DiffviewFileHistory --follow %<cr>', { desc = 'File history' })
             vim.keymap.set( 'v', ',hl', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", { desc = 'Range history' })
             vim.keymap.set( 'n', ',hl', '<Cmd>.DiffviewFileHistory --follow<CR>', { desc = 'Line history' })
-            vim.keymap.set( 'n', ',hc', '<Cmd>.DiffviewClose<CR>', { desc = 'Close DiffView' })
+            -- To Close, we can also just do a tab close :tabc
+            vim.keymap.set( 'n', ',hc', '<cmd>set hidden<cr><cmd>DiffviewClose<cr><cmd>set nohidden<cr>', { desc = 'Close DiffView' })
+
 
             local function get_default_branch_name()
                 local res = vim
