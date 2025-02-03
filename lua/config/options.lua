@@ -17,7 +17,7 @@ opt.expandtab               = true                          -- Use spaces instea
 
 opt.foldlevel               = 99
 opt.foldlevelstart          = 99
-opt.foldcolumn              = '1'
+opt.foldcolumn              = '5'
 opt.foldenable              = true
 
 opt.fillchars               = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
