@@ -192,11 +192,15 @@ return {
           spec = {
             {
               mode = { "n", "v" },
-              { "<leader>s", group = "search" },
-              { "<leader>t", group = "terminal" },
               { "<leader>b", group = "buffer" },
               { "<leader>f", group = "file/find" },
+              { "<leader>g", group = "git" },
               { "<leader>i", group = "info" },
+              { "<leader>s", group = "search" },
+              { "<leader>t", group = "terminal" },
+              { "<leader>u", group = "ui" },
+              { "<leader>w", group = "windows" },
+              { ",h",        group = "diffview" },
               { "<leader><leader>", group = "miscellaneous" },
               { "g", group = "goto" },
             }
