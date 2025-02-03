@@ -210,7 +210,7 @@ map('n', '<leader>be',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silen
 
 -- Quickly open a txt, markdown and sql buffer for scribble
 map("n", "<leader>bx",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", { noremap = true, silent = true , desc = "Edit txt scratch buffer" })
-map("n", "<leader>bd",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
+map("n", "<leader>bm",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
 map("n", "<leader>bs",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>",  { noremap = true, silent = true , desc = "Edit sql scratch buffer" })
 
 
