@@ -1,6 +1,12 @@
 -----------------------------------------------------------
 -- AutoCommands
 -----------------------------------------------------------
+
+local function augroup(name)
+  return vim.api.nvim_create_augroup("frazvim_" .. name, { clear = true })
+end
+
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     pattern = "*",
@@ -25,19 +31,17 @@ function run_mkdir()
   end
 end
 
-local mygroup = vim.api.nvim_create_augroup('MkdirRun', { clear = false })
 vim.api.nvim_create_autocmd({ 'BufWritePre'}, {
   pattern = '*',
-  group = mygroup,
+  group = augroup("mkdir_run"),
   command = 'lua run_mkdir()',
 })
 
 
 -- Enhance the help view and mappings
-local enhance_help = vim.api.nvim_create_augroup('EnhanceHelpView', { clear = true })
 vim.api.nvim_create_autocmd('FileType', {
     pattern = 'help',
-    group = enhance_help,
+    group = augroup("enhance_help"),
     callback = function()
         -- Help file mappings
         vim.keymap.set('n', '<cr>', '<c-]>', { buffer = true })
@@ -53,7 +57,7 @@ vim.api.nvim_create_autocmd('FileType', {
 })
  
  -- Autosave scratch buffers
-local autosave_scratch = vim.api.nvim_create_augroup('AutoSaveScratch', { clear = true })
+local autosave_scratch = augroup("autosave_scratch")
 vim.api.nvim_create_autocmd({ 'InsertLeave', 'TextChanged' }, {
     pattern = 'buffer.*',
     group = autosave_scratch,
@@ -92,9 +96,36 @@ local set_root = function()
   vim.fn.chdir(root)
 end
 
-local root_augroup = vim.api.nvim_create_augroup('MyAutoRoot', {})
-vim.api.nvim_create_autocmd('BufEnter', { group = root_augroup, callback = set_root })
+vim.api.nvim_create_autocmd('BufEnter', { group = augroup("auto_root"), callback = set_root })
 
+-- close some filetypes with <q>
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("close_with_q"),
+  pattern = {
+    "checkhealth",
+    "dbout",
+    "gitsigns-blame",
+    "grug-far",
+    -- "help",
+    "lspinfo",
+    "notify",
+    -- "qf",
+    "startuptime",
+  },
+  callback = function(event)
+    vim.bo[event.buf].buflisted = false
+    vim.schedule(function()
+      vim.keymap.set("n", "q", function()
+        vim.cmd("close")
+        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+      end, {
+        buffer = event.buf,
+        silent = true,
+        desc = "Quit buffer",
+      })
+    end)
+  end,
+})
 
 -----------------------------------------------------------
 -- Commands
