@@ -259,9 +259,8 @@ return {
 
             require('telescope').load_extension('projects')
 
-            vim.keymap.set('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true, desc = "Search files" })
-            vim.keymap.set('n', '<leader>ff', "<C-P>", {remap = true, desc = "Search files" })
-            vim.keymap.set('n', '<leader><leader>', "<C-P>", {remap = true, desc = "Search files" })
+            vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {remap = true, desc = "Search files" })
+            vim.keymap.set('n', '<leader><leader>', "<leader>ff", {remap = true, desc = "Search files" })
             vim.keymap.set('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open recent Projects" })
             vim.keymap.set('n', '<leader>fp', "<leader>p", { remap = true, desc = "Open recent Projects" })
             vim.keymap.set('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep (telescope)" })

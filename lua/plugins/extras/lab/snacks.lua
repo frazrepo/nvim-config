@@ -48,6 +48,8 @@ return {
             { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
             { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
             { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
+            -- like command palette C-P
+            { "<C-P>", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
             { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
             { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
             -- ui
