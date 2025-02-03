@@ -12,15 +12,19 @@ opt.backspace               = 'eol,start,indent'            -- Configure backspa
 opt.clipboard               = 'unnamed,unnamedplus'         -- Default to system clipboard
 opt.complete                = '.,w,b,u'                     -- Complete option
 opt.cpoptions:append '>'                                    -- Put a line break before appended text (appending to register)
+opt.conceallevel = 2                                        -- Hide * markup for bold and italic, but not markers with substitutions
+
 opt.encoding                = 'utf-8'                       -- Dealing with special chars
 opt.expandtab               = true                          -- Use spaces instead of tabs
 
-opt.foldlevel               = 99
-opt.foldlevelstart          = 99
-opt.foldcolumn              = '5'
-opt.foldenable              = true
-
-opt.fillchars               = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
+opt.fillchars = {
+  foldopen = "",
+  foldclose = "",
+  fold = " ",
+  foldsep = " ",
+  diff = "╱",
+  eob = " ",
+}
 opt.formatoptions           = 'qnj1'                        -- q  - comment formatting; n - numbered lists; j - remove comment when joining lines; 1 - don't break after one-letter word
 opt.gdefault                = true
 opt.hidden                  = true                          -- Set hidden to allow switching to other buffer if it is modifie
@@ -69,6 +73,7 @@ opt.updatetime              = 300                           -- Smaller updatetim
 opt.virtualedit             = 'block'                       -- VirtualEdit block allow selection everywhere in visual block mode
 opt.visualbell              = true                          -- t_vb =-- No sound on errors
 opt.whichwrap:append        '<,>,h,l'
+opt.wrap = false                                            -- Disable line wrap
 
 opt.cmdheight               = 2                             --Fix : Press Enter or Type Command to continue error in nvim
 -- opt.signcolumn              =true                        -- always show signcolumns
@@ -95,5 +100,3 @@ vim.g.neovide_cursor_animation_length = 0.02
 vim.g.neovide_cursor_trail_length = 0
 vim.g.neovide_remember_window_size = true
 
--- not working yet
--- set lines=600 columns=800
