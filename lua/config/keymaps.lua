@@ -60,8 +60,6 @@ map('n', '<leader>bo',':silent! execute "%bd|e#|bd#"<cr>', {noremap =false, sile
 -- Backspace to navigate to alternate buffer
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
--- Edit quickly with the current buffer path
-map('n', '<leader><leader>e',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true, desc = "Edit in current buffer path"})
 
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
@@ -207,10 +205,13 @@ vim.keymap.set({"n","x"}, "<leader>sR","<leader>r", {remap = true, desc = "Repla
 -- Toogle quickfix windows
 map("n", "<leader>q",":lua FrazVim.QuickFixToggle()<cr>", { noremap = true, silent = true , desc = "Toggle Quickfix" })
 
+-- Edit quickly with the current buffer path
+map('n', '<leader>be',':edit <c-r>=expand("%:p:h")<cr>/', {noremap =false, silent = true, desc = "Edit in current buffer path"})
+
 -- Quickly open a txt, markdown and sql buffer for scribble
-map("n", "<leader><leader>x",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", { noremap = true, silent = true , desc = "Edit txt scratch buffer" })
-map("n", "<leader><leader>d",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
-map("n", "<leader><leader>s",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>",  { noremap = true, silent = true , desc = "Edit sql scratch buffer" })
+map("n", "<leader>bx",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.txt<CR>", { noremap = true, silent = true , desc = "Edit txt scratch buffer" })
+map("n", "<leader>bd",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.md<CR>",  { noremap = true, silent = true , desc = "Edit markdown scratch buffer" })
+map("n", "<leader>bs",":e " .. vim.fn.stdpath("data") .. "/scratch/buffer.sql<CR>",  { noremap = true, silent = true , desc = "Edit sql scratch buffer" })
 
 
 -- Map for navigating search (/?) result with tab
