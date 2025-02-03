@@ -196,6 +196,7 @@ return {
               { "<leader>f", group = "file/find" },
               { "<leader>g", group = "git" },
               { "<leader>i", group = "info" },
+              { "<leader>m", group = "miscellaneous" },
               { "<leader>s", group = "search" },
               { "<leader>t", group = "terminal" },
               { "<leader>u", group = "ui" },

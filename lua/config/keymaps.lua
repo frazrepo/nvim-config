@@ -159,7 +159,7 @@ map('c', '%%', [[<C-R>=fnameescape(expand("%:p:h")) . '/'<CR>]]  , {noremap =fal
 map('c', '::', [[<C-R>=fnameescape(expand("%"))<CR>]]  , {noremap =false, silent = true})
 
 -- Remove the Windows ^M - when the encodings gets messed up
-map('n', '<Leader>m', [[mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm]]  , {noremap =false, silent = true, desc = "Remove special char ^M"})
+map('n', '<Leader>mm', [[mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm]]  , {noremap =false, silent = true, desc = "Remove special char ^M"})
 
 -- Windows
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
@@ -239,7 +239,7 @@ map('i', '<C-k>', '<Up>', default_opts)
 
 -- Quickfix do (Experimental)
 -- Execute cfdo with confirmation
-vim.keymap.set("n", "<leader><leader>x", function()
+vim.keymap.set("n", "<leader>mx", function()
   local cmd = vim.fn.input("Enter command for quickfix (cfdo): ", "%s///g")
   if cmd ~= "" then
     local confirm = vim.fn.input("Execute '" .. cmd .. "' on all quickfix entries? (y/n): ")
