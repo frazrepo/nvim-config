@@ -61,6 +61,10 @@ map('n', '<leader>bo',':silent! execute "%bd|e#|bd#"<cr>', {noremap =false, sile
 map('n', '<bs>','<c-^>', {noremap =false, silent = true})
 
 
+-- Clear search, diff update and redraw
+-- taken from runtime/lua/_editor.lua
+map("n", "<leader>ur", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", { desc = "Redraw / Clear hlsearch / Diff Update" })
+
 -- https://github.com/mhinz/vim-galore#saner-behavior-of-n-and-n
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next Search Result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next Search Result" })
