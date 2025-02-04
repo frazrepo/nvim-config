@@ -35,10 +35,10 @@ map('v', '<', '<gv', default_opts)
 map('n', 'gV','`[v`]',  { noremap = true, silent = true , desc = "Reselect last pasted text" })
 
 -- Smart way to move between windows horizontally - See wezterm plugin
--- map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
--- map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
--- map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
--- map('n', '<C-k>','<C-W>k', {noremap =false, silent = true})
+map('n', '<C-h>','<C-W>h', {noremap =false, silent = true})
+map('n', '<C-l>','<C-W>l', {noremap =false, silent = true})
+map('n', '<C-j>','<C-W>j', {noremap =false, silent = true})
+map('n', '<C-k>','<C-W>k', {noremap =false, silent = true})
 
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { noremap =false, silent = true })
