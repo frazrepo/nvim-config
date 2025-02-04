@@ -42,7 +42,7 @@ return {
         keys = {
             {
                 -- Requires the latest version of ripgrep
-                "<leader>sr",
+                "<leader>rg",
                 function()
                     local grug = require("grug-far")
                     local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
@@ -55,11 +55,11 @@ return {
                 end,
 
                 mode = { "n", "v" },
-                desc = "Search and Replace (ripgrep)",
+                desc = "Search and Replace (rg)",
             },
             {
                 -- Requires the latest version of ripgrep
-                "<leader>sb",
+                "<leader>rb",
                 function()
                     local grug = require("grug-far")
                     grug.open({
@@ -71,11 +71,11 @@ return {
                 end,
 
                 mode = { "n", "v" },
-                desc = "Search and Replace in buffer",
+                desc = "Search and Replace in buffer(rg)",
             },
             {
                 -- Requires the latest version of ripgrep
-                "<leader>sv",
+                "<leader>rv",
                 function()
                     local grug = require("grug-far")
                     grug.with_visual_selection({
@@ -87,7 +87,7 @@ return {
                 end,
 
                 mode = { "v" },
-                desc = "Search and Replace selection in buffer",
+                desc = "Search and Replace selection in buffer (rg)",
             },
         },
 	},

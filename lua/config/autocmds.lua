@@ -159,3 +159,5 @@ end, {})
 vim.api.nvim_create_user_command('RemoveTrailingSpaces', function()
     FrazVim.CleanExtraSpaces()
 end, {})
+-- Create  a mapping to call the commande RemoveTrailingSpaces
+vim.keymap.set('n', '<leader>m<space>', ':RemoveTrailingSpaces<CR>', { desc = 'Remove trailing spaces' })

@@ -21,6 +21,7 @@ return {
             --File
             { "<leader>fi", function() Snacks.picker.explorer() end, desc = "Find Files", mode = { "n", "x" } },
             { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
+            { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
 
             -- Scratch
 			{ "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
@@ -49,7 +50,6 @@ return {
             { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
             { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
             -- like command palette C-P
-            { "<C-P>", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
             { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
             { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
             -- ui
