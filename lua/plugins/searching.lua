@@ -29,6 +29,7 @@ return {
         cmd = {"Grepper"},
 		keys = {
           { "gf", "<Plug>(GrepperOperator)", desc = "Grepper Search operator", mode = {"n","x"} },
+          { "<leader>s;", "<cmd>Grepper -buffer<cr>", desc = "Grepper Search Buffer", mode = {"n","x"} },
 		}
 	},
 	-- grug-far Search and Replace
