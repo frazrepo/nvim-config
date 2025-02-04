@@ -270,7 +270,7 @@ return {
             vim.keymap.set('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true , desc = "Find buffer"})
             -- Current buffer
             vim.keymap.set('n', '<leader>sb', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
-            vim.keymap.set('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
+            vim.keymap.set('n', '<leader>;', "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
         end
     },
 }
