@@ -193,9 +193,9 @@ map("n", "<leader>rr",":%s/", {noremap = true, silent = false, desc = "Search an
 map("x", "<leader>rr",[[:s/]], {noremap = true, silent = false, desc = "Search and Replace (local)" })
 
 -- replace the current text in search Register
-map('n', '<leader>rS', [[:%s/<C-r>//]], {noremap = true, silent = false, desc = "Replace Search Register (local)" })
+map('n', '<leader>rs', [[:%s/<C-r>//]], {noremap = true, silent = false, desc = "Replace Search Register (local)" })
 -- Search and replace the selected text
-map("x", "<leader>rS",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search selection (local)" })
+map("x", "<leader>rs",[[:<C-u>lua FrazVim.VisualSelection('replace','')<CR>]], {noremap = true, silent = false, desc = "Replace search selection (local)" })
 
 -----------------------------------------------------------
 -- Miscellaneous
