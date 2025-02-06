@@ -11,6 +11,10 @@ return {
     hunk = { "", "" },
    },
    integrations = { diffview = true }, -- adds integration with diffview.nvim
+
   })
  end,
+ keys= {
+  { "<leader>gn", "<cmd>Neogit<CR>", desc = "Neogit" },
+ }
 }
