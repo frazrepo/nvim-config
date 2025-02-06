@@ -38,7 +38,11 @@ return {
         dependencies = {
             {'nvim-lua/plenary.nvim'}
         },
-        opts = {}
+        opts = {},
+        keys = {
+            { "<leader>gbb", "<Cmd>Gitsigns blame<CR>", desc = "Git blame" },
+            { "<leader>gbl", "<Cmd>Gitsigns blame_line<CR>", desc = "Git blame line" },
+        }
     },
 
     -- bufferline
