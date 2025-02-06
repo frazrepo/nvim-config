@@ -197,6 +197,8 @@ return {
               { "<leader>c", group = "code/format/change" },
               { "<leader>f", group = "file/find" },
               { "<leader>g", group = "git" },
+              { "<leader>gh", group = "hunks" },
+              { "<leader>gv", group = "toggle view" },
               { "<leader>i", group = "info" },
               { "<leader>m", group = "miscellaneous" },
               { "<leader>s", group = "search" },
