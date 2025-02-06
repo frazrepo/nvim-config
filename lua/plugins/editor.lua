@@ -192,6 +192,7 @@ return {
           spec = {
             {
               mode = { "n", "v" },
+              { "<leader><tab>", group = "tabs" },
               { "<leader>b", group = "buffer" },
               { "<leader>c", group = "code/format/change" },
               { "<leader>f", group = "file/find" },
