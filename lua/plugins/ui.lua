@@ -40,8 +40,7 @@ return {
         },
         opts = {},
         keys = {
-            { "<leader>gbb", "<Cmd>Gitsigns blame<CR>", desc = "Git blame" },
-            { "<leader>gbl", "<Cmd>Gitsigns blame_line<CR>", desc = "Git blame line" },
+            { "<leader>gb", "<Cmd>Gitsigns blame<CR>", desc = "Git blame" },
         }
     },
 
