@@ -201,8 +201,10 @@ return {
               { "<leader>s", group = "search" },
               { "<leader>r", group = "replace" },
               { "<leader>t", group = "terminal" },
-              { "<leader>u", group = "ui" },
+              -- { "<leader>u", group = "ui" },
+              { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
               { "<leader>w", group = "windows" },
+              { "<leader>x", group = "diagnostics", icon = { icon = "󱖫 ", color = "green" } },
               { ",h",        group = "diffview" },
               { "<leader><leader>", group = "miscellaneous" },
               { "g", group = "goto" },
@@ -217,7 +219,12 @@ return {
             end,
             desc = "Buffer Local Keymaps (which-key)",
           },
-
+          {
+            "<leader>xx",
+            function()
+            end,
+            desc = "Do nothing for now",
+          },
         },
     },
 
