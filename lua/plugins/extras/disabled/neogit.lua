@@ -1,4 +1,5 @@
 return {
+  -- Atfer testing, lazygit is enough and faster for me
  "NeogitOrg/neogit",
  cmd = "Neogit",
  config = function()

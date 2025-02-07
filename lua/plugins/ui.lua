@@ -38,10 +38,22 @@ return {
         dependencies = {
             {'nvim-lua/plenary.nvim'}
         },
-        opts = {},
         keys = {
-            { "<leader>gb", "<Cmd>Gitsigns blame<CR>", desc = "Git blame" },
-        }
+            { "<leader>gb"},
+            { '<leader>guw'},
+            { '<leader>guL'},
+            {'<leader>guv'},
+        },
+       config = function()
+         require('gitsigns').setup()
+         vim.keymap.set( 'n', '<leader>gb',require("gitsigns").blame, { desc = 'git blame' })
+         -- Highlight word diff
+         vim.keymap.set( 'n', '<leader>guw', require('gitsigns').toggle_word_diff, { desc = 'Toggle word diff' })
+         -- Highlight added lines.
+         vim.keymap.set( 'n', '<leader>gul', require('gitsigns').toggle_linehl, { desc = 'Toggle line highlight' })
+         -- Preview hunk inline
+         vim.keymap.set( 'n', '<leader>guv', require('gitsigns').preview_hunk_inline, { desc = 'Toggle preview inline' })
+       end
     },
 
     -- bufferline
