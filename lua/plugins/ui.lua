@@ -39,10 +39,10 @@ return {
             {'nvim-lua/plenary.nvim'}
         },
         keys = {
-            { "<leader>gb"},
-            { '<leader>guw'},
-            { '<leader>guL'},
-            {'<leader>guv'},
+            { "<leader>gb"  },
+            { '<leader>guw' },
+            { '<leader>guL' },
+            { '<leader>guv' },
         },
        config = function()
          require('gitsigns').setup()
