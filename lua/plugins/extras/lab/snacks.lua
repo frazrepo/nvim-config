@@ -57,13 +57,13 @@ return {
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
     },
   },
-   {
-       "folke/todo-comments.nvim",
-      opts = {},
-      --  optional = true,
-      keys = {
-           { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "todo" },
-           { "<leader>sT", function () Snacks.picker.todo_comments({ keywords = { "todo", "fix", "fixme" } }) end, desc = "todo/fix/fixme" },
-         },
-       }
-    }
+  {
+      "folke/todo-comments.nvim",
+    opts = {},
+    --  optional = true,
+    keys = {
+          { "<leader>st", function() Snacks.picker.todo_comments() end, desc = "todo" },
+          { "<leader>sT", function () Snacks.picker.todo_comments({ keywords = { "todo", "fix", "fixme" } }) end, desc = "todo/fix/fixme" },
+        },
+      }
+  }
