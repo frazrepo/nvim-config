@@ -2,12 +2,6 @@
 -- Editor features
 -----------------------------------------------------------
 return {
-    -- neoformat
-    {
-        'sbdchd/neoformat',
-        cmd = "NeoFormat",
-    },
-
 	-- Conform
 	{
 		"stevearc/conform.nvim",
@@ -53,6 +47,9 @@ return {
 						args = { "-output", "stdout", "$FILENAME" },
 					},
 				},
+				default_format_opts = {
+					lsp_format = "fallback",
+				},
 			})
 
 			-- Override bicep's default indent size
@@ -65,14 +62,14 @@ return {
 				prepend_args = { "--tab-width", "4" },
 			}
 
-			-- TODO : Find a non conflicting mapping
-			-- vim.keymap.set({ "n", "v" }, ")f", function()
-			-- 	conform.format({
-			-- 		lsp_fallback = true,
-			-- 		async = false,
-			-- 		timeout_ms = 1000,
-			-- 	})
-			-- end, { desc = "Format file or range (in visual mode)" })
+			-- Mappings
+			vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+				require("conform").format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				})
+			end, { desc = "Format file or range (conform)" })
 
 			-- Create a command `:ConFormat`
 			vim.api.nvim_create_user_command("ConFormat", function()

@@ -1,5 +1,16 @@
 -----------------------------------------------------------
 -- Search Replace
+-- Common workflow
+-- LOCAL
+-- Search in local buffer : <leader>;
+-- Search visual selection in buffer : *
+-- Search and Replace in local buffer
+--  <leader>ss
+--  <leader>sR  (if search register is not empty)
+--  <leader>r to replace visual selection
+-- GLOBAL
+-- Search Globally : <leader>sg (livegrep) or C-F, <leader>sw (for word or selection)
+-- Search Replace Globally : <leader>sr (grug-far)  or <leader><leader>x (cfdo)
 -----------------------------------------------------------
 
 return {
@@ -8,51 +19,21 @@ return {
 	{
 		"mhinz/vim-grepper",
 		config = function()
-
 			vim.g.grepper = {
 				tools = { "rg", "git" },
 				rg = {
 					grepprg = "rg -H --no-heading --vimgrep --hidden",
 				},
 			}
-
-			-- <leader<R> : Project wide find and replace. 
-			-- It's similar to <leader>r but applies to all matches across all files.
-
-			vim.cmd([[
-				nnoremap <Leader>R
-				\ :let @s=expand('<cword>')<CR>
-				\ :Grepper -cword -noprompt<CR>
-				\ :cfdo %s/<C-r>s//g \| update
-				\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-			]])
-
-			-- Visual Selection Variant
-			vim.cmd([[
-				xmap <Leader>R
-				\ "sy
-				\ :Grepper -cword -noprompt<CR>
-				\ :cfdo %s/<C-r>s//g \| update
-				\<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-			]])
-
-			-- Custom commands
-			-- https://github.com/mhinz/vim-grepper/wiki/example-configurations-and-mappings
-			vim.cmd([[
-				command! Todo :Grepper -tool git -query '\(TODO\|FIXME\)'
-			]])
 		end,
+        cmd = {"Grepper"},
 		keys = {
-			{ "<Leader>R" , desc ="Search Replace Globally"},
-			{ "<Leader>*", "<Cmd>Grepper -cword -noprompt<Cr>", desc = "Grepper Word Under Cursor" },
-			{ "<Leader>/", "<Cmd>Grepper<Cr>", desc = "Grepper globally" },
-			{ "<Leader>G", "<Cmd>Grepper -buffers<Cr>", desc = "Grepper in all open Buffers" },
-			{ "<Leader>g", "<Cmd>Grepper -buffer<Cr>", desc = "Grepper in current buffer" },
-			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper find operator" },
-			{ "gf", "<Plug>(GrepperOperator)", desc = "Grepper find operator", mode = "x" },
+          { "gf", "<Plug>(GrepperOperator)", desc = "Grepper Search operator", mode = {"n","x"} },
+          { "<leader>s;", "<cmd>Grepper -buffer<cr>", desc = "Grepper Search Buffer", mode = {"n","x"} },
 		}
 	},
 	-- grug-far Search and Replace
+    -- mapping ,o/,c to open/close
 	{
         "MagicDuck/grug-far.nvim",
         opts = {
@@ -62,7 +43,7 @@ return {
         keys = {
             {
                 -- Requires the latest version of ripgrep
-                "<leader>sr",
+                "<leader>rg",
                 function()
                     local grug = require("grug-far")
                     local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
@@ -75,14 +56,40 @@ return {
                 end,
 
                 mode = { "n", "v" },
-                desc = "Search and Replace",
+                desc = "Search and Replace (rg)",
             },
             {
-                "<leader>sa",
-                "<cmd> lua require('grug-far').open({ engine = 'astgrep' })<cr>",
+                -- Requires the latest version of ripgrep
+                "<leader>rb",
+                function()
+                    local grug = require("grug-far")
+                    grug.open({
+                        transient = true,
+                        prefills = {
+                             paths = vim.fn.expand("%")
+                        },
+                    })
+                end,
+
                 mode = { "n", "v" },
-                desc = "Search and Replace with astgrep",
+                desc = "Search and Replace in buffer(rg)",
+            },
+            {
+                -- Requires the latest version of ripgrep
+                "<leader>rv",
+                function()
+                    local grug = require("grug-far")
+                    grug.with_visual_selection({
+                        transient = true,
+                        prefills = {
+                             paths = vim.fn.expand("%")
+                        },
+                    })
+                end,
+
+                mode = { "v" },
+                desc = "Search and Replace selection in buffer (rg)",
             },
         },
-	},	
+	},
 }

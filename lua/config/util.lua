@@ -1,8 +1,27 @@
 -----------------------------------------------------------
 -- Global Utilities Helpers
--- FzUtils (_G.FrazUtil = require('config.util'))
+-- FrazVim (_G.FrazVim = require('config.util'))
 -----------------------------------------------------------
 local M = {}
+
+-- Define a table here for extras plugins activation
+M.extras = {
+    ai = {
+        -- engine = "codeium",
+        engine = "copilot",
+    },
+}
+
+--Define a setup function Helpers
+M.setup = function()
+    _G.FrazVim = M
+    -- check if mac the set extras.ai.engine as codeium
+    if vim.fn.has("mac") == 1 then
+        M.extras.ai.engine = "codeium"
+    else
+        M.extras.ai.engine = "copilot"
+    end
+end
 
 -- QuickFix window toggle function
 function M.QuickFixToggle()

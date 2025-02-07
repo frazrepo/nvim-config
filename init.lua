@@ -8,8 +8,9 @@ Debug : nvim --startuptime vim.log
 
 --]]
 
--- Global variable
-_G.FrazUtil = require("config.util")
+-- Setup and define the global FrazVim table
+-- _G.FrazVim = require("config.util")
+require("config.util").setup()
 
 -- Initialisation
 require('config.lazy')

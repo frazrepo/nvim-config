@@ -8,7 +8,6 @@ return {
 		-- optional: provides snippets for the snippet source
 		dependencies = {
 			 "rafamadriz/friendly-snippets",
-			--  "giuxtaposition/blink-cmp-copilot",
 		},
 		version = "*",
 		opts = {
@@ -17,24 +16,15 @@ return {
 			-- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
 			-- See the full "keymap" documentation for information on defining your own keymap.
 			-- keymap = { preset = 'default' },
-			keymap = { preset = "super-tab" },
+			keymap = { preset = "enter" },
+			-- Choosing enter for preset here so we can complete copilot with tab
 
 			appearance = {
-				-- use_nvim_cmp_as_default = true,
+				use_nvim_cmp_as_default = false,
 				nerd_font_variant = "mono",
 			},
 			sources = {
 				default = { "lsp", "snippets", "buffer"},
-				-- For copilot
-				-- default = { "lsp", "snippets", "buffer", "copilot"},
-				-- providers = {
-				-- 	copilot = {
-				-- 		name = "copilot",
-				-- 		module = "blink-cmp-copilot",
-				-- 		score_offset = 100,
-				-- 		async = true,
-				-- 	},
-				-- },
 				-- Disable cmdline completion
 				cmdline = {},
 			},
@@ -43,7 +33,7 @@ return {
 					auto_show = true,
 					auto_show_delay_ms = 200,
 				  },
-				trigger = { 
+				trigger = {
 					show_on_insert_on_trigger_character = false,
 				}
 			}

@@ -30,6 +30,7 @@ return {
 
     -----------------------------------------------------------
     -- File explorer
+    -- Reference from https://github.com/LazyVim/LazyVim/blob/132986a624b49bf740161d90ce94f16dd5ea5883/lua/lazyvim/plugins/editor.lua#L5
     -----------------------------------------------------------
     {
         "nvim-neo-tree/neo-tree.nvim",
@@ -43,22 +44,72 @@ return {
             vim.g.neo_tree_remove_legacy_commands  = true
         end,
         keys = {
-            {"<C-n>", desc = "Toggle neotree"}
-        },
-        config = function()
-            require("neo-tree").setup({
-                filesystem = {
-                    follow_current_file = {
-                        enabled = true,
-                    } ,
-                    use_libuv_file_watcher = true,
-                }
-            })
+            {
+                "<C-n>",
+                function()
+                  require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+                end,
+                desc = "Explorer NeoTree (cwd)",
+            },
+            {
+                "<leader>e",
+                function()
+                  require("neo-tree.command").execute({ toggle = true, dir = vim.uv.cwd() })
+                end,
+                desc = "Explorer NeoTree (cwd)",
+            },
 
-            -- nvim-tree mappings
-            vim.keymap.set('n', '<C-n>', ':Neotree action=focus toggle=true<CR>',  { noremap = true, silent = true, desc = "Toggle neotree" })
+        },
+        opts = {
+            sources = { "filesystem"},
+            open_files_do_not_replace_types = { "terminal","qf"},
+            filesystem = {
+                bind_to_cwd = false,
+                follow_current_file = { enabled = true },
+                use_libuv_file_watcher = true,
+              },
+            window = {
+                mappings = {
+                    ["l"] = "open",
+                    ["h"] = "close_node",
+                    ["<space>"] = "none",
+                    ["Y"] = {
+                    function(state)
+                        local node = state.tree:get_node()
+                        local path = node:get_id()
+                        vim.fn.setreg("+", path, "c")
+                    end,
+                    desc = "Copy Path to Clipboard",
+                    },
+                    -- ["O"] = {
+                    -- function(state)
+                    --     require("lazy.util").open(state.tree:get_node().path, { system = true })
+                    -- end,
+                    -- desc = "Open with System Application",
+                    },
+                    ["P"] = { "toggle_preview", config = { use_float = false } },
+                },
+            default_component_configs = {
+                indent = {
+                    with_expanders = true, -- if nil and file nesting is enabled, will enable expanders
+                    expander_collapsed = "",
+                    expander_expanded = "",
+                    expander_highlight = "NeoTreeExpander",
+                },
+            },                
+        },
+        config = function(_,opts)              
+            require("neo-tree").setup(opts)
+            vim.api.nvim_create_autocmd("TermClose", {
+              pattern = "*lazygit",
+              callback = function()
+                if package.loaded["neo-tree.sources.git_status"] then
+                  require("neo-tree.sources.git_status").refresh()
+                end
+              end,
+            })
         end,
-    },
+     },
     -- mini.files
     -- Usage : navigate using hjkl
     -- Manipalute file/dir creation like a normal buffer
@@ -98,33 +149,12 @@ return {
         -- Press zf to filter
         -- Enter to open the item
         --
+        -- As a general rule check mapping with <leader>? from which-key if needed
         -- Installation : 
-        -- 'zf' requires fzf
+        -- 'zf' command requires fzf
         {
             "kevinhwang91/nvim-bqf",
-            config = function()
-                require('bqf').setup({
-                    auto_enable = true,
-                    auto_resize_height = true,
-                    preview = {
-                        auto_preview = false,
-                    },
-                    func_map = {
-                        ptoggleauto = '<F2>',
-                        ptogglemode = '<F3>',
-                        split       = '<C-s>',
-                        vsplit      = '<C-v>',
-                        pscrollup   = '<S-up>',
-                        pscrolldown = '<S-down>',
-                    },
-                    filter = {
-                        fzf = {
-                            action_for = {['ctrl-s'] = 'split'},
-                            extra_opts = {'--bind', 'ctrl-a:toggle-all', '--prompt', '> '}
-                        }
-                    }
-                })
-            end,
+            opts = {},
             ft = { 'qf' }
         },
 
@@ -159,6 +189,30 @@ return {
           -- or leave it empty to use the default settings
           -- refer to the configuration section below
           preset = "helix",
+          spec = {
+            {
+              mode = { "n", "v" },
+              { "<leader><tab>", group = "tabs" },
+              { "<leader>b", group = "buffer" },
+              { "<leader>c", group = "code/format/change" },
+              { "<leader>f", group = "file/find" },
+              { "<leader>g", group = "git" },
+              { "<leader>gh", group = "hunks (diffview)" },
+              { "<leader>gu", group = "toggle view" },
+              { "<leader>i", group = "info" },
+              { "<leader>m", group = "miscellaneous" },
+              { "<leader>s", group = "search" },
+              { "<leader>r", group = "replace" },
+              { "<leader>t", group = "terminal" },
+              -- { "<leader>u", group = "ui" },
+              { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
+              { "<leader>w", group = "windows" },
+              { "<leader>x", group = "diagnostics", icon = { icon = "󱖫 ", color = "green" } },
+              { ",h",        group = "diffview" },
+              { "<leader><leader>", group = "miscellaneous" },
+              { "g", group = "goto" },
+            }
+        }
         },
         keys = {
           {
@@ -167,6 +221,12 @@ return {
               require("which-key").show({ global = false })
             end,
             desc = "Buffer Local Keymaps (which-key)",
+          },
+          {
+            "<leader>xx",
+            function()
+            end,
+            desc = "Do nothing for now",
           },
         },
     },
@@ -186,7 +246,7 @@ return {
             telescope.setup{
                 defaults = {
                     file_ignore_patterns = {"node_modules"},
-                    preview = false,
+                    preview = true,
                     mappings = {
                         i = {
                             ["<esc>"] = actions.close,
@@ -204,20 +264,24 @@ return {
                         theme = "dropdown",
                     },
                     live_grep = {
-                        theme = "dropdown",
+                       theme = "dropdown",
                     }
                 },
             }
 
             require('telescope').load_extension('projects')
 
-            vim.keymap.set('n', '<C-P>', "<cmd>lua require('telescope.builtin').find_files()<CR>", { noremap = true, desc = "Search files" })
-            vim.keymap.set('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open Recent Projects" })
-            vim.keymap.set('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep with telescope" })
+            vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {remap = true, desc = "Search files" })
+            vim.keymap.set('n', '<leader><leader>', "<leader>ff", {remap = true, desc = "Search files" })
+            vim.keymap.set('n', '<C-p>', "<leader>ff", {remap = true, desc = "Search files" })
+            vim.keymap.set('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open recent Projects" })
+            vim.keymap.set('n', '<leader>fp', "<leader>p", { remap = true, desc = "Open recent Projects" })
+            vim.keymap.set('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep (telescope)" })
             vim.keymap.set('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true , desc = "Find buffer"})
-            vim.keymap.set('n', '<leader>;', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer" })
-            vim.keymap.set("n", "<leader>u", "<Cmd>lua require('telescope.builtin').oldfiles()<CR>", {noremap = true, silent = true , desc = "Open Recent Files"})
-
+            -- Current buffer
+            vim.keymap.set('n', '<leader>sb', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
+            vim.keymap.set('n', '<leader>ss', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
+            vim.keymap.set('n', '<leader>;', "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
         end
     },
 }
