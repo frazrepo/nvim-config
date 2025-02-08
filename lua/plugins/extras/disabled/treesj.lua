@@ -1,4 +1,5 @@
 return {
+	-- replaced by mini-splitjoin
 	-- splitjoin arguments with treesitter functions
 	-- mapping conflict with <leader>s , sql buffer
 	-- kk : toggle, kj : join, ks : split
