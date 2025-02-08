@@ -199,16 +199,18 @@ return {
               { "<leader>g", group = "git" },
               { "<leader>gh", group = "hunks (diffview)" },
               { "<leader>gu", group = "toggle view" },
-              { "<leader>i", group = "info" },
-              { "<leader>m", group = "miscellaneous" },
+              { "<leader>i", group = "info", icon = { icon = "", color = "cyan" } },
+              { "<leader>m", group = "miscellaneous", icon = { icon = "", color = "yellow" } },
               { "<leader>s", group = "search" },
-              { "<leader>r", group = "replace" },
+              { "<leader>r", group = "replace" , icon = { icon = "󰄉 ", color = "yellow" } },
               { "<leader>t", group = "terminal" },
               { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
               { "<leader>w", group = "windows" },
               { "<leader>x", group = "diagnostics", icon = { icon = "󱖫 ", color = "green" } },
-              { "<leader><leader>", group = "miscellaneous" },
               { "g", group = "goto" },
+              -- icon overrides
+              { "<leader>e", name = "Explorer NeoTree (cwd)", icon = { icon = "󰉓 ", color = "yellow" } },
+              { "<leader>p", name = "Open recent projects", icon = { icon = " ", color = "green" } },
             }
         }
         },
