@@ -27,10 +27,10 @@ return {
                header = vim.split(logo, "\n"),
                -- stylua: ignore
                center = {
-                 { action = 'lua require("telescope.builtin").find_files()',  desc = " Find File",       icon = " ", key = "f" },
+                 { action = 'lua Snacks.picker.files()',  desc = " Find File",       icon = " ", key = "f" },
                  { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
                  { action =  function() Snacks.picker.recent() end,    desc = " Recent Files",    icon = " ", key = "r" },
-                 { action = 'lua require("telescope.builtin").live_grep()',        desc = " Find Text",       icon = " ", key = "g" },
+                 { action = 'lua Snacks.picker.grep()',        desc = " Find Text",       icon = " ", key = "g" },
                  { action = 'lua Snacks.picker.projects()',                             desc = " Restore Project", icon = " ", key = "p" },
                  { action = 'lua Snacks.picker.files({ cwd = vim.fn.stdpath("config") })', desc = " Config", icon = " ", key = "c" },
                  { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },

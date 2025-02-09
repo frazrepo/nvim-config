@@ -19,8 +19,14 @@ return {
       -- Zoom
       { "<leader>z",  function() Snacks.zen() end, desc = "Toggle Zen Mode" },
       { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
+      
+      -- Buffers
+      { "<leader>,", function() Snacks.picker.buffers() end, desc = "Find buffer" },
 
       --File
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Search Files" },
+      { "<leader><leader>", function() Snacks.picker.files() end, desc = "Search Files" },
+      { "<C-p>", function() Snacks.picker.files() end, desc = "Search Files" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
 
@@ -37,8 +43,10 @@ return {
       -- Search
       { "<leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word (Root Dir)", mode = { "n", "x" } },
       { "<leader>sg", function() Snacks.picker.grep() end, desc = "Grep (Root Dir) like <leader>/" },
+      { "<C-F>", function() Snacks.picker.grep() end, desc = "Grep (Root Dir) like <leader>/" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
-      -- { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
+      { "<leader>;", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
 
       -- Additional search
