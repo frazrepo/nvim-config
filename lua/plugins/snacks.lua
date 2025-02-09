@@ -35,7 +35,7 @@ return {
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
       -- Lazygit and git
-      { "<leader>gg", "<cmd>lua require'snacks'.lazygit()<CR>", desc = "LazyGit" },
+      { "<leader>gg", function() Snacks.lazygit() end , desc = "LazyGit" },
       { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
       { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
@@ -76,6 +76,13 @@ return {
           Snacks.explorer()
         end,
         desc = "Explorer Snacks (cwd)",
+      },
+      {
+        "<leader>fE",
+        function()
+          Snacks.explorer({ cwd = FrazVim.root() })
+        end,
+        desc = "Explorer Snacks (root)",
       },
     },
   },

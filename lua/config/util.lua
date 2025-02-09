@@ -88,4 +88,32 @@ function M.SortLinesByWidth(firstline, lastline)
     vim.cmd(firstline .. "," .. lastline .. 's/^\\d\\+\\s//')
 end
 
+
+-- root - get root dir based on some pattern
+-- Array of file names indicating root directory. Modify to your liking.
+local root_names = { '.git', 'Makefile' }
+
+-- Cache to use for speed up (at cost of possibly outdated results)
+local root_cache = {}
+
+function M.root()
+  -- Get directory path to start search from
+  local path = vim.api.nvim_buf_get_name(0)
+  if path == '' then return end
+  path = vim.fs.dirname(path)
+
+  -- Try cache and resort to searching upward for root directory
+  local root = root_cache[path]
+  if root == nil then
+    local root_file = vim.fs.find(root_names, { path = path, upward = true })[1]
+    if root_file == nil then
+      -- return cwd in neovim
+      return path
+    end
+    root = vim.fs.dirname(root_file)
+    root_cache[path] = root
+  end
+  return root
+end
+
 return M
