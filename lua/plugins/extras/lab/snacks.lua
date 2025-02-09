@@ -3,6 +3,7 @@ return {
 	-- BigFile
 	-- Zen Mode
 	-- Indent
+  -- Terminal (see terminal.lua)
   {
     "folke/snacks.nvim",
     priority = 1000,
@@ -13,42 +14,6 @@ return {
       lazygit = {enable = true},
       picker = { enable = true},
       explorer = { enable = true},
-      terminal = {
-          bo = {
-            filetype = "snacks_terminal",
-          },
-          wo = {},
-          keys = {
-            q = "hide",
-            gf = function(self)
-              local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
-              if f == "" then
-                Snacks.notify.warn("No file under cursor")
-              else
-                self:hide()
-                vim.schedule(function()
-                  vim.cmd("e " .. f)
-                end)
-              end
-            end,
-            term_normal = {
-              "<esc>",
-              function(self)
-                self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
-                if self.esc_timer:is_active() then
-                  self.esc_timer:stop()
-                  vim.cmd("stopinsert")
-                else
-                  self.esc_timer:start(200, 0, function() end)
-                  return "<esc>"
-                end
-              end,
-              mode = "t",
-              expr = true,
-              desc = "Double escape to normal mode",
-            },
-          },
-        },
     },
     keys = {
       -- Zoom
@@ -56,7 +21,6 @@ return {
       { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle Zoom" },
 
       --File
-      { "<leader>fi", function() Snacks.picker.explorer() end, desc = "Find Files", mode = { "n", "x" } },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
 
@@ -64,9 +28,8 @@ return {
       { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle Scratch Buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select Scratch Buffer" },
 
-      -- Lazygit
+      -- Lazygit and git
       { "<leader>gg", "<cmd>lua require'snacks'.lazygit()<CR>", desc = "LazyGit" },
-      -- git
       { "<leader>gl", function() Snacks.picker.git_log() end, desc = "Git Log" },
       { "<leader>gs", function() Snacks.picker.git_status() end, desc = "Git Status" },
       { "<leader>gf", function() Snacks.picker.git_log_file() end, desc = "Git Log File" },
@@ -77,6 +40,7 @@ return {
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep (Root Dir)" },
       -- { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer Lines" },
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
+
       -- Additional search
       -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
@@ -87,15 +51,12 @@ return {
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
       { "<leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-      -- like command palette C-P
       { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-      -- terminal
-      { "<leader>ft", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal" },
-      -- add terminal mode mapping to toggle
-      -- { "[[<C-t>]]", function() Snacks.terminal.toggle() end, mode = {"n", "t"}, desc = "Toggle Terminal" },
+
       -- ui
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+
     -- Explorer
       {
         "<leader>fe",
@@ -104,14 +65,6 @@ return {
         end,
         desc = "Explorer Snacks (cwd)",
       },
-      -- {
-      --   "<leader>fE",
-      --   function()
-      --     Snacks.explorer()
-      --   end,
-      --   desc = "Explorer Snacks (cwd)",
-      -- },
-      --
     },
   },
   {

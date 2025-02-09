@@ -1,40 +1,56 @@
 -----------------------------------------------------------
--- Terminal plugin
+-- Terminal plugin with snacks
 -----------------------------------------------------------
 return {
-    -- floaterm
-    {
-        "voldikss/vim-floaterm",
-        init = function()
-            vim.g.floaterm_gitcommit='floaterm'
-            vim.g.floaterm_autoinsert=1
-            vim.g.floaterm_width=0.8
-            vim.g.floaterm_height=0.8
-            vim.g.floaterm_wintitle=0
-            vim.g.floaterm_autoclose=1
-
-            -- vim.keymap.set('n', '<Space>tg', ':FloatermNew lazygit<CR>', { silent = true })
-            vim.keymap.set('n', '<Space>tt', ':FloatermToggle<CR>', { silent = true })
-            vim.keymap.set('n', '<Space>tw', ':FloatermKill<CR>', { silent = true })
-            vim.keymap.set('n', '<Space>tn', ':FloatermNew<CR>', { silent = true })
-            vim.keymap.set('n', '<Space>to', ':FloatermNext<CR>', { silent = true })
-            vim.keymap.set('n', '<Space>tp', ':FloatermPrev<CR>', { silent = true })
-        end,
-        cmd = { "FloatermToggle", "FloatermNew" },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      terminal = {
+          bo = {
+            filetype = "snacks_terminal",
+          },
+          wo = {},
+          keys = {
+            q = "hide",
+            gf = function(self)
+              local f = vim.fn.findfile(vim.fn.expand("<cfile>"), "**")
+              if f == "" then
+                Snacks.notify.warn("No file under cursor")
+              else
+                self:hide()
+                vim.schedule(function()
+                  vim.cmd("e " .. f)
+                end)
+              end
+            end,
+            term_normal = {
+              "<esc>",
+              function(self)
+                self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+                if self.esc_timer:is_active() then
+                  self.esc_timer:stop()
+                  vim.cmd("stopinsert")
+                else
+                  self.esc_timer:start(200, 0, function() end)
+                  return "<esc>"
+                end
+              end,
+              mode = "t",
+              expr = true,
+              desc = "Double escape to normal mode",
+            },
+          },
+        },
     },
-    -- toggleterm
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        keys = [[<c-t>]],
-        cmd = "ToggleTerm",
-        config = function()
-            require("toggleterm").setup(
-            {
-                open_mapping = [[<c-t>]],
-                close_on_exit = true
-            }
-            )
-        end,
+    keys = {
+      -- terminal
+      { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal" },
+      { "<leader>tn", function() Snacks.terminal.open() end, desc = "New terminal" },
+      { "<leader>tl", function() Snacks.terminal.list() end, desc = "List terminals" },
     },
+    config = function()
+       -- create a mapping with C-t to toggle the terminal
+      vim.keymap.set({"n", "t"}, "<C-t>", "<cmd>lua Snacks.terminal.toggle()<CR>", { noremap = true, silent = true })
+    end,
+  },
 }
