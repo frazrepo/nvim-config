@@ -2,8 +2,9 @@
     -- Motions
     -----------------------------------------------------------
     return {
+      -- Flash
       {
-        -- s{char1}{char2} then jump to next /previous with Enter/Tab
+        -- s/S{char1}{char2} then jump to next /previous with Enter/Tab
         -- f with highlight
         "folke/flash.nvim",
         event = "VeryLazy",
@@ -17,16 +18,16 @@
           { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
         },
       },
-        -- mini-move
-        {
-            'echasnovski/mini.move',
-            version = '*',
-            opts = {},
-            keys = {
-                { "<A-j>" },
-                { "<A-j>", mode = "v" },
-                { "<A-k>" },
-                { "<A-k>", mode = "v" },
-            },
+      -- mini-move
+      {
+        'echasnovski/mini.move',
+        version = '*',
+        opts = {},
+        keys = {
+          { "<A-j>" },
+          { "<A-j>", mode = "v" },
+          { "<A-k>" },
+          { "<A-k>", mode = "v" },
         },
-}
+      },
+    }

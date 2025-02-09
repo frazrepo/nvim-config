@@ -13,7 +13,7 @@ return {
             vim.g.floaterm_wintitle=0
             vim.g.floaterm_autoclose=1
 
-            vim.keymap.set('n', '<Space>tg', ':FloatermNew lazygit<CR>', { silent = true })
+            -- vim.keymap.set('n', '<Space>tg', ':FloatermNew lazygit<CR>', { silent = true })
             vim.keymap.set('n', '<Space>tt', ':FloatermToggle<CR>', { silent = true })
             vim.keymap.set('n', '<Space>tw', ':FloatermKill<CR>', { silent = true })
             vim.keymap.set('n', '<Space>tn', ':FloatermNew<CR>', { silent = true })
@@ -22,19 +22,19 @@ return {
         end,
         cmd = { "FloatermToggle", "FloatermNew" },
     },
-    -- toggleterm
-    {
-        "akinsho/toggleterm.nvim",
-        version = "*",
-        keys = [[<c-t>]],
-        cmd = "ToggleTerm",
-        config = function()
-            require("toggleterm").setup(
-            {
-                open_mapping = [[<c-t>]],
-                close_on_exit = true
-            }
-            )
-        end,
-    },
+    -- -- toggleterm
+    -- {
+    --     "akinsho/toggleterm.nvim",
+    --     version = "*",
+    --     keys = [[<c-t>]],
+    --     cmd = "ToggleTerm",
+    --     config = function()
+    --         require("toggleterm").setup(
+    --         {
+    --             open_mapping = [[<c-t>]],
+    --             close_on_exit = true
+    --         }
+    --         )
+    --     end,
+    -- },
 }
