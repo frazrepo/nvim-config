@@ -24,10 +24,6 @@ return
     -- Text objects
     -----------------------------------------------------------
     {
-        'coderifous/textobj-word-column.vim',
-        event = { "BufReadPost" },
-    },
-    {
         'echasnovski/mini.ai',
         version = '*',
         event = "VeryLazy",
@@ -84,12 +80,6 @@ return
                             to = { line = end_line, col = vim.fn.col({ end_line, '$' }) },
                         }
                     end, --indent
-                    L = function()
-                        local cursor_line = vim.fn.line('.') -- Get the current line number
-                        local line_start = { line = cursor_line, col = 1 } -- Start of the line
-                        local line_end = { line = cursor_line, col = vim.fn.col({ cursor_line, '$' }) - 1 } -- End of the line
-                        return { from = line_start, to = line_end }
-                    end, --line
                 },
             }
         end,
