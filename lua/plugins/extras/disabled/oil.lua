@@ -1,5 +1,6 @@
 return
 {
+    --  Replaced by mini-files
     -- Usage : navigate parent directory using -
     -- Manipulate file/directory like a normal buffer
     -- Switch batch to last buffer using standard vim commande (Backspace in thi config)
