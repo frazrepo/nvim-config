@@ -3,22 +3,6 @@
 -----------------------------------------------------------
 return
 {
-    -----------------------------------------------------------
-    -- Autorename, Autopair, Autotag
-    -----------------------------------------------------------
-    -- Autorename tags
-    {
-        -- Work with , c (change operator), v (visual operator), or insert mode only
-        'AndrewRadev/tagalong.vim',
-        ft = {
-            "html",
-            "xml",
-            "jsx",
-            "tsx",
-            "javascriptreact",
-            "typescriptreact",
-        },
-    },
     -- auto pairs
     {
         "echasnovski/mini.pairs",
