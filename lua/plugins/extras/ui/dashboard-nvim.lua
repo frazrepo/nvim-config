@@ -31,7 +31,7 @@ return {
                  { action = "ene | startinsert",                              desc = " New File",        icon = " ", key = "n" },
                  { action =  function() Snacks.picker.recent() end,    desc = " Recent Files",    icon = " ", key = "r" },
                  { action = 'lua require("telescope.builtin").live_grep()',        desc = " Find Text",       icon = " ", key = "g" },
-                 { action = 'Telescope projects',                             desc = " Restore Project", icon = " ", key = "p" },
+                 { action = 'lua Snacks.picker.projects()',                             desc = " Restore Project", icon = " ", key = "p" },
                  { action = 'lua Snacks.picker.files({ cwd = vim.fn.stdpath("config") })', desc = " Config", icon = " ", key = "c" },
                  { action = "Lazy",                                           desc = " Lazy",            icon = "󰒲 ", key = "l" },
                  { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit",            icon = " ", key = "q" },

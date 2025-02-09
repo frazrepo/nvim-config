@@ -57,6 +57,10 @@ return {
       -- ui
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
 
+      -- projects
+      { "<leader>p", function() Snacks.picker.projects() end, desc = "Projects" },
+      { "<leader>fp", function() Snacks.picker.projects() end, desc = "Projects" },
+
     -- Explorer
       {
         "<leader>fe",
