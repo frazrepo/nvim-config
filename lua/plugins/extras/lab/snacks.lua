@@ -12,6 +12,7 @@ return {
       indent = { enable = true },
       lazygit = {enable = true},
       picker = { enable = true},
+      explorer = { enable = true},
       terminal = {
           bo = {
             filetype = "snacks_terminal",
@@ -94,7 +95,23 @@ return {
       -- add terminal mode mapping to toggle
       -- { "[[<C-t>]]", function() Snacks.terminal.toggle() end, mode = {"n", "t"}, desc = "Toggle Terminal" },
       -- ui
-    { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+      { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
+    -- Explorer
+      {
+        "<leader>fe",
+        function()
+          Snacks.explorer()
+        end,
+        desc = "Explorer Snacks (cwd)",
+      },
+      -- {
+      --   "<leader>fE",
+      --   function()
+      --     Snacks.explorer()
+      --   end,
+      --   desc = "Explorer Snacks (cwd)",
+      -- },
+      --
     },
   },
   {

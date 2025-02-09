@@ -22,19 +22,19 @@ return {
         end,
         cmd = { "FloatermToggle", "FloatermNew" },
     },
-    -- -- toggleterm
-    -- {
-    --     "akinsho/toggleterm.nvim",
-    --     version = "*",
-    --     keys = [[<c-t>]],
-    --     cmd = "ToggleTerm",
-    --     config = function()
-    --         require("toggleterm").setup(
-    --         {
-    --             open_mapping = [[<c-t>]],
-    --             close_on_exit = true
-    --         }
-    --         )
-    --     end,
-    -- },
+    -- toggleterm
+    {
+        "akinsho/toggleterm.nvim",
+        version = "*",
+        keys = [[<c-t>]],
+        cmd = "ToggleTerm",
+        config = function()
+            require("toggleterm").setup(
+            {
+                open_mapping = [[<c-t>]],
+                close_on_exit = true
+            }
+            )
+        end,
+    },
 }
