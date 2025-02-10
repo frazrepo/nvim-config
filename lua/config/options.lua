@@ -92,8 +92,12 @@ if vim.fn.has('win32') == 1 then
 end
 
 -- GUI Options and neovide settings
-opt.guifont = "FiraCode Nerd Font Mono:h12"
-vim.g.neovide_cursor_animation_length = 0.02
-vim.g.neovide_cursor_trail_length = 0
-vim.g.neovide_remember_window_size = true
+-- check if GUI
+local is_gui = vim.g.neovide or vim.fn.has('gui_running') == 1
+if is_gui then
+    opt.guifont = "FiraCode Nerd Font Mono:h12"
+    vim.g.neovide_cursor_animation_length = 0.02
+    vim.g.neovide_cursor_trail_length = 0
+    vim.g.neovide_remember_window_size = true
+end
 
