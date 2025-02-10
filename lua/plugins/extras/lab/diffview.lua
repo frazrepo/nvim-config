@@ -3,6 +3,15 @@ return {
     {
         -- Source from here : https://www.naseraleisa.com/posts/diff
         "sindrets/diffview.nvim",
+        cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
+        keys = {
+            { "<leader>ghh", desc = "Repo history" },
+            { "<leader>ghf", desc = "File history" },
+            { "<leader>ghl", desc = "Line/Range history" },
+            { "<leader>ghc", desc = "Close DiffView" },
+            { "<leader>ghm", desc = "Diff against master" },
+            { "<leader>ghM", desc = "Diff against origin/master" },
+        },
         config = function(_,opts)
             require("diffview").setup(opts)
             vim.keymap.set( 'n', '<leader>ghh', '<cmd>DiffviewFileHistory<cr>', { desc = 'Repo history' })
