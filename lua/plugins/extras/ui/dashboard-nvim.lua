@@ -64,6 +64,5 @@ return {
 
            return opts
         end,
-        dependencies = { {'nvim-tree/nvim-web-devicons'}}
       }
 }

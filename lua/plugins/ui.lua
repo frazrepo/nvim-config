@@ -2,12 +2,17 @@
 -- UI enhacements
 -----------------------------------------------------------
 return {
+    { 
+        'echasnovski/mini.icons', 
+        version = false,
+        config = function()
+            require("mini.icons").setup()
+            MiniIcons.mock_nvim_web_devicons()
+        end
+    },
     -- lualine
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = {
-            {"kyazdani42/nvim-web-devicons"}
-        },
         event = "VeryLazy",
         opts = {}
     },
@@ -41,9 +46,6 @@ return {
     {
         'akinsho/bufferline.nvim',
         event = "VeryLazy",
-        dependencies = {
-            {'kyazdani42/nvim-web-devicons'}
-        },
         keys = {
             { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
             { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
