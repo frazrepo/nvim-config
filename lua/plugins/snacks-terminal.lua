@@ -48,7 +48,9 @@ return {
       { "<leader>tn", function() Snacks.terminal.open() end, desc = "New terminal" },
       { "<leader>tl", function() Snacks.terminal.list() end, desc = "List terminals" },
     },
-    config = function()
+    config = function(_,opts)
+      -- Need to recall setup with merged opts first
+      require('snacks').setup(opts)
        -- create a mapping with C-t to toggle the terminal
       vim.keymap.set({"n", "t"}, "<C-t>", "<cmd>lua Snacks.terminal.toggle()<CR>", { noremap = true, silent = true })
     end,

@@ -2,6 +2,7 @@ return {
     {
         'nvimdev/dashboard-nvim',
         event = 'VimEnter',
+        enabled  =false,
         lazy = false,
         opts = function()
            -- To generate this text : https://patorjk.com/software/taag/#p=display&f=ANSI%20Shadow&t=FRAZ
@@ -64,6 +65,5 @@ return {
 
            return opts
         end,
-        dependencies = { {'nvim-tree/nvim-web-devicons'}}
       }
 }
