@@ -1,5 +1,5 @@
 return {
-    -- copilot
+    -- Struggle to make it works. Replaced by Copilot.vim version
     -- requirements node 18+
     -- Mapping default Alt-L to accept,
     {

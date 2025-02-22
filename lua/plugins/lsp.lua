@@ -230,14 +230,4 @@ return {
             })
 		end,
 	},
-
-	-- Trouble : Display diagnostics List in quickfix windows
-	{
-		"folke/trouble.nvim",
-        cmd = {"Trouble"},
-		dependencies = {
-			{ "kyazdani42/nvim-web-devicons" },
-		},
-        opts =  {}
-	},
 }

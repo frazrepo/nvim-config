@@ -36,7 +36,6 @@ return {
         "nvim-neo-tree/neo-tree.nvim",
         dependencies = {
             {"nvim-lua/plenary.nvim"},
-            {"kyazdani42/nvim-web-devicons"}, -- not strictly required, but recommended
             {"MunifTanjim/nui.nvim"},
         },
         init = function()
@@ -128,7 +127,7 @@ return {
                 desc = "Open mini.files (Directory of Current File)",
             },
             {
-                "<leader>fM",
+                "<leader>fm",
                 function()
                     require("mini.files").open(vim.uv.cwd(), true)
                 end,
@@ -199,18 +198,18 @@ return {
               { "<leader>g", group = "git" },
               { "<leader>gh", group = "hunks (diffview)" },
               { "<leader>gu", group = "toggle view" },
-              { "<leader>i", group = "info" },
-              { "<leader>m", group = "miscellaneous" },
+              { "<leader>i", group = "info", icon = { icon = "", color = "cyan" } },
+              { "<leader>m", group = "miscellaneous", icon = { icon = "", color = "yellow" } },
               { "<leader>s", group = "search" },
-              { "<leader>r", group = "replace" },
+              { "<leader>r", group = "replace" , icon = { icon = "󰄉 ", color = "yellow" } },
               { "<leader>t", group = "terminal" },
-              -- { "<leader>u", group = "ui" },
               { "<leader>u", group = "ui", icon = { icon = "󰙵 ", color = "cyan" } },
               { "<leader>w", group = "windows" },
               { "<leader>x", group = "diagnostics", icon = { icon = "󱖫 ", color = "green" } },
-              { ",h",        group = "diffview" },
-              { "<leader><leader>", group = "miscellaneous" },
               { "g", group = "goto" },
+              -- icon overrides
+              { "<leader>e", name = "Explorer NeoTree (cwd)", icon = { icon = "󰉓 ", color = "yellow" } },
+              { "<leader>p", name = "Open recent projects", icon = { icon = " ", color = "green" } },
             }
         }
         },
@@ -222,66 +221,6 @@ return {
             end,
             desc = "Buffer Local Keymaps (which-key)",
           },
-          {
-            "<leader>xx",
-            function()
-            end,
-            desc = "Do nothing for now",
-          },
         },
-    },
-
-    -----------------------------------------------------------
-    -- Telescope configuration file
-    -- Plugin: nvim-telescope
-    -- telescope fuzzy finder + fzf-native sorter
-    -- https://github.com/nvim-telescope/telescope.nvim
-    -----------------------------------------------------------
-    {
-        'nvim-telescope/telescope.nvim',
-        config = function()
-            local telescope = require("telescope")
-            local actions = require("telescope.actions")
-
-            telescope.setup{
-                defaults = {
-                    file_ignore_patterns = {"node_modules"},
-                    preview = true,
-                    mappings = {
-                        i = {
-                            ["<esc>"] = actions.close,
-                        },
-                    },
-                },
-                pickers = {
-                    find_files = {
-                        theme = "dropdown",
-                    },
-                    oldfiles = {
-                        theme = "dropdown",
-                    },
-                    buffers = {
-                        theme = "dropdown",
-                    },
-                    live_grep = {
-                       theme = "dropdown",
-                    }
-                },
-            }
-
-            require('telescope').load_extension('projects')
-
-            vim.keymap.set('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {remap = true, desc = "Search files" })
-            vim.keymap.set('n', '<leader><leader>', "<leader>ff", {remap = true, desc = "Search files" })
-            vim.keymap.set('n', '<C-p>', "<leader>ff", {remap = true, desc = "Search files" })
-            vim.keymap.set('n', '<leader>p', "<cmd>Telescope projects<CR>", { noremap = true, desc = "Open recent Projects" })
-            vim.keymap.set('n', '<leader>fp', "<leader>p", { remap = true, desc = "Open recent Projects" })
-            vim.keymap.set('n', '<C-F>', "<cmd>lua require('telescope.builtin').live_grep()<CR>", { noremap = true, desc = "Live grep (telescope)" })
-            vim.keymap.set('n', '<leader>,', "<cmd>lua require('telescope.builtin').buffers()<CR>", { noremap = true , desc = "Find buffer"})
-            -- Current buffer
-            vim.keymap.set('n', '<leader>sb', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
-            vim.keymap.set('n', '<leader>ss', "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
-            vim.keymap.set('n', '<leader>;', "<cmd>Telescope current_buffer_fuzzy_find<CR>", { noremap = true , desc = "Find lines in buffer (telescope)" })
-        end
     },
 }

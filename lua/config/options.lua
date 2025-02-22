@@ -80,16 +80,24 @@ if vim.fn.has('win32') == 1 then
     else
         opt.shell = 'powershell'
     end
-    opt.shellcmdflag = '-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;'
-    opt.shellredir = '-RedirectStandardOutput %s -NoNewWindow -Wait'
-    opt.shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
-    opt.shellquote = ''
-    opt.shellxquote = ''
+    opt.shellcmdflag = "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering='plaintext';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
+    opt.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
+
+    -- Setting shell pipe
+    opt.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
+
+    -- Setting shell quote options
+    opt.shellquote = ""
+    opt.shellxquote = ""
 end
 
 -- GUI Options and neovide settings
-opt.guifont = "FiraCode Nerd Font Mono:h12"
-vim.g.neovide_cursor_animation_length = 0.02
-vim.g.neovide_cursor_trail_length = 0
-vim.g.neovide_remember_window_size = true
+-- check if GUI
+local is_gui = vim.g.neovide or vim.fn.has('gui_running') == 1
+if is_gui then
+    opt.guifont = "FiraCode Nerd Font Mono:h12"
+    vim.g.neovide_cursor_animation_length = 0.02
+    vim.g.neovide_cursor_trail_length = 0
+    vim.g.neovide_remember_window_size = true
+end
 

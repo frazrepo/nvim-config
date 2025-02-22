@@ -149,8 +149,9 @@ map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
 
 -- Alternative to unimpaired )or ( <Space> (from mini.bascis)
-vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>")
-vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>")
+vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Add line above" })
+-- Conflict as gtfo uses gof
+vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Add line below" })
 
 -- Undo breakpoints
 map('i', ',', ',<c-g>u', default_opts)
