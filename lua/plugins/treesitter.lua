@@ -1,5 +1,4 @@
 -----------------------------------------------------------
--- Floaterm configuration file
 -- Plugin: nvim-treesitter
 -- https://github.com/nvim-treesitter/nvim-treesitter
 -----------------------------------------------------------
