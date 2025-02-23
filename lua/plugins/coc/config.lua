@@ -12,14 +12,26 @@
 -- * Coc json
 -- * Coc yaml
 -- * Coc markdown lint
--- * Coc tab nine AI coding experience
 -- * Coc sql
 -- * Coc omnisharp
 -- * Coc snippets + honza snippets
 -- * Coc lua
 --
--- Inspiration from
--- https://github.com/albingroen/quick.nvim/blob/main/lua/coc-config.lua
+-- Auto Install these extensions
+vim.g.coc_global_extensions = {
+  "coc-html",
+  "coc-snippets",
+  "coc-tsserver",
+  "coc-powershell",
+  "coc-yank",
+  "coc-json",
+  "coc-yaml",
+  "coc-markdownlint",
+  "coc-sql",
+  "coc-omnisharp",
+  "coc-snippets",
+  "coc-lua"
+}
 
 -- https://raw.githubusercontent.com/neoclide/coc.nvim/master/doc/coc-example-config.lua
 
