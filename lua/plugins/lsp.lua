@@ -1,12 +1,33 @@
------------------------------------------------------------
--- Neovim LSP configuration file
--- Plugin: nvim-lspconfig and mason
--- https://github.com/neovim/nvim-lspconfig
--- https://github.com/williamboman/mason/
------------------------------------------------------------
+return {
+	{ -- LSP Configuration & Plugins
+		"neovim/nvim-lspconfig",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			-- Automatically install LSPs and related tools to stdpath for Neovim
+			"saghen/blink.cmp",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"WhoIsSethDaniel/mason-tool-installer.nvim",
+		},
+		config = function()
+			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
+			-- and elegantly composed help section, `:help lsp-vs-treesitter`
 
-require('mason').setup{}
-local lspconfig = require("lspconfig")
+			--  This function gets run when an LSP attaches to a particular buffer.
+			--    That is to say, every time a new file is opened that is associated with
+			--    an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
+			--    function will be executed to configure the current buffer
+			vim.api.nvim_create_autocmd("LspAttach", {
+				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
+				callback = function(event)
+					-- NOTE: Remember that Lua is a real programming language, and as such it is possible
+					-- to define small helper and utility functions so you don't have to repeat yourself.
+					--
+					-- In this case, we create a function that lets us more easily define mappings specific
+					-- for LSP related items. It sets the mode, buffer and description for us each time.
+					local map = function(keys, func, desc)
+						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
 
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.

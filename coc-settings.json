@@ -19,5 +19,6 @@
             ],
             "filetypes": ["cs", "csharp"]
         }
-    }
+    },
+    "snippets.ultisnips.pythonPrompt": false
 }
