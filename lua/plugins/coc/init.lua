@@ -10,7 +10,6 @@ return {
     {
         'neoclide/coc.nvim',
         branch = 'release',
-        tag = 'v0.0.81',
         config= function()
             require('plugins.coc.config')
         end
