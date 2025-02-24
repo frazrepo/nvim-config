@@ -1,3 +1,6 @@
+-- Usage <leader>1 ..5 to switch to buffer
+-- <leader>H : to mark current file
+-- Config copied from lazyvim
 return {
   "ThePrimeagen/harpoon",
   branch = "harpoon2",
