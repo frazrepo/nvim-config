@@ -63,7 +63,8 @@ return {
     -- Need to install TreeSitter parser for html /xml :TSInstall html
     {
         'windwp/nvim-ts-autotag',
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        event = "BufRead",
         config = function()
           require('nvim-ts-autotag').setup({
             opts = {

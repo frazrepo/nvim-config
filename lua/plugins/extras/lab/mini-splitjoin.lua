@@ -2,7 +2,8 @@ return {
     -- mini-spitjoin
     {
         'echasnovski/mini.splitjoin',
-        event = "VeryLazy",
+        -- event = "VeryLazy",
+        event = "BufReadPre",
         version = '*',
         opts = {
         },
