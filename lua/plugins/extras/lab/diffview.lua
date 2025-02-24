@@ -2,6 +2,10 @@
 return {
     {
         -- Source from here : https://www.naseraleisa.com/posts/diff
+        -- Compare againt branch :DiffviewOpen HEAD..origin/master
+        -- Compare againt branch :DiffviewOpen HEAD..origin/coc
+        -- Compare againt local branch :DiffviewOpen master
+        -- Compare againt local branch :DiffviewOpen coc
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
         keys = {
@@ -11,6 +15,8 @@ return {
             { "<leader>ghc", desc = "Close DiffView" },
             { "<leader>ghm", desc = "Diff against master" },
             { "<leader>ghM", desc = "Diff against origin/master" },
+            { "<leader>ghb", desc = "Diff against local branch" },
+            { "<leader>ghB", desc = "Diff against remote branch" },
         },
         config = function(_,opts)
             require("diffview").setup(opts)
@@ -31,6 +37,8 @@ return {
 
             -- Diff against local master branch
             vim.keymap.set( 'n', '<leader>ghm', function() vim.cmd('DiffviewOpen ' .. get_default_branch_name()) end, { desc = 'Diff against master' })
+            vim.keymap.set( 'n', '<leader>ghb', ':DiffviewOpen ', { desc = 'Diff against local branch' })
+            vim.keymap.set( 'n', '<leader>ghB', ':DiffviewOpen HEAD..origin/', { desc = 'Diff against remote branch' })
             -- Diff against remote master branch
             vim.keymap.set(
             'n', '<leader>ghM', function() vim.cmd('DiffviewOpen HEAD..origin/' .. get_default_branch_name()) end, { desc = 'Diff against origin/master' })

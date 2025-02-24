@@ -24,9 +24,9 @@ return {
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Find buffer" },
 
       --File
-      { "<leader>ff", function() Snacks.picker.files() end, desc = "Search Files" },
-      { "<leader><leader>", function() Snacks.picker.files() end, desc = "Search Files" },
-      { "<C-p>", function() Snacks.picker.files() end, desc = "Search Files" },
+      { "<leader>ff", function() Snacks.picker.files() end, desc = "Find Files" },
+      { "<leader><leader>", function() Snacks.picker.smart() end, desc = "Smart Find Files" },
+      { "<C-p>", function() Snacks.picker.files() end, desc = "Find Files" },
       { "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end, desc = "Find Config File" },
       { "<leader>fr", function() Snacks.picker.recent() end, desc = "Recent Files" },
 
@@ -50,7 +50,6 @@ return {
       { "<leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep Open Buffers" },
 
       -- Additional search
-      -- search
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
       { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
@@ -61,6 +60,7 @@ return {
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
       { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 
       -- ui
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
