@@ -60,7 +60,7 @@ return {
       { "<leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
       { "<leader>sl", function() Snacks.picker.loclist() end, desc = "Location List" },
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-      { "<leader>ss", function() Snacks.picker.lsp_symbols({layout = { preset = "vscode", preview = "maink"}}) end, desc = "LSP Symbols" },
+      { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP Symbols" },
 
       -- ui
       { "<leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
