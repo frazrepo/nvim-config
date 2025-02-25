@@ -60,7 +60,7 @@ return {
             },
             {
                 -- Requires the latest version of ast-grep
-                "<leader>rG",
+                "<leader>ra",
                 function()
                     local grug = require("grug-far")
                     local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
