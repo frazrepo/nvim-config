@@ -20,7 +20,7 @@ return {
         },
         config = function(_,opts)
             require("diffview").setup(opts)
-            vim.keymap.set( 'n', '<leader>gdh', '<cmd>DiffviewFileHistory<cr>', { desc = 'Repo history' })
+            vim.keymap.set( 'n', '<leader>gdd', '<cmd>DiffviewFileHistory<cr>', { desc = 'Repo history' })
             vim.keymap.set( 'n', '<leader>gdf', '<cmd>DiffviewFileHistory --follow %<cr>', { desc = 'File history' })
             vim.keymap.set( 'v', '<leader>gdl', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", { desc = 'Range history' })
             vim.keymap.set( 'n', '<leader>gdl', '<Cmd>.DiffviewFileHistory --follow<CR>', { desc = 'Line history' })
