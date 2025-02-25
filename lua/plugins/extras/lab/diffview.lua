@@ -9,23 +9,23 @@ return {
         "sindrets/diffview.nvim",
         cmd = { "DiffviewOpen", "DiffviewFileHistory", "DiffviewClose" },
         keys = {
-            { "<leader>ghh", desc = "Repo history" },
-            { "<leader>ghf", desc = "File history" },
-            { "<leader>ghl", desc = "Line/Range history" },
-            { "<leader>ghc", desc = "Close DiffView" },
-            { "<leader>ghm", desc = "Diff against master" },
-            { "<leader>ghM", desc = "Diff against origin/master" },
-            { "<leader>ghb", desc = "Diff against local branch" },
-            { "<leader>ghB", desc = "Diff against remote branch" },
+            { "<leader>gdd", desc = "Repo history" },
+            { "<leader>gdf", desc = "File history" },
+            { "<leader>gdl", desc = "Line/Range history" },
+            { "<leader>gdc", desc = "Close DiffView" },
+            { "<leader>gdm", desc = "Diff against master" },
+            { "<leader>gdM", desc = "Diff against origin/master" },
+            { "<leader>gdb", desc = "Diff against local branch" },
+            { "<leader>gdB", desc = "Diff against remote branch" },
         },
         config = function(_,opts)
             require("diffview").setup(opts)
-            vim.keymap.set( 'n', '<leader>ghh', '<cmd>DiffviewFileHistory<cr>', { desc = 'Repo history' })
-            vim.keymap.set( 'n', '<leader>ghf', '<cmd>DiffviewFileHistory --follow %<cr>', { desc = 'File history' })
-            vim.keymap.set( 'v', '<leader>ghl', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", { desc = 'Range history' })
-            vim.keymap.set( 'n', ',<leader>ghl', '<Cmd>.DiffviewFileHistory --follow<CR>', { desc = 'Line history' })
+            vim.keymap.set( 'n', '<leader>gdh', '<cmd>DiffviewFileHistory<cr>', { desc = 'Repo history' })
+            vim.keymap.set( 'n', '<leader>gdf', '<cmd>DiffviewFileHistory --follow %<cr>', { desc = 'File history' })
+            vim.keymap.set( 'v', '<leader>gdl', "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", { desc = 'Range history' })
+            vim.keymap.set( 'n', '<leader>gdl', '<Cmd>.DiffviewFileHistory --follow<CR>', { desc = 'Line history' })
             -- To Close, we can also just do a tab close :tabc
-            vim.keymap.set( 'n', '<leader>ghc', '<cmd>set hidden<cr><cmd>DiffviewClose<cr><cmd>set nohidden<cr>', { desc = 'Close DiffView' })
+            vim.keymap.set( 'n', '<leader>gdc', '<cmd>set hidden<cr><cmd>DiffviewClose<cr><cmd>set nohidden<cr>', { desc = 'Close DiffView' })
 
 
             local function get_default_branch_name()
@@ -36,12 +36,12 @@ return {
             end
 
             -- Diff against local master branch
-            vim.keymap.set( 'n', '<leader>ghm', function() vim.cmd('DiffviewOpen ' .. get_default_branch_name()) end, { desc = 'Diff against master' })
-            vim.keymap.set( 'n', '<leader>ghb', ':DiffviewOpen ', { desc = 'Diff against local branch' })
-            vim.keymap.set( 'n', '<leader>ghB', ':DiffviewOpen HEAD..origin/', { desc = 'Diff against remote branch' })
+            vim.keymap.set( 'n', '<leader>gdm', function() vim.cmd('DiffviewOpen ' .. get_default_branch_name()) end, { desc = 'Diff against master' })
+            vim.keymap.set( 'n', '<leader>gdb', ':DiffviewOpen ', { desc = 'Diff against local branch' })
+            vim.keymap.set( 'n', '<leader>gdB', ':DiffviewOpen HEAD..origin/', { desc = 'Diff against remote branch' })
             -- Diff against remote master branch
             vim.keymap.set(
-            'n', '<leader>ghM', function() vim.cmd('DiffviewOpen HEAD..origin/' .. get_default_branch_name()) end, { desc = 'Diff against origin/master' })
+            'n', '<leader>gdM', function() vim.cmd('DiffviewOpen HEAD..origin/' .. get_default_branch_name()) end, { desc = 'Diff against origin/master' })
         end
 
     }
