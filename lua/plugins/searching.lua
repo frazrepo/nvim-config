@@ -59,6 +59,24 @@ return {
                 desc = "Search and Replace (rg)",
             },
             {
+                -- Requires the latest version of ast-grep
+                "<leader>rG",
+                function()
+                    local grug = require("grug-far")
+                    local ext = vim.bo.buftype == "" and vim.fn.expand("%:e")
+                    grug.open({
+                        engine = "astgrep",
+                        transient = true,
+                        prefills = {
+                            filesFilter = ext and ext ~= "" and "*." .. ext or nil,
+                        },
+                    })
+                end,
+
+                mode = { "n", "v" },
+                desc = "Search and Replace (ast)",
+            },
+            {
                 -- Requires the latest version of ripgrep
                 "<leader>rb",
                 function()
