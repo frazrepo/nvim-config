@@ -1,4 +1,5 @@
 
+-- See if Snack picker symbols is enough
 return {
       {
         'Bekaboo/dropbar.nvim',
