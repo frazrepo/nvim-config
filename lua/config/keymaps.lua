@@ -257,3 +257,6 @@ vim.keymap.set("n", "<leader>mx", function()
     end
   end
 end, { noremap = true, desc = "Execute cfdo command with confirmation" })
+
+-- Search inside visual selection
+vim.keymap.set("x", "g/", "<Esc>/\\%V", { noremap = true, desc = "Search inside visual selection" })
