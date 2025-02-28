@@ -16,27 +16,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Create missing dir on saving a file
--- Adapted from mkdir nvim plugin : https://github.com/jghauser/mkdir.nvim
-local fn = vim.fn
-function run_mkdir()
-  local dir = fn.expand('<afile>:p:h')
-
-  -- This handles URLs using netrw. See ':help netrw-transparent' for details.
-  if dir:find('%l+://') == 1 then
-    return
-  end
-
-  if fn.isdirectory(dir) == 0 then
-    fn.mkdir(dir, 'p')
-  end
-end
-
-vim.api.nvim_create_autocmd({ 'BufWritePre'}, {
-  pattern = '*',
-  group = augroup("mkdir_run"),
-  command = 'lua run_mkdir()',
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  group = augroup("auto_create_dir"),
+  callback = function(event)
+    if event.match:match("^%w%w+:[\\/][\\/]") then
+      return
+    end
+    local file = vim.uv.fs_realpath(event.match) or event.match
+    vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
+  end,
 })
-
 
 -- Enhance the help view and mappings
 vim.api.nvim_create_autocmd('FileType', {
