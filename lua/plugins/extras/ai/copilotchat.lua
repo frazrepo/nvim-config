@@ -2,7 +2,7 @@ return {
     -- copilot chat
     {
         "CopilotC-Nvim/CopilotChat.nvim",
-        lazy = true,
+        branch = "main",
         cond = FrazVim.extras.ai.engine == "copilot",
         dependencies = {
             -- { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua    
