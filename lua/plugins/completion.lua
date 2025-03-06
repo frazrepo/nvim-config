@@ -25,8 +25,10 @@ return {
 			},
 			sources = {
 				default = { "lsp", "snippets", "buffer"},
-				-- Disable cmdline completion
-				cmdline = {},
+			},
+			-- Disable cmdline completion
+			cmdline = {
+				sources = {}
 			},
 			completion = {
 				documentation = {
