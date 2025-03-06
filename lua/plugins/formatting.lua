@@ -6,6 +6,7 @@ return {
 	{
 		"stevearc/conform.nvim",
 		event = "BufReadPre",
+		cmd = "ConFormat",
 		config = function()
 			vim.g.autoformat = true
 			require("conform").setup({
