@@ -5,7 +5,7 @@ return {
     {
         "folke/noice.nvim",
         event = "VeryLazy",
-        enable = false,
+        -- enable = false,
         opts = {
             -- add any options here
         },
