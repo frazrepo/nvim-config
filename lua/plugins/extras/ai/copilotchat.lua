@@ -2,6 +2,7 @@ return {
     -- copilot chat
     {
         "CopilotC-Nvim/CopilotChat.nvim",
+        enable =  false,
         branch = "main",
         cond = FrazVim.extras.ai.engine == "copilot",
         dependencies = {

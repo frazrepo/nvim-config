@@ -10,6 +10,7 @@ local opt = vim.opt
 
 opt.backspace               = 'eol,start,indent'            -- Configure backspace so it acts as it should act
 opt.clipboard               = 'unnamed,unnamedplus'         -- Default to system clipboard
+opt.cmdheight = 2
 opt.complete                = '.,w,b,u'                     -- Complete option
 opt.cpoptions:append '>'                                    -- Put a line break before appended text (appending to register)
 opt.conceallevel = 2                                        -- Hide * markup for bold and italic, but not markers with substitutions
