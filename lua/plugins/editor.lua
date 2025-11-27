@@ -115,7 +115,7 @@ return {
     -- confirm operation with =
     -- Close dialog with q
     {
-        'echasnovski/mini.files',
+        'nvim-mini/mini.files',
         version = '*',
         opts = {},
         keys = {

@@ -20,7 +20,7 @@
       },
       -- mini-move
       {
-        'echasnovski/mini.move',
+        'nvim-mini/mini.move',
         version = '*',
         opts = {},
         keys = {

@@ -1,7 +1,7 @@
 return {
     -- mini-spitjoin
     {
-        'echasnovski/mini.splitjoin',
+        'nvim-mini/mini.splitjoin',
         -- event = "VeryLazy",
         event = "BufReadPre",
         version = '*',

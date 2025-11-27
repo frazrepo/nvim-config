@@ -5,7 +5,7 @@ return
 {
     -- auto pairs
     {
-        "echasnovski/mini.pairs",
+        "nvim-mini/mini.pairs",
         -- event = "VeryLazy",
         -- Lazy load this plugin
         event = "InsertEnter",
@@ -26,7 +26,7 @@ return
     -- Text objects
     -----------------------------------------------------------
     {
-        'echasnovski/mini.ai',
+        'nvim-mini/mini.ai',
         version = '*',
         event = "VeryLazy",
         opts = function()
@@ -115,7 +115,7 @@ return
 
     -- mini.Align - ga simple and gA interactive
     {
-        'echasnovski/mini.align',
+        'nvim-mini/mini.align',
         opts = {},
         keys = {
             { "ga", desc = "Align" },
@@ -126,7 +126,7 @@ return
 
     -- minioperators  : Sort (gs), Replace with register (gr), Exchange text regions (gx/gxx), Multiply text (gm/gmm),
     {
-        'echasnovski/mini.operators',
+        'nvim-mini/mini.operators',
          version = '*' ,
          opts = {},
          keys = {
