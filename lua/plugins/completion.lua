@@ -25,11 +25,10 @@ return {
 			},
 			sources = {
 				default = { "lsp", "snippets", "buffer"},
+				cmdline = { "cmdline", "path" },
 			},
-			-- Disable cmdline completion
-			cmdline = {
-				sources = {}
-			},
+			-- Enable cmdline completion with command and path sources
+			cmdline = {},
 			completion = {
 				documentation = {
 					auto_show = true,
