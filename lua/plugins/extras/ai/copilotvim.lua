@@ -7,7 +7,7 @@ return {
         -- :Copilot log
         -- <Tab> to complete suggestion
         "github/copilot.vim",
-        -- enabled = false
+        enabled = false,
         cond = FrazVim.extras.ai.engine == "copilot",
         cmd = "Copilot",
         event = "InsertEnter",

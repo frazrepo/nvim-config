@@ -2,6 +2,7 @@ return {
 	{ -- LSP Configuration & Plugins
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
+		cmd = {"LspInstall", "Mason"},
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			"saghen/blink.cmp",

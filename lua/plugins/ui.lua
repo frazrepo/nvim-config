@@ -3,7 +3,7 @@
 -----------------------------------------------------------
 return {
     { 
-        'echasnovski/mini.icons', 
+        'nvim-mini/mini.icons', 
         version = false,
         config = function()
             require("mini.icons").setup()
@@ -20,7 +20,8 @@ return {
     -- gitsign
     {
         'lewis6991/gitsigns.nvim',
-        event = "VeryLazy",
+        -- event : LazyFile = { "BufReadPost", "BufWritePost", "BufNewFile" } 
+        event = { "BufReadPost", "BufWritePost", "BufNewFile" },
         dependencies = {
             {'nvim-lua/plenary.nvim'}
         },

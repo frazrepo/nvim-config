@@ -5,7 +5,8 @@ return {
 	-- Conform
 	{
 		"stevearc/conform.nvim",
-		event = "BufReadPre",
+		-- event = "BufReadPre",
+		-- cmd = "ConFormat",
 		config = function()
 			vim.g.autoformat = true
 			require("conform").setup({
@@ -26,6 +27,7 @@ return {
 					toml = { "taplo" },
 					yaml = { "prettier" },
 					json = { "prettier" },
+					xml = { "xmlformatter" },
 				},
 
 				-- Do not format on save

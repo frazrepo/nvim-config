@@ -148,11 +148,6 @@ map('o', ')',']', {noremap =false, silent = true})
 map('x', '(','[', {noremap =false, silent = true})
 map('x', ')',']', {noremap =false, silent = true})
 
--- Alternative to unimpaired )or ( <Space> (from mini.bascis)
-vim.keymap.set('n', 'gO', "<Cmd>call append(line('.') - 1, repeat([''], v:count1))<CR>", { desc = "Add line above" })
--- Conflict as gtfo uses gof
-vim.keymap.set('n', 'go', "<Cmd>call append(line('.'),     repeat([''], v:count1))<CR>", { desc = "Add line below" })
-
 -- Undo breakpoints
 map('i', ',', ',<c-g>u', default_opts)
 map('i', '.', '.<c-g>u', default_opts)
@@ -262,3 +257,6 @@ vim.keymap.set("n", "<leader>mx", function()
     end
   end
 end, { noremap = true, desc = "Execute cfdo command with confirmation" })
+
+-- Search inside visual selection
+vim.keymap.set("x", "g/", "<Esc>/\\%V", { noremap = true, desc = "Search inside visual selection" })

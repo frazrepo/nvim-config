@@ -115,7 +115,7 @@ return {
     -- confirm operation with =
     -- Close dialog with q
     {
-        'echasnovski/mini.files',
+        'nvim-mini/mini.files',
         version = '*',
         opts = {},
         keys = {
@@ -196,7 +196,7 @@ return {
               { "<leader>c", group = "code/format/change" },
               { "<leader>f", group = "file/find" },
               { "<leader>g", group = "git" },
-              { "<leader>gh", group = "hunks (diffview)" },
+              { "<leader>gd", group = "diffview git" },
               { "<leader>gu", group = "toggle view" },
               { "<leader>i", group = "info", icon = { icon = "", color = "cyan" } },
               { "<leader>m", group = "miscellaneous", icon = { icon = "", color = "yellow" } },
