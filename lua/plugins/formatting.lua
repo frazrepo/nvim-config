@@ -27,7 +27,6 @@ return {
 					toml = { "taplo" },
 					yaml = { "prettier" },
 					json = { "prettier" },
-					xml = { "xmlformatter" },
 				},
 
 				-- Do not format on save
