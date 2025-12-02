@@ -160,7 +160,7 @@ return {
         -- fzf , needs to install fzf exe
         {
             'junegunn/fzf',
-            run = function()
+            build = function()
                 vim.fn['fzf#install']()
             end
         },
