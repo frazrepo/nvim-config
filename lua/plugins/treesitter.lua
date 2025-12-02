@@ -7,7 +7,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		build = ":TSUpdate",
         event = { "VeryLazy" },
         cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
         config = function(_,opts)
