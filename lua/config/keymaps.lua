@@ -163,8 +163,17 @@ map('n', '<Leader>mm', [[mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm]]  , {noremap =false, 
 
 -- Windows
 vim.keymap.set("n", "<leader>-", "<C-W>s", { desc = "Split Window Below", remap = true })
+vim.keymap.set("n", "<leader>ws", "<C-W>s", { desc = "Split Window Below", remap = true })
 vim.keymap.set("n", "<leader>=", "<C-W>v", { desc = "Split Window Right", remap = true })
+vim.keymap.set("n", "<leader>wv", "<C-W>v", { desc = "Split Window Right", remap = true })
 vim.keymap.set("n", "<leader>wd", "<C-W>c", { desc = "Delete Window", remap = true })
+vim.keymap.set("n", "<leader>wo", "<C-W>o", { desc = "Close all other windows", remap = true })
+vim.keymap.set("n", "<leader>wq", "<C-W>q", { desc = "Quit a window", remap = true })
+vim.keymap.set("n", "<leader>wx", "<C-W>x", { desc = "Swap current with next", remap = true })
+vim.keymap.set("n", "<leader>wh", "<C-W>h", { desc = "Go to the left window", remap = true })
+vim.keymap.set("n", "<leader>wH", "<C-W>H", { desc = "Move window to the far left", remap = true })
+vim.keymap.set("n", "<leader>wl", "<C-W>l", { desc = "Go to the right window", remap = true })
+vim.keymap.set("n", "<leader>wL", "<C-W>L", { desc = "Move window to the far right", remap = true })
 
 -- terminal mapping
 function _G.set_terminal_keymaps()
