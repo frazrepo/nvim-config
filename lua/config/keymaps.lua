@@ -178,6 +178,8 @@ vim.keymap.set("n", "<leader>wj", "<C-W>j", { desc = "Go to the down window", re
 vim.keymap.set("n", "<leader>wJ", "<C-W>J", { desc = "Move window to the far down", remap = true })
 vim.keymap.set("n", "<leader>wk", "<C-W>k", { desc = "Go to the up window", remap = true })
 vim.keymap.set("n", "<leader>wK", "<C-W>K", { desc = "Move window to the far up", remap = true })
+vim.keymap.set("n", "<leader>ww", "<C-W>w", { desc = "Switch window", remap = true })
+vim.keymap.set("n", "<leader>wx", "<C-W>x", { desc = "Swap current with next", remap = true })
 
 -- terminal mapping
 function _G.set_terminal_keymaps()
