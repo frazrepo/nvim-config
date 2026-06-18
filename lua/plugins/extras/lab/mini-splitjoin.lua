@@ -1,7 +1,9 @@
+-- Split and join arguments, lists, and other structures.
+-- Toggle between single-line and multi-line forms with `gS`.
+-- Works with function args, tables, arrays, imports, etc.
 return {
-    -- mini-spitjoin
     {
-        'nvim-mini/mini.splitjoin',
+        'echasnovski/mini.splitjoin',
         -- event = "VeryLazy",
         event = "BufReadPre",
         version = '*',
@@ -12,3 +14,4 @@ return {
         }
     }
 }
+<
