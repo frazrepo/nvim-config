@@ -1,4 +1,10 @@
-return {
+return  {
+    -- fztips-nvim - Notes Collection for tips and tricks
+    {
+        "frazrepo/fztips-nvim",
+        event = "VeryLazy"
+    },
+
     {
         -- To suppress global warning "Undefined global vim variable" on lua files
         "folke/lazydev.nvim",
@@ -11,5 +17,12 @@ return {
             },
         },
     },
-
+    -- vim gtfo - open files in terminal/explorer
+    {
+        'justinmk/vim-gtfo',
+        lazy = true,
+        keys = {
+            { "gof", desc = "Open file in explorer" },
+        },
+    },
 }
