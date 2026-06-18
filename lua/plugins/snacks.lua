@@ -53,6 +53,7 @@ return {
       { '<leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
       { "<leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
       { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command History" },
+      { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command History" },
       { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
       { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help Pages" },
