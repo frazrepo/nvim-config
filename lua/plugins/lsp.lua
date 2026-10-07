@@ -6,8 +6,8 @@ return {
 		dependencies = {
 			-- Automatically install LSPs and related tools to stdpath for Neovim
 			"saghen/blink.cmp",
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
+			"mason-org/mason.nvim",
+			"mason-org/mason-lspconfig.nvim",
 			"WhoIsSethDaniel/mason-tool-installer.nvim",
 		},
 		config = function()
@@ -27,7 +27,7 @@ return {
 					-- In this case, we create a function that lets us more easily define mappings specific
 					-- for LSP related items. It sets the mode, buffer and description for us each time.
 					local map = function(keys, func, desc)
-						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+						vim.keymap.set("n", keys, func, { buf = event.buf, desc = "LSP: " .. desc })
 					end
 
 					-- Jump to the definition of the word under your cursor.
@@ -69,13 +69,18 @@ return {
 					--
 					-- When you move your cursor, the highlights will be cleared (the second autocommand).
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.documentHighlightProvider then
+					if client and client:supports_method("textDocument/documentHighlight", event.buf) then
+						local highlight_augroup = vim.api.nvim_create_augroup("lsp-highlight", { clear = false })
+						vim.api.nvim_clear_autocmds({ group = highlight_augroup, buffer = event.buf })
+
 						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+							group = highlight_augroup,
 							buffer = event.buf,
 							callback = vim.lsp.buf.document_highlight,
 						})
 
 						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+							group = highlight_augroup,
 							buffer = event.buf,
 							callback = vim.lsp.buf.clear_references,
 						})
@@ -86,14 +91,18 @@ return {
 			-- LSP servers and clients are able to communicate to each other what features they support.
 			--  By default, Neovim doesn't support everything that is in the LSP specification.
 			--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
-			--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-			local capabilities = vim.lsp.protocol.make_client_capabilities()
-			capabilities = vim.tbl_deep_extend("force", capabilities, require("blink.cmp").get_lsp_capabilities(capabilities))
-            -- Add folding capabilities for nvim-ufo
-            capabilities.textDocument.foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true
-            }
+			--  So, we create new capabilities with blink, and then broadcast that to all the servers.
+			vim.lsp.config("*", {
+				capabilities = require("blink.cmp").get_lsp_capabilities({
+					textDocument = {
+						-- Add folding capabilities for nvim-ufo
+						foldingRange = {
+							dynamicRegistration = false,
+							lineFoldingOnly = true,
+						},
+					},
+				}),
+			})
 
 			-- Enable the following language servers
 			--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -133,6 +142,11 @@ return {
 				},
 			}
 
+			-- Merge the overrides above with the nvim-lspconfig defaults (lsp/<server>.lua)
+			for server_name, server in pairs(servers) do
+				vim.lsp.config(server_name, server)
+			end
+
 			-- Ensure the servers and tools above are installed
 			--  To check the current status of installed tools and/or manually install
 			--  other tools, you can run
@@ -159,16 +173,9 @@ return {
 					"pyright",
 					"emmet_language_server"
 				},
-				handlers = {
-					function(server_name)
-						local server = servers[server_name] or {}
-						-- This handles overriding only values explicitly passed
-						-- by the server configuration above. Useful when disabling
-						-- certain features of an LSP (for example, turning off formatting for tsserver)
-						server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-						require("lspconfig")[server_name].setup(server)
-					end,
-				},
+				-- Installed servers are enabled with vim.lsp.enable()
+				-- stylua is a formatter here (conform), not a language server
+				automatic_enable = { exclude = { "stylua" } },
 			})
 		end,
 	},

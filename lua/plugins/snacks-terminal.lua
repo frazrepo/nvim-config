@@ -26,7 +26,7 @@ return {
             term_normal = {
               "<esc>",
               function(self)
-                self.esc_timer = self.esc_timer or (vim.uv or vim.loop).new_timer()
+                self.esc_timer = self.esc_timer or vim.uv.new_timer()
                 if self.esc_timer:is_active() then
                   self.esc_timer:stop()
                   vim.cmd("stopinsert")

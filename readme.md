@@ -5,6 +5,11 @@ This is my neovim configuration in lua.
 * Works on Windows, Linux and Mac OS
 * Fast to load
 
+# Requirements
+* Neovim >= 0.12 (tested with 0.13)
+* [tree-sitter CLI](https://github.com/tree-sitter/tree-sitter) >= 0.25 and a C compiler (for nvim-treesitter `main` branch)
+* git, [ripgrep](https://github.com/BurntSushi/ripgrep), [fzf](https://github.com/junegunn/fzf)
+
 # Installation
 ```
 git clone --depth=1 https://github.com/frazrepo/nvim-config.git

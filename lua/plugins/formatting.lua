@@ -66,7 +66,7 @@ return {
 			-- Mappings
 			vim.keymap.set({ "n", "v" }, "<leader>cf", function()
 				require("conform").format({
-					lsp_fallback = true,
+					lsp_format = "fallback",
 					async = false,
 					timeout_ms = 1000,
 				})
@@ -75,7 +75,7 @@ return {
 			-- Create a command `:ConFormat`
 			vim.api.nvim_create_user_command("ConFormat", function()
 				require("conform").format({
-					lsp_fallback = true,
+					lsp_format = "fallback",
 					async = false,
 					timeout_ms = 1000,
 				})
