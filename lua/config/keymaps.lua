@@ -90,9 +90,7 @@ vim.cmd([[
     ]]
 )
 
--- " Quick macro recording and replaying ,qq for recording, and Q for replaying
-map('n', 'Q', '@q', default_opts)
-map('x', 'Q', ':normal @q<CR>', default_opts)
+-- Q: native mapping (0.13: multicursor, see :h Q and :h v_Q ; 0.12: replay last recorded macro)
 
 -- Execute a macro over a visual range
 map('x', '@',[[:<C-u>lua FrazVim.ExecuteMacroOverVisualRange()<CR>]], default_opts)
@@ -182,17 +180,18 @@ vim.keymap.set("n", "<leader>ww", "<C-W>w", { desc = "Switch window", remap = tr
 vim.keymap.set("n", "<leader>wx", "<C-W>x", { desc = "Swap current with next", remap = true })
 
 -- terminal mapping
-function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("frazvim_terminal_keymaps", { clear = true }),
+  pattern = "term://*",
+  callback = function(event)
+    local opts = { buf = event.buf }
+    vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+    vim.keymap.set('t', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+    vim.keymap.set('t', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+    vim.keymap.set('t', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+    vim.keymap.set('t', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+  end,
+})
 
 -- Visual mode pressing * or # searches for the current selection
 map("x", "*",[[:<C-u>lua FrazVim.VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>]], default_opts)
@@ -275,3 +274,8 @@ end, { noremap = true, desc = "Execute cfdo command with confirmation" })
 
 -- Search inside visual selection
 vim.keymap.set("x", "g/", "<Esc>/\\%V", { noremap = true, desc = "Search inside visual selection" })
+
+-- Incremental selection (built-in v_an / v_in since 0.12: treesitter or LSP selection ranges)
+vim.keymap.set("n", "<C-space>", "van", { remap = true, desc = "Start incremental selection" })
+vim.keymap.set("x", "<C-space>", "an", { remap = true, desc = "Increment selection" })
+vim.keymap.set("x", "<bs>", "in", { remap = true, desc = "Decrement selection" })

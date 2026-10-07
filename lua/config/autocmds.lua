@@ -7,11 +7,13 @@ local function augroup(name)
 end
 
 
--- Highlight on yank
-vim.api.nvim_create_autocmd("TextYankPost", {
-    pattern = "*",
+-- Highlight on yank (and on put with 0.13+)
+-- vim.hl.hl_op() replaces vim.hl.on_yank() in 0.13
+local hl_op = vim.hl.hl_op or vim.hl.on_yank
+vim.api.nvim_create_autocmd(vim.hl.hl_op and { "TextYankPost", "TextPutPost" } or "TextYankPost", {
+    group = augroup("highlight_yank"),
     callback = function()
-        vim.highlight.on_yank { higroup = "IncSearch", timeout = 150 }
+        hl_op({ higroup = "IncSearch", timeout = 150 })
     end,
 })
 
@@ -33,9 +35,9 @@ vim.api.nvim_create_autocmd('FileType', {
     group = augroup("enhance_help"),
     callback = function()
         -- Help file mappings
-        vim.keymap.set('n', '<cr>', '<c-]>', { buffer = true })
-        vim.keymap.set('n', '<bs>', '<c-T>', { buffer = true })
-        vim.keymap.set('n', 'q', ':q<CR>', { buffer = true })
+        vim.keymap.set('n', '<cr>', '<c-]>', { buf = 0 })
+        vim.keymap.set('n', '<bs>', '<c-T>', { buf = 0 })
+        vim.keymap.set('n', 'q', ':q<CR>', { buf = 0 })
         
         -- Set options
         vim.opt_local.number = false
@@ -108,7 +110,7 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.cmd("close")
         pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
       end, {
-        buffer = event.buf,
+        buf = event.buf,
         silent = true,
         desc = "Quit buffer",
       })
